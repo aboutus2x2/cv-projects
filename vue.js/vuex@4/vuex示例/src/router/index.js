@@ -8,7 +8,8 @@ const router = createRouter({
             // component: () => import('@/views/基础用法')
             // component: () => import('@/views/getter')
             // component: () => import('@/views/mapState和mapActions')
-            component: () => import('@/views/表单处理')
+            // component: () => import('@/views/表单处理')
+            component: () => import('@/views/模块')
         }
     ]
 });
