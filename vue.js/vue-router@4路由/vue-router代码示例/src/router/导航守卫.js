@@ -2,6 +2,7 @@
 // 什么是导航守卫
 // 应用场景
 // 全局守卫
+//      所有全局导航守卫都会返回一个取消守卫的函数
 //      beforeEach
 //          返回false不跳转
 //          返回true或undefined代表放行
@@ -44,7 +45,30 @@ const router = createRouter({
         {
             path: '/page1',
             name: 'page1',
-            component: () => import('@/views/Page1.vue')
+            component: () => import('@/views/Page1.vue'),
+            // 路由独享守卫
+            // 1. 值为守卫函数
+            // beforeEnter: (to, from, next) => {
+            //     // 独享守卫的参数和 beforeEach 相同
+            //     console.log('独享守卫')
+            //     console.log(to)
+            //     console.log(from)
+            //     console.log(next)
+            //
+            //     next()
+            // }
+            // 2. 值为一个守卫函数的责任链数组
+            beforeEnter: [
+                () => {
+                    console.log('独享守卫1')
+                },
+                () => {
+                    console.log('独享守卫2')
+                },
+                () => {
+                    console.log('独享守卫3')
+                }
+            ]
         },
         {
             path: '/page2',
@@ -52,7 +76,7 @@ const router = createRouter({
             component: () => import('@/views/Page2.vue'),
         },
         {
-            path: '/page3',
+            path: '/page3/:id',
             component: () => import('@/views/Page3.vue')
         },
     ]
