@@ -18,7 +18,8 @@ import App from './App.vue'
 // import router from '@/router/历史模式'
 // import router from '@/router/导航守卫'
 // import router from '@/router/选项式API中的route和router'
-import router from '@/router/动态路由'
+// import router from '@/router/动态路由'
+import router from '@/作业2-导航守卫练习/router'
 
 createApp(App)
     // 使用 use 安装路由器
