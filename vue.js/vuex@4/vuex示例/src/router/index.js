@@ -5,7 +5,8 @@ const router = createRouter({
     routes: [
         {
             path: '/',
-            component: () => import('@/views/基础用法')
+            // component: () => import('@/views/基础用法')
+            component: () => import('@/views/getter')
         }
     ]
 });
