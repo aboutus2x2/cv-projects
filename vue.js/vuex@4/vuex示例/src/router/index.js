@@ -6,7 +6,8 @@ const router = createRouter({
         {
             path: '/',
             // component: () => import('@/views/基础用法')
-            component: () => import('@/views/getter')
+            // component: () => import('@/views/getter')
+            component: () => import('@/views/mapState和mapActions')
         }
     ]
 });
