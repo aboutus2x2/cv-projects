@@ -15,11 +15,17 @@
         .container>div {
             color: #00f !important;
         }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
+    <!-- <div class="container">
         hello
         <div style="color: #f00;">
             world
@@ -30,7 +36,13 @@
         <button class="btn1">btn1</button>
         <button class="btn2">btn2</button>
         <button class="btn3">btn3</button>
+    </div> -->
+
+    <div>
+        <div class="box" style="float: left;"></div>
+        <div style="height: 100px;"></div>
     </div>
+    <div class="box" style="background: #ff0"></div>
 </body>
 <script>
     // 4. 浏览器解析元素时，将元素分为了 content内容 + padding内边距 + border边框 + margin外边距 这几个部分
@@ -72,6 +84,16 @@
     // 2. 给浮动元素的父元素添加 overflow:hidden，优点是添加清除浮动的元素更加直观，哪个元素想要清空浮动对其的影响，哪个元素就添加该样式
     // 3. 添加一个不可见的占位符标签，用来撑高父元素，缺点就是麻烦，需要计算父元素原来的高度
 
+
+    // 11. 输入url后敲回车发生了哪些事情
+    // 1. dns 域名解析  浏览器缓存->操作系统缓存->路由器缓存->电信运营商缓存->域名根服务器
+    // 2. 域名解析后得到ip，然后通过tcp/ip协议，通过ip和port找到远程主机，然后通过 http/https 协议传输数据 访问服务器
+    // 3. 服务器处理请求，做出响应
+    // 4. 浏览器接收服务器的响应
+    // 5. 渲染浏览器的窗口
+
+
+
     // 13
     // var: 定义变量，可以重复定义，且不具备块级作用域
     // let: 定义变量, 不能重复定义，具备块级作用域
@@ -95,19 +117,40 @@
     // 通常来说可以使用 big.js 框架来解决此问题 new Big('0.1').add('0.2')
 
 
-    // 18
-    // 内存泄漏的情况有哪些
-    // 内存什么时候会泄漏?
-    // 当一个值大小溢出了js变量能够表示的范围（64位2进制数据能够表示的大小），那么内存就会溢出
-    // 有以下几种情况:
-    // 1. 数字过大或过小 js 无法表示
-    // 2. 函数调用的死循环，例如递归的死循环，导致调用栈溢出
+    let a = 1 // 000001
+    // 5 => 000101
+    console.log(a & 5);
+    console.log(a | 5);
+    console.log(~a);
+    a = 4
+    // 000100
+    // 010000
+    // 000001
+    console.log(a << 2);
+    console.log(a >> 2);
 
+
+
+    // 18
+    // js内存包含3个部分
+    // 堆 栈 任务队列
+    // 内存泄漏的情况有哪些? 只要让 堆 栈 任务队列 满出来就可以了
+
+    // 堆满堆，因为堆上存的是对象的数据，所以创建足够多的对象后 堆可以被堆满
+    // while (true) {
+    //     setTimeout(() => {
+    //         window[Date.now()] = {name: '张三'}
+    //     }, 0)
+    // }
+
+    // 堆满栈，因为栈上存的是函数调用的数据，所以只要重复调用函数不返回，就能堆满栈
     // function fn() {
     //     fn()
     // }
 
     // fn()
+
+    // 堆满任务队列，因为任务队列中存放的是宏任务和微任务的数据，所以只要不停的创建不会结束的宏任务或微任务就能堆满队列
 
 
     // 20.
@@ -139,8 +182,9 @@
     // 为了达到响应式更新页面并且减少页面更新的性能开销，所以使用虚拟文档
 
     // 25.
-    // key的作用：用来决定元素的位置
-    // 不使用index作为key，是因为index的位置始终不会变化，所以对应key的元素位置也不会变
+    // key的作用：让虚拟节点的顺序和真实节点的顺序保持一致
+    // 为什么不用index: 因为数组成员的索引是会变化的
+
 
 
     // 26.
@@ -157,6 +201,9 @@
 
     // 28.
     // vue.js 通过 vnode 来声明页面元素，vnode 在挂载的时候，会被转换成 dom 元素，在转换成 dom 元素后，vue 会给添加了 v-on 指令的元素 通过 addEventListener 绑定事件
+
+    // 29.
+    // .prevent .stop .once
 
     // 31
     // 顺序如下
@@ -192,14 +239,17 @@
     // 那么在 http://127.0.0.1:80 中 使用 script 标签 例如: <script src="http://127.0.0.1:1024/testApi?callback=myCallback"></_script>(script 请求只能是get请求)
     // 服务器将返回如下类似内容: myCallback(data)
 
-    function myCallback(data){
+    function myCallback(data) {
         // 此处的data就是服务器返回的数据
     }
 
-    // 3. 通过iframe跨域
+    // 3. 反向代理服务器
 
+    // 36.
+    // promise 的内容会在异步进程中执行，然后将回调函数放到主进程的微任务队列中，当队列执行到头部的时候，执行 promise 的 resolve 回调，然后触发 then
 
     // 37.
+    // 闭包是一个封闭的内存空间，直到程序结束时才会释放内存
     // 应用场景
     // 封装模块
     // 封装函数
@@ -207,7 +257,7 @@
 
 
     // 38
-    // undefined string boolean number object function
+    // undefined string boolean number object function bigint symbol
 
 
 
@@ -222,7 +272,7 @@
     // 40
     // vue2:
     //      1. 性能相比存在组合式API的vue3，更低
-    //      2. vue2 有过滤器 filter 
+    //      2. vue2 有过滤器 filter
     //      3. Vue.set()  this.$set() 声明响应式属性
     //      4. 事件修饰符存在 .native 作用是：若组件存在一个 click 事件 那么若写成 <Component @click.native="someFunction"> 那么 someFunction函数最终将绑定到组件的根节点上
     //      5. 组件只能有一个根节点
