@@ -63,6 +63,7 @@ const router = createRouter({
 
 // beforeEach
 // 进入下一个页面前被调用
+// 所有的导航守卫调用后都有一个返回值，该返回值是一个用于取消守卫的函数
 // router.beforeEach((to, from) => {
 //     // to: 到哪里
 //     // from: 从哪里来
@@ -83,7 +84,9 @@ const router = createRouter({
 //     }
 // })
 
-router.beforeEach((to, from, next) => {
+// 返回值 cancel 是一个取消守卫的函数
+const cancel = router.beforeEach((to, from, next) => {
+    console.log('before each')
     // next: 放行函数，若参数中包含next，则必须调用它
     if (to.path === '/page2') {
         // 1. 参数为 false 代表拒绝访问
@@ -91,10 +94,25 @@ router.beforeEach((to, from, next) => {
         // 2. 参数是路由跳转的对应参数，则跳转页面
         // next('/page1')
         next({name: 'page1'})
+        cancel()
     } else {
         // 3. 不加参数代表放行
         next()
     }
+})
+
+
+// beforeResolve 会在页面进入前，且组件的守卫函数调用完之后被触发
+router.beforeResolve((to, from) => {
+    // 参数和 beforeEach 相同
+    // console.log('before resolve')
+})
+
+
+// afterEach 进入页面后触发
+router.afterEach((to, from) => {
+    // 和 beforeEach 不同之处在于 不需要返回值 也没有 next 参数
+    // console.log('after each')
 })
 
 
