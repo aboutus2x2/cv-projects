@@ -52,7 +52,7 @@ function switchBtn(url) {
         <h1>页面1</h1>
         <div class="container">
             <div class="left">
-                <router-link v-for="btn in btns" :key="btn.url" :to="btn.url">
+                <router-link v-for="btn in btns" :key="btn.url" :to="`/p1/${btn.url}`">
                     <div @click="switchBtn(btn.url)" :class="`button ${btn.active? 'active': ''}`">{{ btn.title }}</div>
                 </router-link>
             </div>
