@@ -4,8 +4,9 @@
         <!--        <ReactiveDataComponent></ReactiveDataComponent>-->
         <!--        <ComputedAttr></ComputedAttr>-->
         <!--        <Work1></Work1>-->
-<!--        <LifeCircle></LifeCircle>-->
-        <WatchComponent></WatchComponent>
+        <!--        <LifeCircle></LifeCircle>-->
+<!--        <WatchComponent></WatchComponent>-->
+        <RefComponent></RefComponent>
     </div>
 </template>
 
@@ -16,6 +17,7 @@ import ComputedAttr from '@/components/计算属性'
 import Work1 from '@/components/作业-计算属性练习/Index'
 import LifeCircle from '@/components/生命周期'
 import WatchComponent from '@/components/监听器'
+import RefComponent from '@/components/ref'
 
 export default {
     name: 'App',
@@ -25,7 +27,8 @@ export default {
         ComputedAttr,
         Work1,
         LifeCircle,
-        WatchComponent
+        WatchComponent,
+        RefComponent,
     }
 }
 </script>
