@@ -23,7 +23,36 @@ const store = createStore({
         }
     },
     // 操作
-    actions: {},
+    actions: {
+        // aName(store, payload) {
+        //     // store: 代表当前 store 对象(本质上是 store 对象的简化版本)
+        //     // payload: 新的状态值
+        //     console.log(store)
+        //     console.log(payload)
+        //
+        //     // action 中通过调用 commit 去调用 mutation 函数来修改 state
+        //     store.commit('mName', payload)
+        // }
+
+
+        // action 可以是 异步的
+        async aName({commit}, payload) {
+            console.log('请求开始')
+            // 假装进行网络请求
+            const newName = await new Promise(resolve => {
+                setTimeout(() => {
+                    // 假装服务器进行响应
+                    // 响应了一个新的名称叫 小明
+                    resolve('小明')
+                }, 3000)
+            })
+            console.log('请求完成')
+            // 修改状态
+            commit('mName', newName)
+            // 返回值
+            return newName
+        }
+    },
     // 修改状态的函数
     mutations: {
         mName(state, payload) {
