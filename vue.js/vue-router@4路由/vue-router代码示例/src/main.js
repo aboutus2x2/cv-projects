@@ -16,7 +16,9 @@ import App from './App.vue'
 // import router from '@/router/重定向和别名'
 // import router from '@/router/路由组件传参'
 // import router from '@/router/历史模式'
-import router from '@/router/导航守卫'
+// import router from '@/router/导航守卫'
+// import router from '@/router/选项式API中的route和router'
+import router from '@/router/动态路由'
 
 createApp(App)
     // 使用 use 安装路由器
