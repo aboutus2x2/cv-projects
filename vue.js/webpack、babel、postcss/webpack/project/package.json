@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "webpack --config build/resolve使用.js"
+    "build": "webpack --config build/webpack在浏览器上定义变量.js",
+    "serve": "webpack-dev-server -c build/webpack-dev-server配置.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",
@@ -10,7 +11,8 @@
     "style-loader": "^3.3.1",
     "vue-loader": "^17.0.1",
     "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.1"
+    "webpack-cli": "^5.0.1",
+    "webpack-dev-server": "^4.11.1"
   },
   "dependencies": {
     "lodash": "^4.17.21",
