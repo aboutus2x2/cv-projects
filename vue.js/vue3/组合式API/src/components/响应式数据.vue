@@ -10,7 +10,7 @@
 //      reactive 中嵌套的 ref 会自动解包
 //      注意 reactive 数组成员若是一个 ref 对象，则访问它时不会自动解包
 //      shallowReactive 不会自动解包的 reactive
-// 只读属性
+// 只读属性 readonly
 // toRefs
 
 
@@ -18,7 +18,7 @@
 // ref: 几乎所有的响应式属性都能通过 ref 来声明，对象和数组也可以用ref声明，那么对象内的属性和数组成员都是响应式的
 // reactive: 数组或对象数据 需要其所有的 对象属性 或 数组成员都是 响应式的 则可以考虑使用 reactive
 
-import {reactive, ref} from "vue";
+import {reactive, readonly, ref, shallowReactive, shallowRef, toRefs} from "vue";
 
 // ref
 // 使用 ref 可以创建一个深度响应式的属性
@@ -84,10 +84,49 @@ const ref5 = reactive([ref3])
 function changeRef4() {
     // 此处 msg 需要解包吗？ref3.msg.value?
     // 答: 不需要解包 直接调用即可
-    // ref4.msg = 'this is changed'
-    ref5[0].value = 'this is changed'
+    // console.log(ref4.msg)
+    ref4.msg = 'this is changed'
+    // console.log(ref5[0])
+    // ref5[0].value = 'this is changed'
 }
 
+
+// shallowRef vs ref
+const rr = ref({name: '张三', info: ref({msg: 'this is message'})})
+// shallow 浅的
+const srr = shallowRef({name: '张三', info: ref({msg: 'this is message'})})
+
+
+// shallowReactive vs reactive
+const rrr = reactive({name: '张三', info: ref({msg: 'this is message'})})
+const srrr = shallowReactive({name: '张三', info: ref({msg: 'this is message'})})
+
+
+// readonly 只读属性
+// readonly 的参数需要是一个对象
+const readOnlyValue = readonly({title: 'this is readonly title'})
+
+function changeReadOnly() {
+    // readOnlyValue.title = 'new title'
+}
+
+
+// toRefs
+// toRefs 配合 reactive 使用，将 reactive 中的所有属性全部转换为 ref 属性
+const state = reactive({
+    count: 12,
+    max: 55,
+    message: 'this is message'
+})
+
+// 将 reactive 的对象 转换成 ref 的属性
+const {count: num, max, message} = toRefs(state)
+console.log(num)
+console.log(max)
+console.log(message)
+console.log(num.value)
+console.log(max.value)
+console.log(message.value)
 </script>
 
 <template>
@@ -125,6 +164,20 @@ function changeRef4() {
             <div>ref4.msg: {{ ref4.msg }}</div>
             <div>ref5[0]: {{ ref5[0] }}</div>
             <button @click="changeRef4">修改</button>
+        </div>
+
+        <h1>shallowRef vs ref</h1>
+        <div>ref.name: {{ rr.name }}; ref.info.msg: {{ rr.info.msg }}</div>
+        <div>shallowRef.name: {{ srr.name }}; shallowRef.info.msg: {{ srr.info.value.msg }}</div>
+
+        <h1>shallowReactive vs reactive</h1>
+        <div>reactive.name: {{ rrr.name }}; reactive.info.msg: {{ rrr.info.msg }}</div>
+        <div>shallowReactive.name: {{ srrr.name }}; shallowReactive.info.msg: {{ srrr.info.value.msg }}</div>
+
+        <h1>readonly</h1>
+        <div>
+            <div>{{ readOnlyValue.title }}</div>
+            <button @click="changeReadOnly">修改</button>
         </div>
     </div>
 </template>
