@@ -85,7 +85,7 @@ function changeRef4() {
     // 此处 msg 需要解包吗？ref3.msg.value?
     // 答: 不需要解包 直接调用即可
     // ref4.msg = 'this is changed'
-    ref5[0] = 'this is changed'
+    ref5[0].value = 'this is changed'
 }
 
 </script>
