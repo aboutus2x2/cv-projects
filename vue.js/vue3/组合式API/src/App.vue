@@ -9,7 +9,9 @@
         <!--        <RefComponent></RefComponent>-->
         <!--        <PropsComponent></PropsComponent>-->
         <!--        <Work2></Work2>-->
-        <EventComponent></EventComponent>
+        <!--        <EventComponent></EventComponent>-->
+<!--        <InjectComponent></InjectComponent>-->
+        <NextTick></NextTick>
     </div>
 </template>
 
@@ -24,6 +26,8 @@ import RefComponent from '@/components/ref'
 import PropsComponent from '@/components/组件props'
 import Work2 from '@/components/作业-多表单控制/Index'
 import EventComponent from '@/components/组件事件'
+import InjectComponent from '@/components/依赖注入'
+import NextTick from '@/components/nextTick'
 
 export default {
     name: 'App',
@@ -38,6 +42,8 @@ export default {
         PropsComponent,
         Work2,
         EventComponent,
+        InjectComponent,
+        NextTick,
     }
 }
 </script>
