@@ -10,6 +10,10 @@ import store from './store'
 import 'ant-design-vue/dist/antd.min.css'
 // 引入AntD插件
 import AntD from 'ant-design-vue'
+import dayjs from 'dayjs'
+// 全局设置时间框架的语言
+import 'dayjs/locale/zh-cn'
+dayjs.locale('zh-cn')
 
 createApp(App)
     .use(store)
