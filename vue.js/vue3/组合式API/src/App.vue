@@ -6,7 +6,8 @@
         <!--        <Work1></Work1>-->
         <!--        <LifeCircle></LifeCircle>-->
 <!--        <WatchComponent></WatchComponent>-->
-        <RefComponent></RefComponent>
+<!--        <RefComponent></RefComponent>-->
+        <PropsComponent></PropsComponent>
     </div>
 </template>
 
@@ -18,6 +19,7 @@ import Work1 from '@/components/作业-计算属性练习/Index'
 import LifeCircle from '@/components/生命周期'
 import WatchComponent from '@/components/监听器'
 import RefComponent from '@/components/ref'
+import PropsComponent from '@/components/组件props'
 
 export default {
     name: 'App',
@@ -29,6 +31,7 @@ export default {
         LifeCircle,
         WatchComponent,
         RefComponent,
+        PropsComponent,
     }
 }
 </script>
