@@ -6,7 +6,8 @@ import {ref} from 'vue'
 // 使用数组定义props
 // defineProps(['name', 'sex', 'age'])
 // props 校验
-defineProps({
+// defineProps 返回数据为传入的参数
+const {name, sex, age} = defineProps({
     name: {
         required: true,
         type: String,
@@ -19,6 +20,10 @@ defineProps({
     },
     age: Number
 })
+
+// 可以通过 defineProps 的返回值充当响应式属性的初始值
+const na = ref(name)
+
 </script>
 
 <template>
@@ -27,6 +32,9 @@ defineProps({
         <div>name: {{ name }}</div>
         <div>sex: {{ sex }}</div>
         <div>age: {{ age }}</div>
+
+        <h2>{{ na }}</h2>
+        <input type="text" v-model="na">
     </div>
 </template>
 
