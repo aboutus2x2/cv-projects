@@ -79,11 +79,13 @@ function changeArr2() {
 // 3. 嵌套 ref
 const ref3 = ref('this is ref3')
 const ref4 = reactive({msg: ref3})
+const ref5 = reactive([ref3])
 
 function changeRef4() {
     // 此处 msg 需要解包吗？ref3.msg.value?
     // 答: 不需要解包 直接调用即可
-    ref4.msg = 'this is changed'
+    // ref4.msg = 'this is changed'
+    ref5[0] = 'this is changed'
 }
 
 </script>
@@ -121,6 +123,7 @@ function changeRef4() {
         <h2>嵌套 ref</h2>
         <div>
             <div>ref4.msg: {{ ref4.msg }}</div>
+            <div>ref5[0]: {{ ref5[0] }}</div>
             <button @click="changeRef4">修改</button>
         </div>
     </div>
