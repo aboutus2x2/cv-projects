@@ -4,9 +4,7 @@ import {ref} from 'vue'
 
 <template>
     <div>
-        <h1>Page2</h1>
-        <router-view name="v1"></router-view>
-        <router-view name="v2"></router-view>
+        <h1>P2</h1>
     </div>
 </template>
 
