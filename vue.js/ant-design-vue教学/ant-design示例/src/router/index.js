@@ -4,7 +4,8 @@ const routes = [
     {
         path: '/',
         // component: () => import('@/views/第一个页面')
-        component: () => import('@/views/布局组件')
+        // component: () => import('@/views/布局组件')
+        component: () => import('@/views/表单组件')
     }
 ]
 
