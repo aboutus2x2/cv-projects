@@ -6,9 +6,9 @@
 
 vue-router 是基于 vue 核心库的一个页面切换工具, 他的核心功能就是单页应用程序的多个页面间的切换
 
-单页应用程序(SPA Simple Page Application): vue 通过 createApp 函数，只创建了一个 app 对象，那么这样的应用程序就是 SPA
+单页应用程序(SPA Simple Page Application): 在一个 html 页面中，vue 通过 createApp 函数，只创建了一个 app 对象，那么这样的应用程序就是 SPA
 
-多页应用程序: 一个项目中存在多个 createApp 产生的 app 对象，这就是一个多页应用程序
+多页应用程序: 一个项目中存在多个 html 页面，每个页面有 createApp 产生的 app 对象，这就是一个多页应用程序
 
 所以，vue-router 本质上是页面元素的替换，而不是 html 页面的跳转
 
