@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_demo"]=self["webpackChunkvue_demo"]||[]).push([[348],{5348:function(n,e,t){t.r(e),t.d(e,{default:function(){return l}});t(7658);var u=t(3396),o=t(2483);const c=(0,u._)("h1",null,"Page1",-1);var s={__name:"Page1",setup(n){const e=(0,o.tv)();function t(){e.push("/p2").then((()=>{console.log("导航完成")}))}return(n,e)=>((0,u.wg)(),(0,u.iD)("div",null,[c,(0,u._)("button",{onClick:t},"to page2")]))}};const a=s;var l=a}}]);
+//# sourceMappingURL=348.92ae5eff.js.map
