@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let info = {
+        money: 1000,
+        msg: '我长得好漂亮哦'
+    }
+
+    let obj = {
+        name: '小红',
+        info
+    }
+
+
+    // 浅拷贝
+    // 浅拷贝时，对象属性将拷贝引用地址给新对象
+    let x = {}
+    const newObj = Object.assign(x, obj)
+    // const newObj = {...obj}
+
+    newObj.info.money = 5
+
+    console.log(obj === newObj); // => false
+    console.log(newObj === x); // => true
+    console.log(info.money); // => 5
+
+    // 因为 obj.info 保存的是 info 对象的引用地址
+    // 在浅拷贝的时候，info的引用地址被拷贝给了 newObj.info
+    // 所以修改 newObj.info.money 就等于修改 obj.info.money 因为 info 的地址相同
+
+
+
+    // 深拷贝
+    // 深拷贝时，对象属性将创建一个全新的引用
+    const newObj2 = JSON.parse(JSON.stringify(obj))
+
+    newObj2.info.money = 50
+    console.log(newObj2.info.money);
+    console.log(obj.info.money);
+</script>
+
+</html>
