@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            text-decoration: underline solid;
+            text-align: center;
+        }
+
+        .container>div {
+            color: #00f !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        hello
+        <div style="color: #f00;">
+            world
+        </div>
+    </div>
+
+    <div class="container2">
+        <button class="btn1">btn1</button>
+        <button class="btn2">btn2</button>
+        <button class="btn3">btn3</button>
+    </div>
+</body>
+<script>
+    // 5. 谈谈 flex 布局和 grid 布局
+    // flex 布局
+    // flex 布局可以排列一个父元素下的子元素
+    // 按照主要轴和交叉轴进行排列
+
+    // grid 布局
+    // grid 是一种网格布局，它的特点是按照行列布局
+
+
+    // 6.
+    // rem 1rem=html节点上一个字符的宽度
+    // cm 厘米
+    // vh 相对于视口的高度
+    // px 绝对像素大小
+
+    // 8.
+    // 哪些属性可以被继承
+    // color
+    // fontFamily font-size font-weight 等等 字体相关属性
+    // 文本相关属性 text-decoration text-align
+
+
+    // 9.
+    // 隐藏页面元素的方法
+    // display: none; 修改元素性质，让元素不显示，但是标签还在页面文档中
+    // visibility: hidden; 修改可见度为不可见，但是元素的大小和文档流的位置保持不变
+    // transform: scale(0); 缩放元素到0，元素依然存在，元素不占据位置，也没有大小 但元素性质并未改变
+    // opacity: 0; 将元素透明，元素大小位置依然存在，但不改变元素性质
+
+
+    // 10
+    // 1. clear: both  加在浮动元素后面，缺点就是需要寻找浮动元素后面的元素来添加样式，不够直观
+    // 2. 给浮动元素的父元素添加 overflow:hidden，优点是添加清除浮动的元素更加直观，哪个元素想要清空浮动对其的影响，哪个元素就添加该样式
+    // 3. 添加一个不可见的占位符标签，用来撑高父元素，缺点就是麻烦，需要计算父元素原来的高度
+
+    // 13
+    // var: 定义变量，可以重复定义，且不具备块级作用域
+    // let: 定义变量, 不能重复定义，具备块级作用域
+    // const: 定义常量, 定义后不能修改其值，具备块级作用域
+
+    let sex = 'male'
+    if (sex === 'male') {
+        // const a = 1
+        // let b = 2
+        var c = 3
+    }
+
+    // console.log(a);
+    // console.log(b);
+    console.log(c);
+
+
+
+    // 17
+    // 通过位运算解决数字精度问题
+    // 通常来说可以使用 big.js 框架来解决此问题 new Big('0.1').add('0.2')
+
+
+    // 18
+    // 内存泄漏的情况有哪些
+    // 内存什么时候会泄漏?
+    // 当一个值大小溢出了js变量能够表示的范围（64位2进制数据能够表示的大小），那么内存就会溢出
+    // 有以下几种情况:
+    // 1. 数字过大或过小 js 无法表示
+    // 2. 函数调用的死循环，例如递归的死循环，导致调用栈溢出
+
+    // function fn() {
+    //     fn()
+    // }
+
+    // fn()
+
+
+    // 20.
+    // 下拉刷新: 捕获页面容器在顶部(offsetTop==0)时，下拉的事件 mousedown 记录鼠标 y 坐标   mouseup 记录鼠标y坐标，对比坐标是否下移
+    // 上拉加载: 判断容器是否已经触底了 offsetTop >= content.height - window.innerHeight
+
+
+    // 21.
+    // ajax 异步网络请求
+    // axios 是 http client （http客户端） 用于发起http协议请求的工具
+    // jsonp 是解决跨域问题的一种服务端协议 jsonp 原理就是利用 script 标签不受跨域影响来实现的
+
+
+    // 22.
+    // 事件委托优缺点
+    // 优点: 父元素可以统一捕获子元素的事件
+    // 缺点: 统一捕获多个子元素事件时，不方便区分事件的发出源头
+
+
+    let container2 = document.querySelector('.container2')
+    let btn1 = document.querySelector('.btn1')
+
+    container2.addEventListener('click', ev => {
+        console.log(ev);
+    })
+
+
+    // 23.
+    // 为了达到响应式更新页面并且减少页面更新的性能开销，所以使用虚拟文档
+
+    // 25.
+    // key的作用：用来决定元素的位置
+    // 不使用index作为key，是因为index的位置始终不会变化，所以对应key的元素位置也不会变
+
+
+    // 26.
+    // beforeEach 进入每个页面前
+    // beforeAfter 进入每个页面后
+    // resolveEach 进入页面前，且在 组件的守卫函数执行前
+
+
+    // 27.
+    // vue 的响应式设计受到 mvvm 设计模式的启发，(解释一下mvvm的图)
+    // 响应式设计原理为... （解释一下响应式设计原理图）
+
+
+
+    // 28.
+    // vue.js 通过 vnode 来声明页面元素，vnode 在挂载的时候，会被转换成 dom 元素，在转换成 dom 元素后，vue 会给添加了 v-on 指令的元素 通过 addEventListener 绑定事件
+
+    // 31
+    // 顺序如下
+    // p 代表父组件生命周期 c 代表子组件生命周期
+    // p setup
+    // p beforeCreate
+    // p created
+    // p beforeMount
+    // c setup
+    // c beforeCreate
+    // c created
+    // c beforeMount
+    // c mounted
+    // p mounted
+
+
+    // 32
+    // 此题回答vuex的原理图即可
+    // 注意: vuex 存储的内容是保存在内存中的，所以一旦刷新页面，数据将被重置
+
+    // 34
+    // <img src="abc" onerror="alert('ok')"/>
+
+
+    // 35
+    // 1. 给服务器添加跨域响应头
+    //   access-control-allow-origin: *
+    //   access-control-allow-methods: *
+    //   access-control-allow-headers: *
+
+    // 2. 使用jsonp跨域
+    // 例如当前页面是 http://127.0.0.1:80 要访问 http://127.0.0.1:1024
+    // 那么在 http://127.0.0.1:80 中 使用 script 标签 例如: <script src="http://127.0.0.1:1024/testApi?callback=myCallback"></_script>(script 请求只能是get请求)
+    // 服务器将返回如下类似内容: myCallback(data)
+
+    function myCallback(data){
+        // 此处的data就是服务器返回的数据
+    }
+
+    // 3. 通过iframe跨域
+
+
+    // 37.
+    // 应用场景
+    // 封装模块
+    // 封装函数
+    // 避免名称冲突
+
+
+    // 38
+    // undefined string boolean number object function
+
+
+
+    // 39
+    // 强转
+    // Number('123') Boolean(0) String(234)
+    // 隐式转换
+    // 123 + ''  '' == 0   '123' - 123
+
+
+
+    // 40
+    // vue2:
+    //      1. 性能相比存在组合式API的vue3，更低
+    //      2. vue2 有过滤器 filter 
+    //      3. Vue.set()  this.$set() 声明响应式属性
+    //      4. 事件修饰符存在 .native 作用是：若组件存在一个 click 事件 那么若写成 <Component @click.native="someFunction"> 那么 someFunction函数最终将绑定到组件的根节点上
+    //      5. 组件只能有一个根节点
+    // vue3:
+    //      1. 有组合式API 提升了框架的性能
+    //      2. filter 被删除了
+    //      3. ref() 来声明响应式属性
+    //      4. .native 被删除了
+    //      5. 组件可以有多个根节点
+    // 总结:
+    // vue3 比 vue2 优化了很多性能
+    // vue3 比 vue2 书写起来更方便，且提供了更多扩展的内容 例如:给组件添加多个根节点，添加 组合式API
+
+
+
+
+    // 41.
+    // 1. xss 注入漏洞: 不要让用户写的内容直接编译成html代码，否则就会遇到注入漏洞 例如:vue的 v-html
+    // 2. 注意参数校验，因为用户输入的内容可能是非法参数从而影响数据安全或给服务器添加不必要的脏数据
+</script>
+
+</html>

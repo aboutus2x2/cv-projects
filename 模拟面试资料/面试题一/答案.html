@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 二 css部分 */
+
+        /* 1. 块级元素独占一整行，可以设置任意盒子模型的属性
+            行内元素，不独占一行，且margin和padding只有水平方向生效，width和height无法决定内容大小，内容大小由标签中的内容决定
+        */
+
+        /* 2. position:
+            relative; 
+            absolute;
+            fixed;
+            sticky;
+        */
+
+        /* 3.
+            id选择器
+            class选择器
+            标签选择器
+            后代 selector selector selector
+            子代 selector>selector>selector
+            属性 selector[attr='value']
+            兄弟 查询下一个兄弟节点 selector+selector 查询下面的所有兄弟节点 selector~selector
+        */
+
+        /* 4.
+            overflow
+            auto
+            hidden
+            scroll
+        */
+
+        /* 
+            5. 居中方法
+            1. flex
+            2. position 配合 calc 计算函数
+        */
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+
+            position: absolute;
+            /* top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;*/
+            top: calc(50% - 50px);
+            left: calc(50% - 50px);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 一 html部分 -->
+    <!-- 1. 块级元素 -->
+    <div></div>
+    <h1></h1>
+    <p></p>
+    <ul></ul>
+    <ol></ol>
+    <table></table>
+    <!-- 1. 行内元素 -->
+    <b></b>
+    <u></u>
+    <i></i>
+    <span></span>
+    <a href=""></a>
+    <strong></strong>
+    <del></del>
+
+    <!-- 2.
+        title 鼠标悬停在图片上始终显示
+        alt 图片加载失败时显示的替代文本
+    -->
+    <img src="./img/Snipaste_2022-04-12_15-40-05.png" title="这是title" alt="这是alt">
+    <img src="" title="这是title" alt="这是alt">
+
+    <!-- 3. 
+        target 指定跳转的页面是哪一个
+        _self 当前页面
+        _blank 新开页面
+        target 还可以填 iframe 的 name 属性，作用是让指定的 iframe 跳转
+    -->
+    <a href="" target="_self"></a>
+
+    <!-- 4. 
+        使用场景：内嵌一个外部系统的子页面，例如：集成一个百度地图，百度地图作为子页面有独立的页面的作用域，不会干扰页面的其他元素
+        优点：类似一个sandbox沙箱，沙箱环境中的页面发生任何异常或写入任何样式，都不会影响父页面
+        缺点：受跨域政策的影响，并非所有页面都能使用 iframe 进行内嵌
+    -->
+
+    <!-- <iframe src="abc" frameborder="0"></iframe>
+    <iframe src="abc" frameborder="0"></iframe>
+    <iframe src="abc" frameborder="0"></iframe> -->
+    <!-- 5. https://www.cnblogs.com/jane-panyiyun/p/13092297.html -->
+
+    <iframe name="myIframe" src="https://www.baidu.com"></iframe>
+    <a href="https://bilibili.com" target="myIframe">to bilibili</a>
+
+
+    <div>
+        <span>行内元素</span>
+    </div>
+
+    <div style="position: relative;border:3px solid #000; width: 500px; height: 500px;">
+        <div class="box"></div>
+    </div>
+</body>
+<script>
+    // 三 js 部分
+    // 1.
+    document.querySelector
+    document.querySelectorAll
+    document.getElementById
+    document.getElementsByClassName
+    document.getElementsByTagName
+
+    // 2.
+    let arr = [1, 2, 3, 4]
+    arr.splice(1, 1) // 删除指定索引位置的成员
+    console.log(arr);
+    // let r = arr.slice(1)
+    let r = arr.slice(0, 2) // 数组切片，用于截取子数组
+    console.log(r);
+
+    // 3.
+    // === 严格相等，包括类型和值都相等
+    // == 值相等，类型可以互相之间进行隐式转换
+
+    // 4.
+    // cookie 是由服务器在浏览器上设置的参数
+    // sessionStorage 和 localStorage 是浏览器设置的参数
+    // localStorage 数据持久化，将一直存在于浏览器中
+    // sessionStorage 会随着会话的结束而消失
+
+
+    // 5.
+    // request url: 请求地址
+    // status code: 状态码
+    // request method: 请求方法
+    // access-control-allow-origin: 允许访问的跨域源
+    // content-type: 请求数据的类型
+    // content-length: 内容长度
+    // user-agent: 用户代理信息
+    // cookie: 请求自动携带的 cookie
+
+
+    (function (f) {
+        return typeof f()
+    })(function () {
+        return '1'
+    })
+
+
+    // 数组去重
+    arr = [5, 2, 3, 6, 8, 6, 5, 4, 7, 1, 9]
+    arr = Array.from(new Set(arr))
+    arr.sort((el1, el2) => el2 - el1)
+    console.log(arr);
+</script>
+
+</html>

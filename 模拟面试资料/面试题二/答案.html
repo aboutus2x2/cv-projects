@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .body {
+            height: 100vh;
+        }
+
+        .container {
+            overflow-y: scroll;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+
+        .img {
+            height: 250px;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            float: left;
+            border: 5px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" style="height: 500px;">
+        <div class="content" style="height: 1000px">
+            <img class="img" data-src="./img/QQ图片20220412150054.jpg">
+        </div>
+    </div>
+
+    <div style="height: 1000px">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+<script>
+
+    // 谈谈你对重绘和回流的理解
+    // https://juejin.cn/post/6844903569087266823
+
+    // 如何实现图片懒加载？
+    const container = document.querySelector('.container')
+    const img = document.querySelector('.img')
+
+    container.addEventListener('scroll', () => {
+        console.log('scrollTop', container.scrollTop);
+        console.log('差值', img.offsetTop - 500);
+        // 容器滚动高度 > 图片顶部距离窗口顶部的高度 - 容器高度
+        if (container.scrollTop > img.offsetTop - 500) {
+            // 显示图片内容
+            img.src = img.getAttribute('data-src')
+        }
+    })
+
+
+    // svg和canvas的区别？
+    // svg 矢量图标签
+    // canvas 画布
+    // 画布在缩放时候会失真 矢量图不会
+
+
+
+
+    // CSS 中 link 和 @import 的区别是？
+    // link除了引入css文件外 还可以引入其他内容例如：图标 dns-prefetch
+    // @import 只能引入文件 且不是所有浏览器都支持 老浏览器不支持
+
+
+
+
+
+    // 如何让if(a == 1 && a == 2)条件成立？
+    // const a = {
+    //     i: 1,
+    //     // 对象的 toString 函数将在该对象转换成字符串时自动调用
+    //     toString(){
+    //         return this.i++
+    //     }
+    // }
+    let i = 1
+    // 给对象定义属性
+    Object.defineProperty(window, 'a', {
+        get() {
+            return i++
+        }
+    })
+    console.log('a == 1 && a == 2');
+    console.log(a == 1 && a == 2);
+
+
+
+// vue 中怎么重置 data?
+// this.$data 组件的状态
+// this.$options 代表导出的配置对象，如下:
+// <script>
+// export default {
+//     data(){
+//         return {}
+//     }
+// }
+// </scrip>
+// 所以调用 this.$options.data() 函数将返回一个初始状态的对象
+// 然后使用 Object.assign 函数复制属性给 this.$data
+// Object.assign(this.$data, this.$options.data())
+
+
+
+
+// 虚拟 DOM 实现原理
+// 在内存中将 html 文档树，通过树状结构的数据存储下来，每个数据就是 vue.js 中的 VNode(相当于react中的 react-dom)
+// 一旦 vue 组件中的响应式属性更新，那么将触发虚拟文档树的更新，虚拟文档树将调用 Diff 函数，用来对比虚拟文档树和真实文档树之间的区别
+// 最后 vue 将更新虚拟文档树和真实文档树具有差异的部分
+
+
+
+// 解释 React 中 render() 的目的。
+// render 函数用来描绘组件长什么样子，他将返回一个 react-dom 对象
+// react-dom 可以和真实文档做对比，react-dom部分更新真实文档只会更新发生变化的部分
+
+
+
+// 在react中，列出一些应该使用 Refs 的情况。
+// 1. 需要获取dom元素
+// 2. 需要获取第三方组件，例如: ant-design 的 a-form, 若要重置表单， 需要获取组件对象，然后调用对象的 resetFields 方法
+
+
+
+// 列出几种常见的css布局
+// float
+// position
+// flex
+// 也会结合 margin padding 使用，用来调整元素间的间距
+
+
+
+</script>
+
+</html>
