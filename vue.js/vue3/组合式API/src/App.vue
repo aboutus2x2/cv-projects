@@ -5,9 +5,11 @@
         <!--        <ComputedAttr></ComputedAttr>-->
         <!--        <Work1></Work1>-->
         <!--        <LifeCircle></LifeCircle>-->
-<!--        <WatchComponent></WatchComponent>-->
-<!--        <RefComponent></RefComponent>-->
-        <PropsComponent></PropsComponent>
+        <!--        <WatchComponent></WatchComponent>-->
+        <!--        <RefComponent></RefComponent>-->
+        <!--        <PropsComponent></PropsComponent>-->
+        <!--        <Work2></Work2>-->
+        <EventComponent></EventComponent>
     </div>
 </template>
 
@@ -20,6 +22,8 @@ import LifeCircle from '@/components/生命周期'
 import WatchComponent from '@/components/监听器'
 import RefComponent from '@/components/ref'
 import PropsComponent from '@/components/组件props'
+import Work2 from '@/components/作业-多表单控制/Index'
+import EventComponent from '@/components/组件事件'
 
 export default {
     name: 'App',
@@ -32,6 +36,8 @@ export default {
         WatchComponent,
         RefComponent,
         PropsComponent,
+        Work2,
+        EventComponent,
     }
 }
 </script>

@@ -1,46 +1,62 @@
 <script setup>
+
+import {ref} from "vue";
+
+const count = ref(0)
+
+
 // 定义事件
 // 返回值是一个发出事件的函数
+const emit = defineEmits(['perFive', 'update:modelValue', 'update:firstName', 'update:lastName'])
+
+// 计时
+// 每5秒发出一个事件
+setInterval(() => {
+    count.value++
+    if (count.value % 5 === 0) {
+        // 发出事件
+        emit('perFive', count.value)
+    }
+}, 1000)
 
 
-
-// 自定义v-model需要完成两步
+// 自定义v-model
 
 
 const {
-  firstName,
-  lastName,
-  modelValue
+    firstName,
+    lastName,
+    modelValue
 } = defineProps({
-  firstName: {
-    type: String,
-    default() {
-      return '';
+    firstName: {
+        type: String,
+        default() {
+            return '';
+        }
+    },
+    lastName: {
+        type: String,
+        default() {
+            return '';
+        }
+    },
+    modelValue: {
+        type: String,
+        default() {
+            return '';
+        }
     }
-  },
-  lastName: {
-    type: String,
-    default() {
-      return '';
-    }
-  },
-  modelValue: {
-    type: String,
-    default() {
-      return '';
-    }
-  }
 });
 
 </script>
 
 <template>
-  <div>
-    <input type="text" @input="onInput"><br>
-    firstName <input type="text" :value="firstName" @input="ev=>{ emit('update:firstName', ev.target.value) }">
-    lastName <input type="text" :value="lastName" @input="ev=>{emit('update:lastName', ev.target.value)}"><br>
-    message: <input type="text" :value="modelValue" @input="ev=>{emit('update:modelValue', ev.target.value)}">
-  </div>
+    <div>
+        <div>count: {{ count }}</div>
+        firstName <input type="text" :value="firstName" @input="emit('update:firstName', $event.target.value)"/>
+        lastName <input type="text" :value="lastName" @input="emit('update:lastName', $event.target.value)"/><br>
+        message: <input type="text" :value="modelValue" @input="emit('update:modelValue', $event.target.value)"/>
+    </div>
 </template>
 
 <style scoped>
