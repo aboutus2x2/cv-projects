@@ -32,6 +32,11 @@
             float: left;
             border: 5px solid black;
         }
+
+        canvas {
+            width: 100px;
+            height: 100px;
+        }
     </style>
 </head>
 
@@ -57,11 +62,25 @@
         <div class="box"></div>
         <div class="box"></div>
     </div>
+
+    <!-- 属性值不会失真而样式会失真 -->
+    <canvas width="200" height="200"></canvas>
 </body>
 <script>
 
     // 谈谈你对重绘和回流的理解
     // https://juejin.cn/post/6844903569087266823
+    // 回流: 
+    // 以下情况回触发回流
+    // 1. 元素大小位置发生变化
+    // 2. 元素内结构发生变化
+    // 3. 窗口大小发生变化
+    // 4. 字体发生变化
+    // 回流时，浏览器会重新渲染部分或整个文档
+
+    // 重绘:
+    // 修改元素样式时，只要不是触发的回流，那么就是重绘
+    // 重绘会重新赋予元素新的样式
 
     // 如何实现图片懒加载？
     const container = document.querySelector('.container')
@@ -88,29 +107,35 @@
 
     // CSS 中 link 和 @import 的区别是？
     // link除了引入css文件外 还可以引入其他内容例如：图标 dns-prefetch
-    // @import 只能引入文件 且不是所有浏览器都支持 老浏览器不支持
+    // @import 只能引入css文件 且不是所有浏览器都支持 老浏览器不支持
 
 
 
 
 
     // 如何让if(a == 1 && a == 2)条件成立？
-    // const a = {
-    //     i: 1,
-    //     // 对象的 toString 函数将在该对象转换成字符串时自动调用
-    //     toString(){
-    //         return this.i++
+
+    // 方法一: 使用访问器
+    // window._a = 1
+    // Object.defineProperty(window, 'a', {
+    //     get() {
+    //         return _a++
     //     }
-    // }
-    let i = 1
-    // 给对象定义属性
-    Object.defineProperty(window, 'a', {
-        get() {
-            return i++
+    // })
+    // console.log(a == 1 && a == 2);
+
+    // 方法二: 使用隐式转换
+
+    let a = {
+        _a: 1,
+        // 重写Object父类中的toString方法
+        // 当 a 被转换成字符串时，自动调用 toString
+        toString() {
+            return this._a++
         }
-    })
-    console.log('a == 1 && a == 2');
+    }
     console.log(a == 1 && a == 2);
+
 
 
 
@@ -135,16 +160,17 @@
 // 在内存中将 html 文档树，通过树状结构的数据存储下来，每个数据就是 vue.js 中的 VNode(相当于react中的 react-dom)
 // 一旦 vue 组件中的响应式属性更新，那么将触发虚拟文档树的更新，虚拟文档树将调用 Diff 函数，用来对比虚拟文档树和真实文档树之间的区别
 // 最后 vue 将更新虚拟文档树和真实文档树具有差异的部分
-
+// https://dev.to/themarcba/coding-a-vue-js-like-framework-from-scratch-part-1-introduction-3nbf
 
 
 // 解释 React 中 render() 的目的。
 // render 函数用来描绘组件长什么样子，他将返回一个 react-dom 对象
-// react-dom 可以和真实文档做对比，react-dom部分更新真实文档只会更新发生变化的部分
+// react-dom 可以和现有的虚拟文档做对比，对比完后react会更新有变化的部分，然后再更新对应的真实文档
 
 
 
 // 在react中，列出一些应该使用 Refs 的情况。
+// <div ref="">
 // 1. 需要获取dom元素
 // 2. 需要获取第三方组件，例如: ant-design 的 a-form, 若要重置表单， 需要获取组件对象，然后调用对象的 resetFields 方法
 
@@ -154,6 +180,7 @@
 // float
 // position
 // flex
+// grid
 // 也会结合 margin padding 使用，用来调整元素间的间距
 
 
