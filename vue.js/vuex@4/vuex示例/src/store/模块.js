@@ -7,11 +7,13 @@
 //          2. 给 store/index.js(根节点) 配置添加 module 属性
 //          3. 将 user.js 赋值 module 属性
 //      2. 使用模块
-// 注意: 没有命名空间的模块，所有的 actions 和 mutations （getters） 都注册到根节点上
+// 注意: 没有命名空间的模块，所有的 actions mutations 和 getters 都注册到根节点上
 // 什么是命名空间？
-// 带有命名空间的 module 和 不带命名空间的 module 的区别
-// 如何在带有命名空间的 module 中设置全局actions和读取全局状态
-// 使用 createNamespacedHelpers 或 mapState 等辅助函数来简化调用命名空间的过程
+// 添加命名空间后，如何调用 actions getters
+//      1. actions: store.dispatch('命名空间名称/action名称')
+//      2. getters: store.getters['命名空间名称/getter名称']
+// 如何在带有命名空间的 module 中设置全局 actions 和读取全局状态
+// 使用 createNamespacedHelpers 辅助函数来简化调用命名空间的过程
 // 给 mapState 和 mapActions 添加命名空间
 
 
