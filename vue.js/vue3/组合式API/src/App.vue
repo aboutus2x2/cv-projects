@@ -10,8 +10,10 @@
         <!--        <PropsComponent></PropsComponent>-->
         <!--        <Work2></Work2>-->
         <!--        <EventComponent></EventComponent>-->
-<!--        <InjectComponent></InjectComponent>-->
-        <NextTick></NextTick>
+        <!--        <InjectComponent></InjectComponent>-->
+<!--        <NextTick></NextTick>-->
+<!--        <Work3></Work3>-->
+        <Work4></Work4>
     </div>
 </template>
 
@@ -28,6 +30,8 @@ import Work2 from '@/components/作业-多表单控制/Index'
 import EventComponent from '@/components/组件事件'
 import InjectComponent from '@/components/依赖注入'
 import NextTick from '@/components/nextTick'
+import Work3 from '@/components/作业5-监听器和计算属性/Index'
+import Work4 from '@/components/作业7-页面切换与状态保留/Index'
 
 export default {
     name: 'App',
@@ -44,6 +48,8 @@ export default {
         EventComponent,
         InjectComponent,
         NextTick,
+        Work3,
+        Work4
     }
 }
 </script>
