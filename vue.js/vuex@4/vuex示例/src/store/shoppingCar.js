@@ -17,8 +17,20 @@ export default {
     actions: {
         // 添加商品
         addItem(store, item) {
+            console.log(store)
+            // store.rootState 可以访问根节点的 state
+            console.log(store.rootState.name)
+            // store.rootGetters 可以访问根节点的 getters
             store.state.goodsItems.push(item)
             store.commit('mGoodsItems', store.state.goodsItems)
+        },
+        aGoodsItems: {
+            // 设置action到根节点上
+            root: true,
+            // action具体的函数内容
+            handler(store, payload) {
+                store.commit('mGoodsItems', payload)
+            }
         }
     },
     mutations: {
