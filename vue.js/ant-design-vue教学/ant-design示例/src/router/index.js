@@ -9,7 +9,9 @@ const routes = [
         // component: () => import('@/views/表单验证')
         // component: () => import('@/views/分页表格')
         // component: () => import('@/views/国际化')
-        component: () => import('@/views/导航组件')
+        // component: () => import('@/views/导航组件')
+        // component: () => import('@/views/数据显示组件')
+        component: () => import('@/views/反馈组件')
     }
 ]
 

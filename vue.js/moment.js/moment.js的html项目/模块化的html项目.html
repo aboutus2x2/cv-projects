@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<!-- 引入moment
+    添加 type="module" 将 js 文件作为模块引入
+-->
+<script type="module">
+    // moment.js 文件 是通过 npm i moment 得到的文件
+    // 该文件是一个 es module 模块
+    import moment from './js/moment.js'
+    // 创建 moment 对象
+    let now = moment()
+    console.log(now);
+</script>
+
+</html>

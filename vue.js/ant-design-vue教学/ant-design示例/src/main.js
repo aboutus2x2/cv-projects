@@ -1,12 +1,12 @@
 import {createApp} from 'vue'
 import App from './App.vue'
-// import router from './router'
+import router from './router'
 // import router from '@/作业1-ant-design-vue页面制作/router'
-import router from '@/作业2-ant-design-vue制作表格的crud/router'
+// import router from '@/作业2-ant-design-vue制作表格的crud/router'
 
-// import store from './store'
+import store from './store'
 // import store from '@/作业1-ant-design-vue页面制作/store'
-import store from '@/作业2-ant-design-vue制作表格的crud/store'
+// import store from '@/作业2-ant-design-vue制作表格的crud/store'
 
 // 引入样式
 import 'ant-design-vue/dist/antd.min.css'
