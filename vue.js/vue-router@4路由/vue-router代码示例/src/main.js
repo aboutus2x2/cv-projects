@@ -11,7 +11,8 @@ import App from './App.vue'
 // import router from '@/作业-嵌套路由/router/index'
 // import router from '@/router/编程式导航'
 // import router from '@/作业1-综合练习/router/index'
-import router from '@/router/命名视图'
+// import router from '@/router/命名视图'
+import router from '@/router/命名路由'
 
 createApp(App)
     // 使用 use 安装路由器
