@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "webpack --config build/插件的使用.js"
+    "build": "webpack --config build/resolve使用.js"
   },
   "devDependencies": {
     "clean-webpack-plugin": "^4.0.0",

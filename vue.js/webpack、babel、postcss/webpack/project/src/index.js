@@ -1,7 +1,7 @@
 import moment from 'moment'
 // import _ from 'lodash'
 // webpack 可以直接识别和引入js文件
-import '../lodash.js'
+import './assets/lodash.js'
 
 
 // 创建组件的函数

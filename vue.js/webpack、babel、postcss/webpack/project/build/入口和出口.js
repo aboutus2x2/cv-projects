@@ -1,3 +1,7 @@
+// 知识点
+// entry 的多入口配置
+// output 的多输出配置
+
 const path = require('path');
 
 module.exports = {
