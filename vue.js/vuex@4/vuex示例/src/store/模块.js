@@ -31,6 +31,9 @@ import {createStore} from "vuex";
 import shoppingCar from './shoppingCar'
 
 const store = createStore({
+    // 开启严格模式
+    // 严格模式中 页面只能通过 store.dispatch 修改状态
+    strict: true,
     modules: {
         // key: 模块名
         // value: 模块的配置
