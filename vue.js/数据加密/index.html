@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script src="rsa.html.js"></script>
+<script>
+    const keys = new NodeRSA({ b: 512 })
+    keys.generateKeyPair(2048, 65537)
+
+    let message = '该起床了'
+    // 加密
+    let r = keys.encrypt(message)
+    console.log(r);
+
+    // 解密
+    r = keys.decrypt(r)
+    console.log(r.toString());
+</script>
+</html>
