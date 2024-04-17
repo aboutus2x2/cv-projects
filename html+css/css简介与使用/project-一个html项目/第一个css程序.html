@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 3. 在 style 标签最上面使用 @import 引入外部文件 */
+        @import url(./css/main.css);
+
+        /* 2. 在style标签中使用 css */
+        #other {
+            color: #00ff00;
+        }
+    </style>
+    <!-- 4. link 标签引入外部文件 -->
+    <!-- 直接换行 ctrl + enter -->
+    <!-- 单行删除 ctrl + shift + k -->
+    <!-- 
+        rel 引入文件资源的类型 stylesheet 指的就是样式表
+        href 引入文件的路径
+     -->
+    <link rel="stylesheet" href="./css/main2.css" />
+</head>
+<body>
+    <!-- 添加样式的方法 -->
+    <!-- 1. 在元素上使用 css 
+        使用 style 属性添加样式
+    -->
+    <div style="color: #ff0000">hello world</div>
+    <!-- 单行复制 alt + shift + up/down -->
+    <!-- 移动代码行 alt + up/down -->
+    <div id="other">hello world</div>
+    <div id="other2">hello world</div>
+    <div id="other3">hello world</div>
+</body>
+<!-- link 标签和 @import 的异同
+    相同: 都能引入 css 文件
+    不同:
+        link: 即可以引入css文件 也可以引入其他内容
+        @import: 只能引入 css 文件，且较新的现代浏览器才支持
+-->
+</html>
