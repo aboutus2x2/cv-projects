@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            color: #ff0000;
+        }
+
+        .box {
+            color: #00ff00;
+        }
+
+        #hello {
+            color: #0000ff;
+        }
+
+        /* 基础选择器优先级：id>class>tag */
+
+        #form label input[name=name] {
+            color: #ff0000;
+        }
+
+        #form .lb input[name=name] {
+            color: #00ff00;
+        }
+
+        /* 复合选择器的数量相同时，从左到右依次对比基础选择器，哪边优先级高就采用哪边 */
+
+        form label input[name=age] {
+            color: #ffff00;
+        }
+
+        form input[name=age] {
+            color: #ff00ff;
+        }
+
+        /* 所有选择器的优先级相同，但选择器数量不同，选择器数量多的将被应用 */
+
+        .fm {
+            background-color: #ff0000;
+        }
+
+        .fr {
+            background-color: #0000ff;
+        }
+
+        /* 当选择器优先级相同时，下面的内容将覆盖上面的内容 */
+    </style>
+</head>
+
+<body>
+    <div id="hello" class="box">hello world</div>
+    <form id="form" class="fm fr">
+        <label class="lb">
+            姓名
+            <input name="name" type="text" value="hello">
+        </label>
+        <label>
+            年龄
+            <input name="age" type="number" value="17">
+        </label>
+    </form>
+</body>
+
+</html>
