@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="../css/main.css"> -->
+    <!-- <link rel="stylesheet" href="//127.0.0.1:5500/html+css/css简介与使用/project-一个html项目/css/main.css"> -->
+    <link rel="stylesheet" href="/html+css/css简介与使用/project-一个html项目/css/main.css">
+    <!-- 关于资源路径url 
+        资源路径是指某个资源通过浏览器地址栏能够访问的路径url
+    -->
+    <!-- 
+        注意: 此处的所有路径都是站在浏览器的角度来看的
+        相对路径: 不写斜杠开头的或 ./ ../ 开头的路径为相对路径
+        <link rel="stylesheet" href="./css/main.css">
+        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="css/main.css">
+        相对路径的参考系是当前页面的路径
+        css/main.css 和 ./css/main.css 等价 代表当前文件夹下的 css 文件夹中的 main.css
+        ./ 代表当前目录
+        ../ 上级目录
+
+        绝对路径: 一个完整的url路径
+        <link rel="stylesheet" href="http://127.0.0.1:5500/html+css/css简介与使用/project-一个html项目/css/main.css">
+        双斜杠开头的绝对路径，代表使用当前页面的协议拉取资源
+        <link rel="stylesheet" href="//127.0.0.1:5500/html+css/css简介与使用/project-一个html项目/css/main.css">
+        单斜杠开头的绝对路径，代表服务器应用上下文(application context 可以理解成服务器能够拉取到资源的文件夹路径)
+
+        总结:
+        大部分情况可以使用相对路径，相对路径的参考系大部分情况可以查看文件夹的目录结构
+        例如: <link rel="stylesheet" href="./css/main.css">
+        ./css/main.css 相对路径的参考系就是 资源路径.html 文件所在的文件夹
+     -->
+</head>
+<body>
+    <div id="other">
+        hello world
+    </div>
+</body>
+</html>

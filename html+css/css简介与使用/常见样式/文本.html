@@ -23,6 +23,10 @@
             /* font-family: 'abc', '华文琥珀'; */
 
 
+            /* 字体大小 */
+            font-size: 16px;
+
+
             /* 修改文本粗细 */
             /* 待选项：
                 数字：数字越大越粗
@@ -62,15 +66,24 @@
         }
 
         .box3 {
-            height: 100px;
-        }
+            /* 设置行高
+                行高会影响文本 行内元素 行内块级元素
+            */
+            line-height: 100px;
+            width: 200px;
+            border: 5px solid #000;
 
-        .box3>button {
-            /* 纵向对齐 */
-            /* 待选项：
-                top: 向上对齐
-                middle: 居中
-                bottom: 向下对齐
+        }
+        
+        .box3>button{
+            /* 垂直方向的排列方式
+                参考系为本行的行高
+                行高可以使用 line-height 进行修改
+                待选项:
+                    top: 顶部
+                    bottom: 底部
+                    middle: 居中
+                    baseline: 文本排列在同一线上
             */
             vertical-align: middle;
         }
@@ -146,9 +159,8 @@
         段落缩进段落缩进段落缩进段落缩进段落缩进段落缩进段落缩进段落缩进段落缩进段落缩进
     </div>
     <div class="box3">
-        <button>click</button>
+        段落缩进<span>段落缩进段</span>落缩进段落缩<button>进段落缩</button>进段落缩进段落缩进段落缩进段落缩进段落缩进
     </div>
-
     <div class="box4">
         hello page hyll
     </div>
