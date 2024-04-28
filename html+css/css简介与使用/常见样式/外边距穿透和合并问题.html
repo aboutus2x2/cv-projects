@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            border: 5px solid #000;
+        }
+
+        /* .container>div:first-child {
+            color: #ff0000;
+            margin-top: 50px;
+        } */
+
+         .box {
+            width: 100px;
+            height: 200px;
+            background-color: #0f0;
+            margin-top: 50px;
+        }
+
+        .mini-box {
+            width: 50px;
+            height: 50px;
+            background-color: #f00;
+            margin-top: 100px;
+        }
+
+        .first {
+            margin-right: 20px;
+        }
+
+        .second {
+            margin-left: 30px;
+        }
+
+        .first2 {
+            margin-bottom: 30px;
+        }
+
+        .second2 {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>穿透问题</h1>
+    <div class="container">
+        <div class="box">
+            <!-- 第一个子元素的margin-top将穿透到父元素的外面 -->
+            <!-- 若希望设置 mini-box 与父元素 box 间的距离，可以设置 box 的内边距 -->
+            <div class="mini-box"></div>
+            <div class="mini-box"></div>
+            <div class="mini-box"></div>
+        </div>
+        <div class="box">2</div>
+    </div>
+
+    <!-- <div class="container">
+        <div>1</div>
+        <div>2</div>
+    </div> -->
+
+    <h1>外边距合并问题</h1>
+    <!-- 水平排列的两个元素
+        左右外边距融合时，两元素距离为外边距和
+    -->
+    <div>
+        <span class="first">hello</span>
+        <span class="second">world</span>
+    </div>
+    <!-- 竖直排列的两个元素
+        上下外边距融合时，两元素谁大取谁的值
+     -->
+    <div>
+        <div class="first2">hello</div>
+        <div class="second2">world</div>
+    </div>
+</body>
+
+</html>

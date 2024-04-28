@@ -112,6 +112,14 @@
 
             border: 20px solid #000000;
         }
+
+        .inline-el {
+            width: 100px;
+            height: 100px;
+            padding: 30px;
+            margin: 30px;
+            border: 10px solid #000;
+        }
     </style>
 </head>
 <body>
@@ -128,5 +136,13 @@
     </div>
 
     <div class="box4"></div>
+
+    <!-- 行内元素内外边距问题 
+        行内元素无法设置宽高，且宽高由内容决定
+        行内元素上下内外边距设置无效，左右内外边距有效
+    -->
+    <div>
+        <span class="inline-el">hello world</span>
+    </div>
 </body>
 </html>
