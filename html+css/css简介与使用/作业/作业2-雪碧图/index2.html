@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .frame {
+            border: 3px solid #ff0000;
+            width: 22px;
+            height: 22px;
+            background: url(./sprite.png);
+        }
+
+        .t {
+            /* calc 计算函数
+                可以计算任意值的大小
+                运算符左右要打空格
+            */
+            background-position-x: calc(1 * -22px);
+        }
+        
+        .f {
+            background-position-x: calc(2 * -22px);
+        }
+  
+        .tt {
+            background-position-x: calc(3 * -22px);
+        }
+       
+        .i {
+            background-position-x: calc(4 * -22px);
+        }
+
+        .frame:hover {
+            background-position-y: -22px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame x"></div>
+    <div class="frame t"></div>
+    <div class="frame f"></div>
+    <div class="frame tt"></div>
+    <div class="frame i"></div>
+</body>
+
+</html>
