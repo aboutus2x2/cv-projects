@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 星号代表通配符 意思是任意的元素 */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            height: 100vh;
+
+            /* 参考: https://www.w3schools.com/css/css_colors.asp
+                https://www.w3schools.cn/css/css_colors.asp
+            */
+
+            /* 颜色值的表达方式有多种： */
+
+            /* 预置文本: 代表颜色的英文单词 */
+            /* transparent: 透明 */
+            background-color: transparent;
+
+            /* rgb值: 在计算机图形学中，红(red)绿(green)蓝(blue)是计算机的三原色 */
+            /* 使用rgb函数来定义一个颜色值，其中第一个参数代表红色，第二个参数代表绿色，第三个参数代表蓝色 */
+            /* 每个参数的取值范围是：0~255 (256是一个字节的大小Byte)*/
+            background-color: rgb(13, 247, 212);
+
+            /* rgba值: rgb代表红绿蓝，a(alpha通道)代表透明度，取值范围0~1，值越大，越不透明 */
+            background-color: rgba(0, 0, 0, 0.2);
+
+            /* HSL值: H色调 S饱和度（灰度） L代表亮度 */
+            background-color: hsl(0deg, 100%, 50%);
+
+            /* 十六进制值: 以井号开头 */
+            /* 十六进制数由1~10超过10的部分由A~F表示 */
+            /* 前两个数代表红色，中间两个数代表绿色，最后两个数代表蓝色 */
+            /* background-color: #2233ff; 如果颜色值成对出现，可以简写为： #23f */
+            background-color: #f00;
+
+            /* 带透明度的十六进制 */
+            background-color: #ff00ff7b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>

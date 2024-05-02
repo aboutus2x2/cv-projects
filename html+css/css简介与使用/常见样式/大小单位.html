@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        /* 参考：https://www.w3schools.com/css/css_units.asp
+            https://www.w3schools.cn/css/css_units.asp
+        */
+
+        * {
+            margin: 0;
+        }
+
+        .bg {
+            background-color: #f00;
+        }
+
+        .container {
+            height: 100px;
+        }
+
+        .box1 {
+            /* px: 像素值 */
+            width: 100px;
+            height: 100px;
+        }
+
+        .box2 {
+            /* 百分比: 相对父元素的百分比 */
+            width: 50%;
+            height: 33%;
+        }
+
+        .box3 {
+            width: 100px;
+            /* height: 100px; */
+
+            /* em: 当前元素的字符宽度 1em = 1个字符宽 */
+            /* rem: 根节点(html元素)的字符宽 1rem = html元素的一个字符宽 */
+            text-indent: 2em;
+            text-indent: 2rem;
+
+            /* ex: 当前元素字符的半高 2ex = 1个字符高 */
+            /* height: 2ex; */
+
+            white-space: nowrap;
+            line-height: 6ex;
+        }
+
+        .container {
+            background-color: #0f0;
+
+            /* vh(viewport-height): 相对于视口高度的百分比 */
+            height: 100vh;
+            /* vw(viewport-width): 相对于视口宽度的百分比 */
+            width: 50vw;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box1 bg"></div>
+        <div class="box2 bg"></div>
+        <div class="box3">
+            你好世
+        </div>
+    </div>
+</body>
+
+</html>
