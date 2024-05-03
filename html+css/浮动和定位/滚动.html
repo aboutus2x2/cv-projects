@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 自定义滚动条网站: https://codepen.io/stephenpaton-tech/full/JjRvGmY */
+
+        /* 若希望页面出现滚动条，则需要满足以下条件:
+            内容区域的大小 > 容器区域的大小
+         */
+
+        .container {
+            height: 500px;
+            border: 5px solid #000;
+            box-sizing: border-box;
+
+            /* 添加溢出效果 */
+            /* 超出容器部分隐藏 */
+            overflow: hidden;
+            /* 内容超出容器就产生滚动条 否则没有滚动条 */
+            overflow: auto;
+            /* 无论什么情况都显示滚动条 */
+            overflow: scroll;
+        }
+
+        .content {
+            height: 1000px;
+            background-color: #f00;
+        }
+
+        /* ===== Scrollbar CSS ===== */
+        /* Firefox */
+        * {
+            scrollbar-width: auto;
+            scrollbar-color: #ff4d00 #9c9c9c;
+        }
+
+        /* Chrome, Edge, and Safari */
+        *::-webkit-scrollbar {
+            width: 32px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background: #9c9c9c;
+        }
+
+        *::-webkit-scrollbar-thumb {
+            background-color: #ff4d00;
+            border-radius: 16px;
+            border: 7px solid #04ff00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content"></div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            color: #fff;
+
+            /* 隐藏元素的几种方法: */
+
+            /* 1. display: none 元素性质直接设为无 */
+            /* display: none; */
+
+            /* 2. opacity: 0 通过透明度 */
+            /* opacity: 0; */
+
+            /* 3. transform: scale(0) 元素缩放为0 */
+            /* transform: scale(0); */
+
+            /* 4. visibility: hidden 可见性设为不可见 */
+            visibility: hidden;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: #0f0;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        hello world
+    </div>
+    <div class="box2"></div>
+</body>
+
+</html>
