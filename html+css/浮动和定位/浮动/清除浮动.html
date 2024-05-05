@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            /* 由于container下所有子元素都浮动出去了，所以导致父元素高度坍塌(高度为零) */
+
+            /* 给高度坍塌的父元素添加 overflow: hidden 可以恢复高度 */
+            overflow: hidden;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        .red {
+            background-color: #f00;
+            float: left;
+        }
+
+        .green {
+            background-color: #0f0;
+            /* 清除浮动，用于清除浮动元素的父元素对下一个元素的影响 */
+            clear: both;
+        }
+
+        /* 总结：
+            清除浮动对元素影响的方法：
+            1. 给高度坍塌的父元素添加 overflow: hidden
+            2. 给高度坍塌的父元素的下一个元素添加 clear: both
+        */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box red"></div>
+        <div class="box red"></div>
+        <div class="box red"></div>
+    </div>
+    <div class="box green"></div>
+</body>
+</html>
