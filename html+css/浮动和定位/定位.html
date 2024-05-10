@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 定位 */
+        /* 什么是定位？ */
+        /* 定位是css中用于确定元素位置的属性 */
+
+        /* 定位的类型有以下几种:
+            1. 绝对定位
+            2. 相对定位
+            3. 固定定位
+            4. 粘性定位
+         */
+
+        /* 如何修改定位的层叠关系 */
+
+
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+
+        .box1 {
+            background-color: #f00;
+            /* 1. 绝对定位
+                参考系: 默认参考视口(viewport)
+                绝对定位的元素将浮出文档流
+            */
+            position: absolute;
+            /* 可以通过 top bottom left right 来设置坐标
+                他们表示元素离视口 上下左右 距离多少
+            */
+
+            /* top: 100px;
+            left: 200px; */
+
+            /* 若元素宽度为自动 */
+            width: auto;
+            /* 那么设置互斥的定位信息，可以用于确定元素的大小 */
+            left: 100px;
+            right: 200px;
+
+
+
+        }
+
+        .box2 {
+            background-color: #0f0;
+
+            /* 2. 相对定位
+                参考系: 自己
+            */
+            position: relative;
+
+            /* top bottom left right 代表的含义为 相对自己的上边缘下边缘左边缘右边缘多少距离 */
+
+            left: 100px;
+        }
+
+        .box-container {
+            width: 400px;
+            height: 400px;
+            background-color: #ff0;
+            /* 绝对定位的参考系 可以修改
+                给绝对定位元素的先祖元素添加一个 非 static 的定位就可以将该先祖变成参考系
+                static 就是没有定位的意思
+            */
+
+            /* 给父元素添加定位属性 */
+            position: relative;
+        }
+
+        .box3 {
+            background-color: #f00;
+
+            position: absolute;
+            /* left: 100px; */
+            bottom: 0;
+        }
+
+        .content {
+            height: 3000px;
+            width: 3000px;
+        }
+
+        .box4 {
+            background-color: #00f;
+            /* 3. 固定定位
+                参考系: 视口
+                该定位方式，当滚动条发生变化时，位置不会变化
+            */
+            position: fixed;
+            bottom: 64px;
+            right: 64px;
+        }
+
+        .box5 {
+            background-color: #f0f;
+            /* 4. 粘性定位 */
+            position: sticky;
+            top: 100px;
+        }
+
+        .content2 {
+            width: 500px;
+            height: 500px;
+            border: 5px solid #000;
+
+            position: relative;
+        }
+
+        .box6 {
+            background-color: #0f0;
+
+            position: absolute;
+
+            left: 200px;
+            top: 200px;
+
+            /* z-index: 用于修改定位元素的重叠关系
+                数字越大越叠在上面
+            */
+            z-index: 999;
+        }
+
+        .box7 {
+            background-color: #f00;
+
+            position: absolute;
+
+            left: 150px;
+            top: 150px;
+
+            z-index: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="box box1"></div>
+        <div class="box box2"></div>
+        <div class="box-container">
+            <div class="box box3"></div>
+        </div>
+        <div class="box box5"></div>
+        <div class="box box4"></div>
+
+        <div class="content2">
+            <!-- 定位元素的层叠关系: 默认情况写在后面的内容会盖住前面的内容 -->
+            <div class="box box6"></div>
+            <div class="box box7"></div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
