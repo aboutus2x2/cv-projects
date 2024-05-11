@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 100vh;
+            background-color: #8f8f8f;
+            position: relative;
+
+            margin: 0;
+        }
+
+        .container {
+            background-color: #0f0;
+            width: 400px;
+            height: 400px;
+
+            position: absolute;
+
+            /* 计算坐标让元素居中，公式:
+             top = calc(50% - 元素高度的一半)
+             left = calc(50% - 元素宽度的一半)
+             */
+            top: calc(50% - 200px);
+            left: calc(50% - 200px);
+        }
+
+        /* .container2 {
+            background-color: #0f0;
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+        } */
+
+        .box3 {
+            width: 160px;
+            height: 160px;
+            background-color: #f00;
+            position: absolute;
+
+            top: calc(50% - 42px);
+            left: calc(50% - 123px);
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0;
+            position: absolute;
+
+            top: calc(50% - 89px);
+            left: calc(50% - 22px);
+        }
+
+        .box1 {
+            width: 80px;
+            height: 80px;
+            background-color: #f0f;
+            position: absolute;
+
+            top: calc(50% - 52px);
+            left: calc(50% - -22px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+    </div>
+</body>
+
+</html>
