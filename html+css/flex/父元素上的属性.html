@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 参考：http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html */
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            color: #fff;
+            font-size: 32px;
+        }
+
+        .container {
+            width: 500px;
+            height: 400px;
+            border: 5px solid #000;
+
+            /* 必须在父元素上写display:flex 来开启flex功能 */
+            display: flex;
+
+            /* 规定主要轴 */
+            /* 默认情况，主要轴就是横轴 */
+            /* 待选项：
+                row: 默认值，规定横向为主轴
+                column: 规定纵向为主轴
+                row-reverse: 规定横向为主轴，同时反向
+                column-reverse: 规定纵向为主轴，同时反向
+             */
+            flex-direction: row;
+
+            /* 设置换行方式 */
+            /* 待选项：
+                wrap: 换行
+                nowrap: 不换行
+                wrap-reverse: 换行且反向
+             */
+            flex-wrap: wrap;
+
+            /* 这个属性是 flex-direction + flex-wrap */
+            /* flex-flow: nowrap column; */
+
+            /* 定义元素在主要轴上的排列方式 */
+            /* 待选项：
+                flex-start: 对齐主轴起始点
+                flex-end: 对齐主轴结束点
+                center: 在主轴上居中
+                space-around: 每个子元素两侧的间隔相等
+                space-between: 两端对齐，中间平均分布
+                space-evenly: 平均分布
+             */
+            justify-content: flex-start;
+
+
+            /* 定义元素在交叉轴上的排列方式 */
+            /* 待选项：
+                flex-start: 对齐次要轴起始点
+                flex-end: 对齐次要轴结束点
+                center: 在次要轴上居中居中
+                baseline: 根据子元素中的文本进行文本高度对齐
+                stretch: 当不设置宽或高时，子元素的宽度或高度会自动占满整个容器
+             */
+            align-items: flex-start;
+
+            /* 使用条件：子元素在主轴上必须换行 */
+            /* 作用：多行子元素在交叉轴上的对齐方式 */
+            /* 待选项和 justify-content 相同 */
+            align-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box">1</div>
+        <div class="box" style="height: auto; line-height: 100px;">2</div>
+        <div class="box" style="height: auto;">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+</body>
+
+</html>
