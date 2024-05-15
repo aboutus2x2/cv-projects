@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 参考：http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html */
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            color: #fff;
+            font-size: 32px;
+            border: 5px solid #000;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 450px;
+            height: 500px;
+            border: 5px solid #000;
+
+            /* 必须在父元素上写display:flex 来开启flex功能 */
+            display: flex;
+
+            justify-content: space-evenly;
+
+            align-items: center;
+        }
+
+        .box1 {
+            /* 排序
+                数字越小越靠近主要轴的起始位置
+            */
+            /* order: 3; */
+            /* flex-grow: 1; */
+
+            /* 设置元素在flex容器中的宽度或高度 */
+            /* 待选项：
+                0: 不设置元素宽或高
+                auto: 元素本身的宽或高
+                其他长度: 设置元素宽或高，优先级高于width或height
+             */
+            /* 在flex当中直接将其作为宽或高使用即可 */
+            flex-basis: 200px;
+        }
+
+        .box2 {
+            /* order: 1; */
+
+            /* 当主要轴上没有铺满时 设置flex-grow的元素会填满剩余区域 
+                flex-grow 的值代表撑宽之后的元素 占主要轴大小的比例值，数字越大比例越大
+            */
+            /* flex-grow: 2; */
+
+            /* 当元素占满整行时才能看出效果 */
+            /* 该属性的效果是当元素沾满整行时压缩元素 */
+            /* 值为0: 不压缩 */
+            /* 大于零的值，元素将被压缩，且值越大压缩得越厉害 */
+            flex-shrink: 2;
+
+
+            /* 设置子元素在交叉轴上的排布方式 */
+            /* 其待选项和 align-items 相同 */
+            align-self: flex-end;
+        }
+
+        .box3 {
+            /* order: 2; */
+            /* flex-grow: 3; */
+
+
+            /* flex 复合属性，代表了 flex-grow; flex-shrink; flex-basis */
+            /* 赋值顺序不可调换 */
+            /* 待选项:
+                auto: (1 1 auto)
+                none: (0 0 auto)
+                任意其他值 
+             */
+            flex: 1 0 auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box">4</div>
+        <div class="box">5</div>
+        <div class="box">6</div>
+    </div>
+</body>
+
+</html>
