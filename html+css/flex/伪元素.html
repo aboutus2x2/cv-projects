@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 伪元素： */
+        /* 在html文档中，并非真实的文档元素，而是一个 "::" 由两个冒号组成的符号，具备了部分文档元素的功能 */
+
+        /* 特点：伪元素默认情况是个行内元素 */
+
+        /* before 元素标签体前的一个元素 */
+        .box::before {
+            /* content 必填 */
+            content: 'before';
+
+            display: block;
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            color: #fff;
+        }
+
+        /* after 元素标签体后的一个元素 */
+        .box::after {
+            /* content 必填 */
+            content: '';
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #00f;
+            color: #fff;
+        }
+
+        ul>li::after {
+            content: '>'
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        hello world
+    </div>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+
+</html>
