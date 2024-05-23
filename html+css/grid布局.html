@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+            知识点
+            https://www.w3schools.com/css/css_grid.asp
+            https://developer.mozilla.org/zh-CN/docs/Web/CSS/grid
+
+            基本用法
+                display: grid
+                grid-template-rows
+                grid-template-columns
+            通过网格线设置单元格位置和大小
+                grid-row-start
+                grid-row-end
+                grid-row
+                grid-column-start
+                grid-column-end
+                grid-column
+            通过命名区域的方式进行布局
+                grid-template-areas
+                grid-area
+            网格间距
+                row-gap
+                column-gap
+                gap
+         */
+
+        .grid-container {
+            background-color: blue;
+
+            height: calc(100vh - 16px);
+
+            /* 父元素上使用 display: grid 开启网格布局 */
+            display: grid;
+
+            /* 行高
+                每个参数代表每行的高度
+                参数的个数代表有多少行
+                单位 fr 代表 一行或一列 占总长度的多少份
+            */
+            grid-template-rows: 1fr 2fr 1fr;
+            /* 列宽
+                每个参数代表每列的宽度
+                参数的个数代表有多少列
+            */
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .grid-item {
+            border: 5px solid #000;
+
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="grid-item a">A</div>
+        <div class="grid-item b">B</div>
+        <div class="grid-item c">C</div>
+        <div class="grid-item d">D</div>
+        <div class="grid-item e">E</div>
+        <div class="grid-item f">F</div>
+    </div>
+</body>
+<script>
+
+</script>
+
+</html>
