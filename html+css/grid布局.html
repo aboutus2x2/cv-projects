@@ -45,12 +45,31 @@
                 参数的个数代表有多少行
                 单位 fr 代表 一行或一列 占总长度的多少份
             */
-            grid-template-rows: 1fr 2fr 1fr;
+            grid-template-rows: 1fr 1fr;
             /* 列宽
                 每个参数代表每列的宽度
                 参数的个数代表有多少列
             */
-            grid-template-columns: 1fr 2fr;
+            grid-template-columns: 1fr 1fr 1fr;
+
+            /* 网格区域图 
+                . 点运算符代表空单元格
+            */
+            /* grid-template-areas: 'Aa Aa Aa Dd . '
+                'Aa Aa Aa Dd .'
+                'Ee Ee .  Dd Cc'; */
+
+            /* 行间距 */
+            row-gap: 20px;
+
+            /* 列间距 */
+            column-gap: 40px;
+
+            /* 行列间距
+                第一个参数是行间距
+                第二个参数是列间距
+            */
+            gap: 10px 50px;
         }
 
         .grid-item {
@@ -58,17 +77,59 @@
 
             background-color: aqua;
         }
+
+        .f {
+            /* 网格线的起始行线 */
+            grid-row-start: 2;
+            /* 网格线的结束行线 */
+            grid-row-end: 3;
+
+            /* 网格线的起始列线 */
+            grid-column-start: 3;
+            /* 网格线的结束列线 */
+            grid-column-end: 4;
+        }
+
+        .b {
+            /* 同时设置网格线的起始和结束行线 */
+            grid-row: 1/3;
+            /* 同时设置网格线的起始和结束列线 */
+            grid-column: 2/3;
+        }
+
+        .a {
+            /* 给单元格取名，用于填充 grid-template-areas 中划分的区域 */
+            grid-area: Aa;
+        }
+
+        .c {
+            grid-area: Cc;
+        }
+
+        .d {
+            grid-area: Dd;
+        }
+
+        .e {
+            grid-area: Ee;
+        }
     </style>
 </head>
 
 <body>
     <div class="grid-container">
-        <div class="grid-item a">A</div>
+        <!-- <div class="grid-item a">A</div>
         <div class="grid-item b">B</div>
         <div class="grid-item c">C</div>
         <div class="grid-item d">D</div>
         <div class="grid-item e">E</div>
-        <div class="grid-item f">F</div>
+        <div class="grid-item f">F</div> -->
+        <div class="grid-item">A</div>
+        <div class="grid-item">B</div>
+        <div class="grid-item">C</div>
+        <div class="grid-item">D</div>
+        <div class="grid-item">E</div>
+        <div class="grid-item">F</div>
     </div>
 </body>
 <script>
