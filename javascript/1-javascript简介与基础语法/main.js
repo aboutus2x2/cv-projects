@@ -1,0 +1,1 @@
+console.log('这是js文件中的内容')
