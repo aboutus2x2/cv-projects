@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 声明变量 a
+    // - 声明变量 b 并赋初始值 15
+    // - 声明常量 r 并赋值为 2
+    // - 计算 b 和 r 的乘积 并赋值给变量 a
+    // - 修改变量 b 为 a 的值
+    // - 声明两个对象 xiaoHong 和 xiaoMing 分别包含以下属性，值随意
+    //     - name 姓名
+    //     - score 分数
+    // - 计算两个对象的平均分
+
+    let a
+    let b = 15
+    const r = 2
+    a = b * r
+    console.log(a);
+    b = a
+    console.log(b);
+    let xiaoHong = {
+        name: '小红',
+        score: 96
+    }
+    let xiaoMing = {
+        name: '小明',
+        score: 85
+    }
+    // 求平均分
+    let avg = (xiaoHong.score + xiaoMing['score']) * 0.5
+    console.log(avg);
+    console.log((xiaoHong.score + xiaoMing['score']) * 0.5);
+</script>
+
+</html>
