@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 给按钮的 onclick html属性绑定事件处理程序 -->
+    <button onclick="onClick()">点击</button>
+    <div class="box">
+        hello world
+    </div>
+</body>
+<script>
+    let box = document.querySelector('.box')
+
+    // 声明事件处理程序
+    function onClick() {
+        // alert('点击了按钮')
+
+        // 1. textContent 修改和读取标签体里的文本内容
+        // console.log(box.textContent);
+        // box.textContent = '<div style="background-color: #00f;">ok</div>'
+
+        // 2. innerText 修改和读取标签体里的文本内容
+        // console.log(box.innerText)
+        // box.innerText = '<div style="background-color: #00f;">ok</div>'
+
+        // 3. innerHTML 修改和读取标签体里的html内容
+          console.log(box.innerHTML)
+          box.innerHTML = '<div style="background-color: #00f;">ok</div>'
+    }
+</script>
+
+</html>

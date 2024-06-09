@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="myBox" class="box">hello world</div>
+    <div class="box"></div>
+    <div class="box"></div>
+</body>
+<script>
+    // 获取元素的方法
+
+    // 1. 查询一个指定选择器的元素
+    let box = document.querySelector('.box')
+
+    console.log(box);
+    // 2. 查询所有指定选择器的元素
+    let boxs = document.querySelectorAll('.box')
+
+    console.log(boxs);
+
+    // 3. 通过id查询元素
+    box = document.getElementById('myBox')
+
+    console.log(box);
+
+    // 4. 通过类名查询元素
+    boxs = document.getElementsByClassName('box')
+
+    console.log(boxs);
+
+    // 5. 通过标签名查询元素
+    boxs = document.getElementsByTagName('div')
+
+    console.log(boxs);
+
+    // 修改属性值
+    console.log(box.id);
+    // 改id
+    box.id = 'my-box'
+    // 改样式
+    box.style.color = '#00f'
+    box.style.backgroundColor = '#000'
+    // 改class名称
+    box.className = 'box myClass'
+</script>
+
+</html>
