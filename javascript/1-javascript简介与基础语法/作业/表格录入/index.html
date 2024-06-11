@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .table {
+            display: grid;
+            padding: 16px;
+            border: 1px solid #000;
+
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px 16px;
+        }
+
+        .table>div {
+            border: 1px solid #000;
+        }
+
+        .th {
+            font-weight: bolder;
+            text-align: center;
+        }
+
+        .cell {
+            text-align: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table">
+        <div class="th">序号</div>
+        <div class="th">姓名</div>
+        <div class="th">班级</div>
+        <div class="th">年龄</div>
+
+        <div class="cell">01</div>
+        <div class="cell">小明</div>
+        <div class="cell">一班</div>
+        <div class="cell">7</div>
+    </div>
+
+    <!-- 任何事件 return false 可以屏蔽默认的事件行为 -->
+    <!-- <form onsubmit="return false">
+        <button>提交</button>
+    </form> -->
+
+    <div>
+        <div>
+            <label>序号: <input name="id" type="text"></label>
+        </div>
+        <div>
+            <label>姓名: <input name="name" type="text"></label>
+        </div>
+        <div>
+            <label>班级: <select name="clazz">
+                    <option value="" disabled selected>请选择</option>
+                    <option value="一班">一班</option>
+                    <option value="二班">二班</option>
+                    <option value="三班">三班</option>
+                </select></label>
+        </div>
+        <div>
+            <label>年龄: <input name="age" type="number"></label>
+        </div>
+        <div>
+            <button onclick="submit()">提交</button>
+        </div>
+    </div>
+</body>
+<script>
+    // 变量练习
+    // 声明变量 x 值为数字类型
+    // 声明变量 y 值为数字类型
+    // 尝试执行 x 和 y 之间的四则运算，并打印出运算结果
+
+    let x = 1, y = 2
+    console.log(x / y);
+
+    // 声明两个学生对象，分别叫 Amy 和 Bob，然后完成以下操作：
+    // 分别给两个学生添加 年龄 和 班级 属性
+    // 使用 console 打印学生们的所有信息
+
+    let Amy = {}
+    let Bob = {
+        age: 16,
+        clazz: '二班'
+    }
+
+    Amy.age = 17
+    Amy['clazz'] = '一班'
+
+    console.log(Amy);
+    console.log(Bob);
+
+
+    // 查询表单元素
+    let idEl = document.querySelector('input[name=id]')
+    let nameEl = document.querySelector('input[name=name]')
+    let clazzEl = document.querySelector('select[name=clazz]')
+    let ageEl = document.querySelector('input[name=age]')
+    let table = document.querySelector('.table')
+
+    function submit() {
+        console.log('submit');
+        // 读取表单元素的值
+        console.log(idEl.value);
+        console.log(nameEl.value);
+        console.log(clazzEl.value);
+        console.log(ageEl.value);
+
+        // 追加table的标签体
+        // 使用 `` 模板字符串来设置一个字符串的值
+        let data = `<div class="cell">${idEl.value}</div>
+            <div class="cell">${nameEl.value}</div>
+            <div class="cell">${clazzEl.value}</div>
+            <div class="cell">${ageEl.value}</div>`
+
+        console.log(data);
+
+        // + 加法运算符的两端若有一个是字符串 则代表拼接字符串
+        table.innerHTML = table.innerHTML + data
+
+        // 清空数据
+        idEl.value = ''
+        nameEl.value = ''
+        clazzEl.value = ''
+        ageEl.value = ''
+    }
+
+    let name = '张三'
+    let str = `xxx${name}xxx`
+    console.log(str);
+</script>
+
+</html>
