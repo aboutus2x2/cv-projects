@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <input name="num1" type="number">
+        <input name="num2" type="number">
+        <input readonly name="result" type="number">
+    </div>
+    <div class="btns">
+        <button>加</button>
+        <button>减</button>
+        <button>乘</button>
+        <button>除</button>
+    </div>
+</body>
+<script>
+    // 查询元素
+    let input1 = document.querySelector('input[name=num1]')
+    let input2 = document.querySelector('input[name=num2]')
+    let result = document.querySelector('input[name=result]')
+    let btn1 = document.querySelector('.btns>button:nth-child(1)')
+    let btn2 = document.querySelector('.btns>button:nth-child(2)')
+    let btn3 = document.querySelector('.btns>button:nth-child(3)')
+    let btn4 = document.querySelector('.btns>button:nth-child(4)')
+
+    // 绑定按钮的点击事件
+    btn1.addEventListener('click', () => {
+        // 加
+
+        // 读取输入框的值
+        let num1 = input1.value
+        let num2 = input2.value
+
+        // 转换成数字
+        num1 = Number(num1)
+        num2 = Number(num2)
+
+        // 进行运算
+        let r = num1 + num2
+
+        // 显示结果
+        result.value = r
+    })
+    btn2.addEventListener('click', () => {
+        // 减
+
+        // 读取输入框的值
+        let num1 = input1.value
+        let num2 = input2.value
+
+        // 转换成数字
+        num1 = Number(num1)
+        num2 = Number(num2)
+
+        // 进行运算
+        let r = num1 - num2
+
+        // 显示结果
+        result.value = r
+    })
+    btn3.addEventListener('click', () => {
+        // 乘
+
+        // 读取输入框的值
+        let num1 = input1.value
+        let num2 = input2.value
+
+        // 转换成数字
+        num1 = Number(num1)
+        num2 = Number(num2)
+
+        // 进行运算
+        let r = num1 * num2
+
+        // 显示结果
+        result.value = r
+    })
+    btn4.addEventListener('click', () => {
+        // 除
+
+        // 读取输入框的值
+        let num1 = input1.value
+        let num2 = input2.value
+
+        // 转换成数字
+        num1 = Number(num1)
+        num2 = Number(num2)
+
+        // 进行运算
+        let r = num1 / num2
+
+        // 显示结果
+        result.value = r
+    })
+</script>
+
+</html>
