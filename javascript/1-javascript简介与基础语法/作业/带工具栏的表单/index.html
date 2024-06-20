@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: 300px;
+            border: 3px solid #000;
+            padding: 8px;
+
+            display: none;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .btn {
+            flex-grow: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 工具栏 -->
+    <div>
+        <button class="add-data">添加数据</button>
+    </div>
+    <!-- 表格 -->
+    <div>
+        <h1>用户信息表</h1>
+        <table border>
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 假数据 -->
+                <tr>
+                    <td>张三</td>
+                    <td>male</td>
+                    <td>17</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 表单 -->
+    <div>
+        <!-- onsubmit="return false" 屏蔽按钮点击的默认事件 -->
+        <form onsubmit="return false">
+            <!-- 表单项 -->
+            <div class="item">
+                <label>姓名: </label>
+                <!-- 标准的表单元素 需要添加name属性 -->
+                <input name="name" type="text">
+            </div>
+            <div class="item">
+                <label>性别: </label>
+                <div>
+                    <label><input type="radio" name="sex" value="male">男</label>
+                    <label><input type="radio" name="sex" value="female">女</label>
+                    <label><input type="radio" name="sex" value="other" checked>其他</label>
+                </div>
+            </div>
+            <div class="item">
+                <label>年龄: </label>
+                <input name="age" type="number">
+            </div>
+            <div class="item" style="margin: 0;">
+                <button class="btn">确定</button>
+                <!-- form 表单中的按钮 添加 type="reset" 此按钮可以用来重置表单 -->
+                <button type="reset" style="display: none;">重置</button>
+                <button class="btn">取消</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+    // 查询元素
+    const addBtn = document.querySelector('.add-data')
+    const form = document.querySelector('form')
+    const confirmBtn = document.querySelector('.item>.btn:nth-child(1)')
+    const cancelBtn = document.querySelector('.item>.btn:nth-child(3)')
+    const tbody = document.querySelector('tbody')
+    const resetBtn = document.querySelector('button[type=reset]')
+
+
+    // 绑定点击事件
+    addBtn.addEventListener('click', () => {
+        // 显示表单
+        form.style.display = 'block'
+    })
+
+    // 确定
+    confirmBtn.addEventListener('click', () => {
+        // 获取表单中的值
+
+        // 获取formData对象
+        // 该对象用于从表单中读值
+        const fd = new FormData(form)
+
+        // fd.get 可以读取对应表单元素的值
+        // 圆括号内的参数为 表单元素的name属性
+        const name = fd.get('name')
+        const sex = fd.get('sex')
+        const age = fd.get('age')
+
+        console.log(name, sex, age);
+
+        // 将值插入表格中
+
+        // 构造要添加的数据行
+        let html = `
+            <tr>
+                <td>${name}</td>
+                <td>${sex}</td>
+                <td>${age}</td>
+            </tr>
+        `
+
+        console.log(html);
+
+        console.log(tbody.innerHTML);
+
+        // 追加新增的数据行
+        tbody.innerHTML = tbody.innerHTML + html
+
+        // 重置表单
+        // 通过js代码点击重置按钮
+        resetBtn.click()
+        // 隐藏表单
+        form.style.display = 'none'
+    })
+
+    // 取消
+    cancelBtn.addEventListener('click', () => {
+        // 重置表单
+        // 通过js代码点击重置按钮
+        resetBtn.click()
+        // 隐藏表单
+        form.style.display = 'none'
+    })    
+</script>
+
+</html>
