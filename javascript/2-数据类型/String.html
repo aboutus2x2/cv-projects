@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // String 字符串类型
+    // 将很多的字符串起来就是字符串
+
+    // 可以使用单双引号来定义字符串
+    let str = 'hello world'
+    console.log(typeof str);
+    str = '' // 空字符串
+    console.log(typeof str);
+    str = "hello string"
+    console.log(typeof str);
+
+    // 什么叫转义？
+    // 转变字符原有的含义就称为转义
+    // 使用斜杠进行转义过后的字符就是转义字符
+    // 常见的转义字符: \n 换行 \t 制表符
+
+    str = '你好\n世界'
+    console.log(str);
+    str = 'hello\tworld'
+    console.log(str);
+    // 单引号的字符串显示单引号的方法
+    str = 'abc\'d'
+    console.log(str);
+    // 双引号的字符串显示双引号的方法
+    str = "abc\"d"
+    console.log(str);
+    // 通常可以在双引号中直接书写单引号
+    // 单引号的字符串中直接书写双引号
+    str = 'abc"d'
+    console.log(str);
+    str = "abc'd"
+    console.log(str);
+
+    // 若两个值通过加法运算符连接，任意一个值为字符串类型 则加法运算符会直接进行拼接字符串
+    let a = 'hello', b = 123
+    console.log(a + b);
+</script>
+
+</html>

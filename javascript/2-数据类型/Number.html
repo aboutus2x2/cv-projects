@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="number">
+</body>
+<script>
+    // 数字类型用于描述数字
+    let a = 234
+    console.log(typeof a);
+    // 代表无限大的数字
+    a = Infinity
+    console.log(typeof a);
+
+    console.log(123 / 0);
+
+    // 代表不是数
+    a = NaN
+    console.log(typeof a);
+
+    console.log('abc' / 123); // 运算结果不是数字 所以显示 NaN
+
+    // 有时需要判断一个值是否是NaN
+    // 可以使用以下方法
+    console.log(isNaN(a));
+
+    // 浮点数
+    a = 0.618
+
+    console.log(typeof a);
+
+    // 科学计算法
+    a = 3e3
+    a = 3e-3
+
+    console.log(a);
+
+    console.log(typeof a);
+
+    // 单双精度浮点数是什么意思？
+    // 单精度浮点数就是32位的小数
+    // 双精度浮点数就是64位的小数
+
+</script>
+</html>
