@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 不同类型之间的数据是可以互相转换类型的，这个过程叫数据转换
+
+    // 数据转换的方法分为两种：显示转换，隐式转换
+    // 显示转换：在代码中有明确的代码用于转换类型
+    // 隐式转换：在代码中没有明确的代码用于转换类型
+
+
+    // boolean 转换成其他类型
+    let b = true
+    // 转换数字
+    b = Number(b)
+    // 除了 Number 以外 还能使用 parseInt parseFloat 进行转换
+    console.log(b); // => 1
+    b = false
+    b = Number(b)
+    console.log(b) // => 0
+
+    // true 转换数字为 1 false 转换数字为 0
+
+    // 转换字符串
+    b = true
+    console.log(b);
+    b = String(b)
+    console.log(b); // => true 的字符串
+    b = false
+    b = b + '' // 连接字符串时，js会自动转换数据格式为字符串，这是一个隐式转换
+    console.log(b); // => false 的字符串
+
+
+    // 数字类型转其他类型
+    let num = -123
+    // 转boolean
+    num = Boolean(num)
+    console.log(num); // => true
+    num = 0
+    num = Boolean(num)
+    console.log(num); // => false
+
+    // 数字为0 结果为 false 否则结果为 true
+
+    // 转字符串
+    num = 1314
+    num = String(1314)
+    console.log(num); // => 1314
+
+
+
+    // 字符串转其他类型
+    let str = 'hello world'
+    // 转boolean值
+    str = Boolean(str)
+    console.log(str); // => true
+    str = ''
+    str = Boolean(str)
+    console.log(str); // => true
+
+    // 空字符串为 false 其余为 true
+
+    // 转数字
+    str = 'hello world'
+    str = Number(str)
+    console.log(str); // => NaN
+    str = '6e+2'
+    str = Number(str)
+    console.log(str); // => 600
+
+    // 若字符串代表的是合法数字则转换为对应数字 否则为 NaN
+
+
+
+    // 对象转其他类型
+    let obj = { a: 1, b: 2 }
+    // 转 boolean 值
+    obj = Boolean(obj)
+    console.log(obj); // => true
+
+    obj = null // 此处赋值 undefined 效果一样
+    obj = Boolean(obj)
+    console.log(obj); // => false
+
+    // 变量是 null 或 undefined 时 转换结果为 false；对象只要存在 结果就为 true
+
+    // 转数字
+    obj = { a: 1, b: 2 }
+    obj = Number(obj)
+    console.log(obj); // => NaN
+
+    // 转字符串
+    obj = { a: 1, b: 2 }
+    obj = String(obj)
+    console.log(obj); // [object Object]
+    // 对象强转字符串结果始终为 [object Object]
+
+    // 若希望将对象转换成字符串后能够查看其数据，则可以使用 “序列化”
+</script>
+
+</html>

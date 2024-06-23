@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 序列化和反序列化是什么?
+    // 序列化就是将对象转换成字符串
+    // 反序列化就是将字符串转换成对象
+
+    let obj = {
+        name: '张三的母亲',
+        sex: 'other',
+        age: 40
+    }
+
+    // 序列化
+    let str = JSON.stringify(obj)
+    console.log(str);
+
+    // 通过json格式声明一个字符串
+    str = '{"name": "英雄的母亲", "child": "张三", "score": 88, "isOk": false}'
+
+    // 反序列化
+    obj = JSON.parse(str)
+    console.log(obj);
+</script>
+
+</html>
