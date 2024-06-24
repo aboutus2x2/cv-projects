@@ -77,6 +77,10 @@
     str = '6e+2'
     str = Number(str)
     console.log(str); // => 600
+    // 加法运算符直接写在字符串前，可以产生转换成数字的效果
+    str = '6e+2'
+    str = +str
+    console.log(str);
 
     // 若字符串代表的是合法数字则转换为对应数字 否则为 NaN
 
