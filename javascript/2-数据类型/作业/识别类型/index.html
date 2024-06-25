@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let a = 1
+    let b = false
+    let c = '4e-2'
+    let d = { name: '婉君', sex: 'female', age: 22 }
+
+    console.log(a + 'hello') // => 1hello
+    console.log(a + 3) // => 4
+    console.log(typeof a) // => number
+
+    console.log(Number(b)) // => 0
+    console.log(String(b)) // => false
+    console.log(typeof null) // => object
+
+    console.log(typeof undefined) // => undefined
+    console.log(Number('6h1')) // => NaN
+    console.log(a / 0) // => Infinity
+
+    console.log(+c) // => 0.04
+    console.log(a + '') // => 1
+    console.log(d) // => { name: '婉君', sex: 'female', age: 22 }
+
+    console.log(typeof d) // => object
+    console.log(Number(d)) // => NaN
+    console.log(String(d)) // => [object Object]
+    console.log(JSON.stringify(d)) // => { "name": "婉君", "sex": "female", age: 22 }
+</script>
+
+</html>

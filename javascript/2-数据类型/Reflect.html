@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // Reflect 反射
+    // 反射是用来操作对象的方法
+
+    // 文档: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect
+
+    let obj = { a: 1, b: 2 }
+
+    // obj.c = 3
+    // obj['e1_!'] = 4
+    // obj.e = 4
+
+    // 定义对象属性
+    // 作用和 Object.defineProperty 相同
+    // Object.defineProperty(obj, 'c', {
+    //     // 属性值
+    //     value: 3,
+    //     // 是否可写
+    //     writable: false
+    // })
+
+    // 第一个参数: 要定义属性的对象
+    // 第二个参数: 要定义的属性名称
+    // 第三个参数: 配置对象
+    Reflect.defineProperty(obj, 'c', {
+        value: 5,
+        writable: true
+    })
+
+    // 删除属性
+    // 等价于 delete obj['b']
+    // delete obj.a
+    // delete obj['b']
+    // 第一个参数: 要删除属性的对象
+    // 第二个参数: 要删除的属性名称
+    // Reflect.deleteProperty(obj, 'a')
+
+    // 返回对象的所有 key 数组
+    // 参数是对象
+    let r = Reflect.ownKeys(obj)
+    console.log(r);
+
+    // 判断对象是否存在某属性
+    // 第一个参数: 要判断属性是否存在的对象
+    // 第二个参数: 要判断是否存在的属性名
+    r = Reflect.has(obj, 'c')
+    console.log(r);
+
+    // 判断一个对象是否存在某属性的其他方法
+    // 1. 使用if的隐式转换
+    if(obj.e) { // obj.e 若等于以下值: null undefined '' 0 ==> false  其余情况为 true
+        // if 语句将隐式转换数据为 boolean 值
+        // 存在e
+        console.log('e存在');
+    }
+    // 2. 使用typeof
+    console.log(typeof obj.e)
+</script>
+
+</html>
