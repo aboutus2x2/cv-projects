@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>hello world</div>
+    <div class="ok">ok</div>
+    <div>江山如此多焦</div>
+    <button class="load-js">加载js</button>
+</body>
+<script>
+    // 插入节点分两个步骤
+    // 1. 创建节点
+    // 2. 插入节点到文档中
+
+
+    // 创建节点
+    // 参数是标签名
+    // 返回一个dom对象
+    let img = document.createElement('img')
+    // 设置图片源
+    img.src = '../img/head.png'
+
+
+    // 插入节点
+
+    // document.body 就是body标签的dom对象
+
+    // appendChild 追加一个子元素
+    // 参数是要追加的元素
+    document.body.appendChild(img)
+
+    let ok = document.querySelector('.ok')
+
+    // insertBefore 插入节点到另一个节点前
+    // 第一个参数：要插入的元素
+    // 第二个参数：插入位置的子节点
+    document.body.insertBefore(img, ok)
+
+
+
+    // 创建元素并插入元素的用途
+    // 1. 异步加载 js css 等文件
+
+    // 例如异步加载js
+    let loadJsBtn = document.querySelector('.load-js')
+    loadJsBtn.addEventListener('click', () => {
+        // 异步加载js
+
+        // 创建标签
+        let script = document.createElement('script')
+        script.src = '../js/main.js'
+
+        // 插入script标签到body中，这样js脚本将自动加载
+        document.body.appendChild(script)
+    })
+
+    // 2. 动态追加一些以html作为模板的元素
+</script>
+
+</html>

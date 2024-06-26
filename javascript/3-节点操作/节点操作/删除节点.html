@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <button>下载</button>
+</body>
+<script>
+    let li = document.querySelector('ul>li:nth-of-type(3)')
+    let ul = document.querySelector('ul')
+    let btn = document.querySelector('button')
+
+    // 节点的remove可以删除元素
+    // li.remove()
+
+    // removeChild 删除子节点
+    // 参数是想要删除的子节点dom对象
+    ul.removeChild(li)
+
+
+    // 用途:
+    // 动态加载一次性js脚本资源，加载完后就可以删除元素了
+
+    // 例如：下载按钮
+    btn.addEventListener('click', () => {
+        // 动态创建a标签并点击它 来实现下载
+        let a = document.createElement('a')
+        // download 可以指定下载后的文件名
+        a.download = '1.png'
+        // 下载文件的地址
+        a.href = '../img/head.png'
+        // 无需插入页面即可点击
+        a.click()
+        // 若a标签以插入页面则需要调用 remove 来删除
+        a.remove()
+    })
+</script>
+
+</html>
