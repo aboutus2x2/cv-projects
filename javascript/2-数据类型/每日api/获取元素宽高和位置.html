@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 400px;
+            height: 400px;
+            background-color: #ff0;
+            position: absolute;
+
+            top: 300px;
+            left: 500px;
+        }
+
+        .box {
+            width: 150px;
+            height: 100px;
+            background-color: #f00;
+            padding: 50px;
+
+            position: absolute;
+            top: 100px;
+            left: 200px;
+        }
+
+        .container2 {
+            height: 100vh;
+            overflow: auto;
+        }
+
+        .content {
+            height: 2000px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+
+    <div class="container2">
+        <div class="content">
+            <div>hello world</div>
+        </div>
+    </div>
+</body>
+<script>
+    // 获取元素宽高
+
+    // 获取元素
+    let box = document.querySelector('.box')
+
+    // 获取元素宽度，该宽度等于 padding + content的宽度
+    console.log(box.clientWidth)
+
+    // 获取元素高度，该高度等于 padding + content的高度
+    console.log(box.clientHeight)
+
+    // clientWidth 和 clientHeight 是只读属性
+
+    // 获取元素的位置
+
+    // 获取距离参考系上边缘的距离
+    console.log(box.offsetTop);
+    // 获取距离参考系左边缘的距离
+    console.log(box.offsetLeft);
+
+
+
+    // 获取产生滚动条的元素
+    let container2 = document.querySelector('.container2')
+    console.log(container2.scrollTop);
+
+    // scrollTop 可以赋值
+    container2.scrollTop = 500
+
+    // scrollLeft 代表内容区域和窗口滚动的左侧距离
+</script>
+
+</html>

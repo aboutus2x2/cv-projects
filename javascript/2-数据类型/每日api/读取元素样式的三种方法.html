@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            background-color: #f00;
+        }
+
+        .box.active {
+            background-color: #ff0;
+        }
+    </style>
+    <style>
+        .title {
+            font-size: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" style="width: 100px; height: 200px;"></div>
+</body>
+<script>
+    let box = document.querySelector('.box')
+
+    // 方法一: dom 对象的 style 属性
+    // style 属性只能读取元素的 style 无法读取 <style> 标签中的内容
+    console.log(box.style.width);
+    console.log(box.style.height);
+    console.log(box.style.backgroundColor);
+
+    // style 属性可以被赋值
+    box.style.width = '300px'
+
+    // 方法二: document.styleSheets
+    // 只能读取 html 文档中 <style> 标签中的属性 无法读取元素身上的 style 属性
+
+    console.log(document.styleSheets);
+    // document.styleSheets[0] 代表第一个 style 标签
+    let styleTag = document.styleSheets[0]
+    // styleTag.cssRules[0] 代表第一个样式表
+    let boxStyles = styleTag.cssRules[0]
+
+    console.log(boxStyles.style.backgroundColor);
+
+    // 可以赋值属性
+
+    boxStyles.style.backgroundColor = '#0f0'
+
+    // 方法三: getComputedStyle
+    // 可以读取元素身上所有的属性 但是无法赋值
+    let style = getComputedStyle(box)
+    console.log(style.backgroundColor);
+    console.log(style.width);
+    console.log(style.height);
+
+</script>
+
+</html>
