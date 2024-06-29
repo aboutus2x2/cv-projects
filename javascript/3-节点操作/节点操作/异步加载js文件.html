@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>异步加载js</button>
+</body>
+<script>
+    let btn = document.querySelector('button')
+    btn.addEventListener('click', () => {
+        // 创建script
+        let script = document.createElement('script')
+        script.src = '../js/main.js'
+
+        // load 加载完成事件
+        script.addEventListener('load', () => {
+            console.log('加载完成');
+            // 删除脚本
+            script.remove()
+        })
+
+        // 插入页面
+        document.body.appendChild(script)
+    })
+</script>
+
+</html>

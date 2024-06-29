@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="btn">设置属性</div>
+    <div class="read-btn">读取属性</div>
+</body>
+<script>
+    let btn = document.querySelector('.btn')
+    let readBtn = document.querySelector('.read-btn')
+    btn.addEventListener('click', () => {
+        // 什么是自定义的html属性?
+        // 自定义的 非浏览器规范的一些 html 属性 就是自定义属性
+
+        // 设置自定义属性
+        // 第一个参数: 属性名
+        // 第二个参数: 属性值，请填入字符串类型的值，否则将被强转成字符串
+        btn.setAttribute('my-attr', '你好')
+        // btn.setAttribute('id', 'ok')
+        // 请不要直接填对象
+        // btn.setAttribute('my-attr', { a: 1, b: 2 })
+        // 若要设置对象就应该序列化
+        btn.setAttribute('my-obj', JSON.stringify({ a: 1, b: 2 }))
+
+    })
+
+    readBtn.addEventListener('click', () => {
+        // 读取属性
+        let r = btn.getAttribute('my-attr')
+        console.log(r);
+        r = btn.getAttribute('my-obj')
+        console.log(JSON.parse(r));
+    })
+</script>
+
+</html>

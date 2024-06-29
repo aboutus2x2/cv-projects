@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+        }
+
+        .box.active {
+            background-color: #ff0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>开灯</button>
+</body>
+<script>
+    // 查询元素
+    let btn = document.querySelector('button')
+    let box = document.querySelector('.box')
+
+    btn.addEventListener('click', () => {
+        // 判断 box 中是否包含 active 类名
+        // contains 返回 true 代表包含 否则代表不包含
+        let r = box.classList.contains('active')
+
+        if (r) {
+            // 包含 active 的话
+            // 删除 active
+            box.classList.remove('active')
+        } else {
+            // 若不包含 active
+            // 则添加类名
+            box.classList.add('active')
+        }
+    })
+</script>
+
+</html>
