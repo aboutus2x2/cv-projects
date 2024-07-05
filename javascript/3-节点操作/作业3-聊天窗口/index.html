@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            border: 3px solid #000;
+            width: 300px;
+            padding: 8px;
+        }
+
+        .view {
+            height: 200px;
+            border: 3px solid #000;
+            overflow: auto;
+        }
+
+        .inpts>div {
+            margin-top: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .inpts>div>input {
+            flex-grow: 1;
+            margin-right: 4px;
+        }
+
+        /* boy和girl相同的样式 */
+        .pop {
+            padding: 8px;
+            border-radius: 5px;
+            color: #fff;
+            display: inline-block;
+            /* 为了文本自动换行添加如下样式 */
+            max-width: 200px;
+            word-break: break-all;
+        }
+
+        .boy {
+            background-color: #abcdef;
+        }
+
+        .girl {
+            background-color: #fa8072;
+        }
+
+        .pop-container {
+            padding: 8px 0;
+        }
+
+        .girl-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 聊天窗口 -->
+        <div class="view">
+            <div class="content">
+                <div class="pop-container">
+                    <div class="pop boy">boy</div>
+                </div>
+                <div class="pop-container girl-container">
+                    <div class="pop girl">girl</div>
+                </div>
+            </div>
+        </div>
+        <!-- 输入框 -->
+        <div class="inpts">
+            <div>
+                <input type="text">
+                <button class="xiao-ming">小明</button>
+            </div>
+            <div>
+                <input type="text">
+                <button class="xiao-hong">小红</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    const ming = document.querySelector('.xiao-ming')
+    const hong = document.querySelector('.xiao-hong')
+    const mingInp = document.querySelector('.inpts>div:nth-child(1)>input')
+    const hongInp = document.querySelector('.inpts>div:nth-child(2)>input')
+    const content = document.querySelector('.content')
+    const view = document.querySelector('.view')
+
+    // 小明
+    ming.addEventListener('click', () => {
+        // 获取数据
+        const message = mingInp.value
+
+        // 创建 boy 标签
+        // 创建容器
+        const container = document.createElement('div')
+        container.classList.add('pop-container')
+        // 创建pop对话框
+        const pop = document.createElement('div')
+        pop.classList.add('pop', 'boy')
+        // 插入消息到对话框
+        pop.textContent = message
+        // 将pop插入容器
+        container.appendChild(pop)
+
+        // 插入页面
+        content.appendChild(container)
+
+        // 清空输入框
+        mingInp.value = ''
+
+
+
+        // 设置滚动条高度
+
+        // 计算scrollTop
+        const scrollTop = content.clientHeight - view.clientHeight
+        // 设置滚动容器的scrollTop
+        view.scrollTop = scrollTop
+    })
+
+    // 小红
+    hong.addEventListener('click', () => {
+        const message = hongInp.value
+        const container = document.createElement('div')
+        container.classList.add('pop-container', 'girl-container')
+        const pop = document.createElement('div')
+        pop.classList.add('pop', 'girl')
+        pop.textContent = message
+        container.appendChild(pop)
+        content.appendChild(container)
+        hongInp.value = ''
+
+        // 计算scrollTop
+        const scrollTop = content.clientHeight - view.clientHeight
+        // 设置滚动容器的scrollTop
+        view.scrollTop = scrollTop
+    })
+</script>
+
+</html>

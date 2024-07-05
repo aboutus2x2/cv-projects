@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            border: 3px solid #000;
+            display: inline-block;
+            padding: 16px;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+
+        .img {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <form onsubmit="return false">
+        <div><label>x: <input name="x" type="number"></label></div>
+        <div><label>y: <input name="y" type="number"></label></div>
+        <div><button>插入</button></div>
+    </form>
+</body>
+<script>
+    const btn = document.querySelector('button')
+    const form = document.querySelector('form')
+
+
+    btn.addEventListener('click', () => {
+        // 读取表单中的数据
+
+        const fd = new FormData(form)
+        const x = Number(fd.get('x'))
+        const y = Number(fd.get('y'))
+
+        // 创建img标签
+
+        const img = document.createElement('img')
+        img.src = './1.jpg'
+
+        // 设置img样式
+        img.classList.add('img')
+
+        // 插入img到指定坐标
+        img.style.top = `${y}px`
+        img.style.left = `${x}px`
+
+        document.body.appendChild(img)
+    })
+</script>
+
+</html>
