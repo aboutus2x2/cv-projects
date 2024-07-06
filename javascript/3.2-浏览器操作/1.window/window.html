@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 子窗口 -->
+    <!-- <iframe style="width: 500px; height: 300px" src="https://www.bilibili.com" name="child"></iframe> -->
+    <iframe style="width: 500px; height: 300px" src="./child.html" name="child"></iframe>
+    <div>消息: <input type="text" name="msg"><button class="send1">发送</button></div>
+</body>
+<script>
+    // 文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Window#%E6%96%B9%E6%B3%95
+
+    // 打开窗口
+    // 第一个参数：网址
+    // 第二个参数：iframe名称，没有的话就打开新窗口
+    // window.open('./child.html', 'child')
+
+
+    // 关闭窗口
+    // window.close()
+
+    // 窗口间通信
+    // 原理:
+    // 通过窗口对象(window) 发送消息（postMessage）
+    // 另一个窗口需要通过 message 事件来接收消息
+
+
+    // 例子：父窗口向子窗口发消息
+    let msgInp = document.querySelector('input[name=msg]')
+    let send1 = document.querySelector('.send1')
+    let iframe = document.querySelector('iframe[name=child]')
+
+    send1.addEventListener('click', () => {
+        // 发送消息
+        iframe.contentWindow.postMessage(msgInp.value)
+    })
+
+</script>
+
+</html>
