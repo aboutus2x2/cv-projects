@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        网址: <input type="text">
+        <button>跳转</button>
+    </div>
+</body>
+<script>
+    // location 代表浏览器地址栏
+    // 文档：https://developer.mozilla.org/zh-CN/docs/Web/API/Location
+
+    // 跳转网页
+    let input = document.querySelector('input')
+    let button = document.querySelector('button')
+    button.addEventListener('click', () => {
+        // 给 location.href 赋值页面就会调转
+        window.location.href = input.value
+    })
+
+    // 跳转网页不计入历史
+    // window.location.replace('https://www.bilibili.com')
+
+    // 刷新页面
+    // window.location.reload()
+
+    // 地址栏参数
+    // location.search
+</script>
+
+</html>

@@ -10,15 +10,26 @@
 
 <body>
     <h1>hello child</h1>
+    <div>
+        <input type="text">
+        <button>发送</button>
+    </div>
 </body>
 <script>
+    let input = document.querySelector('input')
+    let button = document.querySelector('button')
+
     // 接收消息
     window.addEventListener('message', ev => {
-        // let div = document.createElement('div')
-        // div.innerHTML = JSON.stringify(ev)
-        // document.body.appendChild(div)
-
         console.log(ev);
+        // 读取消息参数
+        console.log(ev.data);
+    })
+
+    button.addEventListener('click', () => {
+        // 子窗口向父窗口发消息
+        // window.parent 当前窗口的父窗口
+        window.parent.postMessage(input.value)
     })
 </script>
 
