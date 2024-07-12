@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body></body>
+<script>
+    // 三元运算符: 用于判断一个表达式结果，为真时，返回结果1，为假时返回结果2
+    // 语法：bool expression? case1: case2
+    // 作用：主要用在给变量赋值
+
+    let obj = {
+        name: '张三',
+        sex: 'other',
+        age: 16
+    }
+
+    console.log(obj.sex === 'male' ? '男' : '女');
+    // 嵌套三元运算符 在问号或冒号处可以换行
+    console.log(obj.sex === 'male' ? '男' :
+        obj.sex === 'female' ? '女' : '其他');
+    // 当嵌套三元运算符在同一行内书写，请给嵌套的三元运算符的表达式用圆括号包起来
+    console.log(obj.sex === 'male' ? '男': (obj.sex === 'female' ? '女' : '其他'));
+
+</script>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    赋值运算符 ： = += -= *= /= %= ++ --
+</body>
+<script>
+    // 赋值运算符
+    let a = 1
+
+    // += 自增
+    a += 2 // 等价于 a = a + 2
+    console.log(a);
+
+    // -= 自减
+    a -= 5 // 等价于 a = a - 5
+    console.log(a);
+
+    // *= 自乘
+    a *= -1
+    console.log(a);
+
+    // /= 自除
+    a /= 2
+    console.log(a);
+
+    // %= 自模
+    a = 5
+    a %= 3 // 等价于 a = a % 3
+    console.log(a);
+
+    // ++ 自增
+    a = 0
+    a++
+    console.log(a);
+
+    // -- 自减
+    a = 0
+    a--
+    console.log(a)
+
+    a = 0
+
+    // 自增自减运算符位置的区别
+    // 运算符放前面，则先运算后引用
+    console.log(--a);
+    // 运算符放后面，则先引用后运算
+    a = 0
+    console.log(a++);
+    a = 0
+    console.log(1 + ++a);
+    console.log(3 - a-- / 2);
+    console.log(a);
+</script>
+
+</html>

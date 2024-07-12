@@ -15,16 +15,21 @@
     // localStorage 数据持久化到浏览器中，关闭窗口或浏览器，都不会消失
 
     // 设置数据
-    localStorage.setItem('a', JSON.stringify({ x: 1, y: 2 })) // localStorage 只能存字符串
-    localStorage['b'] = JSON.stringify([1, 2, 3]) // 等价于调用 setItem 方法
+    // 第一个参数：key
+    // 第二个参数：value 且必须是字符串
+    // window.localStorage.setItem('name', '张三')
+    // 通过索引方式赋值 等价于 setItem
+    // localStorage['sex'] = 'male'
 
     // 读取数据
-    console.log(localStorage.getItem('a'))
-    console.log(localStorage['b']); // 等价于调用 getItem 方法
+    let r = localStorage.getItem('name')
+    r = localStorage['sex']
+    console.log(r);
 
     // sessionStorage 用法和localStorage相同，但是窗口关闭数据就消失了
-    sessionStorage['a'] = 1
-    sessionStorage['b'] = 2
+
+    // window.sessionStorage.setItem('age', '17')
+    console.log(sessionStorage['age']);
 </script>
 
 </html>

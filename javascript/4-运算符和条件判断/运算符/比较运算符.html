@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    比较运算符： >, &lt;,>=, &lt;=, ==, !=, ===, !==
+    &nbsp;
+    &copy;
+    &lt; &gt;
+    <!-- & 符号开头 ; 分号结尾 的内容 我们称为 html 实体 -->
+</body>
+<script>
+    // 比较运算符用于对运算符左右两个值进行比较
+    // 比较运算符的运算结果为boolean值，用于指示比较结果为真或者假
+
+    // 大于
+    console.log(1 > 2);
+
+    // 小于
+    console.log(1 < 2);
+
+    // 大于等于 小于等于
+    console.log(3 >= 3)
+    console.log(3 <= 3)
+
+    // == 非严格相等判断
+    // 非严格相等判断 在运算符左右两边不需要使用相同的数据类型
+    // 当数据类型不同时 == 运算符将自动进行隐式转换
+    // 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Equality_comparisons_and_sameness
+    // 非严格相等判断 可以不同类型的数据拿来进行比较，所以有时可能会得到期望意外的结果，不建议使用
+    let a = ''
+    let b = 0
+    console.log(a == b);
+
+    // === 严格相等
+    // 类型和值都相等才会被认为相等
+    let x = ''
+    let y = 0
+    console.log(x == y);
+    console.log(x === y);
+
+    // 对象相等判断
+    let obj1 = { name: '张三' }
+    let obj2 = { name: '张三' }
+    // 由于对象类型的变量保存的是对象的引用地址
+    // 所以此处两对象引用地址不同 结果为false
+    console.log(obj1 === obj2);
+
+
+    // != 非严格不等于
+    console.log('' != 0);
+
+    // !== 严格不等于
+    console.log('' !== 0);
+</script>
+
+
+</html>
