@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #000;
+        }
+
+        .box.active {
+            background-color: #ff0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>打开</button>
+</body>
+<script>
+    const btn = document.querySelector('button')
+    const box = document.querySelector('.box')
+
+    btn.addEventListener('click', () => {
+        // 判断box是否包含active
+        let r = box.classList.contains('active')
+        // 如果
+        if (r) {
+            // r 为 true 说明包含 active
+            // 移除 active
+            box.classList.remove('active')
+            btn.textContent = '打开'
+        }
+        // 否则
+        else {
+            // 添加 active 类名 开灯
+            box.classList.add('active')
+            btn.textContent = '关闭'
+        }
+    })
+</script>
+
+</html>

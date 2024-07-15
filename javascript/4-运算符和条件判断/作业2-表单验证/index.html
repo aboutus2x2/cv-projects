@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return false">
+        <div><label>账号: <input name="account" type="text"></label></div>
+        <div><label>密码: <input name="pwd" type="password"></label></div>
+        <div><label><input name="protocal" type="checkbox"> 请同意《用户协议》</label></div>
+        <div><button>提交</button></div>
+    </form>
+</body>
+<script>
+    const button = document.querySelector('button')
+    const form = document.querySelector('form')
+
+    button.addEventListener('click', () => {
+        // 获取表单参数
+        const fd = new FormData(form)
+        let account = fd.get('account')
+        let pwd = fd.get('pwd')
+        let protocal = fd.get('protocal')
+
+        console.log(account);
+        console.log(pwd);
+        console.log(protocal);
+
+        // 验证账号
+        // 字符串首尾去空格
+
+        // 若账号为空字符串
+        if (account.trim() === '') {
+            alert('请输入账号哦 亲')
+            // return 用于终止函数继续运行 并返回一个结果
+            return
+        } else {
+            console.log('账号验证通过')
+        }
+
+
+        // 若密码长度不在6 ~ 10
+        // pwd.length 代表字符串长度
+        if (pwd.length < 6 || pwd.length > 10) {
+            alert('请输入 6~10 位的密码')
+            return
+        } else {
+            console.log('密码验证通过')
+        }
+
+
+        // 若没有勾选同意协议
+        if (protocal === null) {
+            alert('请同意协议')
+            return
+        } else {
+            console.log('协议验证通过')
+        }
+
+        alert('提交成功')
+    })
+</script>
+
+</html>
