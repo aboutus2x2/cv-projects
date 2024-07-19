@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    手势:
+    <select>
+        <option value="0">石头</option>
+        <option value="1">剪刀</option>
+        <option value="2">布</option>
+    </select>
+    <button class="start">开始</button>
+</body>
+<script>
+    // 查询元素
+    const start = document.querySelector('.start')
+    const select = document.querySelector('select')
+
+    start.addEventListener('click', () => {
+        // 得到一个cpu得结果
+        // let rand = Math.random() * 3
+        // rand = Math.floor(rand)
+        let cpu = Math.floor(Math.random() * 3)
+        console.log(cpu);
+
+        // 玩家得结果
+        let player = Number(select.value)
+
+        // 方法一
+        // // 判断相等
+        // if (cpu === player) {
+        //     alert(`cpu: ${cpu === 0 ? '石头' :
+        //         cpu === 1 ? '剪刀' : '布'
+        //         }; 平局`)
+        // } else if (player === 0 && cpu === 1) {
+        //     alert(`cpu: 剪刀; 赢`)
+        // } else if (player === 0 && cpu === 2) {
+        //     alert(`cpu: 布; 输`)
+        // } else if (player === 1 && cpu === 0) {
+        //     alert(`cpu: 石头; 输`)
+        // } else if (player === 1 && cpu === 2) {
+        //     alert(`cpu: 布; 赢`)
+        // } else if (player === 2 && cpu === 0) {
+        //     alert(`cpu: 石头; 赢`)
+        // } else if (player === 2 && cpu === 1) {
+        //     alert(`cpu: 剪刀; 输`)
+        // }
+
+
+
+        // 方法二
+        let r = player - cpu
+        console.log('cpu的值:')
+        console.log(cpu === 0 ? '石头' :
+            cpu === 1 ? '剪刀' : '布')
+        if (r === 0) {
+            alert('平局')
+        } else if (r === -1 || r === 2) {
+            alert('赢')
+        } else {
+            alert('输')
+        }
+    })
+</script>
+
+</html>
