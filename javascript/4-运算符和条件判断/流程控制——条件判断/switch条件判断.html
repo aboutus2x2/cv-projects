@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+</head>
+
+<body></body>
+<script>
+    // switch 语句
+    // 语法：判断value值为多少，如果为constant1则执行其后的代码，
+    // 如果为constant2则执行其后的代码，
+    // 如果不满足所有的case语句，则执行default
+    // switch ( value ) {
+    //     case constant1:
+    //         // code
+    //         break;
+    //     case constant2:
+    //         break;
+    //     ... 可以有任意多个case语句
+    //     default: // default 不是必须要写的
+    //         break;
+    // }
+
+    // let r = Math.floor(Math.random() * 5)
+    let r = 4
+    let myCase = 4
+    console.log(r);
+
+    switch (r) {
+        // case 后的值 必须是常量
+        case myCase:
+            console.log('myCase')
+            break;
+        case 0:
+            console.log('随机结果为0');
+            // break 用于跳出 switch 语句
+            break;
+        case 1:
+            console.log('随机结果为1');
+            break;
+        case 2:
+            console.log('随机结果为2');
+            break;
+        case 3:
+            console.log('随机结果为3');
+            break;
+        default:
+            console.log('这是 default')
+            break;
+    }
+</script>
+
+</html>
