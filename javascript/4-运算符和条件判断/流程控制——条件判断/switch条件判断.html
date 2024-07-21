@@ -23,13 +23,14 @@
     // }
 
     // let r = Math.floor(Math.random() * 5)
-    let r = 4
+    let r = 6
     let myCase = 4
     console.log(r);
 
     switch (r) {
-        // case 后的值 必须是常量
-        case myCase:
+        // r 的值可以和 case 中的表达式进行匹配
+        // 匹配成功则执行后续代码
+        case myCase + 2:
             console.log('myCase')
             break;
         case 0:
