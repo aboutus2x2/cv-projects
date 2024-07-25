@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 什么是数组?
+    // 存储一组数据的一个容器
+
+    // 声明数组
+    // 使用脚本形式声明数组
+    let arr = []
+    // 声明并初始化数组
+    // 数组中的每一个数据称为 数组成员
+    arr = [false, 2, 'hello world', { name: '张三' }, null, undefined]
+    console.log(arr);
+
+    // 对象形式的声明方法
+    arr = new Array()
+    console.log(arr);
+    // 声明并初始化
+    arr = new Array(false, 2, 'hello world', { name: '张三' }, null, undefined)
+    console.log(arr);
+
+
+    // 访问数组成员
+    // 使用索引值访问数组中的成员
+    // 索引：数组给每个成员的编号称为索引，索引值从零开始依次递增1
+    // 访问数组成员时，若索引超出数组范围，则获取到的结果为 undefined
+    console.log(arr['0']);
+    console.log(arr['1']);
+    // 数组索引可以不适用引号
+    console.log(arr[2]);
+
+    // 给数组成员赋值
+    // 使用数组变量名加上索引值进行赋值，可以给指定索引位置的成员进行赋值
+    arr[4] = { name: '李四' }
+    console.log(arr);
+
+    arr[6] = 333
+    console.log(arr);
+    
+    arr[9] = 555
+    console.log(arr);
+
+
+    // 数组长度（指的就是数组成员的个数）
+    // 若赋值的时候索引若不是正整数，该值将被视为数组对象的属性值，不计入数组成员，所以不会影响数组长度
+    arr[-1] = true
+    console.log(arr);
+    console.log(arr.length);
+</script>
+
+</html>
