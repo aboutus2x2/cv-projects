@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 数组的操作
+
+    let arr = [1, 2, true, { name: 'Amy' }, 2]
+
+    // push 追加数据到数组末尾
+    // 参数：被添加的新数组成员
+    arr.push('hello world')
+    console.log(arr);
+
+
+    // pop 从尾部取出一个成员
+    // 返回值是取出的成员
+    let r = arr.pop()
+    console.log(r);
+    console.log(arr);
+
+    // unshift 在头部添加数据
+    // 参数：被添加的新数组成员
+    arr.unshift('my best day')
+    console.log(arr);
+
+
+    // shift 从头部取出一个成员
+    // 返回值是取出的成员
+    r = arr.shift()
+    console.log(r);
+    console.log(arr);
+
+
+    // push 和 unshift 可以批量添加成员
+    arr.push('a', 'b', 'c')
+    arr.unshift('x', 'y', 'z')
+    console.log(arr);
+
+
+    // splice 删除指定位置的成员，并用新成员替换，或插入新成员到指定成员的前面
+    // 第一个参数：删除成员的起始位置
+    // 第二个参数：删除成员的个数
+    // 第三个参数：用于替换被删除成员的新数据，该参数可以省略
+    // 删除一个成员：
+    // r = arr.splice(6, 3)
+    // splice的返回值 就是被删除的成员数组
+    // console.log(r);
+
+    // 在指定成员前追加新数据
+    // 若第二个参数为0，则可以实现在指定位置的前面添加成员的功能
+    arr.splice(6, 0, { name: 'Bob' })
+    console.log(arr);
+
+
+
+    // concat 连接数组
+    // 参数：多个被追加进数组的成员，若成员是数组，该数组中每个成员将被加入原数组
+    // concat 返回一个新数组
+    // r = arr.concat(7, 8, 9)
+    // r = arr.concat([7, 8, 9], [10, 11])
+    // console.log(r);
+    // console.log(arr);
+
+    // concat 的应用场景多用于克隆数组
+    let arr2 = [].concat(arr)
+    console.log(arr2);
+    console.log(arr === arr2);
+
+
+    // join 使数组成员用一个字符连接起来
+    // join 函数接收一个参数，该参数就是连接数组成员时使用的字符
+    arr2 = ['abc', 'xyz', '123']
+    r = arr2.join('-*-')
+    console.log(r);
+
+
+    // includes 判断是否包含某成员
+    r = arr.includes('z')
+    console.log(r);
+
+
+
+    // indexOf 查询指定数组成员的索引
+    r = arr.indexOf('b')
+    console.log(r);
+    // 可以使用indexOf判断是否包含某个数组成员 若不包含 返回 -1
+    r = arr.indexOf('g')
+    console.log(r); // => -1
+    if (arr.indexOf('g') === -1) {
+        console.log('该数组成员不存在');
+    }
+
+    // lastIndexOf 查询最后一个指定数组成员的索引（应为数组成员可能重复）
+    console.log(arr.indexOf(2));
+    console.log(arr.lastIndexOf(2));
+
+    // slice 数组切片 获取子数组
+    // 切片遵循“前截后不截”原理: 起始位置包含在结果内，结束位置不包含
+    r = arr.slice(5, 8)
+    console.log(r);
+    // 参数只有一个，代表从该位置开始 一直截取到最后
+    r = arr.slice(5)
+    console.log(r);
+</script>
+
+</html>
