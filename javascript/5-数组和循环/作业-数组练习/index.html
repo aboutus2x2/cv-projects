@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 声明数组
+    let arr = [false, 'hello']
+
+    // 连接数组 [4,5,6]
+    let r = arr.concat([4, 5, 6])
+
+    arr = r
+
+    // 从头部插入一条数据
+    arr.unshift(9)
+    console.log(arr);
+
+    // 从尾部追加一条数据
+    arr.push(10)
+    console.log(arr);
+
+    // 从头部取出一条数据
+    console.log(arr.shift());
+    console.log(arr);
+
+    // 从尾部取出一条数据
+    console.log(arr.pop());
+    console.log(arr);
+
+    // 查找 4 在数组中的索引
+    let index = arr.indexOf(4)
+    console.log(index);
+
+    // 替换 4 为 字符串 hello world
+    arr.splice(index, 1, 'hello world')
+    console.log(arr);
+
+    // 判断数组中是否包含 6
+    console.log(arr.includes(6));
+    console.log(arr.indexOf(6) === -1);
+
+    // 请截取子数组，将 [4, 5, 6] 截取出来
+    r = arr.slice(index, index + 3)
+    console.log(r);
+</script>
+
+</html>

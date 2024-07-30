@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+</body>
+<script>
+    // 冒泡排序
+    // 原理：此处以排序出一个从小到大的序列为例
+    // 令数组长度为 lenght
+    // 排序过程将进行 length - 1 次
+    // 每一次排序过程中，将对数组中每个成员从左到右进行两两比较，较大的数字将被挤到后面去
+    // 每执行完一次循环，将在数组末尾确定一个数字的位置
+    // 最后直到数组的第一个成员和第二个成员进行排序为止，排序结束
+    let arr = [5, 2, 1, 3, 7, 0, 9, 4]
+
+    for (let i = arr.length - 1; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+            // 判断前一个数和后一个数的大小
+            if (arr[j] > arr[j + 1]) {
+                // 交换
+                let temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+            }
+        }
+    }
+
+    console.log(arr);
+
+
+    // 基于冒泡排序的自定义排序规则
+    // 例如：下列数组按分数排序
+    let students = [
+        {
+            name: '张三',
+            score: 60
+        },
+        {
+            name: '李四',
+            score: 40
+        },
+        {
+            name: '老王',
+            score: 80
+        }
+    ]
+
+    for (let i = students.length - 1; i > 0; i--) {
+        for (let j = 0; j < i; j++) {
+            if (students[j].score > students[j + 1].score) {
+                let temp = students[j]
+                students[j] = students[j + 1]
+                students[j + 1] = temp
+            }
+        }
+    }
+
+    console.log(students);
+</script>
+
+</html>
