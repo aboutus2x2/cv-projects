@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 声明一个数字数组，共有10个成员，每个成员通过随机数生成，大小在0~100之间的整数，不能取到100
+    // - 使用循环，将数组成员倒置
+    // - 遍历数组，求所有奇数的和，求所有偶数的平均值
+
+    let arr = []
+    // 循环10个随机数并添加进数组
+    let count = 10
+    while (count > 0) {
+        // 随机一个 0~100 的整数
+        let rand = Math.floor(Math.random() * 100)
+
+        arr.push(rand)
+
+        // 变更循环条件
+        count--
+    }
+
+    console.log(arr);
+
+    // 使用数组方法反序
+    // arr.reverse()
+
+    // 声明一个临时数组
+    let temp = []
+    // 将arr的所有成员从尾部取出并追加到temp中
+    while (arr.length > 0) {
+        let item = arr.pop()
+        temp.push(item)
+    }
+
+    arr = temp
+
+    console.log(arr);
+
+
+    // 声明变量存储奇数和 偶数平均数
+    let sum = 0 // 奇数和
+    let avg = 0 // 偶数平均数
+    count = 0 // 偶数的个数
+    for (let i in arr) {
+        let item = arr[i]
+        // 判断item是否是奇数
+        if (item % 2 !== 0) {
+            sum += item
+        } else {
+            // 先计算偶数和 并统计偶数的个数
+            avg += item
+            count++
+        }
+    }
+    avg /= count
+    console.log('奇数和: ', sum);
+    console.log('偶数平均数: ', avg);
+</script>
+
+</html>

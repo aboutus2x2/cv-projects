@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 定义宽高
+    let row = 50
+    let column = 100
+    // 定义一个结果字符串
+    let result = ''
+
+    for (let i = 0; i < row; i++) {
+        // 拼接每一行的*
+        for (let j = 0; j < column; j++) {
+            // 判断第一行或最后一行 无条件拼接一整行
+            if (i === 0 || i === row - 1) {
+                result += '*'
+            } else {
+                // 除了第一行和最后行其余行的操作
+                if (j === 0 || j === column - 1) {
+                    // 第一列和最后列应该打印 *
+                    result += '*'
+                } else {
+                    // 其余列应该为空格
+                    result += ' '
+                }
+            }
+        }
+        // 换行
+        result += '\n'
+    }
+
+    console.log(result);
+</script>
+
+</html>

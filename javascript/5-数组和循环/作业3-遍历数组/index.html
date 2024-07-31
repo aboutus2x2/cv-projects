@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 使用随机数填充一个数组，取值范围：0~100，随机5次即可
+    // - 遍历数组，找到数组中首个奇数时，退出遍历，并打印奇数值
+
+    let arr = []
+    // 循环5个随机数并添加进数组
+    let count = 5
+    while (count > 0) {
+        // 随机一个 0~100 的整数
+        let rand = Math.floor(Math.random() * 100)
+
+        arr.push(rand)
+
+        // 变更循环条件
+        count--
+    }
+
+    console.log(arr);
+
+    for (let element of arr) {
+        // 判断是否为奇数
+        if (element % 2 !== 0) {
+            console.log(element)
+            break;
+        }
+        console.log('偶数');
+    }
+</script>
+
+</html>
