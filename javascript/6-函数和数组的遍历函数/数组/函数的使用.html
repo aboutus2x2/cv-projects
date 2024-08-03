@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body></body>
+<script>
+    // 函数
+
+    // 什么是函数？
+    // 站在开发人员的角度讲：函数是对一段程序的封装（封装：包装）
+    // 站在生活的角度来讲：函数就是帮我们完成某样任务的机器
+
+    // 为什么要使用函数？
+    // 用于包装可以重复使用的代码
+    // 代码的复用
+
+    // 输入input和输出output
+    // 输入：函数完成任务时必不可少的材料
+    // 输出：函数执行完后产出的产物
+
+
+
+
+
+
+
+
+    // 定义函数：
+    // 语法：function 函数名(参数列表) { // code block 代码块 }
+
+    function sayHello() {
+        console.log('hello');
+    }
+
+    // 调用(call)函数：通过函数名进行调用，并且后面跟上圆括号
+    sayHello()
+
+
+    // 有参数的函数：
+    // 参数列表中声明参数，如有多个参数，用逗号隔开
+    // 参数列表中的参数，我们称为：形式参数
+
+    // 返回结果，函数的返回结果称为“返回值”
+    // return 还会终止函数内后续代码的运行
+    function add(x, y) {
+        // 做函数的运算
+        let result = x + y
+        // return 终止函数运行并返回一个输出
+        return result
+
+        // 函数若没有返回值（也就是没有return）那么函数默认返回 undefined
+    }
+
+
+
+    // 调用有参函数：通过函数名调用，且调用的同时，传入真实的参数
+    // 调用函数时，圆括号中的参数叫做：实际参数
+    let r = add(1, 2)
+    console.log(r);
+
+
+
+    // 通过变量(或常量)存储函数和调用函数
+
+    // 声明一个sub变量来储存减法函数
+    let sub = function (x, y) {
+        let result = x - y
+        return result
+    }
+
+    r = sub(1, 2)
+    console.log(r);
+
+
+    // sayHow()
+    // function sayHow() {
+    //     console.log('how');
+    // }
+    // let sayHow = function () {
+    //     console.log('how');
+    // }
+
+
+    // 定义参数时，可以给参数设置默认值
+    function sayMessage(msg = 'hello message') {
+        console.log(msg);
+    }
+
+    sayMessage('this is my param')
+    // 当不给函数提供参数时，参数msg将采用默认值
+    sayMessage()
+
+</script>
+
+</html>
