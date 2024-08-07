@@ -21,7 +21,7 @@
     // 变量无法在声明之前访问它    
     // let x = 1
 
-    console.log(sub(2, 1))
+    // console.log(sub(2, 1))
     // 声明函数在调用之后
     function sub(x, y) {
         let a = 1
@@ -47,7 +47,7 @@
     console.log('fn 运行开始')
 
     //调用函数
-    fn(1);
+    // fn(1);
 
 
 
@@ -60,23 +60,52 @@
     // 2. 将实参传值给形参
     // 3. 寻找函数声明
 
-    method(1, 2, 3)
+    // method(1, 2, 3)
 
     function method(x, y, z) {
-        console.log(x)
-        console.log(y)
-        console.log(z)
+        console.log(x) // => function x(){}
+        console.log(y) // => 2
+        console.log(z) // => function z(){}
 
         var y = 0
-        console.log(y)
+        console.log(y) // => 0
 
         function z() { }
-        console.log(z)
+        console.log(z) // => function z() { }
         z = 10
-        console.log(z)
+        console.log(z) // => 10
 
         function x() { }
-        console.log(x)
+        console.log(x) // => function x() { }
+    }
+
+    method2(true, function (x, y) {
+        console.log(x);
+        console.log(y);
+    }, 'hello')
+
+    // let AO = {
+    //     a: function a() { },
+    //     b: function (x, y) { },
+    //     c: 123,
+    //     d: 789
+    // }
+
+    function method2(a, b, c) {
+        console.log(a); // => function a(){}
+        function a() {
+            console.log('this is a');
+        }
+        console.log(b(4, 5));   // => 4
+                                // => 5
+                                // => undefined
+
+        console.log(c); // => hello
+        var c = 123
+        console.log(d); // => undefined
+        var d = 789
+        console.log(c); // => 123
+        console.log(d); // => 789
     }
 </script>
 
