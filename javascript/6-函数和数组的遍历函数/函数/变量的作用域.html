@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 什么是变量的作用域（Scope）？作用域指的是作用范围，范围内可以访问变量，超出范围则无法访问
+
+    // 为了更好理解作用域，可以结合 debugger 和 浏览器的堆栈信息来查看
+    // 方法：
+    // 1. 在需要查看变量作用的地方写上 debugger
+    // 2. 浏览器上 ctrl + shift + i 或 F12
+    // 3. 选择 sources
+    // 4. 找到当前代码对应的 Call Stack
+    // 5. 查看当前 Call Stack 下的 Scope
+
+
+    // 作用域一共只有三种
+    // Global 全局作用域
+    // Block 块级作用域
+    // Function 函数作用域
+
+
+
+    // 全局作用域(Global)
+
+    // 具备全局作用域的只有全局变量或常量
+    // 全局变量指的是作用域为全局（Global）的变量，代码中任何位置都能使用
+    // 全局变量有两种
+    // 1. 自动全局变量
+    // 给未定义的变量直接赋值，该变量会变成 自动全局变量，若在浏览器中，该变量会被存到window对象里
+    zhangSan = { name: '法外狂徒', age: 17 }
+
+    // 2. (普通的)全局变量 
+    // 直接在函数外声明的变量也是全局作用域的变量
+    let luoXiang = { name: '罗老师' }
+    var laoWang = { name: '隔壁老王' }
+
+
+    // 块级作用域(Block)
+
+    if (true) {
+        // 块级作用域就是在代码块中有效的作用域
+        // let 关键字声明的变量具备块级作用域
+        let a = 1
+        var other = 2
+
+        console.log(a);
+        console.log(other);
+    }
+
+    // console.log(a);
+    console.log(other);
+
+    // for (let i = 0; i < 5; i++) {
+    //     // 经过一段时间后执行里面的回调函数
+    //     setTimeout(() => {
+    //         // i 用 let 声明 则每一个回调函数中的i具备独立作用域
+    //         console.log(i);
+    //     }, 1000)
+    // }
+
+    // 函数作用域(Function)
+    // 函数中的变量，无论使用var还是let定义的，都是函数作用域，在函数外无法访问
+
+    fn()
+    function fn() {
+        let x = 1
+        var y = 2
+        z = 3
+
+        console.log(x);
+        console.log(y);
+        console.log(z);
+    }
+    // console.log(x);
+    // console.log(y);
+    console.log(z);
+
+
+
+    // 总结：
+    // 函数外声明的变量 作用域是全局
+    // 函数内用关键字声明的变量 作用域是函数内
+    // let 声明的变量具备块级作用域
+</script>
+
+</html>
