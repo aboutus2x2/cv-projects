@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let x = 1
+    let y = { name: '张三', sex: 'male' }
+
+    function modify(a, b) {
+        a++
+        b.name = '李四'
+        b.sex = 'female'
+        console.log('函数内');
+        console.log(a);
+        console.log(b);
+    }
+
+    // 传入两个参数
+    // x 是值类型传参
+    // y 是引用类型传参
+
+    // 值类型传参，将x变量中的值 直接赋予了函数内的形参
+    // boolean number string 都是值传递的
+    
+    // 引用类型传参，将y中的引用地址，传递给函数内的形参
+    // object function 都是引用传递的
+
+    modify(x, y)
+
+    console.log('函数调用完后');
+    console.log(x);
+    console.log(y);
+</script>
+
+</html>

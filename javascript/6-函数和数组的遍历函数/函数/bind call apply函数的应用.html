@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 函数内可以使用 this 关键字，不同的地方 this 关键字的指代不一样
+
+    function fn(a, b) {
+        console.log(this);
+        return a + b
+    }
+
+    // fn()
+
+    // 函数内的 this 所指代的内容可以通过 bind call apply 来修改
+
+    // bind 绑定函数的 this 指代
+    // 语法 function.bind(thisArg, x, y, ...)
+    // thisArg: 要修改的this的指代
+    // x, y, ... : 函数的参数，选填
+    // 返回值: 一个被修改了this指代后的新函数
+    let fn2 = fn.bind('hello bind', 1, 2)
+
+    console.log(fn2(4, 5));
+
+
+    // call 调用函数并指定 this 指代
+    // 语法: function.call(thisArg, x, y, ...)
+    // thisArg: 要修改的this的指代
+    // x, y, ... : 函数的参数，选填
+    // 返回值: 函数本身的返回值
+    console.log(fn.call('hello call', 5, 6))
+
+
+    // apply 调用函数并指定 this 指代
+    // 语法: function.apply(thisArg, [x, y, ...])
+    // thisArg: 要修改的this的指代
+    // x, y, ... : 函数的参数，选填
+    // 返回值: 函数本身的返回值
+    console.log(fn.apply('hello apply', [8, 9]))
+</script>
+
+</html>
