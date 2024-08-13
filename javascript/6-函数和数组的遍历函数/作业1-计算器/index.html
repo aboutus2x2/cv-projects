@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .computer {
+            width: 500px;
+            border: 3px solid #000;
+            padding: 16px;
+        }
+
+        .monitor {
+            height: 100px;
+            border: 3px solid #000;
+            display: flex;
+            align-items: center;
+            font-weight: bolder;
+            font-size: 64px;
+            padding: 0 8px;
+            margin-bottom: 16px;
+        }
+
+        .btns-container {
+            display: flex;
+        }
+
+        .left {
+            border: 3px solid #000;
+            display: grid;
+            width: 300px;
+            height: 400px;
+            grid-template-rows: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .right {
+            flex-grow: 1;
+            border: 3px solid #000;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .right>.btn {
+            flex-grow: 1;
+        }
+
+        .btn {
+            border: 3px solid #000;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bolder;
+            font-size: 64px;
+        }
+
+        .left>.btn:last-child {
+            grid-row: 4/5;
+            grid-column: 1/4;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="computer">
+        <div class="monitor"></div>
+        <div class="btns-container">
+            <div class="left">
+                <div class="btn">1</div>
+                <div class="btn">2</div>
+                <div class="btn">3</div>
+                <div class="btn">4</div>
+                <div class="btn">5</div>
+                <div class="btn">6</div>
+                <div class="btn">7</div>
+                <div class="btn">8</div>
+                <div class="btn">9</div>
+                <div class="btn">0</div>
+            </div>
+            <div class="right">
+                <div class="btn">+</div>
+                <div class="btn">-</div>
+                <div class="btn">*</div>
+                <div class="btn">/</div>
+                <div class="btn">=</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    // 查询元素
+
+    // 数字按钮
+    const numEls = document.querySelectorAll('.left>.btn')
+    // 运算符按钮
+    const opEls = document.querySelectorAll('.right>.btn')
+    // 显示屏
+    const monitor = document.querySelector('.monitor')
+
+    // 定义变量
+
+    // 运算符
+    let op
+    // 第一个数
+    let num1 = ''
+    // 第二个数
+    let num2 = ''
+
+    // 绑定事件
+    for (let i = 0; i < numEls.length; i++) {
+        const numBtn = numEls[i]
+        numBtn.addEventListener('click', function () {
+            console.log(this);
+
+            // 判断用户是否点过运算符按钮，点过就添加第二个数字 否则就添加第一个数字
+            if (op) {
+                // op 存在的情况 输入第二个数
+                num2 += this.textContent
+            } else {
+                // op 不存在的情况 输入第一个数
+                num1 += this.textContent
+            }
+
+            // 输出到显示器上
+            monitor.textContent += this.textContent
+        })
+    }
+
+    // 循环除了 = 等号外的运算符
+    for (let i = 0; i < opEls.length - 1; i++) {
+        const opBtn = opEls[i]
+        opBtn.addEventListener('click', function () {
+            console.log(this);
+
+            // 保存运算符
+            op = this.textContent
+
+            // 追加到显示器上
+            monitor.textContent += op
+        })
+    }
+
+    // 等于
+
+    // 方法一:
+    // opEls[opEls.length - 1].addEventListener('click', () => {
+    //     // 类型转换
+    //     num1 = Number(num1)
+    //     num2 = Number(num2)
+    //     // 运算结果
+    //     let result
+
+    //     // 按照点击的运算符不同 来进行不同的运算
+    //     switch (op) {
+    //         case '+':
+    //             result = num1 + num2
+    //             break;
+    //         case '-':
+    //             result = num1 - num2
+    //             break;
+    //         case '*':
+    //             result = num1 * num2
+    //             break;
+    //         case '/':
+    //             result = num1 / num2
+    //             break;
+    //         default:
+    //             break;
+    //     }
+
+    //     console.log(result);
+    //     // 显示输出
+    //     monitor.textContent += `=${result}`
+    // })
+
+
+    // 方法二
+    opEls[opEls.length - 1].addEventListener('click', () => {
+        // eval 可以将字符串当作js脚本运行
+        let result = eval(num1 + op + num2)
+        console.log(result);
+        // 显示输出
+        monitor.textContent += `=${result}`
+    })
+</script>
+
+</html>
