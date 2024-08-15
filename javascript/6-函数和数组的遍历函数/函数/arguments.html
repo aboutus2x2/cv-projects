@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>只调用一次的按钮</button>
+    <button class="other">递归调用</button>
+</body>
+<script>
+    // 什么是 arguments ?
+    // 用 function 定义的函数中 arguments 代表参数数组，是浏览器隐式声明的变量
+    // lambda 表达式中不能使用 arguments
+
+
+    function add(a, b) {
+        console.log(arguments);
+        // 第一个参数
+        console.log(arguments[0]);
+        // 第二个参数
+        console.log(arguments[1]);
+
+        // 当前函数自身
+        console.log(arguments.callee)
+
+        return a + b
+    }
+
+    add(1, 2)
+
+    let btn = document.querySelector('button')
+    btn.addEventListener('click', function () {
+        console.log('click');
+
+        // 移除事件监听程序
+        btn.removeEventListener('click', arguments.callee)
+    })
+
+    let other = document.querySelector('.other')
+    let count = 0
+    other.addEventListener('click', function () {
+        console.log(count);
+        count++
+        // arguments.callee 再匿名函数中递归时使用
+        if (count < 10) arguments.callee()
+    })
+
+</script>
+
+</html>
