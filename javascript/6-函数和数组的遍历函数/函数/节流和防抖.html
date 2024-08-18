@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 防抖
+    // 函数将在一个固定时间后被调用，若计时未完成又执行该函数，则取消上次计时，重新开始计时
+    // 用于限制频繁的网络请求，例如：搜索功能，用户停止输入的一段时间后才会执行搜索任务
+
+
+    // 防抖
+    // 步骤：
+    // 1. 取消计时
+    // 2. 重新计时
+
+    const fd = (() => {
+        // 计时器id
+        let timerId
+        return () => {
+            // 取消计时
+            clearTimeout(timerId)
+            // 重新计时
+            timerId = setTimeout(() => {
+                // 计时完成后要执行的代码 写在此处
+                console.log('hello world');
+            }, 3000)
+        }
+    })()
+
+    console.log(fd);
+
+
+    // 封装防抖函数
+    // 这样任何函数都能被添加防抖功能
+
+    function add(x, y) {
+        console.log('ok');
+        return x + y
+    }
+
+    // 定义一个函数来封装防抖
+    // fn: 要添加防抖的函数
+    // delay: 防抖延迟多久
+    function fdPlus(fn, delay) {
+        let timer
+        return function () {
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(undefined, arguments)
+            }, delay)
+        }
+    }
+
+    add = fdPlus(add, 3000)
+
+    console.log(add);
+
+
+    // 节流
+    // 固定时间内只能调用一次的函数，可以使用时间戳或计时器的方式实现
+    // 作用同样是限制用户频繁的网络请求，例如：发送验证码
+
+    // 时间戳
+
+
+
+    // 计时器
+
+
+
+    // 封装节流函数
+
+</script>
+
+</html>
