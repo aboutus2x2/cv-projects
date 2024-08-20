@@ -44,41 +44,121 @@
 
     function add(x, y) {
         console.log('ok');
+        console.log(x, y);
         return x + y
     }
 
     // 定义一个函数来封装防抖
     // fn: 要添加防抖的函数
     // delay: 防抖延迟多久
-    function fdPlus(fn, delay) {
-        let timer
+    // that: 防抖函数内的 this 指代
+    function fdPlus(fn, delay, that) {
+        let timerId
         return function () {
-            clearTimeout(timer)
-            timer = setTimeout(() => {
-                fn.apply(undefined, arguments)
+            // 清除计时器
+            clearTimeout(timerId)
+            // 重新计时
+            timerId = setTimeout(() => {
+                // 调用参数fn函数
+                // 将当前函数的参数 arguments 作为 fn 的参数传入进去
+                fn.apply(that, arguments)
             }, delay)
         }
     }
 
-    add = fdPlus(add, 3000)
+    add = fdPlus(add, 3000, 'helloworld')
 
-    console.log(add);
-
+    add(1, 2)
 
     // 节流
     // 固定时间内只能调用一次的函数，可以使用时间戳或计时器的方式实现
     // 作用同样是限制用户频繁的网络请求，例如：发送验证码
 
     // 时间戳
+    function jlTimespan() {
+        // 记录最后一次调用该函数的时间
+        let lastTime
+        // 函数调用cd
+        let cd = 3000
+        return () => {
+            // 一次都没调用过该函数
+            if (!lastTime) {
 
+                // 执行节流函数的内容
+                console.log('hello 节流')
 
+                lastTime = Date.now()
+            } else {
+                // 计算上一次调用该函数和本次调用该函数的时间间隔
+                // 当前时间
+                let now = Date.now()
+                // 获取间隔时间
+                let timespan = now - lastTime
+                // 当间隔时间大于cd，则认为可以再次调用该函数
+                if (timespan >= cd) {
+                    console.log('hello 节流')
+                }
+                // 记录本次调用的时间
+                lastTime = now
+            }
+        }
+    }
+
+    let fn = jlTimespan()
+    console.log(fn);
 
     // 计时器
+    function jlTimer() {
+        // 计时器id
+        let timerId
+        let cd = 3000
+        return () => {
+            // 若已经开始计时 则timerId 存在
+            if (timerId) return
 
+            // 执行被节流的函数内容
+            console.log('hello 节流');
+
+            // 开始计时
+            timerId = setTimeout(() => {
+                // 清空计时器id 允许再次调用
+                timerId = undefined
+            }, cd)
+        }
+    }
+
+    fn = jlTimer()
 
 
     // 封装节流函数
+    function sub(x, y) {
+        console.log(this);
+        console.log('sub');
+        console.log(x, y);
+        return x - y
+    }
 
+    // 定义一个函数来封装节流
+    // fn: 要添加防抖的函数
+    // delay: 节流的cd
+    // that: 节流函数内的 this 指代
+    function jlPlus(fn, delay, that) {
+        // 计时器id
+        let timerId
+        return function () {
+            if (timerId) return
+
+            // 执行节流的代码
+            fn.apply(that, arguments)
+
+            // 计时
+            timerId = setTimeout(() => {
+                timerId = undefined
+            }, delay)
+        }
+    }
+
+    fn = jlPlus(sub, 5000, 'hello this')
 </script>
 
 </html>
