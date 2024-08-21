@@ -76,7 +76,7 @@
 
     // 时间戳
     function jlTimespan() {
-        // 记录最后一次调用该函数的时间
+        // 记录上一次成功运行节流函数的时间
         let lastTime
         // 函数调用cd
         let cd = 3000
@@ -97,9 +97,9 @@
                 // 当间隔时间大于cd，则认为可以再次调用该函数
                 if (timespan >= cd) {
                     console.log('hello 节流')
+                    // 记录本次调用的时间
+                    lastTime = now
                 }
-                // 记录本次调用的时间
-                lastTime = now
             }
         }
     }
@@ -108,6 +108,9 @@
     console.log(fn);
 
     // 计时器
+    // 1. 判断是否可以运行节流代码（cd好没有）
+    // 2. 执行节流的内容
+    // 3. 计时
     function jlTimer() {
         // 计时器id
         let timerId
