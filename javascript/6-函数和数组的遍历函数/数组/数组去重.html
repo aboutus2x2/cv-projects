@@ -17,12 +17,50 @@
     let arr = [1, 5, 1, 2, 2, 4, 6, 5, 6, 4]
 
     // 有以下两种方法供参考
-    
-    // 1. 缓存重复数据
 
+    // 1. 缓存重复数据
+    // 缓存
+    let temp = {}
+    // 结果数组
+    let result = []
+    for (let i = 0; i < arr.length; i++) {
+        const item = arr[i];
+        // 判断 item 充当 key 是否存在于 temp 中
+        // if (temp[item]) {
+        if (!Reflect.has(temp, item)) {
+            // item 不存在于 temp 的 key 中
+            result.push(item)
+            // 添加缓存
+            temp[item] = true
+        }
+    }
+    console.log(result);
+
+    // 使用 filter 去重
+    temp = {}
+    result = arr.filter(el => {
+        // 若缓存中没有el
+        if (!temp[el]) {
+            // 加入缓存
+            temp[el] = true
+            return true
+        }
+        return false
+    })
+    console.log(result);
 
     // 2. 使用 set 集
-  
+
+    // 构造set对象，set对象会自动去重
+    let set = new Set(arr)
+    console.log(set);
+    // 将set转换为数组
+    result = Array.from(set)
+    console.log(result);
+
+    // 合成一句话
+    console.log(Array.from(new Set(arr)));
+
 </script>
 
 </html>

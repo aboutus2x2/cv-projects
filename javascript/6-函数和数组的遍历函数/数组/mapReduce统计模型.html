@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // mapReduce 运算模型是拿来做大数据统计的
+    // 要统计出结果，需要经历 map 和 reduce 两个步骤
+    // 1. map 的作用 用于返回统计结果所需的数据结构
+    // 2. reduce 的作用就是具体的统计逻辑
+    // reduce api: https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+
+    let arr = [
+        {
+            name: '李四666',
+            score: 45,
+            sex: 'female'
+        },
+        {
+            name: '张三1',
+            score: 45,
+            sex: 'male'
+        },
+        {
+            name: '李四1',
+            score: 89,
+            sex: 'female'
+        },
+        {
+            name: '老王1',
+            score: 48,
+            sex: 'male'
+        },
+        {
+            name: '张三2',
+            score: 65,
+            sex: 'female'
+        },
+        {
+            name: '李四2',
+            score: 32,
+            sex: 'female'
+        },
+        {
+            name: '老王2',
+            score: 17,
+            sex: 'male'
+        }
+    ]
+
+    // 1. 统计上述数组中不及格的人数
+    let r = arr.map(el => el.score)
+    r.unshift(0)
+    console.log(r);
+
+    // reduce 中的参数
+    // p: 第一个数组成员或上一次运行回调函数的返回值
+    // n: 下一个被遍历的成员
+    r = r.reduce((p, n) => {
+        // 使用 p 充当当前不及格的人数
+        if (n < 60) {
+            p++
+        }
+
+        // 返回值的数据结构应该和 map 返回的结构相同
+        return p
+    })
+    console.log(r);
+
+    // 2. 统计总分和平均分
+    r = arr.map(el => {
+        return {
+            avg: 0, // 品均分
+            sum: 0, // 总分
+            score: el.score, // 每个同学的分数
+            count: 0 // 同学的数量
+        }
+    })
+    // 前置插入一个空对象用来充当上一次的结果
+    r.unshift({
+        avg: 0,
+        sum: 0,
+        score: 0,
+        count: 0
+    })
+    console.log(r);
+    r = r.reduce((p, n) => {
+        // 总分 = 上一次的总分 + 本次的分数
+        let sum = p.sum + n.score
+        // 人数 = 上一次的人数 + 1
+        let count = p.count + 1
+        // 平均分
+        let avg = sum / count
+
+        // 返回值的数据结构应该和 map 返回的结构相同
+        return {
+            avg,
+            sum,
+            score: 0,
+            count
+        }
+    })
+    console.log(r);
+
+    // 3. 按男女统计分数最低的两个人
+    r = arr.map(el => {
+        return {
+            // 男生分数最低的人
+            male: [],
+            // 女生分数最低的人
+            female: [],
+            stu: el
+        }
+    })
+    r.unshift({
+        male: [],
+        female: [],
+        stu: null
+    })
+    console.log(r);
+    r = r.reduce((p, n) => {
+        // 获取对应 n 性别的数组
+        let temp = p[n.stu.sex]
+
+        // 数组长度小于 2 就无条件添加
+        if (temp.length < 2) {
+            temp.push(n.stu)
+        } else {
+            // let male = [{ score: 21 }, { score: 34 }]
+            // n.stu.score = 25
+
+            // 将新数据加入数组
+            temp.push(n.stu)
+
+            // 从小到大排序
+            temp.sort((el1, el2) => el1.score - el2.score)
+
+            // 把最后一个删除
+            temp.pop()
+        }
+
+        return {
+            male: n.stu.sex === 'male' ? temp : p.male,
+            female: n.stu.sex === 'female' ? temp : p.female,
+            stu: null
+        }
+    })
+
+    console.log(r);
+</script>
+
+</html>
