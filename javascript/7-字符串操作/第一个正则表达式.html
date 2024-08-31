@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+
+</body>
+<script>
+    // 正则表达式：用于匹配字符串的表达式
+    // 例如：可以写一个正则表达式，用于鉴定一个字符串是否是邮箱格式的字符串
+
+    // 声明一个正则表达式
+    // 方法一:
+    let regex = new RegExp('^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.(com|cn)$')
+
+    // 方法二:
+    // 使用两根 / 斜线代表正则表达式的边界
+    regex = /^[0-9a-zA-Z]+@[0-9a-zA-Z]+\.(com|cn)$/
+
+
+
+    // 调用正则表达式的test方法 用于检测字符串是否符合正则表达式的描述
+    // test 返回 true 代表 受测字符串符合正则表达式描述的特征
+    console.log(regex.test('xyz@gmail.com'));
+</script>
+
+</html>

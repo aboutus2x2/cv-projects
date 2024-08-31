@@ -1,26 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    
+
 </body>
 <script>
     let str = 'https://www.temptopmain.cn/css/main.css'
 
     // 判断字符串是否以 https 开头
+    console.log(str.startsWith('https'));
 
     // 截取出字符串中的 :// 前面的内容
+    let protocalName = str.substring(0, str.indexOf(':'))
+    console.log(protocalName);
 
     // 截取该网站的域名
+    let sign = protocalName + '://'
+    let r = str.split(sign)
+    console.log(r);
+    let path = r[1]
+    console.log(path.substring(0, path.indexOf('/')));
 
     // 截取该路径的文件名
+    console.log(str.substring(str.lastIndexOf('/') + 1));
 
     str = `张三 15 male;李四 24 female;老王 30 other;`
     // 将上述内容转换成 对象数组 [{name: '张三', age: 15, sex: 'male'}, ...]
+    // 获取每个独立数据源
+    r = str.split(';')
+    // 舍弃最后一个空字符串
+    r.pop()
+    console.log(r);
+    // 遍历每个数据源 生成一个对象 并存入新数组中
+    r = r.map(el => {
+        // 声明一个对象作为返回内容
+        let obj = {}
+        // 空格分隔后得到所有数据的数组
+        let temp = el.split(' ')
+        obj.name = temp[0]
+        obj.age = Number(temp[1])
+        obj.sex = temp[2]
+        return obj
+    })
+
+    console.log(r);
 </script>
+
 </html>
