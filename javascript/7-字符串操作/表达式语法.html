@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+
+</body>
+<script>
+    // 参考：https://baike.baidu.com/item/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/1700215?fr=aladdin
+
+    let regex = /^\\dcom$/
+
+    // \ 斜杠：转义
+    console.log(/\\abc/.test('\\abc'));
+
+    // ^ ：匹配字符串的开头
+    regex = /^abc/
+    console.log(regex.test('abcd')); // => true
+    console.log(regex.test('abcefg')); // => true
+    console.log(regex.test('aabcd')); // => false
+
+    // $ ：匹配字符串的结尾
+    regex = /xyz$/
+    console.log(regex.test('123xyz')); // => true
+    console.log(regex.test('666abcxyz')); // => true
+    console.log(regex.test('666abcxyz.')); // => false
+
+
+    // ------------------- 匹配字符个数的符号
+    // 这些匹配字符个数的符号，代表的意思是：匹配前一个字符多少次
+
+    // * ：匹配任意次
+    regex = /^o*k$/
+    console.log(regex.test('k')); // => true
+    console.log(regex.test('ok')); // => true
+    console.log(regex.test('ooook')); // => true
+    console.log(regex.test('ooookk')); // => false
+
+
+    // ? : 匹配0次或1次
+    regex = /^o?k$/
+    console.log(regex.test('k')); // => true
+    console.log(regex.test('ok')); // => true
+    console.log(regex.test('ooook')); // => false
+
+    // + : 匹配至少1次
+    regex = /^o+k$/
+    console.log(regex.test('k')); // => false
+    console.log(regex.test('ok')); // => true
+    console.log(regex.test('ooook')); // => true
+
+    // {n} : 匹配指定次数
+    regex = /^o{2}k$/
+    console.log(regex.test('k')); // => false
+    console.log(regex.test('ok')); // => false
+    console.log(regex.test('ook')); // => true
+    console.log(regex.test('oook')); // => false
+
+    // {n,} : 匹配至少n次
+    regex = /^o{2,}k$/
+    console.log(regex.test('k')); // => false
+    console.log(regex.test('ok')); // => false
+    console.log(regex.test('ook')); // => true
+    console.log(regex.test('oook')); // => true
+
+    // {n,m} : 匹配至少n次，至多m次
+    regex = /^o{1,3}k$/
+    console.log(regex.test('k')); // => false
+    console.log(regex.test('ok')); // => true
+    console.log(regex.test('ook')); // => true
+    console.log(regex.test('oook')); // => true
+    console.log(regex.test('ooook')); // => false
+
+
+    // ------------------- 匹配字符个数的符号 - end
+
+    // [xyz]: 匹配字符集合，匹配一个字符，该字符在方括号内
+    regex = /^[xyz]$/
+    console.log(regex.test('z')); // => true
+    console.log(regex.test('yy')); // => false
+
+    // x|y : 或
+    regex = /^(good|bad)$/
+    console.log(regex.test('good')); // => true
+    console.log(regex.test('bad')); // => true
+    console.log(regex.test('ok')); // => false
+
+
+    // [^xyz]: 匹配负值集合，匹配一个字符，该字符不在方括号内
+    regex = /^[^xyz]$/
+    console.log(regex.test('z')); // => false
+    console.log(regex.test('a')); // => true
+    console.log(regex.test('abc')); // => false
+
+    // [a-z] [0-9] : 取范围值，匹配一个字符，该字符在指定范围内
+    regex = /^[A-Z][0-9]$/
+    console.log(regex.test('E7')); // => true
+    console.log(regex.test('G8')); // => true
+    console.log(regex.test('c5')); // => false
+
+    // [^5-7]: 取范围负值，匹配一个字符，该字符不在指定范围内
+    regex = /^[^5-7]$/
+    console.log(regex.test('6')); // => false
+    console.log(regex.test('x')); // => true
+    console.log(regex.test('a')); // => true
+
+    // ------------------- 分组 (pattern)
+    // (pattern): 将pattern里面的所有字符当作一个字符处理
+    regex = /^abc(123)+xyz$/
+    console.log(regex.test('abc123xyz')); // => true
+    console.log(regex.test('abc123123xyz')); // => true
+    console.log(regex.test('abc112233xyz')); // => false
+
+
+    // 站在字符串的角度看，圆括号不仅有分组的作用，同时，它将被取值
+    // regex = /abc(123)+xyz/
+    regex = /abc123xyz/
+    let r = '000123abc123xyz444555'.match(regex)
+    console.log(r);
+
+
+    // (?:pattern): 匹配分组内容，但不获取圆括号中的值
+    regex = /abc(?:123)+xyz/
+    r = '000123abc123123xyz444555'.match(regex)
+    console.log(r);
+
+    // -------------------- 预查询
+    // 预查询：正则表达式会去匹配预查询中的内容，但不会进行取值
+    // 预查询分方向：前后
+
+    // (?=pattern) ：后置预查询
+    regex = /windows(?=95|97|vista|xp)/
+    // 匹配成功的字符串为 windows95，但是预查询部分不会被取值下来
+    // 所以结果当中只有 windows
+    console.log('windows95'.match(regex));
+
+
+    // (?!pattern): 负后置预查询
+    regex = /windows(?!95|97|vista|xp)/
+    console.log('windowsxp'.match(regex));
+    console.log('windows32'.match(regex));
+
+    // (?<=pattern) : 前置预查询
+    regex = /(?<=95|97|vista|xp)windows/
+    console.log('vistawindows'.match(regex));
+    console.log('7windows'.match(regex));
+
+    // (?<!pattern) 负前置预查询
+    regex = /(?<!95|97|vista|xp)windows/
+    console.log('vistawindows'.match(regex));
+    console.log('7windows'.match(regex));
+
+</script>
+
+</html>
