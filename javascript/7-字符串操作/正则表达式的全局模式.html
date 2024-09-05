@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body></body>
+<script>
+    let str = 'goods gods   __ gooooods'
+    let regex = /go+ds/
+
+    // 不开全局模式 只会匹配到第一个符合条件的字符串
+    console.log(str.match(regex))
+
+    // 全局模式的正则表达式将匹配所有符合条件的字符串
+    // 在正则表达式的后面使用 g flag 来开启全局模式
+    // 另外一个 flag 是 i 代表 忽略大小写
+
+    // matchAll 匹配所有符合正则描述的字符串
+    // 参数必须是一个全局模式的正则表达式
+    regex = /go+ds/g
+    // 或 使用 RegExp
+    // 第二个参数就是flag
+    regex = new RegExp('go+ds', 'g')
+    let r = str.matchAll(regex)
+    console.log(r)
+
+    // 此处返回值 r 是一个 iterator (迭代器)
+    // 什么是迭代器？用于循环遍历一个集合的工具就是迭代器
+    // 迭代器一定包含一个 next 函数 代表取出下一个成员
+
+    // 所有的迭代器都可以使用forof来遍历
+    for (const item of r) {
+        console.log(item);
+    }
+
+
+
+
+
+    // 全局模式的另一个应用场景
+    // 字符串的替换函数
+    str = '共产党万岁，共产党伟大，共产党真牛逼'
+    regex = /共产党/
+
+    // replace 用于替换字符串
+    // 第一个参数: 要替换的内容，是一个正则表达式
+    // 第二个参数: 要换入的内容
+    // 返回值: 替换后的字符串
+    r = str.replace(regex, '***');
+    console.log(r);
+    // 使用全局模式进行全局替换 否则只会替换第一个
+    regex = /共产党/g
+    r = str.replace(regex, '***');
+    console.log(r);
+
+</script>
+
+</html>
