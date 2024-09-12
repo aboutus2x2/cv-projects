@@ -125,32 +125,35 @@
     r = '000123abc123123xyz444555'.match(regex)
     console.log(r);
 
-    // -------------------- 预查询
-    // 预查询：正则表达式会去匹配预查询中的内容，但不会进行取值
-    // 预查询分方向：前后
+    // assert 断言 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions/Assertions
+    // 什么是断言? 断言就是一段下笃定的言论，例如: 今天一定会下雨
 
-    // (?=pattern) ：后置预查询
-    regex = /windows(?=95|97|vista|xp)/
-    // 匹配成功的字符串为 windows95，但是预查询部分不会被取值下来
-    // 所以结果当中只有 windows
-    console.log('windows95'.match(regex));
+    // 先行断言
+    // 语法: x(?=y)
+    // x 跟随 y 时 匹配 x
+    // /小明(?=小红)/ 该正则理解为: 小明后面一定跟随了一个小红
+    console.log('小明小红'.match(/小明(?=小红)/));
 
 
-    // (?!pattern): 负后置预查询
-    regex = /windows(?!95|97|vista|xp)/
-    console.log('windowsxp'.match(regex));
-    console.log('windows32'.match(regex));
+    // 先行否定断言
+    // 语法: x(?!y)
+    // x 后没有 y 跟随时 匹配 x
+    // /小明(?!小红)/ 小明后面一定没有跟随小红
+    console.log('小明小芳'.match(/小明(?!小红)/));
 
-    // (?<=pattern) : 前置预查询
-    regex = /(?<=95|97|vista|xp)windows/
-    console.log('vistawindows'.match(regex));
-    console.log('7windows'.match(regex));
 
-    // (?<!pattern) 负前置预查询
-    regex = /(?<!95|97|vista|xp)windows/
-    console.log('vistawindows'.match(regex));
-    console.log('7windows'.match(regex));
+    // 后行断言
+    // 语法: (?<=y)x
+    // x 的前有 y 则 匹配 x
+    // /(?<=小红)小明/ 小明的前面一定有小红
+    console.log('小红小明'.match(/(?<=小红)小明/));
 
+
+    // 后行否定断言
+    // 语法: (?<!y)x
+    // x 前没有 y 则 匹配 x
+    // /(?<!小红)小明/ 小明的前面一定没有小红
+    console.log('小芳小明'.match(/(?<!小红)小明/));
 </script>
 
 </html>

@@ -50,19 +50,42 @@
     // 请输写符合条件的正则
 
     // 1. 判断字符串不是 “你好坏哦” 开头
+    let regex = /^(?!你好坏哦)/
+    console.log(regex.test('你好坏 我好喜欢'));
 
     // 2. 判断字符串包含 “希望”
+    regex = /^[\s\S]*希望[\s\S]*$/
+    regex = new RegExp('^[\\s\\S]*希望[\\s\\S]*$')
+
+    console.log(regex.test('希望同学们成绩好'))
+    console.log(regex.test('没有希望'))
+    console.log(regex.test('我的希望在哪里'))
+    console.log(regex.test('希望'))
+
 
     // 3. 判断字符串不包含 “拜金主义”
+    // regex = /^((?!拜金主义).)*$/
+    // regex = /^(?!拜金主义)([\s\S](?!拜金主义))*$/
+    regex = /^((?<!拜金主义)[\s\S])*(?<!拜金主义)$/
+    console.log(regex.test('我信仰拜金主义'));
+    console.log(regex.test('拜金主义是不好的'));
+    console.log(regex.test('我认为拜金主义不好'));
+    console.log(regex.test('拜金主义'));
+
 
     // 请书写正则并获取以下要求的字符串
     // 请先获取 table 标签体的字符串
+    let html = document.querySelector('tbody').innerHTML
+    console.log(html);
 
     // 1. 获取名为 李四 的数据的 序号
-
+    regex = /\s*<tr>\n(\s*<td>.*<\/td>\n){4}\s*<\/tr>\s*/g
+    let r = html.matchAll(regex)
+    for (const item of r) {
+        console.log(item);
+    }
 
     // 2. 获取所有性别为 male 的人的姓名
-
 
     // 3. 获取所有人的年龄并计算平均数
 

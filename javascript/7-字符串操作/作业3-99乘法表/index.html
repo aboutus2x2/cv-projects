@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 80px;
+            text-align: center;
+            padding: 8px;
+            background-color: #f00;
+            color: #fff;
+            display: inline-block;
+            font-size: 20px;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div class="box">1x1=1</div> -->
+</body>
+<script>
+    // 循环行
+    for (let i = 1; i <= 9; i++) {
+        // 循环列 列数不大于行号
+        for (let j = 1; j <= i; j++) {
+            let div = document.createElement('div')
+            div.className = 'box'
+            div.textContent = `${j}x${i}=${j * i}`
+            document.body.appendChild(div)
+        }
+        // 换行
+        document.body.appendChild(document.createElement('br'))
+    }
+</script>
+
+</html>
