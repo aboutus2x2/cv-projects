@@ -79,18 +79,42 @@
     console.log(html);
 
     // 1. 获取名为 李四 的数据的 序号
-    regex = /\s*<tr>\n(\s*<td>.*<\/td>\n){4}\s*<\/tr>\s*/g
-    let r = html.matchAll(regex)
-    for (const item of r) {
-        console.log(item);
-    }
+    regex = /\s*<tr>\n(\s*<td>.*<\/td>\n)(\s*<td>李四<\/td>\n)(\s*<td>.*<\/td>\n)(\s*<td>.*<\/td>\n)\s*<\/tr>\s*/g
+    let r = html.match(regex)
+    console.log(r);
+    console.log(r[0].match(/^\s*<tr>\n\s*<td>(.*)<\/td>/)[1]);
 
     // 2. 获取所有性别为 male 的人的姓名
+    regex = /\s*<tr>\n(\s*<td>.*<\/td>\n)(\s*<td>(.*)<\/td>\n)(\s*<td>male<\/td>\n)(\s*<td>.*<\/td>\n)\s*<\/tr>\s*/g
+    r = html.matchAll(regex)
+    console.log(r);
+    for (const s of r) {
+        console.log(s[3]);
+    }
 
     // 3. 获取所有人的年龄并计算平均数
-
+    let sum = 0
+    let count = 0
+    regex = /\s*<tr>\n(\s*<td>.*<\/td>\n)(\s*<td>.*<\/td>\n)(\s*<td>.*<\/td>\n)(\s*<td>(.*)<\/td>\n)\s*<\/tr>\s*/g
+    r = html.matchAll(regex)
+    for (const item of r) {
+        // 获取年龄
+        console.log(item[5]);
+        sum += Number(item[5])
+        count++
+    }
+    console.log(sum / count);
 
     // 4. 获取姓名中包含 “张” 字的姓名
+    regex = /\s*<tr>\n(\s*<td>.*<\/td>\n)(\s*<td>(.*张.*)<\/td>\n)(\s*<td>.*<\/td>\n)(\s*<td>.*<\/td>\n)\s*<\/tr>\s*/g
+    r = html.matchAll(regex)
+    for (const item of r) {
+        console.log(item[3]);
+    }
+
+    // 总结
+    // [\s\S] 包含了回车换行，在该题中使用会导致同时匹配多行 td
+    // 此处应该使用 . 来进行匹配 . 代表非回车换行的任意字符，这样就不会跨行去匹配字符串了
 </script>
 
 </html>

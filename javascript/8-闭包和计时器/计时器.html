@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head></head>
+
+<body>
+    <button class="btn1">停止 timeout 计时</button>
+    <button class="btn2">停止 interval 计时</button>
+</body>
+<script>
+    // 计时器
+
+    // 什么是计时器？当经过指定时间后触发一段代码的函数就是一个计时器
+
+    // 声明一个计时器：
+    // 第一个参数：计时器计时结束后触发的函数
+    // 第二个参数：计时时长，单位:毫秒
+    // 返回值: 计时器id
+    // 计时器id 用于停止计时
+    
+
+    // clearTimeout
+
+
+
+    // 循环计时函数
+    // setInterval 函数，每次经过指定时间，触发一次指定的函数
+    // 参数和返回值 与 setTimeout 相同
+
+
+    // clearInterval
+
+
+    // 关于 setTimeout 和 setInterval 中的异常
+
+
+    // 注意事项：
+    // 1. 尽量不使用 setInterval
+    // 理由：setInterval 可能由于人为原因忘了关闭，或者内部出现异常，导致代码死循环
+    // 2. 若要做大量循环调用甚至是无限循环调用时（例如轮询死循环调用），请使用 setInterval 而不是使用 setTimeout 递归进行循环
+    // 理由：setTimeout 会占用大量内存堆栈，若用 setTimeout 递归实现死循环轮询，则内存必定溢出
+</script>
+
+</html>
