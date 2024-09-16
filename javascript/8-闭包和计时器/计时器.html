@@ -12,26 +12,85 @@
 
     // 什么是计时器？当经过指定时间后触发一段代码的函数就是一个计时器
 
-    // 声明一个计时器：
+    // 声明一个计时器：setTimeout
     // 第一个参数：计时器计时结束后触发的函数
     // 第二个参数：计时时长，单位:毫秒
     // 返回值: 计时器id
     // 计时器id 用于停止计时
-    
+    // let timerId = setTimeout(() => {
+    //     console.log('hello setTimeout')
+    // }, 3000)
 
-    // clearTimeout
+    // document.querySelector('.btn1').addEventListener('click', () => {
+    //     // clearTimeout 清空计时器
+    //     // 参数是 计时器id
+    //     // 清空后计时器将取消掉
+    //     clearTimeout(timerId)
+    // })
 
 
 
-    // 循环计时函数
+    // setInterval 循环计时函数
     // setInterval 函数，每次经过指定时间，触发一次指定的函数
     // 参数和返回值 与 setTimeout 相同
-
+    // let count = 0
+    // let timerId2 = setInterval(() => {
+    //     count++
+    //     console.log(count);
+    // }, 1000)
 
     // clearInterval
+    // document.querySelector('.btn2').addEventListener('click', () => {
+    //     // 清空循环计时器
+    //     clearInterval(timerId2)
+    // })
+
+    // 请避免出现以下死循环
+    // setTimeout 死循环
+    let count = 0
+    function countTime() {
+        setTimeout(() => {
+            let a = 1
+            let b = 2
+            let c = a + b
+            count++
+            // console.log(count);
+            // 递归调用自身 形成死循环
+            countTime() // 不考虑终止循环的情况下 栈一定会溢出
+            // 添加条件来跳出循环 则不会导致内存溢出
+            // count < 10 && countTime()
+        })
+    }
+
+    countTime()
+
+    // setTimeout 的死循环将导致 栈溢出（内存溢出）
+
+    // setInterval 死循环
+    // setInterval(() => {
+    //     count++
+    //     console.log(count);
+    // })
 
 
     // 关于 setTimeout 和 setInterval 中的异常
+    // function countTime() {
+    //     setTimeout(() => {
+    //         if(count === 5) console.log(abc.obj());
+    //         count++
+    //         console.log(count);
+    //         countTime()
+    //     }, 1000)
+    // }
+    // countTime()
+    // setTimeout 计时器内出现异常 将停止递归
+
+    // setInterval(() => {
+    //     if (count === 5) console.log(abc.obj());
+    //     count++
+    //     console.log(count);
+    // }, 1000)
+    // setInterval 中出现异常 程序继续执行
 
 
     // 注意事项：
