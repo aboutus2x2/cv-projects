@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script src="./sum.js"></script>
+<script src="./avg.js"></script>
+<script>
+    // 什么是闭包
+    // 闭包也叫函数闭包，一个函数被另一个函数包裹并返回，这个过程叫闭包
+    // 应用场景
+    // 闭包用于存储一些不让函数外访问的数据，或者为了避免作用域中变量名的冲突，可以使用闭包
+    // 如何闭包
+
+    // 使用自调用函数，返回一个函数
+    const sayMessage = (() => {
+        // 声明一个用于记录调用次数的变量
+        // 闭包的函数空间内声明的变量，在内存中将持续存在
+        // 垃圾回收不会回收该变量
+        // 该变量在外部无法访问
+        let count = 0
+
+        // 在自调用函数中返回一个函数
+        // 返回的函数就是一个闭包后的函数
+        return (msg) => {
+            console.log(msg)
+            count++
+            console.log(`sayMessage 调用次数为 ${count}`);
+        }
+    })()
+
+    sayMessage('hello world')
+
+    const obj = (function () {
+        let name = '张三'
+        
+        // 在函数空间内 可以返回任意的内容
+        return {
+            // 获取名称
+            getName() {
+                return name
+            },
+            // 改名
+            setName(newName) {
+                name = newName
+            }
+        }
+    })()
+
+    console.log(obj);
+    console.log(obj.getName());
+    obj.setName('隔壁老王')
+    console.log(obj.getName());
+
+
+    console.log(sum([1, 2, 3]));
+    console.log(avg([4, 5, 6]));
+
+</script>
+
+</html>

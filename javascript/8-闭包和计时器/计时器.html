@@ -50,13 +50,10 @@
     let count = 0
     function countTime() {
         setTimeout(() => {
-            let a = 1
-            let b = 2
-            let c = a + b
             count++
             // console.log(count);
             // 递归调用自身 形成死循环
-            countTime() // 不考虑终止循环的情况下 栈一定会溢出
+            countTime()
             // 添加条件来跳出循环 则不会导致内存溢出
             // count < 10 && countTime()
         })
@@ -64,7 +61,6 @@
 
     countTime()
 
-    // setTimeout 的死循环将导致 栈溢出（内存溢出）
 
     // setInterval 死循环
     // setInterval(() => {
@@ -97,7 +93,7 @@
     // 1. 尽量不使用 setInterval
     // 理由：setInterval 可能由于人为原因忘了关闭，或者内部出现异常，导致代码死循环
     // 2. 若要做大量循环调用甚至是无限循环调用时（例如轮询死循环调用），请使用 setInterval 而不是使用 setTimeout 递归进行循环
-    // 理由：setTimeout 会占用大量内存堆栈，若用 setTimeout 递归实现死循环轮询，则内存必定溢出
+    // 理由：setTimeout 会占用大量内存堆栈
 </script>
 
 </html>

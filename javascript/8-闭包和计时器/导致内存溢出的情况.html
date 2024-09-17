@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 内存溢出
+    // 当内存中堆栈内容已经装不下了，再给内存增加内容则溢出了
+
+    // 栈溢出
+
+    // 无限的函数递归会引发栈溢出
+
+    function fn1() {
+        fn1()
+    }
+
+    // fn1()
+
+    // 堆溢出
+    let count = 0
+    while (true) {
+        // 每次循环都声明一个新的对象
+        // 对象保存在堆上
+        // 当堆上的内容过多 则会导致堆溢出
+        let a = { name: Date.now() }
+        if (count > 5) {
+            console.log(count);
+        }
+        count++
+    }
+
+</script>
+
+</html>
