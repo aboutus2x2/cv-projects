@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <table border>
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>班级</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 编写一个待会儿被js使用的html模板 -->
+                <tr>
+                    <td>1</td>
+                    <td>zhangsan</td>
+                    <td>1ban</td>
+                    <td>
+                        <button>编辑</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="./api/db.js"></script>
+<script>
+    // 数据增删改查的js练习
+    // 增删改查也叫做crud(Create, Read, Update, and Delete)
+    // 学会数据的增删改查流程
+    // 此处使用localStorage来充当数据库
+
+
+    // 构造测试数据
+    // 假设该数据是从服务器得到
+    // let data = [
+    //     {
+    //         name: '张三', // 姓名
+    //         no: '0', // 学号
+    //         clazz: '1班', // 班级
+    //     },
+    //     {
+    //         name: '李四',
+    //         no: '1',
+    //         clazz: '2班',
+    //     },
+    //     {
+    //         name: '王麻子',
+    //         no: '2',
+    //         clazz: '3班',
+    //     }
+    // ]
+    let data = []
+
+    // 给 localStorage 填充数据
+    // localStorage['students'] = JSON.stringify(data)
+
+    const tbody = document.querySelector('tbody')
+
+    // 渲染函数，用于显示渲染页面内容
+    // 此处 render 中需要将 data 转换成 html 的内容
+    function render() {
+        // let html = ''
+        // data.forEach(item => {
+        //     html += `
+        //         <tr>
+        //             <td>${item.no}</td>
+        //             <td>${item.name}</td>
+        //             <td>${item.clazz}</td>
+        //             <td>
+        //                 <button>编辑</button>
+        //                 <button>删除</button>
+        //             </td>
+        //         </tr>
+        //     `
+        // })
+        // console.log(html);
+
+        // 使用map函数得到对应数据的字符串数组
+        // let html = data.map(item => `
+        //     <tr>
+        //         <td>${item.no}</td>
+        //         <td>${item.name}</td>
+        //         <td>${item.clazz}</td>
+        //         <td>
+        //             <button>编辑</button>
+        //             <button>删除</button>
+        //         </td>
+        //     </tr>
+        // `)
+        // console.log(html);
+        // // 再使用join函数拼接
+        // html = html.join('')
+        // console.log(html);
+
+        let html = data.map(item => `
+            <tr>
+                <td>${item.no}</td>
+                <td>${item.name}</td>
+                <td>${item.clazz}</td>
+                <td>
+                    <button>编辑</button>
+                    <button>删除</button>
+                </td>
+            </tr>
+        `).join('')
+
+        console.log(html);
+
+        // 插入文档
+        tbody.innerHTML = html
+    }
+
+    // render()
+
+    // 给窗口对象绑定load事件
+    // 当窗口加载完成后，执行事件回调
+    window.addEventListener('load', () => {
+        let r = query()
+        // r 存在就赋值 data
+        r && (data = r)
+        render()
+    })
+</script>
+
+</html>
