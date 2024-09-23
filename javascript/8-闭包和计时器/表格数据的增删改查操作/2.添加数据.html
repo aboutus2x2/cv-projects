@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 工具栏 -->
+    <div><button class="add-btn">添加</button></div>
+    <div>
+        <table border>
+            <thead>
+                <tr>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>班级</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 编写一个待会儿被js使用的html模板 -->
+                <tr>
+                    <td>1</td>
+                    <td>zhangsan</td>
+                    <td>1ban</td>
+                    <td>
+                        <button>编辑</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="./api/db.js"></script>
+<script src="./utils.js"></script>
+<script>
+    let data = []
+
+    // 给 localStorage 填充数据
+    // localStorage['students'] = JSON.stringify(data)
+
+    const tbody = $('tbody')
+
+    // 渲染函数，用于显示渲染页面内容
+    // 此处 render 中需要将 data 转换成 html 的内容
+    function render() {
+        let html = data.map(item => `
+            <tr>
+                <td>${item.no}</td>
+                <td>${item.name}</td>
+                <td>${item.clazz}</td>
+                <td>
+                    <button>编辑</button>
+                    <button>删除</button>
+                </td>
+            </tr>
+        `).join('')
+
+        console.log(html);
+
+        // 插入文档
+        tbody.innerHTML = html
+    }
+
+    // 添加数据
+    $('.add-btn').addEventListener('click', () => {
+        // 跳转到新增数据页
+        location.href = './add.html'
+    })
+
+    // 给窗口对象绑定load事件
+    // 当窗口加载完成后，执行事件回调
+    window.addEventListener('load', () => {
+        let r = query()
+        // r 存在就赋值 data
+        r && (data = r)
+        render()
+    })
+</script>
+
+</html>

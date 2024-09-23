@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return false">
+        <div><label>学号: <input name="no" type="number" placeholder="请输入学号"></label></div>
+        <div><label>姓名: <input name="name" type="text" placeholder="请输入2~10个字的姓名"></label></div>
+        <div><label>班级: <select name="clazz">
+                    <option value="" disabled selected>请选择</option>
+                    <option value="1班">1班</option>
+                    <option value="2班">2班</option>
+                    <option value="3班">3班</option>
+                </select></label></div>
+        <div>
+            <button class="confirm">确定</button>
+            <button class="cancel">取消</button>
+        </div>
+    </form>
+</body>
+<script src="./api/db.js"></script>
+<script src="./utils.js"></script>
+<script>
+    let form = $('form')
+    // 确定
+    $('.confirm').addEventListener('click', () => {
+        const fd = new FormData(form)
+        let no = fd.get('no')
+        let name = fd.get('name')
+        let clazz = fd.get('clazz')
+
+        // 用户输入的内容都是不可信的，所以需要验证
+        if (no.trim() === '') {
+            alert('请输入学号')
+            return
+        }
+        if (name.trim() === '') {
+            alert('请输入姓名')
+            return
+        }
+        if (name.trim().length < 2 || name.trim().length > 10) {
+            alert('请输入2~10个字的姓名')
+            return
+        }
+        if (clazz === null) {
+            alert('请选择班级')
+            return
+        }
+
+        // 添加数据到数据库中
+        add(no, name, clazz)
+        // 返回
+        history.back()
+    })
+    // 取消
+    $('.cancel').addEventListener('click', () => {
+        history.back()
+    })
+</script>
+
+</html>
