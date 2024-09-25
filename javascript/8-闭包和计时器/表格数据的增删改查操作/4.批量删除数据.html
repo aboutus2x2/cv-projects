@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 工具栏 -->
+    <div>
+        <button class="add-btn">添加</button>
+        <button class="removeall-btn">批量删除</button>
+    </div>
+    <div>
+        <table border>
+            <thead>
+                <tr>
+                    <th><label><input class="select-all" type="checkbox">全选</label></th>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>班级</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="checkbox" type="checkbox"></td>
+                    <td>1</td>
+                    <td>zhangsan</td>
+                    <td>1ban</td>
+                    <td>
+                        <button>编辑</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="./api/db.js"></script>
+<script src="./utils.js"></script>
+<script>
+    let data = []
+    // 用于存储当前被勾选的学号值
+    let selection = []
+
+    const tbody = $('tbody')
+
+    function render() {
+        let html = data.map(item => `
+            <tr>
+                <td><input class="checkbox" type="checkbox" no="${item.no}"></td>
+                <td>${item.no}</td>
+                <td>${item.name}</td>
+                <td>${item.clazz}</td>
+                <td>
+                    <button>编辑</button>
+                    <button class="remove-btn" no="${item.no}">删除</button>
+                </td>
+            </tr>
+        `).join('')
+
+        tbody.innerHTML = html
+    }
+
+    function addEvents() {
+        const removeBtns = document.querySelectorAll('.remove-btn')
+        for (let i = 0; i < removeBtns.length; i++) {
+            const removeBtn = removeBtns[i];
+            removeBtn.addEventListener('click', function () {
+                let no = this.getAttribute('no')
+                confirm('确定删除吗') && removeOne(no)
+                location.reload()
+            })
+        }
+
+
+        // checkbox 点击事件
+        const checkboxs = document.querySelectorAll('.checkbox')
+        console.log(checkboxs);
+        for (let i = 0; i < checkboxs.length; i++) {
+            const checkbox = checkboxs[i];
+            // 绑定元素的变化事件
+            // 当checkbox的选择状态发生变化时触发该事件
+            checkbox.addEventListener('change', function () {
+                // 获取学号
+                let no = this.getAttribute('no')
+                // 获取当前的勾选状态
+                let checked = this.checked
+                console.log(no, checked);
+
+                if (checked) {
+                    // 判断数组中不存在学号，则添加数据
+                    !selection.includes(no) && selection.push(no)
+                } else {
+                    // 判断数组中已存在学号，则删除学号
+                    let i = selection.findIndex(item => item === no)
+                    // 当索引不为 -1 说明 findIndex 查找到了数据 则删除该数据
+                    i !== -1 && selection.splice(i, 1)
+                }
+            })
+        }
+
+        // 全选按钮
+        $('.select-all').addEventListener('change', function () {
+            // 获取当前勾选状态
+            let checked = this.checked
+            // if (checked) {
+            //     // 执行全选逻辑
+            //     for (let i = 0; i < checkboxs.length; i++) {
+            //         const checkbox = checkboxs[i];
+            //         // 判断checkbox是否勾选，没勾选的就勾上
+            //         !checkbox.checked && checkbox.click()
+            //     }
+            // } else {
+            //     for (let i = 0; i < checkboxs.length; i++) {
+            //         const checkbox = checkboxs[i];
+            //         // 判断checkbox是否勾选，已勾选的就去掉勾选
+            //         checkbox.checked && checkbox.click()
+            //     }
+            // }
+
+            for (let i = 0; i < checkboxs.length; i++) {
+                const checkbox = checkboxs[i];
+                // 当全选按钮的状态不等于当前checkbox的状态
+                // 则点击当前checkbox
+                (checked !== checkbox.checked) && checkbox.click()
+            }
+        })
+    }
+
+    // 工具栏事件
+    $('.add-btn').addEventListener('click', () => {
+        location.href = './add.html'
+    })
+
+    // 全部删除
+    $('.removeall-btn').addEventListener('click', () => {
+        // 判断selection中存在选项吗，不存在则不执行
+        if (selection.length === 0) return
+        // 询问成功后删除
+        confirm('确定删除吗?') && removeAll(selection)
+        location.reload()
+    })
+
+    window.addEventListener('load', () => {
+        let r = query()
+        r && (data = r)
+        render()
+        addEvents()
+    })
+
+</script>
+
+</html>

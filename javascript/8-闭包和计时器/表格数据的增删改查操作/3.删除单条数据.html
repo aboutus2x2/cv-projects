@@ -39,6 +39,12 @@
 <script src="./api/db.js"></script>
 <script src="./utils.js"></script>
 <script>
+    // 总结
+    // 删除时，为了让程序知道用户要删除哪一个数据，那么需要给按钮添加一个 数据唯一标识符 参数
+    // 点击按钮时，可以获取对应的数据唯一标识符
+    // 删除是危险操作，所以需要询问用户
+
+
     let data = []
 
     const tbody = $('tbody')

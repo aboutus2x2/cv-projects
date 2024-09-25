@@ -53,3 +53,11 @@ function removeOne(no) {
     // 保存
     save(data)
 }
+
+// 批量删除
+function removeAll(selection) {
+    let data = getTable()
+    // item的学号no不在数组selection中就保留下来
+    data = data.filter(item => !selection.includes(item.no))
+    save(data)
+}
