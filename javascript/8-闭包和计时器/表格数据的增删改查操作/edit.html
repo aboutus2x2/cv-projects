@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form onsubmit="return false">
+        <div><label>学号: <input readonly name="no" type="number" placeholder="请输入学号"></label></div>
+        <div><label>姓名: <input name="name" type="text" placeholder="请输入2~10个字的姓名"></label></div>
+        <div><label>班级: <select name="clazz">
+                    <option value="" disabled selected>请选择</option>
+                    <option value="1班">1班</option>
+                    <option value="2班">2班</option>
+                    <option value="3班">3班</option>
+                </select></label></div>
+        <div>
+            <button class="confirm">确定</button>
+            <button class="cancel">取消</button>
+        </div>
+    </form>
+</body>
+<script src="./api/db.js"></script>
+<script src="./utils.js"></script>
+<script>
+    // 编辑页和添加页基本相同，不同之处在于需要回显数据
+    // 回显数据的方法：通过数据的唯一标识符(此处的唯一标识符就是学号no)，查询数据库，得到数据
+    // 学号在回显的数据中不应该被修改，因为一旦唯一标识符被修改了 则数据库中就查询不到此数据了
+
+    let form = $('form')
+    const noEl = $('form input[name=no]')
+    const nameEl = $('form input[name=name]')
+    const clazzEl = $('form select[name=clazz]')
+
+
+    // 确定
+    $('.confirm').addEventListener('click', () => {
+        const fd = new FormData(form)
+        let no = fd.get('no')
+        let name = fd.get('name')
+        let clazz = fd.get('clazz')
+
+        // 用户输入的内容都是不可信的，所以需要验证
+        if (no.trim() === '') {
+            alert('请输入学号')
+            return
+        }
+        if (name.trim() === '') {
+            alert('请输入姓名')
+            return
+        }
+        if (name.trim().length < 2 || name.trim().length > 10) {
+            alert('请输入2~10个字的姓名')
+            return
+        }
+        if (clazz === null) {
+            alert('请选择班级')
+            return
+        }
+
+        // 编辑数据
+        update(no, name, clazz)
+
+        // 返回
+        history.back()
+    })
+    // 取消
+    $('.cancel').addEventListener('click', () => {
+        history.back()
+    })
+
+
+    // 在窗口加载完成事件中执行回显数据的逻辑
+    window.addEventListener('load', () => {
+        // 获取学号
+        let search = location.search
+        // // 获取截取字符串起始的索引
+        // let startIndex = search.indexOf('?no=') + '?no='.length
+        // // 截取字符串
+        // let no = search.substring(startIndex)
+        // console.log(no);
+
+        let no = search.match(/^\?no=(\d+)/)[1]
+
+        // 通过学号请求数据
+        let stu = findByNo(no)
+        console.log(stu);
+
+        // 回显到页面
+        noEl.value = stu.no
+        nameEl.value = stu.name
+        clazzEl.value = stu.clazz
+    })
+</script>
+
+</html>

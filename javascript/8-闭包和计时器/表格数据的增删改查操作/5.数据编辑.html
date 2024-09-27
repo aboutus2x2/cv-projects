@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 工具栏 -->
+    <div>
+        <button class="add-btn">添加</button>
+        <button class="removeall-btn">批量删除</button>
+    </div>
+    <div>
+        <table border>
+            <thead>
+                <tr>
+                    <th><label><input class="select-all" type="checkbox">全选</label></th>
+                    <th>学号</th>
+                    <th>姓名</th>
+                    <th>班级</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input class="checkbox" type="checkbox"></td>
+                    <td>1</td>
+                    <td>zhangsan</td>
+                    <td>1ban</td>
+                    <td>
+                        <button>编辑</button>
+                        <button>删除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+<script src="./api/db.js"></script>
+<script src="./utils.js"></script>
+<script>
+    let data = []
+    let selection = []
+
+    const tbody = $('tbody')
+
+    function render() {
+        let html = data.map(item => `
+            <tr>
+                <td><input class="checkbox" type="checkbox" no="${item.no}"></td>
+                <td>${item.no}</td>
+                <td>${item.name}</td>
+                <td>${item.clazz}</td>
+                <td>
+                    <button class="edit-btn" no="${item.no}">编辑</button>
+                    <button class="remove-btn" no="${item.no}">删除</button>
+                </td>
+            </tr>
+        `).join('')
+
+        tbody.innerHTML = html
+    }
+
+    function addEvents() {
+        const removeBtns = document.querySelectorAll('.remove-btn')
+        for (let i = 0; i < removeBtns.length; i++) {
+            const removeBtn = removeBtns[i];
+            removeBtn.addEventListener('click', function () {
+                let no = this.getAttribute('no')
+                confirm('确定删除吗') && removeOne(no)
+                location.reload()
+            })
+        }
+
+
+        const checkboxs = document.querySelectorAll('.checkbox')
+        console.log(checkboxs);
+        for (let i = 0; i < checkboxs.length; i++) {
+            const checkbox = checkboxs[i];
+            checkbox.addEventListener('change', function () {
+                let no = this.getAttribute('no')
+                let checked = this.checked
+                console.log(no, checked);
+
+                if (checked) {
+                    !selection.includes(no) && selection.push(no)
+                } else {
+                    let i = selection.findIndex(item => item === no)
+                    i !== -1 && selection.splice(i, 1)
+                }
+            })
+        }
+
+        $('.select-all').addEventListener('change', function () {
+            let checked = this.checked
+
+            for (let i = 0; i < checkboxs.length; i++) {
+                const checkbox = checkboxs[i];
+                (checked !== checkbox.checked) && checkbox.click()
+            }
+        })
+
+        // 编辑按钮
+        const editBtns = document.querySelectorAll('.edit-btn')
+        for (let i = 0; i < editBtns.length; i++) {
+            const editBtn = editBtns[i];
+            editBtn.addEventListener('click', function () {
+                let no = this.getAttribute('no')
+                // 跳转到编辑页 并将学号作为参数
+                // 参数用问好追加到地址的末尾，多个参数用 & 隔开
+                // ?a=1&b=2 这种格式的参数名为 queryString （查询字符串）
+                location.href = './edit.html?no=' + no
+            })
+        }
+    }
+
+    $('.add-btn').addEventListener('click', () => {
+        location.href = './add.html'
+    })
+
+    $('.removeall-btn').addEventListener('click', () => {
+        if (selection.length === 0) return
+        confirm('确定删除吗?') && removeAll(selection)
+        location.reload()
+    })
+
+    window.addEventListener('load', () => {
+        let r = query()
+        r && (data = r)
+        render()
+        addEvents()
+    })
+
+</script>
+
+</html>

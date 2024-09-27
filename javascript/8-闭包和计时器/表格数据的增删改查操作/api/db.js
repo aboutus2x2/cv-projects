@@ -61,3 +61,20 @@ function removeAll(selection) {
     data = data.filter(item => !selection.includes(item.no))
     save(data)
 }
+
+// 通过学号查找一条数据
+function findByNo(no) {
+    let data = getTable()
+    return data.find(item => item.no === no)
+}
+
+// 更新
+function update(no, name, clazz) {
+    let data = getTable()
+    // 查找学生对象
+    let stu = data.find(item => item.no === no)
+    // 修改对象属性
+    stu.name = name
+    stu.clazz = clazz
+    save(data)
+}
