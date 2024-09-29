@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+    <div class="head">
+        <div class="space">
+            <button class="back">返回</button>
+            <h2>新增数据</h1>
+        </div>
+    </div>
+    <div style="padding: 16px;">
+        <form class="card" onsubmit="return false">
+            <div class="form-item space">
+                <label>工号</label><input name="no" type="text" readonly>
+            </div>
+            <div class="form-item space">
+                <label>姓名</label><input name="name" type="text">
+            </div>
+            <div class="form-item space">
+                <label>性别</label>
+                <label><input name="sex" type="radio" value="男"> 男</label>
+                <label><input name="sex" type="radio" value="女"> 女</label>
+                <label><input name="sex" type="radio" value="其他" checked> 其他</label>
+            </div>
+            <div class="form-item space">
+                <label>生日</label><input style="flex-grow: 1;" name="birthday" type="date">
+            </div>
+            <div class="form-item space">
+                <label>部门</label>
+                <select name="department" style="flex-grow: 1;">
+                    <option value="" disabled selected>请选择</option>
+                    <option value="it">IT部</option>
+                    <option value="hr">人事部</option>
+                    <option value="money">财务部</option>
+                </select>
+            </div>
+            <div class="token"></div>
+            <div class="form-item space" style="justify-content: flex-end;">
+                <button class="confirm">确定</button>
+                <button class="back">取消</button>
+            </div>
+        </form>
+    </div>
+</body>
+<script src="./utils.js"></script>
+<script src="./db.js"></script>
+<script>
+    let form = $('form')
+    let backBtns = $.all('.back')
+    for (let i = 0; i < backBtns.length; i++) {
+        const backBtn = backBtns[i];
+        backBtn.addEventListener('click', () => {
+            // 返回
+            history.back()
+        })
+    }
+
+    window.addEventListener('load', () => {
+        // 获取工号并赋值输入框
+        let no = getNo()
+        // 回显工号
+        $('input[name=no]').value = no
+    })
+
+    // 确定
+    $('.confirm').addEventListener('click', () => {
+        // 读取表单的值
+        let fd = new FormData(form)
+        let no = Number(fd.get('no'))
+        let name = fd.get('name')
+        let sex = fd.get('sex')
+        let birthday = fd.get('birthday')
+        let department = fd.get('department')
+
+        // 表单验证
+        if (name.trim() === '') {
+            alert('请输入姓名')
+            return
+        }
+        if (name.trim().length < 2 || name.trim().length > 10) {
+            alert('请输入2~10个字的名字')
+            return
+        }
+        if (birthday.trim() === '') {
+            alert('请选择生日')
+            return
+        }
+        if (department === null) {
+            alert('请选择部门')
+            return
+        }
+        console.log(no, name, sex, birthday, department);
+
+        add(no, name, sex, birthday, department)
+
+        // 返回
+        history.back()
+    })
+</script>
+
+</html>

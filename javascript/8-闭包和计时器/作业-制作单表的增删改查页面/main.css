@@ -1,0 +1,104 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    display: inline-block;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 5px 10px 16px rgba(0, 0, 0, 0.149);
+}
+
+.card.block {
+    display: block;
+}
+
+.space {
+    display: flex;
+    align-items: center;
+}
+
+.space>* {
+    margin-right: 8px;
+}
+
+.space>*:last-child {
+    margin-right: 0;
+}
+
+input {
+    outline: none;
+    border: 1px solid rgb(145, 145, 145);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+select {
+    outline: none;
+    border: 1px solid rgb(145, 145, 145);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+button {
+    font-size: 16px;
+    line-height: 16px;
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(0, 102, 255);
+    color: #fff;
+}
+
+button:active {
+    background-color: rgb(133, 182, 255);
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.token {
+    height: 16px;
+}
+
+.table {
+    display: grid;
+    align-items: center;
+    row-gap: 8px;
+}
+
+.table.col-7 {
+    grid-template-columns: repeat(7, 1fr);
+}
+
+.cell.th {
+    font-weight: bolder;
+}
+
+input[type=checkbox],
+input[type=radio] {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    top: 2px;
+}
+
+.head {
+    /* border-bottom: 1px solid rgb(145, 145, 145); */
+    padding: 16px;
+    box-shadow: 5px 10px 16px rgba(0, 0, 0, 0.149);
+}
+
+.form-item {
+    margin-bottom: 8px;
+}
+
+.form-item:last-child {
+    margin-bottom: 0;
+}
+
+.form-item>label {
+    font-weight: bolder;
+}

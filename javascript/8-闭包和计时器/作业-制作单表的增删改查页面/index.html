@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./main.css">
+</head>
+
+<body style="padding: 16px;">
+    <div class="card">
+        <div class="space">
+            <div>姓名</div>
+            <input type="text">
+            <div>部门</div>
+            <select>
+                <option value="">无</option>
+                <option value="it">IT部</option>
+                <option value="hr">人事部</option>
+                <option value="money">财务部</option>
+            </select>
+            <button class="search-btn">查询</button>
+            <button class="add-btn">+</button>
+            <button class="removeall-btn">批量删除</button>
+        </div>
+    </div>
+    <div class="token"></div>
+    <div class="card block">
+        <div class="table col-7">
+            <div class="cell th"><label><input type="checkbox">全选</label></div>
+            <div class="cell th">工号</div>
+            <div class="cell th">姓名</div>
+            <div class="cell th">性别</div>
+            <div class="cell th">年龄</div>
+            <div class="cell th">部门</div>
+            <div class="cell th">操作</div>
+
+            <div class="cell td"><input type="checkbox"></div>
+            <div class="cell td">1</div>
+            <div class="cell td">张三</div>
+            <div class="cell td">男</div>
+            <div class="cell td">17</div>
+            <div class="cell td">IT部</div>
+            <div class="cell td">
+                <button>编辑</button>
+                <button>删除</button>
+            </div>
+
+            <div class="cell td"><input type="checkbox"></div>
+            <div class="cell td">1</div>
+            <div class="cell td">张三</div>
+            <div class="cell td">男</div>
+            <div class="cell td">17</div>
+            <div class="cell td">IT部</div>
+            <div class="cell td">
+                <button>编辑</button>
+                <button>删除</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./utils.js"></script>
+<script src="./db.js"></script>
+<script>
+    $('.add-btn').addEventListener('click', () => {
+        location.href = './add.html'
+    })
+
+    let data = [
+        {
+            no: 0,
+            name: '张三',
+            sex: '男',
+            birthday: '1999-04-01',
+            department: 'money'
+        },
+        {
+            no: 1,
+            name: '李四',
+            sex: '女',
+            birthday: '2000-06-06',
+            department: 'hr'
+        },
+        {
+            no: 2,
+            name: '老王',
+            sex: '其他',
+            birthday: '1980-05-01',
+            department: 'money'
+        },
+    ]
+
+    // 渲染函数
+    function render() {
+        let html = data.map(item => {
+            // 计算年龄
+            // 现在时间
+            let now = Date.now()
+            // 生日时间
+            let birthday = new Date(item.birthday).getTime()
+            // 生日到今天一共过了多久
+            let timespan = now - birthday
+            // 将单位毫秒转换成年
+            let age = Math.round(timespan / 1000 / 60 / 60 / 24 / 365)
+            // console.log(age);
+
+            return `
+                <div class="cell td"><input type="checkbox"></div>
+                <div class="cell td">${item.no}</div>
+                <div class="cell td">${item.name}</div>
+                <div class="cell td">${item.sex}</div>
+                <div class="cell td">${age}</div>
+                <div class="cell td">${item.department === 'it' ? 'IT部' :
+                    item.department === 'hr' ? '人事部' : '财务部'
+                }</div>
+                <div class="cell td">
+                    <button class="edit-btn" no="${item.no}">编辑</button>
+                    <button class="remove-btn" no="${item.no}">删除</button>
+                </div>`
+        }).join('')
+
+        $('.table').innerHTML = `
+            <div class="cell th"><label><input type="checkbox">全选</label></div>
+            <div class="cell th">工号</div>
+            <div class="cell th">姓名</div>
+            <div class="cell th">性别</div>
+            <div class="cell th">年龄</div>
+            <div class="cell th">部门</div>
+            <div class="cell th">操作</div>
+            ${html}
+        `
+    }
+
+    window.addEventListener('load', () => {
+        data = query()
+        render()
+        addEvents()
+    })
+
+    // 添加事件
+    function addEvents() {
+        let removeBtns = $.all('.remove-btn')
+        for (let i = 0; i < removeBtns.length; i++) {
+            const removeBtn = removeBtns[i];
+            removeBtn.addEventListener('click', function () {
+                // 查询工号
+                let no = Number(this.getAttribute('no'))
+                confirm('确定删除吗?') && removeOne(no)
+                location.reload()
+            })
+        }
+
+        let editBtns = $.all('.edit-btn')
+        for (let i = 0; i < editBtns.length; i++) {
+            const editBtn = editBtns[i];
+            editBtn.addEventListener('click', function () {
+                // 查询工号
+                let no = this.getAttribute('no')
+                // 页面跳转
+                location.href = './edit.html?no=' + no
+            })
+        }
+    }
+</script>
+
+</html>
