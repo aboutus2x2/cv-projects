@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            position: relative;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script>
+    // 移动元素的思路
+    // 使用计时器 每隔一段时间 让元素位置产生一个增量的变化
+
+    const box = document.querySelector('.box')
+
+    let timerId = setInterval(() => {
+        // 一个动画帧
+
+        // 先运行逻辑运算
+
+        // 设一个速度，一帧移动15像素
+        let v = 15
+        // 当前的距离值
+        let distance = getComputedStyle(box).left
+        distance = Number(distance.substring(0, distance.length - 2))
+        // 叠加速度后的距离
+        distance += v
+
+        if (distance >= 500) {
+            // 停止计时器
+            clearInterval(timerId)
+        }
+
+        // 再渲染到元素上
+        box.style.left = `${distance}px`
+    }, 200)
+</script>
+
+</html>
