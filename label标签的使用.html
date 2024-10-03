@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <!-- label 作用是: 点击label元素会激活label中的表单元素 -->
+            <label>
+                姓名:
+                <input type="text">
+            </label>
+        </div>
+        <div>
+            <!-- <label>
+                性别:
+                <input type="radio" value="male" name="sex"> 男
+                <input type="radio" value="female" name="sex"> 女
+                <input type="radio" value="other" name="sex"> 其他
+            </label> -->
+            性别:
+            <label><input type="radio" value="male" name="sex"> 男</label>
+            <label><input type="radio" value="female" name="sex"> 女</label>
+            <label><input type="radio" value="other" name="sex" checked> 其他</label>
+        </div>
+        <div>
+            <!-- label for属性用于添加一个id，指示这个label属于哪一个表单元素 -->
+            <label for="department">部门</label>
+            <select id="department">
+                <option value="" disabled selected>请选择</option>
+                <option value="it">IT部</option>
+                <option value="hr">人事部</option>
+            </select>
+        </div>
+    </div>
+</body>
+
+</html>

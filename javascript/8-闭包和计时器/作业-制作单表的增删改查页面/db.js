@@ -20,8 +20,20 @@ function getNo() {
 }
 
 // 查询
-function query() {
+// name, department 查询条件
+function query(name, department) {
+    // 参数过滤
+    name = name || ''
+    department = department || ''
+
     let data = getTable()
+    // 模糊查询姓名用的正则
+    let regex = new RegExp(`^[\\s\\S]*${name}[\\s\\S]*$`)
+    // 过滤并保留符合关键字的成员
+    data = data.filter(item => regex.test(item.name))
+    if (department)
+        data = data.filter(item => item.department === department)
+
     data.reverse()
     return data
 }
@@ -58,4 +70,11 @@ function removeOne(no) {
 function findByNo(no) {
     let data = getTable()
     return data.find(item => item.no === no)
+}
+
+// 批量删除
+function removeAll(arr) {
+    let data = getTable()
+    data = data.filter(item => !arr.includes(item.no))
+    save(data)
 }

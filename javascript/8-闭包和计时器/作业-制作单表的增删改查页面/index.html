@@ -13,9 +13,9 @@
     <div class="card">
         <div class="space">
             <div>姓名</div>
-            <input type="text">
+            <input class="search-name" type="text">
             <div>部门</div>
-            <select>
+            <select class="search-department">
                 <option value="">无</option>
                 <option value="it">IT部</option>
                 <option value="hr">人事部</option>
@@ -92,6 +92,9 @@
         },
     ]
 
+    // 保存多选选项的数组
+    let selection = []
+
     // 渲染函数
     function render() {
         let html = data.map(item => {
@@ -107,7 +110,7 @@
             // console.log(age);
 
             return `
-                <div class="cell td"><input type="checkbox"></div>
+                <div class="cell td"><input class="select" type="checkbox" no="${item.no}"></div>
                 <div class="cell td">${item.no}</div>
                 <div class="cell td">${item.name}</div>
                 <div class="cell td">${item.sex}</div>
@@ -122,7 +125,7 @@
         }).join('')
 
         $('.table').innerHTML = `
-            <div class="cell th"><label><input type="checkbox">全选</label></div>
+            <div class="cell th"><label><input class="select-all" type="checkbox">全选</label></div>
             <div class="cell th">工号</div>
             <div class="cell th">姓名</div>
             <div class="cell th">性别</div>
@@ -162,7 +165,62 @@
                 location.href = './edit.html?no=' + no
             })
         }
+
+        // 复选框
+        let checkboxs = $.all('.select')
+        for (let i = 0; i < checkboxs.length; i++) {
+            const checkbox = checkboxs[i];
+            checkbox.addEventListener('change', function () {
+                let no = Number(this.getAttribute('no'))
+                if (this.checked) {
+                    // 从没有勾选变成勾选状态
+                    !selection.includes(no) && selection.push(no)
+                } else {
+                    // 从已勾选状态变成未勾选
+                    if (selection.includes(no)) {
+                        let i = selection.findIndex(item => item === no)
+                        selection.splice(i, 1)
+                    }
+                }
+            })
+        }
+
+        // 全选按钮
+        $('.select-all').addEventListener('change', function () {
+            let checked = this.checked
+            for (let i = 0; i < checkboxs.length; i++) {
+                const checkbox = checkboxs[i];
+                checkbox.checked !== checked && checkbox.click()
+            }
+        })
     }
+
+    // 批量删除
+    $('.removeall-btn').addEventListener('click', () => {
+        if (selection.length === 0) return
+        confirm('确定删除吗?') && removeAll(selection)
+        location.reload()
+    })
+
+
+    // 查询条件元素
+    let nameEl = $('.search-name')
+    let departmentEl = $('.search-department')
+
+    // 查询
+    $('.search-btn').addEventListener('click', () => {
+        // 获取查询条件
+        let name = nameEl.value.trim()
+        let department = departmentEl.value
+
+        // 查询数据
+        data = query(name, department)
+        // 重新渲染并添加事件
+        render()
+        addEvents()
+        // 清空选项
+        selection = []
+    })
 </script>
 
 </html>
