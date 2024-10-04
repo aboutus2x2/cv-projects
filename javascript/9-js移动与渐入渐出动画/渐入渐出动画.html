@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 400px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <img style="opacity: 1;" src="./an1.jpg">
+</body>
+
+<script>
+    const img = document.querySelector('img')
+
+    let timerId
+
+    // 绑定鼠标移入移出事件
+
+    // 进入事件
+    img.addEventListener('mouseenter', () => {
+        console.log('enter');
+        clearInterval(timerId)
+        timerId = setOpacity(img, Number(img.style.opacity), -0.01, 100)
+    })
+
+    // 离开事件
+    img.addEventListener('mouseleave', () => {
+        console.log('leave')
+        clearInterval(timerId)
+        timerId = setOpacity(img, Number(img.style.opacity), 0.01, 100)
+    })
+
+
+    // img.addEventListener('mouseover', () => {
+    //     console.log('over');
+    // })
+
+    // img.addEventListener('mouseout', () => {
+    //     console.log('out')
+    // })
+
+    // 设置透明度
+    // el: 用来修改透明度的元素
+    // start: 透明动画播放时的初始值
+    // v: 透明度的变化速度
+    // duration: 计时器的间隔时间
+    function setOpacity(el, start, v, duration) {
+        // 当前透明度
+        let current = start
+        // 计时器运行前先赋值一个初始透明度
+        el.style.opactiy = current
+
+        let timerId = setInterval(() => {
+            // 先计算动画逻辑
+            current += v
+
+            // 判断是否透明度已经到了极限值
+            // if (current <= 0) {
+            if ((v < 0 && current <= 0) || (v > 0 && current >= 1)) {
+                // 停止计时器
+                clearInterval(timerId)
+                // 赋值current为极限值
+                current = v < 0 ? 0 : 1
+            }
+
+            // 后赋值
+            el.style.opacity = current
+        }, duration)
+
+        // 返回一个计时器id 方便随时停止计时器
+        return timerId
+    }
+
+
+    // setOpacity(img, 0, 0.01, 16)
+</script>
+
+</html>
