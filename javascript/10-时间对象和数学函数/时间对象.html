@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+
+</body>
+<script>
+    // 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Date
+
+    // 时间字符串的参考：https://www.w3.org/TR/NOTE-datetime
+
+
+
+
+    // 时间对象 Date
+
+    // 时间数据如何表示？如何创建一个时间数据
+
+    // 表示时间的字符串
+    // 字符串需要满足 w3c 联盟要求的时间字符串格式
+    // 例如: 1990-01-01
+
+    // 表示时间的数字
+    // 含义：表示格林威治1970-1-1开始以后，经过的毫秒时间
+
+
+
+    // 创建时间对象的方法
+    // 语法：new Date(params)
+
+    // 1. 当前系统时间
+    let date = new Date()
+    console.log(date);
+    // Date 时间对象默认修改了对象的 toString 方法 所以转字符串时，会显示成时间字符串
+    // 所有对象都有 toString 方法，转换字符串时，js回调用该方法
+
+    // 2. 创建指定时间字符串的时间
+    date = new Date('1997-07-07')
+    console.log(date);
+    // 不推荐使用，因为这是个非标准时间字符串，不同浏览器解析方式可能不同
+
+    // 3. 通过格林威治毫秒时创建时间
+    date = new Date(1000 * 60 * 60 * 24 * 365)
+    console.log(date);
+
+    // 4. 通过年月日时分秒创建时间
+    // 参数分别代表 年月日时分秒
+    // 注意：月份是从0开始计算的
+    date = new Date(2000, 5, 6, 18, 44, 22)
+    console.log(date);
+
+
+
+    // 参数至少写前两个参数，后续参数可以省略
+    date = new Date(2000, 5, 6, 18, 44)
+    console.log(date);
+    date = new Date(2000, 5, 6, 18)
+    console.log(date);
+    date = new Date(2000, 5)
+    console.log(date);
+
+    // 如何读取时间？如何设置时间？
+    // 读取时间
+    date = new Date()
+    console.log(date.getFullYear()); // 年
+    console.log(date.getMonth()); // 月  月份从0开始计算
+    console.log(date.getDate()); // 日 一个月中的第几天
+    console.log(date.getDay()); // 一周中的第几天 一周中的第一天是周日 值为 0
+    console.log(date.getHours()); // 时
+    console.log(date.getMinutes()); // 分
+    console.log(date.getSeconds()); // 秒
+    console.log(date.getMilliseconds()) // 毫秒
+
+    // 设置时间
+    date.setFullYear(2023)
+    date.setMonth(0)
+    date.setDate(5)
+    date.setHours(20)
+    date.setMinutes(66)
+    date.setSeconds(66)
+    date.setMilliseconds(1000)
+    console.log(date);
+
+    // 其他常用时间函数
+    // Date.now() // 获取当前系统时间的格林威治毫秒时
+    console.log(Date.now());
+    // date.getTime() // 获取date对象代表的格林威治毫秒时
+    console.log(date.getTime());
+
+
+    // 通常来说日期对象需要转换成字符串显示，否则用户看不懂
+    function format(date) {
+        return `${date.getFullYear()}/${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}.${date.getMilliseconds()}`
+    }
+
+    console.log(format(new Date()));
+</script>
+
+</html>
