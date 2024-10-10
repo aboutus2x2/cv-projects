@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    let students = [
+        {
+            name: '王麻子',
+            sex: 'male',
+            birthday: {
+                year: 2001,
+                month: 4,
+                day: 15
+            }
+        },
+        {
+            name: '王小二',
+            sex: 'female',
+            birthday: {
+                year: 2001,
+                month: 4,
+                day: 28
+            }
+        },
+        {
+            name: '张三',
+            sex: 'male',
+            birthday: {
+                year: 2000,
+                month: 1,
+                day: 15
+            }
+        },
+        {
+            name: '李四',
+            sex: 'female',
+            birthday: {
+                year: 2001,
+                month: 1,
+                day: 15
+            }
+        }
+    ]
+
+    // 生日从小到大排
+    students.sort((el1, el2) => {
+        // el1 生日的日期对象
+        let d1 = new Date(el1.birthday.year, el1.birthday.month - 1, el1.birthday.day)
+        // el2 生日的日期对象
+        let d2 = new Date(el2.birthday.year, el2.birthday.month - 1, el2.birthday.day)
+
+        // 获取生日的时间数字
+        let num1 = d1.getTime()
+        let num2 = d2.getTime()
+
+        if (num1 > num2) {
+            return -1
+        } else if (num1 < num2) {
+            return 1
+        } else {
+            return 0
+        }
+    })
+
+    console.log(students);
+</script>
+
+</html>

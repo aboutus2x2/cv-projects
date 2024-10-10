@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .ad {
+            background: url(./ad.png) center center;
+            background-size: cover;
+            width: 400px;
+            height: 300px;
+            position: relative;
+        }
+
+        .count-time {
+            display: inline-block;
+            padding: 8px;
+            background-color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ad">
+        <div class="count-time"><span class="time">5</span>s后，自动关闭</div>
+    </div>
+</body>
+<script>
+    let timeEl = document.querySelector('.time')
+    let adEl = document.querySelector('.ad')
+
+    // 计时
+    // time: 倒计时的时间
+    // el: 显示倒计时的元素
+    // callback: 倒计时结束后的回调
+    // 返回计时器id
+    function countTime(time, el, callback) {
+        // 当前时间
+        let current = time
+        // 初始渲染时间
+        el.textContent = current
+        // 开始计时
+        let timer = setInterval(() => {
+            // 每秒减一
+            current--
+            el.textContent = current
+
+            if (current === 0) {
+                // 关闭计时
+                clearInterval(timer)
+
+                typeof callback === 'function' && callback()
+            }
+        }, 1000)
+        return timer
+    }
+
+    // 封装移动函数
+    // 函数用来封装不变的内容，变化的内容就成为参数
+    // 参数:
+    // el: 需要移动的元素
+    // v: 速度
+    // axis: 坐标轴 接收参数 'x'|'y' 代表 x轴和y轴
+    // distance: 移动距离 填入一个正数
+    // duration: 每一帧经过的时长
+    // offset: 移动距离的初始偏移量
+    function move(el, v, axis, distance, duration, offset) {
+
+        // 当前移动距离
+        let current = 0
+
+        let timerId = setInterval(() => {
+            // 一个动画帧
+
+            // 先运行逻辑运算
+
+            // 当前的距离值
+            current += v
+
+
+            // 判断当前距离是否已经大于等于预设的目标距离
+            // 通过 Math.abs 取 current 的绝对值 和 distance 进行判断
+            if (Math.abs(current) >= distance) {
+                clearInterval(timerId)
+                // current 可能已经大于目标距离
+                // 所以赋值 distance
+                // 由于 distance 的值永远是正数，所以需要乘以速度的符号
+                // Math.sign(v) 作用是获取 v 的符号 返回 1 或 -1
+                current = Math.sign(v) * distance
+            }
+
+            // 再渲染到元素上
+            if (axis === 'x')
+                el.style.left = `${current + offset}px`
+            else
+                el.style.top = `${current + offset}px`
+        }, duration)
+    }
+
+    // 设置透明度
+    // el: 用来修改透明度的元素
+    // start: 透明动画播放时的初始值
+    // v: 透明度的变化速度
+    // duration: 计时器的间隔时间
+    function setOpacity(el, start, v, duration) {
+        // 当前透明度
+        let current = start
+        // 计时器运行前先赋值一个初始透明度
+        el.style.opactiy = current
+
+        let timerId = setInterval(() => {
+            // 先计算动画逻辑
+            current += v
+
+            // 判断是否透明度已经到了极限值
+            // if (current <= 0) {
+            if ((v < 0 && current <= 0) || (v > 0 && current >= 1)) {
+                // 停止计时器
+                clearInterval(timerId)
+                // 赋值current为极限值
+                current = v < 0 ? 0 : 1
+            }
+
+            // 后赋值
+            el.style.opacity = current
+        }, duration)
+
+        // 返回一个计时器id 方便随时停止计时器
+        return timerId
+    }
+
+
+    countTime(3, timeEl, () => {
+        console.log('倒计时结束');
+        // 播放动画
+        // 平移动画
+        move(adEl, -10, 'x', 400, 16, 0)
+        // 透明动画
+        setOpacity(adEl, 1, -0.02, 16)
+    })
+</script>
+
+</html>

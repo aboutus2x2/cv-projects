@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 创建一个时间对象`date`，代表以下时间：`1997-07-01 20:30:45`
+    // - 请计算出`date` 一周前的日期，并打印显示出来
+    // - 请计算出`date` 所指时间的后天的时间，并打印出来
+
+    // 创建时间对象并初始化
+    let date = new Date(1997, 6, 1, 20, 30, 45)
+    console.log(date);
+    // 计算一周前的日期
+    date.setDate(date.getDate() - 7)
+    console.log(date);
+    // 计算后天的日期
+    date.setDate(date.getDate() + 2)
+    console.log(date);
+</script>
+
+</html>
