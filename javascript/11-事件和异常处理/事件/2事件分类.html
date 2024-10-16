@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0;
+            position: absolute;
+            top: 100px;
+            left: 100px;
+        }
+
+        .box-container {
+            width: 500px;
+            height: 500px;
+            background-color: #0f0;
+            position: relative;
+        }
+
+        .box3 {
+            width: 100px;
+            height: 100px;
+            background-color: #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../abc/an1.jpg">
+    <input type="text">
+    <input type="text">
+    <!-- 给一个非表单元素添加 tabindex 让他获得获取焦点的能力 从而可以触发 focus 和 blur 事件 -->
+    <div class="box" tabindex="0"></div>
+    <div class="box-container">
+        <div class="box2"></div>
+    </div>
+    <div class="box3" draggable="true"></div>
+</body>
+<script>
+    // 资源事件
+
+    const img = document.querySelector('img')
+
+    // load 加载完成
+    img.addEventListener('load', () => {
+        console.log('加载完成');
+    })
+
+    // error 加载失败
+    img.addEventListener('error', () => {
+        console.log('加载失败');
+    })
+
+    // 焦点事件
+    const input = document.querySelector('input')
+    const box = document.querySelector('.box')
+
+    // focus 获取焦点
+    input.addEventListener('focus', () => {
+        console.log('获取焦点');
+    })
+
+    // blur 失去焦点
+    input.addEventListener('blur', () => {
+        console.log('失去焦点');
+    })
+
+    box.addEventListener('focus', () => {
+        console.log('box获取焦点');
+    })
+
+    box.addEventListener('blur', () => {
+        console.log('box失去焦点');
+    })
+
+    // 鼠标事件
+    const box2 = document.querySelector('.box2')
+
+    // 点击事件
+    box2.addEventListener('click', () => {
+        console.log('单击左键');
+    })
+
+    // 右键菜单
+    box2.addEventListener('contextmenu', () => {
+        console.log('右键菜单');
+    })
+
+    // 双击
+    box2.addEventListener('dblclick', () => {
+        console.log('双击');
+    })
+
+    // 鼠标点下
+    box2.addEventListener('mousedown', ev => {
+        console.log('点下');
+        console.log(ev);
+        // ev.button 用于区分点击的是哪个键
+        // 0: 左键
+        // 1: 中键
+        // 2: 右键
+        console.log(ev.button);
+    })
+
+    // 鼠标抬起
+    box2.addEventListener('mouseup', ev => {
+        console.log('抬起');
+        console.log(ev);
+        console.log(ev.button);
+    })
+
+    // 进入和离开事件
+    // box2.addEventListener('mouseenter', () => {
+    //     console.log('进入');
+    // })
+    // box2.addEventListener('mouseleave', () => {
+    //     console.log('离开');
+    // })
+
+    // 悬停和出去
+    // box2.addEventListener('mouseover', () => {
+    //     console.log('悬停');
+    // })
+    // box2.addEventListener('mouseout', () => {
+    //     console.log('出去');
+    // })
+
+    // 移动
+    // box2.addEventListener('mousemove', ev => {
+    //     console.log('移动');
+    //     console.log(ev);
+    //     // offsetX offsetY 是鼠标相对于元素左上角的坐标
+    //     console.log(ev.offsetX);
+    //     console.log(ev.offsetY);
+    // })
+
+    // 滚轮
+    box2.addEventListener('wheel', ev => {
+        console.log('鼠标滚轮');
+        console.log(ev);
+        // deltaY 纵向滚动的变化量
+        // 正数向下 负数向上
+        console.log(ev.deltaY);
+    })
+
+
+    // 拖动事件
+    // 元素上需要添加 draggable="true"
+    const box3 = document.querySelector('.box3')
+
+    // 拖动
+    // box3.addEventListener('drag', ev => {
+    //     console.log('drag');
+    //     console.log(ev);
+    // })
+
+    // 开始拖动
+    box3.addEventListener('dragstart', ev => {
+        console.log('drag start');
+        console.log(ev);
+    })
+
+    // 结束拖动
+    box3.addEventListener('dragend', ev => {
+        console.log('drag end');
+        console.log(ev);
+    })
+
+
+    // 媒体事件：和多媒体播放相关事件，详细请查文档
+</script>
+
+</html>
