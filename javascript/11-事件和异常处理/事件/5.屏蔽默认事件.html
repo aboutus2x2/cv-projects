@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <button>提交</button>
+    </form>
+    <div class="box" oncontextmenu="return false"></div>
+</body>
+
+<script>
+
+    // 方法一: 使用事件对象屏蔽元素事件的默认行为
+    document.querySelector('button').addEventListener('click', ev => {
+        // preventDefault 屏蔽当前元素默认的事件行为
+        ev.preventDefault()
+        console.log('提交');
+    })
+
+    // document.querySelector('.box').addEventListener('contextmenu', ev => {
+    //     ev.preventDefault()
+    //     console.log('右键');
+    // })
+
+    // 方法二: 对应事件属性 retrun false 也能屏蔽默认行为
+</script>
+
+</html>

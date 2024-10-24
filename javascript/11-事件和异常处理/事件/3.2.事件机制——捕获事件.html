@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button>点击</button>
+    </div>
+</body>
+
+<script>
+    // 捕获事件(事件的俘获)
+    // 事件触发后，可以由上级元素先处理事件，这个过程就是捕获事件
+
+
+    document.querySelector('button').addEventListener('click', () => {
+        console.log('button');
+    })
+
+    document.querySelector('div').addEventListener('click', () => {
+        console.log('div');
+    })
+
+    // addEventListener 的第三个参数代表是否捕获事件
+    // 捕获事件的元素会先处理事件，然后将事件对象还给产生事件的元素，然后正常冒泡
+    document.body.addEventListener('click', () => {
+        console.log('body');
+    }, true)
+</script>
+
+</html>

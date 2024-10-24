@@ -34,6 +34,12 @@
             height: 100px;
             background-color: #00f;
         }
+
+        .frame {
+            border: 5px solid #f00;
+            height: 200px;
+            overflow: auto;
+        }
     </style>
 </head>
 
@@ -48,6 +54,11 @@
         <div class="box2"></div>
     </div>
     <div class="box3" draggable="true"></div>
+    <!-- <div style="height: 3000px"></div> -->
+
+    <div class="frame">
+        <div style="height: 3000px"></div>
+    </div>
 </body>
 <script>
     // 资源事件
@@ -234,6 +245,36 @@
     input.addEventListener('keypress', ev => {
         console.log('按压');
         console.log(ev);
+    })
+
+
+
+
+
+
+
+
+    // 补充
+    // 窗口重置大小
+    window.addEventListener('resize', () => {
+        console.log('resize');
+        console.log(window.innerWidth);
+        console.log(window.innerHeight);
+    })
+
+    // 滚动条滚动事件
+    // 要监听滚动条的滚动事件，需要先找到产生滚动条的元素
+    // window.addEventListener('scroll', ev => {
+    //     console.log('scroll');
+    //     console.log(ev);
+    // })
+
+    document.querySelector('.frame').addEventListener('scroll', function (ev) {
+        console.log('scroll');
+        console.log(ev);
+        // this 代表当前触发事件的对象
+        // this.scrollTop 代表纵向滚动的高度
+        console.log(this.scrollTop);
     })
 </script>
 

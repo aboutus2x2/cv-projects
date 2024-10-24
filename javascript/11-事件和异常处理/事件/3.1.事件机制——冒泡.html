@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button>点击</button>
+    </div>
+</body>
+
+<script>
+    // 在html中触发事件的元素，将会把事件不断的向父元素传递，这个过程叫做事件冒泡
+
+    document.querySelector('button').addEventListener('click', () => {
+        console.log('button');
+    })
+
+    document.querySelector('div').addEventListener('click', () => {
+        console.log('div');
+    })
+
+    document.body.addEventListener('click', () => {
+        console.log('body');
+    })
+</script>
+
+</html>
