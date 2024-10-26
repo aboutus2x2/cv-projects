@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <button>点击</button>
+    </div>
+</body>
+<script>
+    const div = document.querySelector('div')
+    const button = document.querySelector('button')
+
+    // target: 代表产生事件的元素
+    // currentTarget: 当前处理事件的元素
+    // 注意 currentTarget 是变化的
+    button.addEventListener('click', function (ev) {
+        console.log('button');
+        console.log(ev.target);
+        console.log(ev.currentTarget);
+        // this 代表当前处理该事件的元素
+        console.log(this === ev.currentTarget);
+    })
+    div.addEventListener('click', function (ev) {
+        console.log('div');
+        console.log(ev.target);
+        console.log(ev.currentTarget);
+        // this 代表当前处理该事件的元素
+        console.log(this === ev.currentTarget);
+    })
+</script>
+
+</html>
