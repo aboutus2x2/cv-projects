@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button class="btn1">调用函数触发事件</button>
+    <button class="btn2">发出事件对象</button>
+</body>
+
+<script>
+    // 通过js代码来触发元素事件的方法有两个
+
+    const box = document.querySelector('.box')
+
+    box.addEventListener('click', ev => {
+        console.log('click');
+    })
+
+    box.addEventListener('contextmenu', ev => {
+        // 用 preventDefault 来取消事件
+        ev.preventDefault()
+        console.log('contextmenu');
+    })
+
+    document.body.addEventListener('contextmenu', () => {
+        console.log('body contextmenu');
+    })
+
+
+
+
+    // 方法一: 通过对应事件名的函数进行触发
+    // 缺点: 不是所有事件都有对应的方法来触发
+    document.querySelector('.btn1').addEventListener('click', () => {
+        console.dir(box)
+        // 调用 click 来触发点击事件
+        box.click()
+    })
+
+
+
+
+
+    // 方法二: 发出事件对象
+    // 步骤:
+    // 1. 创建事件对象
+    // 2. 调用要接收该事件的dom的dispatchEvent方法
+    document.querySelector('.btn2').addEventListener('click', () => {
+
+        // 事件对象Event的文档地址：https://developer.mozilla.org/zh-CN/docs/Web/API/Event/Event
+        // 1. 创建事件对象
+        // 第一个参数: 事件名
+        // 第二个参数: 配置对象 
+        let event = new Event('contextmenu', {
+            // 配置项 如下
+            // 是否允许事件冒泡
+            bubbles: false,
+            // 是否允许取消事件
+            cancelable: true
+        })
+
+
+        // 2. 调用要接收该事件的dom的dispatchEvent方法
+        // dispatchEvent 用来派发一个事件
+        // 返回值是个布尔值，true 代表事件没被取消 false 代表事件被取消(调用了 preventDefault)
+        let r = box.dispatchEvent(event)
+        console.log(r);
+    })
+</script>
+
+</html>

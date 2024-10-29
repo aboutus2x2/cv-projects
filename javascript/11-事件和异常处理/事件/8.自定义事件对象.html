@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>发出自定义事件</button>
+</body>
+
+<script>
+    // 发出自定义事件的方法:
+    // 1. 给需要接收自定义事件的元素，绑定自定义事件
+    // 2. 创建一个自定义事件
+    // 3. 调用需要接收自定义事件的dom的dispatchEvent
+
+
+
+
+    // 1. 给需要接收自定义事件的元素，绑定自定义事件
+    const box = document.querySelector('.box')
+
+    document.body.addEventListener('open-my-eyes', ev => {
+        console.log('body my eyes open');
+        console.log(ev);
+    })
+
+    box.addEventListener('open-my-eyes', ev => {
+        ev.preventDefault()
+        console.log('box my eyes open');
+        console.log(ev);
+    })
+
+
+    document.querySelector('button').addEventListener('click', () => {
+        // 2. 创建一个自定义事件
+        // CustomEvent 参数和 Event 的参数基本相同
+        const ce = new CustomEvent('open-my-eyes', {
+            bubbles: false,
+            cancelable: false,
+            // 自定义的事件参数
+            // 该参数可以传递任意内容
+            detail: { name: '张三' }
+        })
+
+
+        // 3. 调用需要接收自定义事件的dom的dispatchEvent
+        let r = box.dispatchEvent(ce)
+        console.log(r);
+    })
+</script>
+
+</html>
