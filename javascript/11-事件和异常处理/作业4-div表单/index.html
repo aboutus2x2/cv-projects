@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            height: 100vh;
+        }
+
+        .menu {
+            width: 100px;
+            height: 200px;
+            background-color: pink;
+            color: #fff;
+            padding: 16px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>form表单</h1>
+
+    <form>
+        <div><label>账号: <input name="account" type="text"></label></div>
+        <div><label>密码: <input name="pwd" type="password"></label></div>
+    </form>
+
+    <h1>div表单</h1>
+    <div class="div-form">
+        <div><label>账号: <input name="account" type="text"></label></div>
+        <div><label>密码: <input name="pwd" type="password"></label></div>
+    </div>
+
+
+    <div class="menu">
+        自定义菜单
+    </div>
+</body>
+<script>
+    // - 创建一个表单，包含账号和密码两个表单项
+    // - 表单中可以通过点击回车按钮来打印出输入框中的数据
+    // - 再使用div来替换form元素，实现相同的效果
+    // - 在表单上单击鼠标右键，屏蔽默认菜单，并显示一个自定义div到鼠标所在位置，充当自定义菜单
+    let form = document.querySelector('form')
+    // let inputs = document.querySelectorAll('input')
+    // inputs.forEach(input => {
+    //     // 添加按键抬起事件
+    //     input.addEventListener('keyup', ev => {
+    //         // 判断是否按键是回车
+    //         if (ev.key.toLowerCase() === 'enter') {
+    //             // 打印数据
+    //             let fd = new FormData(form)
+    //             console.log(fd.get('account'));
+    //             console.log(fd.get('pwd'));
+    //         }
+    //     })
+    // })
+
+    // 利用事件冒泡，给父元素form 绑定按键抬起事件来监听回车按钮的点击
+    form.addEventListener('keyup', ev => {
+        // 判断是否按键是回车
+        if (ev.key.toLowerCase() === 'enter') {
+            // 打印数据
+            let fd = new FormData(form)
+            console.log(fd.get('account'));
+            console.log(fd.get('pwd'));
+        }
+    })
+
+
+    // 利用事件冒泡，给父元素 div 绑定按键抬起事件来监听回车按钮的点击
+    let div = document.querySelector('.div-form')
+    let inputs = div.querySelectorAll('input')
+    div.addEventListener('keyup', ev => {
+        // 判断是否按键是回车
+        if (ev.key.toLowerCase() === 'enter') {
+            // 打印数据
+            inputs.forEach(input => {
+                console.log(input.value);
+            })
+        }
+    })
+
+
+    let menu = document.querySelector('.menu')
+    let html = document.querySelector('html')
+
+    // 给表单添加鼠标右键事件
+    form.addEventListener('contextmenu', ev => {
+        // 屏蔽默认事件行为
+        ev.preventDefault()
+
+        // 显示自定义菜单
+        menu.style.display = 'block'
+        // 修改坐标
+        menu.style.top = ev.pageY + 'px'
+        menu.style.left = ev.pageX + 'px'
+    })
+
+    menu.addEventListener('click', ev => {
+        // 阻止点击事件冒泡，让html接收不到来自菜单的点击事件
+        ev.stopPropagation()
+    })
+
+    html.addEventListener('click', ev => {
+        // 关闭菜单
+        menu.style.display = 'none'
+    })
+</script>
+
+</html>
