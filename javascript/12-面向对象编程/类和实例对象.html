@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 什么是类 class
+    // 用于描述同类事物的类型叫做类，类型是抽象的
+
+    // 构造函数: 用于构造类实例的函数
+
+    // 声明类型
+    // es5
+    // 类型名大写开头
+    // 该函数 Human 就是类型的构造函数
+    function Human(name, age, sex){
+        // 在类型中 this 关键字 代表当前实例对象
+        // 属性
+        this.name = name
+        this.age = age
+        this.sex = sex
+
+        // 行为
+        this.eat = function(food){
+            // 方法中使用this访问实例对象
+            console.log(`${this.name} 正在吃 ${food}`);
+        }
+    }
+   
+
+    // es6 语法定义类型如下：
+   
+
+
+    // 实例化类型
+    // 生成一个类型的个例的过程称为实例化
+    // 以下代码中 new Human() 这句话就是在实例化Human类
+    // 实例化的结果被存在了 zhangSan 变量中，
+    // 我们称实例化的结果为：实例，实例对象，类实例
+
+    // new 关键字用于实例化类型
+    // new 关键字后面的 Human() 实际上是在调用构造函数
+    let zhangSan = new Human('张三', 17, 'male')
+    console.log(zhangSan);
+
+
+    // 修改实例属性
+    zhangSan.age = 24
+
+    // 调用实例行为
+    zhangSan.eat('小黄瓜')
+    
+
+    // 实例和类的关系是：
+    // 类是实例的模板，实例是类的成品
+
+   
+    // 访问实例属性和行为
+
+
+
+
+    // 所有使用 constructor 构造函数构造而成的数据类型都是 Object 对象类型（也就是使用关键字 new 创建的对象）
+    // 例如：
+    // console.log(typeof Number(123))
+    // console.log(typeof new Number(123))
+    // console.log(typeof String('hello'))
+    // console.log(typeof new String('hello'))
+    // 这可以解释为什么数组是 object 类型
+    // 因为数组可以使用 new Array() 来创建
+</script>
+
+</html>

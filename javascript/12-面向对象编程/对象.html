@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    // 什么是对象，js用属性和行为来描述某个物体而产生的一种数据结构，该数据称为对象
+    // 声明对象
+
+    // 设计一个对象最重要的就是设计它的属性和行为
+    // 属性: 都是一些值
+    // 行为: 都是一些函数
+    let duck = {
+        // 设计对象属性如下
+        color: '#0f0',
+        age: 2,
+        name: '押宝',
+
+        // 对象行为
+        // 对象的行为一般称为方法
+        swim() {
+            console.log(`鸭子在游泳`);
+        },
+        shout() {
+            console.log('叫啦');
+        },
+        fly() {
+            console.log('鸭在飞');
+        }
+    }
+
+    // 调用对象属性和行为
+    console.log(duck.name);
+    duck.fly()
+</script>
+
+</html>

@@ -16,6 +16,51 @@
     // 开发人员自己创建的异常类就是自定义异常
     // 作用？
     // 给异常分类，告诉开发人员哪些异常是需要处理的，哪些是系统异常不需要处理
+
+    // 除法
+    function div(x, y) {
+        // 参数验证
+        // if (isNaN(x) || isNaN(y)) throw new Error('参数不是数字')
+        if (isNaN(x) || isNaN(y)) throw new NaNError()
+        if (y === 0) {
+            throw new ArgZeroError()
+        }
+        return x / y
+    }
+
+
+    // 自定义异常类
+    // 参数不是数字异常
+    class NaNError extends Error {
+        // 使用 new 关键字创建类实例时，调用 constructor 构造函数
+        constructor() {
+            // 父类构造函数
+            super('参数不是数字')
+        }
+    }
+
+    class ArgZeroError extends Error {
+        constructor() {
+            super('除数不能为0')
+        }
+    }
+
+    try {
+        div('ab7c', 0)
+    } catch (e) {
+        // 处理异常
+
+        // 判断异常的类型 分别进行处理
+        // n instanceof m 含义为: n 是否是 m 类型的实例
+        if (e instanceof NaNError) {
+            console.error('参数异常');
+        } else if (e instanceof ArgZeroError) {
+            console.error('参数为0');
+        } else {
+            console.error(e);
+        }
+    }
+
 </script>
 
 </html>
