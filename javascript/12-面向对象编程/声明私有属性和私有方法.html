@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 什么是私有属性和方法？
+    // 在实例对象内能使用但是实例对象外无法使用的属性和方法，称为私有属性和方法
+
+    function Human(name, age, sex) {
+        this.name = name
+        this.age = age
+        this.sex = sex
+
+        // 声明一个变量来充当私有属性
+        let hobbie = '败家'
+
+        this.eat = function (food) {
+            console.log(`${this.name} 正在吃 ${food}`);
+            console.log(hobbie);
+            fn()
+        }
+
+        // 私有方法
+        const fn = function () {
+            console.log('这是私有方法');
+        }
+    }
+
+
+    class Car {
+        value = 0
+        producer = ''
+        name = ''
+        // 私有方法或属性在名称的前面使用 # 井号
+        #engine = '这是发动机'
+
+        constructor(value, producer, name) {
+            this.value = value
+            this.producer = producer
+            this.name = name
+        }
+
+        run() {
+            console.log(`价值 ${this.value} 的 ${this.name} 在跑`);
+            console.log(this.#engine);
+            this.#error()
+        }
+
+        #error() {
+            console.error('这是私有的方法');
+        }
+    }
+
+    let zs = new Human('张三', 17, 'male')
+    console.log(zs.hobbie);
+    // zs.fn()
+
+
+    let car = new Car(1000, 'ok', 'hao')
+    // console.log(car.#engine);
+    car.run()
+    // car.#error()
+
+</script>
+
+</html>

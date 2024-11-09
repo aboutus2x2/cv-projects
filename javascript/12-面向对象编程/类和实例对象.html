@@ -37,7 +37,27 @@
    
 
     // es6 语法定义类型如下：
-   
+    class Car {
+        // 属性
+        // 价格
+        value = 0
+        // 生产厂商
+        producer = ''
+        // 名称
+        name = ''
+
+        // 声明构造函数
+        constructor(value, producer, name){
+            this.value = value
+            this.producer = producer
+            this.name = name
+        }
+        
+        // 行为
+        run(){
+            console.log(`价值 ${this.value} 的 ${this.name} 在跑`);
+        }
+    }
 
 
     // 实例化类型
@@ -57,6 +77,11 @@
 
     // 调用实例行为
     zhangSan.eat('小黄瓜')
+
+    let car = new Car(10000000, '陆厂', '跑得快')
+    console.log(car);
+    console.log(car.value);
+    car.run()
     
 
     // 实例和类的关系是：
