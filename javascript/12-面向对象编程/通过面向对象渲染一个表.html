@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clock {
+            border: 5px solid #000;
+            border-radius: 10px;
+            padding: 8px;
+            display: inline-block;
+        }
+
+        .red {
+            color: #f00;
+        }
+
+        .green {
+            color: #0f0;
+        }
+
+        .blue {
+            color: #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- html 模板 -->
+    <!-- <div class="clock">
+        <span class="red">23</span>:<span class="green">59</span>:<span class="blue">46</span>
+    </div> -->
+</body>
+<script>
+    class Clock {
+        hour // 小时
+        minute // 分钟
+        second // 秒
+        #timer // 计时器id
+        #el // clock 代表的页面元素
+
+        // 构造函数
+        constructor(h = 0, m = 0, s = 0) {
+            this.hour = h
+            this.minute = m
+            this.second = s
+            // 生成页面元素
+            this.#el = document.createElement('div')
+            this.#el.className = 'clock'
+            document.body.appendChild(this.#el)
+            // 初始化渲染
+            this.render()
+        }
+
+        // 修改时间
+        setTime(h, m, s) {
+            this.hour = h
+            this.minute = m
+            this.second = s
+        }
+
+        // 开始计时
+        start() {
+            if (this.#timer) return
+            // 计时的时候进行初始渲染
+            this.render()
+            this.#timer = setInterval(() => {
+                // 执行计时逻辑
+                this.second++
+                // 进位判断
+                if (this.second >= 60) {
+                    this.minute++
+                    this.second = 0
+                    if (this.minute >= 60) {
+                        this.hour++
+                        this.minute = 0
+                        if (this.hour >= 24) {
+                            this.hour = 0
+                        }
+                    }
+                }
+                // 渲染
+                this.render()
+            }, 1000)
+        }
+
+        // 停止计时
+        stop() {
+            clearInterval(this.#timer)
+            this.#timer = undefined
+        }
+
+        // 渲染函数
+        // 用于显示该实例对象
+        render() {
+            // 构造表内部的html代码
+
+            let html = `<span class="red">${this.hour < 10 ? '0' + this.hour : this.hour}</span>:<span class="green">${this.minute < 10 ? '0' + this.minute : this.minute}</span>:<span class="blue">${this.second < 10 ? '0' + this.second : this.second}</span>`
+
+            // 插入页面
+
+            this.#el.innerHTML = html
+
+            console.log(`${this.hour}:${this.minute}:${this.second}`);
+        }
+    }
+
+    let clock = new Clock(23, 59, 50)
+    clock.start()
+
+    let clock2 = new Clock(2, 15, 30)
+    clock2.start()
+
+    let clock3 = new Clock(3, 55, 30)
+    clock3.start()
+</script>
+
+</html>
