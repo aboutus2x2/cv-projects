@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 请声明一个扑克牌类
+    // - 创建一幅扑克牌
+    // - 声明一个发牌员（庄家）
+    // - 发牌员可以洗牌和发牌
+
+    // 点数对应特殊牌面的关系表
+    const map = {
+        11: 'J',
+        12: 'Q',
+        13: 'K',
+        14: 'A',
+        50: '小王',
+        100: '大王'
+    }
+
+    // 扑克牌
+    // face: 花色
+    // num: 点数
+    function Card(face, num) {
+        // 属性
+
+        // 花色
+        this.face = face
+        // 点数 2~14 的数字 数字从2开始  JQKA 代表 11 12 13 14
+        this.num = num
+
+        // 转换字符串
+        // 用于显示牌面
+        this.toString = function () {
+            return `${this.face}${map[this.num]}`
+        }
+    }
+
+    // 庄家
+    class Host {
+        // 属性
+        // 牌堆
+        desk
+
+        constructor(desk) {
+            this.desk = desk
+        }
+
+        // 行为
+        shuffle() {
+            // 洗牌本质上就是随机
+            // 随机牌堆的顺序
+
+            // 临时牌堆
+            let temp = []
+            // 从牌堆中随机抽牌放入临时牌堆
+            while (this.desk.length > 0) {
+                // 随机一个数组索引
+                let i = Math.floor(Math.random() * this.desk.length)
+                // 取出一张牌
+                let r = this.desk.splice(i, 1)
+                // 将随机出来的牌放入临时牌堆
+                // temp = temp.concat(r)
+                temp.push(r[0])
+            }
+
+            // 重新赋值牌堆
+            this.desk = temp
+        }
+
+        // 发牌
+        deal() {
+            // 从牌堆的顶部取出一张牌
+            return this.desk.shift()
+        }
+    }
+
+    // 设计模式 工厂模式
+    // 扑克牌工厂
+    class CardFactory {
+        // 用于工厂印刷扑克牌的特殊牌面的关系表
+        map = map
+        // 花色表
+        faces = ['♠', '♥', '♦', '♣']
+
+        // 生产扑克牌
+        create() {
+            let result = []
+
+            // 循环每个花色
+            for (const face of this.faces) {
+                // 每个花色创建13张牌
+                for (let i = 2; i <= 14; i++) {
+                    let card = new Card(face, i)
+                    result.push(card)
+                }
+            }
+
+            // 添加大小王
+            result.push(new Card('', 50))
+            result.push(new Card('', 100))
+
+            return result
+        }
+    }
+
+    // 实例化
+    const cf = new CardFactory()
+    // 生产扑克牌
+    const desk = cf.create()
+    console.log(desk);
+
+    const host = new Host(desk)
+    // 洗牌
+    host.shuffle()
+    host.shuffle()
+    host.shuffle()
+    console.log(host.desk);
+    console.log(host.deal());
+    console.log(host.deal());
+    console.log(host.deal());
+    console.log(host.desk);
+
+</script>
+
+</html>
