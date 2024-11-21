@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <button>click me</button>
+</body>
+<script>
+  // 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this
+
+  // this 关键字代表什么?
+
+  // 根据不同的场景，this关键字代表东西不同，有以下几种情况
+
+  // js 执行上下文中的 this
+
+
+  // 函数内的this
+
+
+  // json对象方法的this
+  let obj = {
+
+  }
+
+
+  // 实例对象方法的this
+  class A {
+
+  }
+
+
+  // 对象方法中的this始终是自己
+
+
+  // 声明变量存储 A 类的 fn 函数，再次调用并观察 this
+
+  // 给变量赋值函数值，默认情况下 this 为 undefined
+
+
+    // 有些情况下，回调函数中的this可能被其他函数赋值，所以this不是undefined
+    // 此处 事件回调函数被 addEventListener 赋值了其中的 this
+    // 所以这里的this指的是绑定事件的那个dom对象
+
+
+    // 总结：
+    // 1. js 执行上下文 => window
+    // 2. 函数内 this => window (函数=>window)
+    // 3. 方法内的this始终是方法所在对象自身 (方法=>实例)
+    // 4. this 可能被其他函数赋值 例如 addEventListener 这种时候 this 既不是 window 也不是 undefined，它取决于函数 addEventListener 自己
+</script>
+
+<script>
+  "use strict";
+
+    // 结论:
+    // 1. js 执行上下文 => window
+    // 2. 只要是函数 this 就是 undefined (函数=>undefined)
+    // 3. 方法内的this始终是方法所在对象自身 (方法=>实例)
+    // 4. this 可能被其他函数赋值 例如 addEventListener 这种时候 this 既不是 window 也不是 undefined，它取决于函数 addEventListener 自己
+
+
+</script>
+
+</html>

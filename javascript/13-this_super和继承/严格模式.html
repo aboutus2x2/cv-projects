@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<!-- js 文件顶部开启严格模式 -->
+<script src="./main.js"></script>
+<script>
+    // script 标签顶部开启严格模式
+    'use strict'
+
+    function fn2() {
+        console.log(this);
+    }
+
+    fn2()
+
+    // x = 12
+</script>
+
+<script>
+    let pi = 3.14
+    with (Math) {
+        console.log(floor(pi));
+    }
+
+    function fn3() {
+        console.log(this);
+    }
+
+    function fn4() {
+        // 函数第一行开启严格模式
+        'use strict'
+        console.log(this);
+    }
+
+    fn3()
+    fn4()
+</script>
+
+</html>

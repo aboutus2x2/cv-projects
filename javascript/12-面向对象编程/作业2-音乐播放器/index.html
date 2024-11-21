@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 总结
+    // 1. 结合生活设计类
+    // 2. 搞清楚什么样的事情应该由谁来做
+
+    // 播放器
+    class MusicPlayer {
+        // 当前装的磁带
+        tape
+        // 计时器id
+        #timer
+
+        // 播放
+        play() {
+            // 判断当前是否有磁带可以播放
+            if (!this.tape) return
+            // 判断磁带是否播放结束
+            if (this.tape.current === this.tape.musics.length) return
+            // 播放歌曲
+            this.#timer = setInterval(() => {
+                // 磁带进度递增
+                this.tape.current += 0.1
+                console.log(this.tape.current);
+                // 磁带进度不能超过最大值
+                this.tape.current = Math.min(this.tape.current, this.tape.musics.length)
+                // 获取磁带中歌曲索引
+                let i = Math.floor(this.tape.current)
+                let music = this.tape.musics[i]
+                console.log(music);
+
+                // 判断通过索引取不出音乐时，说明磁带播放结束了
+                if (!music) {
+                    clearInterval(this.#timer)
+                    this.#timer = undefined
+                }
+            }, 1000)
+        }
+
+        // 暂停
+        pause() {
+            // 若没有开始播放就return
+            if (!this.#timer) return
+            clearInterval(this.#timer)
+            this.#timer = undefined
+        }
+
+        // 上一曲
+        prev() {
+            // 停止播放
+            this.pause()
+            // 拨动进度到上一首歌
+            this.tape.current = Math.floor(this.tape.current) - 1
+            // 播放
+            this.play()
+        }
+
+        // 下一曲
+        next() {
+            // 停止播放
+            this.pause()
+            // 拨动进度到上一首歌
+            this.tape.current = Math.ceil(this.tape.current)
+            // 播放
+            this.play()
+        }
+
+        // 挂载
+        mount(tape) {
+            // 播放仓有磁带的情况下不能再挂载新的磁带
+            if (this.tape) return
+            this.tape = tape
+        }
+
+        // 卸载
+        unmount() {
+            // 播放仓没有磁带则 return
+            if (!this.tape) return
+            if (this.#timer) {
+                // 若正在播放音乐 则停止播放
+                this.pause()
+            }
+
+            // 暂存磁带
+            let temp = this.tape
+            // 清空当前的播放仓
+            this.tape = undefined
+            return temp
+        }
+
+        // 倒带
+        back() {
+            // 没有磁带就 return
+            if (!this.tape) return
+            this.tape.current = 0
+        }
+    }
+
+    // 磁带盒
+    function Tape(musics) {
+        // 音乐集合
+        this.musics = musics
+        // 当前播放的歌曲进度
+        this.current = 0
+    }
+
+    // 实例化
+    const tape1 = new Tape(['music1', 'music2', 'music3'])
+    const tape2 = new Tape(['music4', 'music5', 'music6'])
+
+    const player = new MusicPlayer()
+
+</script>
+
+</html>
