@@ -2,70 +2,181 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
 </head>
 
 <body>
-  <button>click me</button>
+    <button>click me</button>
 </body>
-<script>
-  // 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this
+<!-- <script>
+    // 参考：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this
 
-  // this 关键字代表什么?
+    // this 关键字代表什么?
 
-  // 根据不同的场景，this关键字代表东西不同，有以下几种情况
+    // 根据不同的场景，this关键字代表东西不同，有以下几种情况
 
-  // js 执行上下文中的 this
+    // js 执行上下文中的 this
+    console.log(this); // => window
+    console.log(this === window);
+
+    // 函数内的this
+    function fn() {
+        // 非严格模式下 函数内 this => window
+        console.log(this);
+    }
+
+    fn()
+
+    // json对象方法的this
+    let obj = {
+        name: '张三',
+        fn() {
+            console.log(this); // => 对象自己
+        }
+    }
+
+    obj.fn()
 
 
-  // 函数内的this
+    // 实例对象方法的this
+    class A {
+        name
+        constructor(name) {
+            this.name = name
+        }
+        fn() {
+            // 类方法中的 this => 调用该方法的实例对象
+            console.log(this);
+        }
+    }
+
+    let a = new A('a')
+    let b = new A('b')
+    a.fn()
+    b.fn()
 
 
-  // json对象方法的this
-  let obj = {
-
-  }
+    // 对象方法中的this始终是自己
 
 
-  // 实例对象方法的this
-  class A {
+    // 声明变量存储 A 类的 fn 方法，再次调用并观察 this
+    // 给变量赋值对象方法，默认情况下 this 为 undefined
+    const fnVar = a.fn
+    fnVar() // => undefined
 
-  }
+    // 给变量赋值函数值，默认情况下 this 为 window
+    const fn2 = function () {
+        console.log(this);
+    }
 
-
-  // 对象方法中的this始终是自己
-
-
-  // 声明变量存储 A 类的 fn 函数，再次调用并观察 this
-
-  // 给变量赋值函数值，默认情况下 this 为 undefined
-
+    fn2()
 
     // 有些情况下，回调函数中的this可能被其他函数赋值，所以this不是undefined
     // 此处 事件回调函数被 addEventListener 赋值了其中的 this
     // 所以这里的this指的是绑定事件的那个dom对象
+    document.querySelector('button').addEventListener('click', function () {
+        console.log(this);
+    })
 
+
+    // 自定义函数也可以修改回调函数内的this指代
+    function custom(callback) {
+        // call apply bind
+        callback.call('hello world')
+    }
+
+    custom(function () { console.log(this); })
 
     // 总结：
     // 1. js 执行上下文 => window
     // 2. 函数内 this => window (函数=>window)
-    // 3. 方法内的this始终是方法所在对象自身 (方法=>实例)
+    // 3. 方法内的this指向调用方法的对象 (方法=>实例)
     // 4. this 可能被其他函数赋值 例如 addEventListener 这种时候 this 既不是 window 也不是 undefined，它取决于函数 addEventListener 自己
-</script>
+</script> -->
 
 <script>
-  "use strict";
+    "use strict";
 
     // 结论:
     // 1. js 执行上下文 => window
     // 2. 只要是函数 this 就是 undefined (函数=>undefined)
-    // 3. 方法内的this始终是方法所在对象自身 (方法=>实例)
+    // 3. 方法内的this指向调用方法的对象 (方法=>实例)
     // 4. this 可能被其他函数赋值 例如 addEventListener 这种时候 this 既不是 window 也不是 undefined，它取决于函数 addEventListener 自己
 
+    // js 执行上下文中的 this
+    console.log(this); // => window
+    console.log(this === window);
 
+    // 函数内的this
+    function fn() {
+        // 严格模式下 函数内 this => undefined
+        console.log(this);
+    }
+
+    fn()
+
+    // json对象方法的this
+    let obj = {
+        name: '张三',
+        fn() {
+            console.log(this); // => 对象自己
+        }
+    }
+
+    obj.fn()
+
+
+    // 实例对象方法的this
+    class A {
+        name
+        constructor(name) {
+            this.name = name
+        }
+        fn() {
+            // 类方法中的 this => 调用该方法的实例对象
+            console.log(this);
+        }
+    }
+
+    let a = new A('a')
+    let b = new A('b')
+    a.fn()
+    b.fn()
+
+
+    // 对象方法中的this始终是自己
+
+
+    // 声明变量存储 A 类的 fn 方法，再次调用并观察 this
+    // 给变量赋值对象方法，默认情况下 this 为 undefined
+    const fnVar = a.fn
+    fnVar() // => undefined
+
+    // 给变量赋值函数值，默认情况下 this 为 undefined
+    const fn2 = function () {
+        console.log(this);
+    }
+
+    fn2()
+
+    // 有些情况下，回调函数中的this可能被其他函数赋值，所以this不是undefined
+    // 此处 事件回调函数被 addEventListener 赋值了其中的 this
+    // 所以这里的this指的是绑定事件的那个dom对象
+    document.querySelector('button').addEventListener('click', function () {
+        console.log(this);
+    })
+
+
+    // 自定义函数也可以修改回调函数内的this指代
+    function custom(callback) {
+        // call apply bind
+        callback.call('hello world')
+    }
+
+    custom(function () { console.log(this); })
 </script>
 
 </html>
