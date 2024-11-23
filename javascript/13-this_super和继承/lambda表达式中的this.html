@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button my-data="这是我的自定义属性">点击</button>
+</body>
+<script>
+    // 结论
+    // 1. lambda 表达式没有 this
+    // 2. lambda 表达式中的 this 来自于声明函数时上下文中的 this
+    // 作用:
+    // 利用好 lambda 表达式没有 this 的特点，灵活的使用 this 获取想要的上下文中的内容
+    // 后面有例子
+
+    console.log(this);
+
+    let fn = () => {
+        'use strict'
+        console.log(this);
+    }
+
+    fn()
+
+    let obj = {
+        fn: () => {
+            console.log(this);
+        }
+    }
+
+    obj.fn()
+
+    class A {
+        name = '张三'
+        fn() {
+            console.log(this);
+
+            const fn2 = () => {
+                console.log(this);
+            }
+
+            fn2()
+        }
+    }
+
+    let a = new A()
+    a.fn()
+
+
+    // lambda 表达式中 this 用处:
+    // 让回调函数能够访问实例对象
+
+    class B {
+        fn() {
+            // 有时在实例对象的方法中可能会调用一个需要传入回调函数的函数
+            // 例如此处的 custom
+
+            // 假设希望在 custom 的回调函数中 调用 play 方法 该怎么办？
+
+            // 方法一:
+            // 使用 function 声明回调函数
+            // 在调用 custom 之前，用变量 that 存储B实例 this 
+
+            // let that = this
+
+            // custom(function () {
+            //     that.play()
+            // })
+
+            // 方法二:
+            // 使用 lambda 表达式声明回调函数，则 lambda 表达式内 this 就是B实例
+            custom(() => {
+                this.play()
+            })
+        }
+
+        play() {
+            console.log('B在玩');
+        }
+    }
+
+    function custom(callback) {
+        callback()
+    }
+
+    let b = new B()
+    b.fn()
+</script>
+
+</html>
