@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 有家星巴克店
+    // - 星巴克有三种咖啡，价格分别如下：{ 咖啡A: 9, 咖啡B: 13, 咖啡C: 15 }, 使用类型分别表示这三种咖啡
+    // - 星巴克接收用户的订单，然后计算出用户的消费价格
+    // - 为了促销，推出了以下策略：“消费满30减5元，满50减10元，优惠不叠加，以最高优惠计算”
+    // - 请根据该场景创建 星巴克 类 订单 类，然后声明出计算消费金额的函数，并进行验证
+
+
+
+    // 咖啡类
+    class CoffeeA {
+        price = 9
+    }
+
+    class CoffeeB {
+        price = 13
+    }
+
+    class CoffeeC {
+        price = 15
+    }
+
+    // 订单
+    class Order {
+        // 商品信息
+        goodsInfo = [
+            // {
+            //     type: 咖啡类型
+            //     goods: [], // 咖啡的实例
+            // }
+        ]
+
+        // 接收下单
+        // coffeeType: 咖啡类型
+        // count: 咖啡数量
+        receiveOrder(coffeeType, count) {
+            // 判断商品信息中是否已经存在用户点的咖啡了
+            let info = this.goodsInfo.find(info => info.type === coffeeType)
+            if (info) {
+                // 重复点了相同类型的咖啡
+                for (let i = 0; i < count; i++) {
+                    info.goods.push(new coffeeType())
+                }
+                return
+            }
+
+            // 构造一个用于存储数据的对象
+            let orderInfo = {
+                type: coffeeType,
+                goods: []
+            }
+            // 创建对应数量的咖啡
+            for (let i = 0; i < count; i++) {
+                orderInfo.goods.push(new coffeeType())
+            }
+
+            this.goodsInfo.push(orderInfo)
+        }
+    }
+
+    // 星巴克
+    class StartBuck {
+        // 计算订单价格
+        // order: 订单
+        computeOrderPrice(order) {
+            let total = order.goodsInfo.map(info => {
+                // 返回 同一种类多个咖啡的总价
+                return info.goods.map(coffee => coffee.price).reduce((p, n) => p + n)
+            })
+                // 计算多种咖啡的总价
+                .reduce((p, n) => p + n)
+
+            // 计算优惠
+            if (total >= 50) {
+                total -= 10
+            } else if (total >= 30) {
+                total -= 5
+            }
+
+            // 返回商品总价
+            return total
+        }
+    }
+
+    let sb = new StartBuck()
+    let order = new Order()
+    order.receiveOrder(CoffeeA, 4)
+    order.receiveOrder(CoffeeB, 2)
+    order.receiveOrder(CoffeeC, 1)
+    console.log(order);
+
+    let total = sb.computeOrderPrice(order)
+    console.log(total);
+
+</script>
+
+</html>
