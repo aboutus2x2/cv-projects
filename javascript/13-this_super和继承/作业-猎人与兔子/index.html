@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 参与者有: 猎人、枪、兔子
+    // - 规则如下:
+    // - 猎人手里有把枪
+    // - 枪类有子弹数和命中率两个属性
+    // - 兔子有概率躲避子弹，每只兔子的躲避率随机
+    // - 开始游戏，流程如下:
+    // - 创建10只兔子
+    // - 调用猎人的开枪方法，瞄准一只兔子开枪
+    // - 打印命中结果
+    //     - 先计算枪是否命中，再计算兔子是否闪避
+    // - 直到子弹打完，游戏结束，打印出总共捕获的兔子数量
+
+    // 猎人
+    class Hunter {
+        // 枪
+        gun
+        // 击中兔子的总数
+        count = 0
+        // 游戏是否结束
+        gameover = false
+
+        constructor(gun) {
+            this.gun = gun
+        }
+
+        // 开枪
+        fire(rabbit) {
+            if (this.gameover) return
+
+
+            if (this.gun.fire()) {
+                // 有子弹的时候
+
+                // 计算命中
+
+                let rand = Math.random()
+                console.log(`计算枪的命中`);
+                console.log(`命中率 ${this.gun.rate}；rand: ${rand}`);
+                // 计算枪的命中
+                if (rand < this.gun.rate) {
+                    console.log(`命中`);
+                    console.log(`计算兔子闪避`);
+                    rand = Math.random()
+                    console.log(`闪避率 ${rabbit.dodge}；rand: ${rand}`);
+                    // 枪命中
+                    // 计算兔子的闪避
+                    if (rand < rabbit.dodge) {
+                        console.log(`闪避成功`);
+                    } else {
+                        console.log(`闪避失败`)
+                        console.log(`打中兔子了`);
+                        rabbit.alive = false
+                        this.count++
+                        console.log(`当前打中了 ${this.count} 只兔子; 剩余 ${this.gun.count} 颗子弹`);
+                    }
+                } else {
+                    console.log(`未命中`);
+                }
+
+                // 打完枪后 查看还有子弹没有 没子弹就游戏结束
+                if (this.gun.count === 0) this.gameover = true
+
+            }
+
+
+            if (this.gameover) {
+                // 游戏若已经结束
+                // 显示最终结果
+                console.log(`游戏结束`);
+                console.log(`共猎获 ${this.count} 只兔子`);
+            }
+        }
+    }
+
+    // 枪
+    class Gun {
+        // 子弹数量
+        count
+        // 命中率 0~1 数字
+        rate
+
+        constructor(count, rate) {
+            this.count = count
+            this.rate = rate
+        }
+
+        // 开火
+        // 返回一个bool值代表是否开枪成功
+        fire() {
+            // 没子弹了
+            if (this.count === 0) return false
+            this.count--
+            return true
+        }
+    }
+
+    // 兔子
+    class Rabbit {
+        // 闪避率
+        dodge
+        // 是否还活着
+        alive = true
+
+        constructor() {
+            this.dodge = Math.random() * 0.5
+        }
+    }
+
+
+    // 游戏流程开始
+    // 实例化
+    let rabbits = []
+    for (let i = 0; i < 10; i++) {
+        rabbits.push(new Rabbit())
+    }
+    let gun = new Gun(7, 0.7)
+    let hunter = new Hunter(gun)
+
+    // 开始
+    function start(rabbit) {
+        if (hunter.gameover) return
+        hunter.fire(rabbit)
+        // 从数组中筛选掉死去的兔子
+        rabbits = rabbits.filter(rab => rab.alive)
+    }
+</script>
+
+</html>
