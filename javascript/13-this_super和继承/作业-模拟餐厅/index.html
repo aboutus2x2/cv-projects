@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - 餐厅里有三个参与者: 顾客、服务员、厨师
+    // - 模拟一个顾客上门下单的流程，流程如下:
+    // - 顾客 -> 服务员 点单
+    // - 服务员 -> 厨师 通知做菜
+    // - 厨师 -> 服务员 做完菜后通知上菜
+    // - 服务员 -> 顾客 上菜
+
+    // 顾客
+    class Customer {
+        // 顾客持有服务员的引用
+        waiter
+
+        // 下单
+        // dish: 点的菜
+        order(dish) {
+            console.log(`顾客下单: ${dish}`);
+            // 给服务员下单
+            this.waiter.receiveOrder(dish)
+        }
+
+        // 接到服务员上的菜
+        receiveDish(dish) {
+            console.log(`顾客接到服务员上的菜: ${dish}`);
+        }
+    }
+
+    // 服务员
+    class Waiter {
+        // 持有一个厨师引用
+        cooker
+        // 持有顾客的引用
+        customer
+
+        // 接收订单
+        // dish: 点的菜
+        receiveOrder(dish) {
+            console.log(`服务员 接收订单: ${dish}`);
+            console.log(`服务员通知厨师`);
+            this.cooker.cook(dish)
+        }
+
+        // 接收厨师做好的菜
+        receiveDish(dish) {
+            console.log(`服务员 接到了厨师的菜: ${dish}`);
+            console.log(`服务员端菜给顾客`)
+            this.customer.receiveDish(dish)
+        }
+    }
+
+    // 厨师
+    class Cooker {
+        // 持有服务员的引用
+        waiter
+
+        // 做菜
+        cook(dish) {
+            console.log(`厨师 正在做菜: ${dish}`);
+            console.log(`厨师做好了菜`)
+            console.log(`厨师通知服务员上菜`);
+            this.waiter.receiveDish(dish)
+        }
+    }
+
+
+    // 实例化
+    let customer = new Customer()
+    let waiter = new Waiter()
+    let cooker = new Cooker()
+
+    // 初始化实例，互相持有引用
+    customer.waiter = waiter
+    waiter.customer = customer
+    waiter.cooker = cooker
+    cooker.waiter = waiter
+
+    customer.order('糖醋排骨')
+    customer.order('鱼香肉丝')
+</script>
+
+</html>
