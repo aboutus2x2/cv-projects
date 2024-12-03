@@ -22,44 +22,107 @@
 
     // class 类 语法下的继承
     // 人类
+    class Human {
+        name
+        sex
+        sleep() {
+            console.log('人类在睡觉');
+        }
+    }
 
 
+    // 使用 extends 关键继承父类
     // 欧洲人
-  
+    class Eurapean extends Human {
+        // 子类可以有自己的属性和行为
+        luck = true
+        detox() {
+            console.log(`远离黄赌毒 珍爱生命`);
+        }
+
+        // 子类可以拥有和父类相同的方法，用来覆盖父类的方法
+        // 这种方法称为 方法的重写 (override)
+        sleep() {
+            console.log(`${this.name} 在睡觉`);
+        }
+    }
+
+    let h = new Eurapean()
+    h.name = '张三'
+    h.sex = 'male'
+    console.log(h);
+    h.sleep()
+    console.log(h.luck);
+    h.detox()
+
 
     // 非洲人
-
+    class Afriaca extends Human {
+    }
 
 
 
 
     // function 类 语法的继承
     // 汽车
+    function Car() {
+        this.name = '皮卡'
+        this.run = function () {
+            console.log('车在跑');
+        }
+    }
 
     // 声明一个皮卡继承Car
-   
+
+    function PickCar() {
+        // 载重量
+        this.weight
+        this.mount = function () {
+            console.log('装货');
+        }
+    }
+
     // 利用原型进行继承
     // 什么是原型? 类的模板（设计图）
 
     // 给 PickCar类型赋值原型属性，既能进行继承
+    PickCar.prototype = new Car()
+
+    let pk = new PickCar()
+    console.log(pk);
 
 
     // 原型 __proto__ 和 prototype 的区别
     // __proto__ 实例对象中访问原型的属性
     // prototype 类访问原型的属性
 
+    // 实例对象才能访问 __proto__ 对象
+    console.log(pk.__proto__);
+    // 类名才能访问 prototype
+    console.log(PickCar.prototype);
+
+
 
     // 原型属性或原型函数
     // 例如
-    // Car.prototype.wheelCount = 4
-    // Car.prototype.shout = () => {
-    //     console.log('喇叭叫')
-    // }
+    Car.prototype.wheelCount = 4
+    Car.prototype.shout = () => {
+        console.log('喇叭叫')
+    }
     // 原型属性或原型函数可以在类实例或子类的实例中调用
     // 实例化对象会继承原型属性和函数
+    let c = new Car()
+    console.log(c.wheelCount);
+    c.shout()
+
+    pk = new PickCar()
+    console.log(pk.wheelCount);
+    pk.shout()
+
+
     // 若不实例化类，可以通过原型，直接访问，例如：
-    // console.log(Car.prototype.wheelCount)
-    // Car.prototype.shout()
+    console.log(Car.prototype.wheelCount)
+    Car.prototype.shout()
 
 </script>
 
