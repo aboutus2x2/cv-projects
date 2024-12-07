@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // instanceof 用于检测某个对象是否是某个类型的实例
+    // 语法: n instanceof M
+    // 含义: n 是否是 M 类的实例，如果是 则表达式返回 true
+
+    // 鸟
+    class Bird {
+        name = '鸟'
+
+        constructor(name) {
+            this.name = name
+        }
+        fly() {
+            console.log('鸟在飞');
+        }
+    }
+
+    // 鸭子
+    class Duck extends Bird {
+        color
+
+        constructor(name, color) {
+            super(name)
+            this.color = color
+        }
+
+        fly() {
+            console.log(`${this.name} 在飞`);
+            console.log(super.name);
+            super.fly()
+        }
+    }
+
+    let bird = new Bird()
+    console.log(bird instanceof Bird);
+    let duck = new Duck()
+    console.log(duck instanceof Bird);
+    console.log(duck instanceof Duck);
+    console.log(bird instanceof Duck);
+
+    // 结论:
+    // 实例对象可以是其类型和父类类型的实例
+</script>
+
+</html>

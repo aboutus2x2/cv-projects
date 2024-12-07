@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // 鸟
+    class Bird {
+        // 名称
+        name = '鸟'
+
+        constructor(name) {
+            this.name = name
+        }
+
+        // 飞
+        fly() {
+            console.log('鸟在飞');
+        }
+    }
+
+    // 鸭子
+    class Duck extends Bird {
+        color
+
+        constructor(name, color) {
+            // 子类构造函数中理论上都应该使用 super 关键字来构造父类
+            // 在构造函数中，super 代表父类的构造函数
+            super(name)
+            // 子类构造函数要使用 this 关键字的话，则必须先调用 super
+            this.color = color
+        }
+
+        // 重写父类的方法
+        fly() {
+            console.log(`${this.name} 在飞`);
+            // 可以使用super关键字调用父类方法
+            // 方法中的super代表父类实例
+            console.log(super.name); // super 只能调用方法不能调用属性
+            super.fly() // 通过 super 调用父类方法 
+        }
+    }
+
+    let duck = new Duck('卤鸭子', '#f00')
+    console.log(duck);
+    duck.fly()
+
+
+
+
+    // function 类不能使用super
+    function Phone(_price) {
+        this.price = _price
+    }
+
+    function IPhone(_price, _color) {
+        this.price = _price
+        this.color = _color
+    }
+
+    IPhone.prototype = new Phone()
+
+    let iphone = new IPhone(1000, 'pink')
+    console.log(iphone);
+
+</script>
+
+</html>

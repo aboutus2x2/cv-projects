@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function Phone(_price) {
+        this.price = _price
+    }
+
+    function IPhone(_price, _color) {
+        this.__proto__.price = _price
+        this.color = _color
+    }
+
+    IPhone.prototype = new Phone()
+
+    let iphone1 = new IPhone(1000)
+    let iphone2 = new IPhone(10000)
+
+    console.log(iphone1.price);
+    console.log(iphone2.price);
+
+</script>
+
+</html>

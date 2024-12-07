@@ -105,24 +105,24 @@
 
     // 原型属性或原型函数
     // 例如
-    Car.prototype.wheelCount = 4
-    Car.prototype.shout = () => {
-        console.log('喇叭叫')
-    }
-    // 原型属性或原型函数可以在类实例或子类的实例中调用
-    // 实例化对象会继承原型属性和函数
-    let c = new Car()
-    console.log(c.wheelCount);
-    c.shout()
+    // Car.prototype.wheelCount = 4
+    // Car.prototype.shout = () => {
+    //     console.log('喇叭叫')
+    // }
+    // // 原型属性或原型函数可以在类实例或子类的实例中调用
+    // // 实例化对象会继承原型属性和函数
+    // let c = new Car()
+    // console.log(c.wheelCount);
+    // c.shout()
 
-    pk = new PickCar()
-    console.log(pk.wheelCount);
-    pk.shout()
+    // pk = new PickCar()
+    // console.log(pk.wheelCount);
+    // pk.shout()
 
 
-    // 若不实例化类，可以通过原型，直接访问，例如：
-    console.log(Car.prototype.wheelCount)
-    Car.prototype.shout()
+    // // 若不实例化类，可以通过原型，直接访问，例如：
+    // console.log(Car.prototype.wheelCount)
+    // Car.prototype.shout()
 
 </script>
 
