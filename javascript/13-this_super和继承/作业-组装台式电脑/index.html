@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .grid-container {
+            width: 400px;
+            display: grid;
+            grid-template-rows: repeat(5, 1fr);
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .confirm-div {
+            grid-row: 5/6;
+            grid-column: 2/3;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>电脑组装</h2>
+    <div class="grid-container">
+        <div>显示器</div>
+        <!-- 通过自定义属性让js直到是什么产品 -->
+        <div><button class="production" pro="AOCMonitor">AOC</button></div>
+        <div><button class="production" pro="PhilipsMonitor">飞利浦</button></div>
+        <div class="monitor-result"></div>
+        <div>硬盘</div>
+        <div><button class="production" pro="WestDataDisk">西数</button></div>
+        <div><button class="production" pro="SeagateDisk">希捷</button></div>
+        <div class="disk-result"></div>
+        <div>cpu</div>
+        <div><button class="production" pro="IntelCPU">intel</button></div>
+        <div><button class="production" pro="AMDCPU">amd</button></div>
+        <div class="cpu-result"></div>
+        <div>键盘</div>
+        <div><button class="production" pro="IShiTouKeyboard">爱石头</button></div>
+        <div><button class="production" pro="LogicKeyboard">罗技</button></div>
+        <div class="keyboard-result"></div>
+
+        <div class="confirm-div"><button>确定</button></div>
+    </div>
+</body>
+<script>
+    // - 参与者: 电脑、显示器、硬盘、cpu、键盘
+    // - 其中电脑类包含所有其余类
+    // - 除电脑类外，其余每种类型都有两个子类代表不同品牌的产品，且每种设备都具备品牌名和价格属性
+    // - 不同品牌的设备价格不同
+    // - 请让用户自由组合硬件得到一台电脑
+    // - 请计算出电脑的价格
+
+    // 个人电脑
+    class PC {
+        // 电脑需要下列设备
+        monitor
+        disk
+        cpu
+        keyboard
+
+        // 获取电脑价格
+        getPrice() {
+            // 由于用户可能未选择完所有的零件，所以try一下
+            try {
+                return this.monitor.price +
+                    this.disk.price +
+                    this.cpu.price +
+                    this.keyboard.price
+            } catch (e) {
+                alert('电脑零件未选完')
+                console.log(e);
+                // 返回-1代表异常退出程序
+                return -1
+            }
+        }
+    }
+
+    // 显示器
+    class Monitor {
+        // 品牌名
+        name
+        // 价格
+        price
+
+        constructor(name, price) {
+            this.name = name
+            this.price = price
+        }
+    }
+
+    // AOC
+    class AOCMonitor extends Monitor {
+        constructor() {
+            super('AOC', 2000)
+        }
+    }
+
+    // 飞利浦
+    class PhilipsMonitor extends Monitor {
+        constructor() {
+            super('飞利浦', 3000)
+        }
+    }
+
+    // 硬盘
+    class Disk {
+        // 品牌名
+        name
+        // 价格
+        price
+        constructor(name, price) {
+            this.name = name
+            this.price = price
+        }
+    }
+
+    // 西数
+    class WestDataDisk extends Disk {
+        constructor() {
+            super('西数', 400)
+        }
+    }
+
+    // 希捷
+    class SeagateDisk extends Disk {
+        constructor() {
+            super('希捷', 450)
+        }
+    }
+
+    class CPU {
+        // 品牌名
+        name
+        // 价格
+        price
+        constructor(name, price) {
+            this.name = name
+            this.price = price
+        }
+    }
+
+    // intel
+    class IntelCPU extends CPU {
+        constructor() {
+            super('Intel', 2800)
+        }
+    }
+
+    // AMD
+    class AMDCPU extends CPU {
+        constructor() {
+            super('AMD', 2000)
+        }
+    }
+
+    // 键盘
+    class Keyboard {
+        // 品牌名
+        name
+        // 价格
+        price
+        constructor(name, price) {
+            this.name = name
+            this.price = price
+        }
+    }
+
+    // 爱石头
+    class IShiTouKeyboard extends Keyboard {
+        constructor() {
+            super('爱石头', 300)
+        }
+    }
+
+    // 逻技
+    class LogicKeyboard extends Keyboard {
+        constructor() {
+            super('逻技', 350)
+        }
+    }
+
+    let pc = new PC()
+
+    const btns = document.querySelectorAll('.production')
+    const monitorResult = document.querySelector('.monitor-result')
+    const diskResult = document.querySelector('.disk-result')
+    const cpuResult = document.querySelector('.cpu-result')
+    const keyboardResult = document.querySelector('.keyboard-result')
+    const confirmBtn = document.querySelector('.confirm-div>button')
+
+
+    btns.forEach(btn => {
+        btn.addEventListener('click', ev => {
+            // 获取产品对应的类名
+            let pro = btn.getAttribute('pro')
+            // 将类名转换成类型
+            let ProType = eval(pro)
+            console.log(ProType);
+            // 实例化电脑零件
+            pro = new ProType()
+            console.log(pro);
+
+            // 显示用户选择结果的变量名
+            let resultElementName = 'Result'
+            // 判断产品类型 组装电脑
+            if (pro instanceof Monitor) {
+                pc.monitor = pro
+                resultElementName = 'monitor' + resultElementName
+            } else if (pro instanceof Keyboard) {
+                pc.keyboard = pro
+                resultElementName = 'keyboard' + resultElementName
+            } else if (pro instanceof CPU) {
+                pc.cpu = pro
+                resultElementName = 'cpu' + resultElementName
+            } else if (pro instanceof Disk) {
+                pc.disk = pro
+                resultElementName = 'disk' + resultElementName
+            }
+
+            console.log(resultElementName);
+            // 获取显示结果用的变量
+            const resultElement = eval(resultElementName)
+            console.log(resultElement);
+            // 显示结果到元素上
+            resultElement.textContent = pro.name
+        })
+    })
+
+    // 确定
+    confirmBtn.addEventListener('click', () => {
+        let price = pc.getPrice()
+        price !== -1 && alert(`pc总价为: ${price}`)
+    })
+</script>
+
+</html>
