@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+<script>
+    // 访问器是什么？访问属性用的函数，访问有两重含义，读值和赋值
+
+    // 作用：可以控制读取属性的结果，可以控制赋值属性的内容（控制访问）
+
+    // 具体的作用
+    // getter: 
+    // 1. 格式化数据显示
+    // 2. 简化路径访问
+    // setter:
+    // 1. 验证赋值参数的合法性
+
+
+
+    // 对象中声明访问器
+    let obj = {
+        _name: '张三',
+
+        // 读值访问器 称为 getter
+        // get 关键字 后面跟上一个访问器的名称
+        get name() {
+            // getter 访问器需要返回一个值
+            return `姓名: ${this._name}`
+        },
+
+        // 赋值访问器 称为 setter
+        // set 关键字 后面跟上访问器名称
+        set name(value) {
+            // value: 赋值属性时的参数
+            this._name = value === '张三' ? '法外狂徒' : value
+        }
+
+        // getter 和 setter 是一对，所以名称可以相同
+    }
+
+    // 使用访问器
+    // 访问器被当作属性使用
+    console.log(obj.name);
+    obj.name = '李四'
+
+
+
+    // 在类中声明访问器
+    class Human {
+        #sex
+        constructor(sex) {
+            this.#sex = sex
+        }
+
+        // 声明访问器
+        get sex() {
+            return this.#sex === 'male' ? '男' :
+                this.#sex === 'female' ? '女' : '其他'
+        }
+
+        set sex(value) {
+            this.#sex = value === '男' ? 'male' :
+                value === '女' ? 'female' : 'other'
+        }
+    }
+
+    let h = new Human('female')
+    console.log(h.sex);
+    h.sex = '其他'
+
+</script>
+
+</html>
