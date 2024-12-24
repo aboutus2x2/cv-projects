@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // - name: 姓名
+    //   - setter: 只能由中文组成，名字中间不能包含空格，名字至少2个字，不符合条件则赋值失败
+    //   - getter: 读值时添加 `姓名: ` 作为前缀
+    // - sex: 性别
+    //   - setter: 只能接收 `male` `female` `other` 三种值，其余赋值均失败
+    //   - getter: 返回 `男` `女` `其他` 的中文值
+    // - age: 年龄
+    //   - setter: 接收 `YYYY/MM/DD` 格式的生日字符串，其余格式赋值失败
+    //   - getter: 显示年龄
+    // - sign: 个性签名
+    //   - setter: 接收字符串，字符串中不能包含 `黄` `赌` `毒` 三个字，若存在这些字，就转换这些字为 `口` 再赋值
+    //   - getter: 添加一个 `个性签名: ` 前缀
+
+    class User {
+        #name = '佚名'
+        #sex = 'other'
+        #birthday = new Date()
+        #sign = ''
+
+        set name(value) {
+            // 赋值不是字符串的值 则无效
+            if (typeof value !== 'string') return
+            // 检测是否至少有两个中文字符
+            let regex = /^[\u4e00-\u9fa5]{2,}$/
+            regex.test(value) && (this.#name = value)
+        }
+
+        get name() {
+            return `姓名: ${this.#name}`
+        }
+
+        set sex(value) {
+            if (typeof value !== 'string') return
+            /^(male|female|other)$/.test(value) && (this.#sex = value)
+        }
+
+        get sex() {
+            return this.#sex === 'male' ? '男' :
+                this.#sex === 'female' ? '女' : '其他'
+        }
+
+        set age(value) {
+            if (typeof value !== 'string') return
+            let regex = /^(\d{4})\/(\d{2})\/(\d{2})$/
+            let r = value.match(regex)
+            // 日期字符串格式不对
+            if (r === null) return
+            let date = new Date(value)
+            // 判断 date.getTime 是否是数字，是数字说该日期有效，否则无效
+            if (isNaN(date.getTime())) return
+            // 判断生日不能是未来的时间
+            if (date.getTime() > Date.now()) return
+            this.#birthday = date
+        }
+
+        get age() {
+            // 计算当前时间距离生日过了多久
+            let timespan = Date.now() - this.#birthday.getTime()
+            return Math.round(timespan * 0.001 / 60 / 60 / 24 / 365)
+        }
+
+        set sign(value) {
+            if (typeof value !== 'string') return
+            // 替换字符串
+            value = value.replace(/[黄赌毒]/g, '口')
+            this.#sign = value
+        }
+
+        get sign() {
+            return `个性签名: ${this.#sign}`
+        }
+    }
+
+    let user = new User()
+
+</script>
+
+</html>
