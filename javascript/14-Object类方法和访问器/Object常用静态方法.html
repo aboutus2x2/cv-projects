@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // Object 的常用静态方法
+
+
+
+    // Object.assign : 拓展对象
+    // 将一个对象的属性复制到另一个对象中，且返回一个新对象
+
+    let x = {
+        a: 1,
+        b: 2
+    }
+
+    let y = {
+        c: 3,
+        d: 4
+    }
+
+
+    // 第一个参数：要拓展属性的对象
+    // 第二个参数：拓展的属性源对象
+    // Object.assign(x, y) 这句话的含义就是，将y中的属性拷贝到x中，且返回x对象
+    let r = Object.assign(x, y)
+    console.log(r);
+
+
+    // Object.assign 该函数常用于浅拷贝对象
+
+    // 拷贝对象
+    let obj = { name: '张三' }
+    r = Object.assign({}, obj)
+    console.log(r);
+
+    // 拷贝数组
+    let arr = [1, 2, 3, 4]
+    r = [].concat(arr)
+    console.log(r);
+
+    // 浅拷贝例子
+    let user = {
+        name: '金牌猎人'
+    }
+
+    obj = {
+        isOk: true,
+        msg: 'hello',
+        num: 123,
+        user: user // 引用地址
+    }
+
+    r = Object.assign({}, obj)
+
+    // r.user 引用地址 拷贝自 obj.user
+
+    console.log(r === obj);
+    // 修改拷贝后的数据
+    // r.user.name = '亡命之徒'
+    // 原始数据 obj 也被修改了
+    console.log(obj.user.name);
+    // 结论: 浅拷贝的结果，引用地址会被直接复制
+
+
+    // 深度拷贝: 数据中所有的对象将被复制，而不是复制引用地址
+    // 使用序列化和反序列化实现深拷贝
+    r = JSON.parse(JSON.stringify(obj))
+    console.log(r === obj);
+    r.user.name = '亡命之徒'
+    console.log(obj.user.name);
+    console.log(r.user.name);
+
+
+
+    // 参考地址：https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+    // Object.defineProperty : 定义属性
+
+    obj = {}
+    obj.x = 1
+    obj['y'] = 2
+    console.log(obj)
+
+    // 通过 Object.defineProperty 定义属性
+    // 第一个参数：要定义属性的对象
+    // 第二个参数：要定义的属性名称
+    // 第三个参数：关于指定属性的配置，是一个json对象
+    Object.defineProperty(obj, 'z', {
+        // 属性值
+        // value: 3,
+        // 是否可写
+        // writable: true,
+        // 书写访问器时 不允许添加 value 和 writable 属性
+        get() {
+            // 访问中通过this访问当前对象
+            return this.x
+        },
+        set(value) {
+            this.x = value
+        }
+    })
+
+    console.log(obj)
+
+
+    // Object 对象上的 toString 方法
+    // 所有类型都是Object类型的子类
+    // toString 方法 将用在转换字符串时
+    // 所有隐式转换对象为字符串的情况下，js会自动调用对象的 toString 方法
+
+    console.log(new Number(123).toString());
+    function Car() {
+        this.name = '车'
+    }
+    console.log(new Car().toString());
+
+    // 重写 toString
+    function Bird() {
+        this.name = '鸟'
+        // 重写 toString
+        this.toString = function () {
+            return JSON.stringify(this)
+        }
+    }
+    let b = new Bird()
+    console.log(String(b));
+    console.log(b + '123');
+</script>
+
+</html>
