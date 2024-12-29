@@ -52,6 +52,11 @@
             margin: 4px;
         }
 
+        /* 按钮激活状态的样式 */
+        button:active {
+            background-color: rgb(182, 212, 255);
+        }
+
         .card {
             display: inline-block;
             /* 通过var函数读取对应自定义属性的值 */
@@ -92,7 +97,7 @@
             </div>
 
             <!-- 按钮行 -->
-            <div style="display: flex; justify-content: center;">
+            <div class="btns" style="display: flex; justify-content: center;">
                 <button>开始游戏</button>
                 <button>停牌</button>
                 <button>要牌</button>
@@ -101,5 +106,87 @@
     </div>
 
 </body>
+<script src="./js/card.js"></script>
+<script src="./js/factory.js"></script>
+<script>
+    // 游戏逻辑类
+    // 用于维护游戏流程和游戏所需的变量
+    // 该类还用于处理用户和游戏逻辑之间的交互
+    class Game {
+        // 游戏的参与者
+        // 庄家
+        host
+        // 玩家
+        player
+
+
+        // 游戏结束
+        gameOver = false
+        // 是否停牌
+        stopDraw = false
+
+
+        // 扑克牌工厂
+        #factory
+
+        // 元素
+        #startBtn
+        #stopBtn
+        #getCardBtn
+        #hostHands
+        #playerHands
+        #hostScore
+        #playerScore
+
+        constructor() {
+            // 初始化代码
+            this.#getElements()
+            this.#addEvents()
+        }
+
+        // 查询元素
+        #getElements() {
+            this.#startBtn = document.querySelector('.btns>button:nth-child(1)')
+            this.#stopBtn = document.querySelector('.btns>button:nth-child(2)')
+            this.#getCardBtn = document.querySelector('.btns>button:nth-child(3)')
+            this.#hostHands = document.querySelector('.host-hands')
+            this.#playerHands = document.querySelector('.player-hands')
+            this.#hostScore = document.querySelector('.host-score')
+            this.#playerScore = document.querySelector('.player-score')
+        }
+
+        // 绑定事件
+        #addEvents() {
+            this.#startBtn.addEventListener('click', this.start.bind(this))
+            this.#stopBtn.addEventListener('click', this.stop.bind(this))
+            this.#getCardBtn.addEventListener('click', this.getCard.bind(this))
+        }
+
+        // 开始游戏
+        start() {
+            console.log('开始游戏');
+            console.log(this);
+
+
+        }
+
+        // 停牌
+        stop() {
+            console.log('停牌');
+        }
+
+        // 要牌
+        getCard() {
+            console.log('要牌');
+        }
+    }
+
+    let game = new Game()
+
+    let cf = new CardFactory()
+    let hh = document.querySelector('.host-hands')
+    let desk = cf.create()
+    hh.appendChild(desk[36].el)
+</script>
 
 </html>
