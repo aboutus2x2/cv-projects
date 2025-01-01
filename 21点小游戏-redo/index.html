@@ -83,12 +83,12 @@
                 <div class="card"></div>
             </div>
             <!-- 庄家分数 -->
-            <div class="host-score">0</div>
+            <div class="host-score">10</div>
         </div>
 
         <div>
             <!-- 玩家分数 -->
-            <div class="player-score">0</div>
+            <div class="player-score">50</div>
 
             <!-- 玩家的手牌 -->
             <div class="player-hands">
@@ -108,6 +108,9 @@
 </body>
 <script src="./js/card.js"></script>
 <script src="./js/factory.js"></script>
+<script src="./js/party.js"></script>
+<script src="./js/host.js"></script>
+<script src="./js/player.js"></script>
 <script>
     // 游戏逻辑类
     // 用于维护游戏流程和游戏所需的变量
@@ -142,6 +145,11 @@
             // 初始化代码
             this.#getElements()
             this.#addEvents()
+            // 实例化
+            this.#factory = new CardFactory()
+            this.host = new Host(this.#hostHands, this.#hostScore)
+            this.player = new Player(this.#playerHands, this.#playerScore)
+            this.host.player = this.player
         }
 
         // 查询元素
@@ -167,7 +175,12 @@
             console.log('开始游戏');
             console.log(this);
 
-
+            // 重置游戏状态
+            this.gameOver = false
+            this.stopDraw = false
+            // 庄家开始游戏
+            this.host.start(this.#factory.create())
+            // todo 计算当前牌面的分数
         }
 
         // 停牌
@@ -182,11 +195,6 @@
     }
 
     let game = new Game()
-
-    let cf = new CardFactory()
-    let hh = document.querySelector('.host-hands')
-    let desk = cf.create()
-    hh.appendChild(desk[36].el)
 </script>
 
 </html>
