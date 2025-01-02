@@ -185,12 +185,56 @@
 
         // 停牌
         stop() {
+            if (this.gameOver || this.stopDraw) return
             console.log('停牌');
+            this.stopDraw = true
+            // 庄家将背面的牌翻过来
+            this.host.turnCardBack()
+            // 获取庄家分数
+            // 庄家的分数不包含 Bust 且 分数低于 17 则一直摸牌
+            while (!isNaN(Number(this.host.getScore())) && Number(this.host.getScore()) < 17) {
+                this.host.drawToHost()
+            }
+
+            // 胜负判断
+            let r
+            let p = this.player.getScore()
+            let h = this.host.getScore()
+
+            // 判断是否相等
+            if (p === h) {
+                r = '平局'
+            } else if (h.endsWith('Bust')) {
+                r = '赢'
+            } else if (p === 'BlackJack' || Number(h) < Number(p)) {
+                r = '赢'
+            } else {
+                r = '输'
+            }
+
+            setTimeout(() => {
+                alert(r)
+            }, 100)
         }
 
         // 要牌
         getCard() {
+            // 游戏已结束则无法再要牌
+            if (this.gameOver || this.stopDraw) return
             console.log('要牌');
+            // 庄家给玩家发牌
+            this.host.drawToPlayer()
+            // 判断玩家是否已经bust
+            let r = this.player.getScore()
+            if (r.endsWith('Bust')) {
+                // 玩家已出局
+                // 游戏结束
+                this.gameOver = true
+
+                setTimeout(() => {
+                    alert('输')
+                }, 100)
+            }
         }
     }
 

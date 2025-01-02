@@ -27,10 +27,10 @@ class Host extends Party {
         console.log(this.#desk);
 
         // 发牌
-        this.#drawToPlayer()
-        this.#drawToHost()
-        this.#drawToPlayer()
-        this.#drawToHost(true)
+        this.drawToPlayer()
+        this.drawToHost()
+        this.drawToPlayer()
+        this.drawToHost(true)
     }
 
     // 抽牌
@@ -39,13 +39,13 @@ class Host extends Party {
     }
 
     // 抽牌给玩家
-    #drawToPlayer() {
+    drawToPlayer() {
         this.player.getCard(this.#draw())
     }
 
     // 抽牌给庄家
     // turnBack: 表示是否背面朝上进行发牌
-    #drawToHost(turnBack) {
+    drawToHost(turnBack) {
         // 抽牌
         let card = this.#draw()
         // 判断是否背面朝上

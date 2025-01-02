@@ -48,5 +48,50 @@ class Party {
             // 其余情况直接叠加分数
             else this.#score += card.point
         }
+
+        this.setScore()
+    }
+
+    // 计算手牌分数
+    setScore() {
+        let r
+        // 黑杰克
+        if (this.#ACount === 1 && this.#score === 10) r = 'BlackJack'
+        // 没有A
+        else if (this.#ACount === 0) {
+            r = this.#score <= 21 ? this.#score : `${this.#score} Bust`
+        } else {
+            let s
+            for (let i = this.#ACount; i >= 0; i--) {
+                // 尽可能多的让A充当11
+                s = this.#score + i * 11 + (this.#ACount - i) * 1
+                if (s <= 21) break;
+            }
+            // 判断是否超过21
+            r = s <= 21 ? s : `${s} Bust`
+        }
+
+        // 显示结果到计分板上
+        this.#scoreEl.textContent = r
+    }
+
+    // 获取玩家计分板
+    getScore() {
+        return this.#scoreEl.textContent
+    }
+
+    // 翻牌
+    turnCardBack() {
+        let card = this.hands[1]
+        card.turnBack()
+        if (card.point === 'A') {
+            this.#ACount++
+        } else {
+            // 只要牌面点数是字符串，则一定是 JQK
+            if (typeof card.point === 'string') this.#score += 10
+            // 其余情况直接叠加分数
+            else this.#score += card.point
+        }
+        this.setScore()
     }
 }
