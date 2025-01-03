@@ -73,6 +73,9 @@ class Party {
 
         // 显示结果到计分板上
         this.#scoreEl.textContent = r
+
+        // 播放获得牌的音效
+        new Audio('./audio/draw.wav').play()
     }
 
     // 获取玩家计分板

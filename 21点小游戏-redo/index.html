@@ -184,16 +184,22 @@
         }
 
         // 停牌
-        stop() {
+        // async 异步函数的关键字
+        async stop() {
             if (this.gameOver || this.stopDraw) return
             console.log('停牌');
             this.stopDraw = true
-            // 庄家将背面的牌翻过来
-            this.host.turnCardBack()
+            // await 将异步函数当作同步的调用
+            await this.#animate(() => {
+                // 庄家将背面的牌翻过来
+                this.host.turnCardBack()
+            })
             // 获取庄家分数
             // 庄家的分数不包含 Bust 且 分数低于 17 则一直摸牌
             while (!isNaN(Number(this.host.getScore())) && Number(this.host.getScore()) < 17) {
-                this.host.drawToHost()
+                await this.#animate(() => {
+                    this.host.drawToHost()
+                })
             }
 
             // 胜负判断
@@ -205,6 +211,7 @@
             if (p === h) {
                 r = '平局'
             } else if (h.endsWith('Bust')) {
+                new Audio('./audio/bust.wav').play()
                 r = '赢'
             } else if (p === 'BlackJack' || Number(h) < Number(p)) {
                 r = '赢'
@@ -212,10 +219,46 @@
                 r = '输'
             }
 
+            if (r === '平局' || r === '赢') new Audio('./audio/win.wav').play()
+            else new Audio('./audio/lose.wav').play()
+
             setTimeout(() => {
                 alert(r)
             }, 100)
         }
+
+        // stop() {
+        //     if (this.gameOver || this.stopDraw) return
+        //     console.log('停牌');
+        //     this.stopDraw = true
+        //     // 庄家将背面的牌翻过来
+        //     this.host.turnCardBack()
+        //     // 获取庄家分数
+        //     // 庄家的分数不包含 Bust 且 分数低于 17 则一直摸牌
+        //     while (!isNaN(Number(this.host.getScore())) && Number(this.host.getScore()) < 17) {
+        //         this.host.drawToHost()
+        //     }
+
+        //     // 胜负判断
+        //     let r
+        //     let p = this.player.getScore()
+        //     let h = this.host.getScore()
+
+        //     // 判断是否相等
+        //     if (p === h) {
+        //         r = '平局'
+        //     } else if (h.endsWith('Bust')) {
+        //         r = '赢'
+        //     } else if (p === 'BlackJack' || Number(h) < Number(p)) {
+        //         r = '赢'
+        //     } else {
+        //         r = '输'
+        //     }
+
+        //     setTimeout(() => {
+        //         alert(r)
+        //     }, 100)
+        // }
 
         // 要牌
         getCard() {
@@ -231,10 +274,27 @@
                 // 游戏结束
                 this.gameOver = true
 
+                new Audio('./audio/bust.wav').play()
+
                 setTimeout(() => {
                     alert('输')
                 }, 100)
             }
+        }
+
+        // 播放延时动画
+        // callback: 延时结束后要执行的回调函数
+        #animate(callback) {
+            // 创建并返回一个 promise 对象
+            return new Promise(resolve => {
+                // 计时
+                setTimeout(() => {
+                    // 调用回调函数
+                    typeof callback === 'function' && callback()
+                    // 必须调用resolve
+                    resolve()
+                }, 1000)
+            })
         }
     }
 
