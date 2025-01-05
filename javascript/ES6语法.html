@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // let 关键字
+    let a = 11
+    // const 定义常量 常量是readonly只读的属性
+    // 一旦初始化后 就不能修改其值
+    const c = 15
+    console.log(c)
+
+    const g = 9.8
+
+
+    // ... 扩展
+    let obj = { x: 1, y: 2 }
+    // 复制对象
+    console.log({ z: 3, ...obj });
+    let arr = [1, 2, 3]
+    // 复制数组
+    console.log([...arr, 4]);
+
+
+    // rest parameters
+    function fn(a, b, ...c) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+
+    fn(1, 2, 3, 4, 5, 6)
+
+
+    // lamda 表达式 也称 箭头函数
+    let fn2 = () => ({})
+
+
+    // 模板字符串
+    let year = 2020
+    let month = 8
+    let day = 19
+    console.log(`${year}/${month}/${day}`);
+
+
+    // 解构复制
+    // 对象
+    let obj2 = { aa: 1, b: 2 }
+    let { aa, b } = obj2
+    console.log(aa, b);
+    // 数组
+    let arr2 = [1, 2, 3]
+    let [x, y, z] = arr2
+    console.log(x, y, z);
+    // 函数参数的解构
+    function fn3(a, { b, c }) {
+        console.log(a);
+        console.log(b);
+        console.log(c);
+    }
+    fn3('hello', { b: 2, c: 5, a: 16 })
+
+
+
+    // Promise语法
+    let promise = new Promise((resolve, reject) => {
+    })
+
+    // 语法
+    // Promise.resolve(value);
+    // Promise.reject(value);
+    // 参数
+    // value
+    // 将被Promise对象解析的参数，也可以是一个Promise对象，或者是一个thenable。
+    // 将不是thenable的对象转换为thenable的对象
+    Promise.resolve()
+    // Promise.all()
+    // Promise.race()
+
+
+    // 定义对象属性和方法的简写
+
+    let p = 'hello'
+    let obj5 = {
+        // 传统定义方法，需要声明key和value
+        // p: p
+        // 但当 key 和 value 的名称相同时，可以省略冒号后的内容
+        p,
+        // 传统定义函数
+        // fn: function(){}
+        // 可以简写成
+        fn() { }
+    }
+
+
+    // ? 问好语法
+    // 判断是否存在，存在就执行，否则不执行
+    let o = { a: 1, fn() { console.log('hello') } }
+    console.log(o?.a);
+    o?.fn()
+    o = undefined
+    o?.fn()
+</script>
+
+</html>

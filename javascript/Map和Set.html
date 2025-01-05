@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body></body>
+<script>
+    // Map 的使用类似 json 对象
+    // map 实际上就是 key: value 键值对
+    // 声明 Map
+    let map = new Map([
+        ['a', true],
+        ['b', 123],
+        ['c', 'string']
+    ])
+
+    console.log(map);
+
+    // 读值
+    console.log(map.get('a'));
+    console.log(map.get('b'));
+    console.log(map.get('c'));
+    console.log(map.get('d')); // => undefined 不存在的key读出来是 undefined
+
+    // 赋值
+    map.set('d', { name: '张三' })
+    map.set('e', function () { console.log('hello') })
+    console.log(map);
+
+    // 迭代map
+    let keys = map.keys()
+    console.log(keys);
+    let key
+    // keys.next() 方法的作用是迭代下一个成员 返回一个对象
+    // 返回对象包括 value 属性和 done 属性 done 代表是否迭代完成
+    while (!(key = keys.next()).done) {
+        // value 就是每一个key
+        console.log(key.value);
+        console.log(map.get(key.value));
+    }
+
+    console.log('=====================================================');
+
+    // 可以使用 forEach 迭代
+    map.forEach((value, key, _map) => {
+        // value map对应key 的值
+        // key 迭代的键
+        console.log(value);
+        console.log(key);
+        // _map 当前正在迭代的map
+        console.log(_map);
+    })
+
+
+    // has 判断是否存在某个 key
+    console.log(map.has('d'));
+    console.log(map.has('f'));
+
+    // for of 遍历 Map
+    for (const entry of map) {
+        // entry 是包含了一组 key value 的数组
+        console.log(entry[0]); // => 0 号成员就是key
+        console.log(entry[1]); // => 1 号成员就是value
+    }
+
+    // Set 是不重复的数据集，若存入多个重复数据会自动去重
+
+
+    // 添加
+
+
+    // 删除
+
+
+    // 判断是否存在某个值
+
+
+    // 迭代 set
+
+
+    // foreach 迭代 set
+
+
+    // 通过 set 转换成数组
+    // 可以通过这种方法来让数组去重
+
+
+    // for of 遍历 Set
+
+
+
+
+</script>
+
+</html>
