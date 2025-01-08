@@ -69,31 +69,61 @@
     }
 
     // Set 是不重复的数据集，若存入多个重复数据会自动去重
-
+    let set = new Set([1, 1, 2, 2, 3, 3])
+    console.log(set);
 
     // 添加
+    set.add(true)
+    set.add(12)
+    set.add('hello')
+    let o = { name: '李四' }
+    set.add(o)
 
 
     // 删除
+    set.delete('hello')
+    set.delete(o)
+    console.log(set);
 
 
     // 判断是否存在某个值
+    console.log(set.has(12));
+    console.log(set.has('world'));
 
 
     // 迭代 set
+    keys = set.keys()
+    while (!(key = keys.next()).done) {
+        console.log(key.value);
+    }
 
 
     // foreach 迭代 set
+    set.forEach((value1, value2, _set) => {
+        console.log(value1);
+        console.log(value2);
+        console.log(_set);
+    })
 
 
     // 通过 set 转换成数组
     // 可以通过这种方法来让数组去重
+    let arr = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]
+    console.log(Array.from(new Set(arr)));
 
 
     // for of 遍历 Set
+    for (const value of set) {
+        console.log(value);
+    }
 
+    // map 和 set 的size属性代表数据长度
+    console.log(set);
+    console.log(map);
+    console.log(set.size);
+    console.log(map.size);
 
-
+    // 但凡包含迭代器的对象都可以使用 forof 来迭代
 
 </script>
 
