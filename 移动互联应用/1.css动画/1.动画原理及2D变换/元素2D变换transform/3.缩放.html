@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            position: absolute;
+            top: 200px;
+            left: 200px;
+
+            /* scale 缩放 */
+            /* 参数代表的是缩放比例，值为1 则为原始大小 */
+            transform: scale(1, 0.5);
+            /* 参数只写一个，代表的是水平和竖直方向缩放相同的比例 */
+            transform: scale(3);
+            /* 负数代表的就是在指定轴上的镜像 */
+            transform: scale(-0.5, 1);
+
+            transform: scaleX(2);
+            transform: scaleY(2);
+            transform: scaleZ(2);
+
+            /* 隐藏元素的方法：将缩放调为0 */
+            transform: scale(0);
+        }
+    </style>
+</head>
+
+<body>
+    <img src="./img/player.jpg" alt="">
+</body>
+
+</html>

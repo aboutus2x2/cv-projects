@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            top: 200px;
+            left: 300px;
+
+
+            color: #fff;
+            font-size: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* 同时设置多个变换属性，用空格隔开 */
+            transform: rotate(180deg) translateX(100px) scale(0.5);
+
+            /* transform 的实现原理类似于矩阵，先旋转后平移和先平移后旋转结果是不同的 */
+            transform: translateX(100px) rotate(180deg) scale(0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">上</div>
+</body>
+
+</html>

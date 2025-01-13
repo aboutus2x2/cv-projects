@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,28 +21,21 @@
             justify-content: center;
             align-items: center;
 
+            /* skew 倾斜 */
+            /* 第一个参数: 水平轴的倾斜度数 */
+            /* 第二个参数: 竖直轴的倾斜度数 */
+            transform: skew(0, 30deg);
+            /* 只设置一个参数 则只有水平轴倾斜有效 */
+            transform: skew(30deg);
 
-            /* rotate: 旋转元素 */
-            /* 参数代表旋转的角度
-                代表角度的单位是 deg
-                代表弧度的单位是 rad
-            */
-            /* 元素的旋转角度是参考的元素的正上方 */
-            /* 顺时针旋转为正方向 */
-            /* 旋转中心默认为元素中心 */
-            /* transform: rotate(30deg);
-            transform: rotateX(30deg);
-            transform: rotateY(30deg);
-            transform: rotateZ(30deg); */
-
-            /* 左右镜像 */
-            transform: rotateY(180deg);
-            /* 上下镜像 */
-            transform: rotateX(180deg);
+            transform: skewX(30deg);
+            transform: skewY(30deg);
         }
     </style>
 </head>
+
 <body>
     <div class="box">上</div>
 </body>
+
 </html>
