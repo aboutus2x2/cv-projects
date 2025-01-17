@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .windmill {
+            width: 400px;
+            height: 400px;
+            border: 5px solid #000;
+
+            position: relative;
+
+            /* 设置初始旋转 */
+            transform: rotate(0);
+        }
+
+        .leaf {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 100px 50px;
+            border-color: transparent transparent #f00 #f00;
+
+            /* border-color: #f00;
+            border-width: 0 0 100px 50px; */
+
+            position: absolute;
+            left: 50%;
+
+            transform: rotate(0deg);
+
+            /* 设置变换中心 */
+            transform-origin: left bottom;
+        }
+
+        .leaf2 {
+            transform: rotate(90deg);
+        }
+
+        .leaf3 {
+            transform: rotate(180deg);
+        }
+
+        .leaf4 {
+            transform: rotate(270deg);
+        }
+
+        .leaf2,
+        .leaf4 {
+            border-color: transparent transparent #00f #00f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="windmill">
+        <div class="leaf"></div>
+        <div class="leaf leaf2"></div>
+        <div class="leaf leaf3"></div>
+        <div class="leaf leaf4"></div>
+    </div>
+</body>
+<script>
+    // 角速度
+    let v = 1
+    // 当前旋转角度
+    let angle = 0
+
+    // 风车
+    let wind = document.querySelector('.windmill')
+
+    // 播放旋转动画
+    setInterval(() => {
+        // 计算动画逻辑
+        angle += v
+
+        wind.style.transform = `rotate(${angle}deg)`
+    }, 16)
+
+    // 鼠标悬停事件
+    wind.addEventListener('mouseover', ev => {
+        console.log('mouseover');
+        // 修改角速度方向
+        v = -1
+    })
+
+    // 鼠标退出事件
+    wind.addEventListener('mouseout', ev => {
+        v = 1
+    })
+</script>
+
+</html>

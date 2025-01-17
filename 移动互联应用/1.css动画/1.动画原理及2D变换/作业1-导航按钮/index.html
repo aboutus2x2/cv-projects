@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nav {
+            display: flex;
+        }
+
+        .nav-btn {
+            padding: 16px;
+            color: #fff;
+            background-color: #ff8c00;
+
+            transform: skewX(-30deg);
+        }
+
+        .nav-btn>span {
+            /* transform 无法在行内元素上使用，所以修改span的元素性质 */
+            display: inline-block;
+            transform: skewX(30deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <!-- 导航按钮 -->
+        <div class="nav-btn"><span>首页</span></div>
+        <div class="nav-btn"><span>新闻</span></div>
+    </div>
+</body>
+
+</html>
