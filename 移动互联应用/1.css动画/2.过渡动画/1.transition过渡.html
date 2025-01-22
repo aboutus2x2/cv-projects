@@ -16,12 +16,14 @@
             left: 0;
 
             opacity: 1;
+            transform: translateX(0px);
 
             /* 什么是transition？ */
             /* transition是过渡的意思，将会时元素从一个状态用动画形式过渡到零一个状态 */
 
             /* 参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/transition */
             /* 使用过渡属性 */
+            transition: all 2s linear;
 
             /* transition复合属性可以拆解成以下属性 */
 
@@ -31,8 +33,12 @@
                 all: 代表所有属性
                 none: 没有任何属性
              */
+            transition-property: opacity, transform;
+            transition-property: all;
 
             /* 补间动画的时长 */
+            transition-duration: 1s;
+            transition-duration: 1000ms;
 
             /* 补间动画的速度曲线 */
             /* 带选项：
@@ -42,20 +48,26 @@
                 ease-in-out: 慢进慢出
                 steps(n): 声明有n个过渡阶段
              */
+            transition-timing-function: linear;
+
             /* 除了使用预制带选项，也可以手动赋值如下： */
+            transition-timing-function: cubic-bezier(0.76, 0.19, 0.19, 0.8);
 
             /* steps 函数 */
+            transition-timing-function: steps(5);
 
             /* 延迟播放动画的时间 */
+            transition-delay: 1s;
 
             /* 使用transition属性设置所有的过渡动画属性 */
             /* 属性顺序如下：过渡属性名 过渡时长 速度曲线 延迟时间 */
 
-
+            transition: all 3s ease-in-out 2s;
         }
 
         .box:hover {
-            opacity: 0;
+            /* opacity: 0; */
+            transform: translateX(200px);
         }
     </style>
 </head>
