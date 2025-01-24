@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+
+            /* 初始状态 */
+            transform: translateX(0px);
+        }
+
+        /* 通过添加 active 类名来开启动画 */
+        .box.active {
+            transition: all 1s;
+            /* 结束状态 */
+            transform: translateX(200px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>播放</button>
+</body>
+<script>
+    let btn = document.querySelector('button')
+    let box = document.querySelector('.box')
+    btn.addEventListener('click', () => {
+        if (box.classList.contains('active')) {
+            // 包含active
+            box.classList.remove('active')
+        } else {
+            box.classList.add('active')
+        }
+    })
+</script>
+
+</html>
