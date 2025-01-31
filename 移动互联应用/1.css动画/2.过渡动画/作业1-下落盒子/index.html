@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-container {
+            display: flex;
+        }
+
+        .box {
+            width: 30px;
+            height: 30px;
+
+            /* 初始值 */
+            transition: all 2s linear;
+            background-color: pink;
+            transform: translateY(0px) rotate(0deg) scale(1);
+
+        }
+
+        .box-container.active>.box {
+            transform: translateY(200px) rotate(720deg) scale(0.5);
+            background-color: #0f0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box-container">
+        <div class="box"></div>
+    </div>
+</body>
+
+<script>
+    let boxContainer = document.querySelector('.box-container')
+    boxContainer.addEventListener('mouseenter', () => {
+        if (!boxContainer.classList.contains('active')) {
+            boxContainer.classList.add('active')
+        }
+    })
+
+    boxContainer.addEventListener('mouseleave', () => {
+        if (boxContainer.classList.contains('active')) {
+            boxContainer.classList.remove('active')
+        }
+    })
+
+
+    // 初始 box 盒子
+    let html = ''
+    for (let i = 0; i < 20; i++) {
+        html += `<div class="box" style="transition-delay: ${i * 0.5}s"></div>`
+    }
+    boxContainer.innerHTML = html
+</script>
+
+</html>
