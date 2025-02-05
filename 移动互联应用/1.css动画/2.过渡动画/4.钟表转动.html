@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .clock {
+            width: 400px;
+            height: 400px;
+            background-color: #000;
+            border-radius: 50%;
+            border: 20px solid #808080;
+            position: relative;
+        }
+
+        .bg {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .point {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+
+            left: calc(50% - 5px);
+            top: 10px;
+
+            transform-origin: center 190px;
+            transform: rotate(0deg);
+        }
+
+        .hour {
+            position: absolute;
+            width: 20px;
+            height: 30px;
+            background-color: #00f;
+            top: 170px;
+            left: calc(50% - 10px);
+
+            transform-origin: center bottom;
+            transform: rotate(0deg);
+            /* transition: all 1s linear; */
+        }
+
+        .hour::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 70px 10px;
+            border-color: transparent transparent #00f transparent;
+            position: absolute;
+            top: -140px;
+        }
+
+        .minute {
+            position: absolute;
+            width: 12px;
+            height: 70px;
+            background-color: #0f0;
+            top: 130px;
+            left: calc(50% - 6px);
+
+            transform-origin: center bottom;
+            transform: rotate(0deg);
+
+            transition: all 1s linear;
+        }
+
+        .minute::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 70px 6px;
+            border-color: transparent transparent #0f0 transparent;
+            position: absolute;
+            top: -140px;
+        }
+
+        .second {
+            position: absolute;
+            width: 8px;
+            height: 150px;
+            background-color: #f00;
+            top: 90px;
+            left: calc(50% - 4px);
+
+            transform-origin: center 110px;
+            transform: rotate(0deg);
+
+            transition: all 1s linear;
+        }
+
+        .second::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 70px 4px;
+            border-color: transparent transparent #f00 transparent;
+            position: absolute;
+            top: -140px;
+        }
+
+        .cover {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #f00;
+            position: absolute;
+            left: calc(50% - 16px);
+            top: calc(50% - 16px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clock">
+        <div class="bg">
+            <div class="point"></div>
+        </div>
+
+        <div class="hour"></div>
+        <div class="minute"></div>
+        <div class="second"></div>
+        <div class="cover"></div>
+    </div>
+</body>
+
+<script>
+    // 查询元素
+    const bg = document.querySelector('.bg')
+    const hEl = document.querySelector('.hour')
+    const mEl = document.querySelector('.minute')
+    const sEl = document.querySelector('.second')
+
+    // 画点
+    function drawPoint() {
+        let html = ''
+        for (let i = 0; i < 60; i++) {
+            // 高度样式
+            let height = i % 5 === 0 ? 'height: 20px;' : ''
+            html += `<div class="point" style="transform: rotate(${i * 6}deg); ${height}"></div>`
+        }
+        bg.innerHTML = html
+    }
+
+    drawPoint()
+
+
+
+    // 时间
+    let hour = 11
+    let minute = 30
+    let second = 50
+    // 指针套圈的圈数
+    let hRound = 0
+    let mRound = 0
+    let sRound = 0
+
+    // 渲染当前时刻
+    function render() {
+        // 计算每根针的旋转角度
+        hEl.style.transform = `rotate(${30 * hour + 30 * (minute / 60) + 360 * hRound}deg)`
+        mEl.style.transform = `rotate(${6 * minute + 360 * mRound}deg)`
+        sEl.style.transform = `rotate(${6 * second + 360 * sRound}deg)`
+    }
+
+    render()
+
+    setInterval(() => {
+        // 计算时钟逻辑
+        second++
+        if (second >= 60) {
+            second = 0
+            sRound++
+            minute++
+            if (minute >= 60) {
+                minute = 0
+                mRound++
+                hour++
+                if (hour >= 12) {
+                    hour = 0
+                    hRound++
+                }
+            }
+        }
+
+        // 渲染时钟
+        render()
+    }, 1000)
+</script>
+
+</html>
