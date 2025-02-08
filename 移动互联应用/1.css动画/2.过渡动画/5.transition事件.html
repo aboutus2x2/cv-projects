@@ -40,10 +40,14 @@
         console.log(ev);
         console.log('播放结束');
     })
-    
+
     box.addEventListener('transitionstart', ev => {
         console.log(ev);
         console.log('开始播放');
+    })
+
+    box.addEventListener('transitionrun', ev => {
+        console.log('run');
     })
 </script>
 
