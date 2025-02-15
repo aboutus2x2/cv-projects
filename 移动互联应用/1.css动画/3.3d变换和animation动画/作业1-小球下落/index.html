@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .ball {
+            width: 100px;
+            height: 100px;
+            border-radius: 50px;
+            background-color: #f00;
+
+            animation: move-x 3s linear forwards;
+        }
+
+        .ball-container {}
+
+        .step1 {
+            animation: step1 1s cubic-bezier(0.86, 0.05, 1, 1) forwards;
+        }
+
+        .step2 {
+            animation: step2 1s cubic-bezier(0, 0, 0.11, 0.92) forwards;
+        }
+
+        .step3 {
+            animation: step3 1s cubic-bezier(0.86, 0.05, 1, 1) forwards;
+        }
+
+        /* 水平移动动画 */
+        @keyframes move-x {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(300px);
+            }
+        }
+
+        /* 从上到下动画 */
+        @keyframes step1 {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(400px);
+            }
+        }
+
+        /* 从下弹回 */
+        @keyframes step2 {
+            from {
+                transform: translateY(400px);
+            }
+
+            to {
+                transform: translateY(100px);
+            }
+        }
+
+        /* 最后阶段从上往下 */
+        @keyframes step3 {
+            from {
+                transform: translateY(100px);
+            }
+
+            to {
+                transform: translateY(400px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ball-container">
+        <div class="ball"></div>
+    </div>
+</body>
+
+<script>
+    const ballContainer = document.querySelector('.ball-container')
+    // 存储动画类名的数组
+    let animations = ['step1', 'step2', 'step3']
+
+    // 添加动画播放结束事件
+    ballContainer.addEventListener('animationend', () => {
+        // 没动画可播放 则返回
+        if (animations.length === 0) return
+        // 动画播放结束取出下一个动画
+        let animationName = animations.shift()
+        // 赋值动画
+        ballContainer.classList.add(animationName)
+    })
+
+    let animationName = animations.shift()
+    ballContainer.classList.add(animationName)
+
+</script>
+
+</html>
