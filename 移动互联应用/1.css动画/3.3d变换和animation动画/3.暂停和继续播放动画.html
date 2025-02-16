@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+
+        .box.active {
+            animation: move 4s linear infinite alternate;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(400px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>播放</button>
+</body>
+
+<script>
+    const btn = document.querySelector('button')
+    const box = document.querySelector('.box')
+    btn.addEventListener('click', () => {
+        if (!box.classList.contains('active')) {
+            box.classList.add('active')
+            btn.textContent = '暂停'
+            return
+        }
+
+        // 读取动画播放状态 animationPlayState
+        console.log(getComputedStyle(box).animationPlayState)
+
+        // running 代表正在播放
+        if (getComputedStyle(box).animationPlayState === 'running') {
+            // 在播放就暂停动画
+            box.style.animationPlayState = 'paused'
+            btn.textContent = '继续'
+        } else {
+            // 若已暂停动画，则重新设置为running
+            box.style.animationPlayState = 'running'
+            btn.textContent = '暂停'
+        }
+    })
+</script>
+
+</html>
