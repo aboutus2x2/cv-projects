@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+
+        .box.active {
+            animation: move 2s linear forwards 3;
+        }
+
+        @keyframes move {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(400px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <button>播放</button>
+</body>
+<script>
+    const btn = document.querySelector('button')
+    const box = document.querySelector('.box')
+    btn.addEventListener('click', () => {
+        if (!box.classList.contains('active')) {
+            box.classList.add('active')
+        }
+    })
+
+    box.addEventListener('animationend', () => {
+        console.log('动画播放完成');
+    })
+
+    box.addEventListener('animationstart', () => {
+        console.log('动画开始播放');
+    })
+
+    box.addEventListener('animationiteration', () => {
+        console.log('动画重复播放');
+    })
+</script>
+
+</html>
