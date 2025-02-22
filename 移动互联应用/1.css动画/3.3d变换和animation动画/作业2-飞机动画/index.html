@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #1b1b1b;
+            /* background-color: #ffd200; */
+            height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow: hidden;
+        }
+
+        .ball {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background-color: #ffd200;
+
+            animation: scale 1s linear forwards;
+        }
+
+        @keyframes scale {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(20);
+            }
+        }
+
+        .plane {
+            position: relative;
+        }
+
+        .plane>img:nth-child(2) {
+            position: absolute;
+            top: 205px;
+            left: 107px;
+
+            /* 螺旋桨动画 */
+            animation: rotate 0.5s linear infinite;
+        }
+
+        .plane.active {
+            transition: all 1s linear;
+            transform: translateX(0) !important;
+        }
+
+        .fly {
+            animation: fly 2s linear infinite;
+        }
+
+        /* 螺旋桨 */
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* 浮游 */
+        @keyframes fly {
+            from {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(-30px, -80px);
+            }
+
+            50% {
+                transform: translate(0, 0);
+            }
+
+            75% {
+                transform: translate(30px, 80px);
+            }
+
+            to {
+                transform: translate(0, 0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 脸 -->
+    <img class="face" src="./img/loading-Home.gif" alt="">
+    <!-- <div class="plane">
+        <img src="./img/plane.svg" alt="">
+        <img src="./img/propeller.svg" alt="">
+    </div> -->
+</body>
+
+<script>
+    const face = document.querySelector('.face')
+    // 双击
+    face.addEventListener('dblclick', () => {
+        // 删除脸
+        face.remove()
+        // 插入球
+        const ball = document.createElement('div')
+        ball.className = 'ball'
+        // 动画播放结束事件
+        ball.addEventListener('animationend', () => {
+            // 删除球 修改背景色
+            ball.remove()
+            document.body.style.backgroundColor = '#ffd200'
+
+            // 造飞机
+            document.body.innerHTML = `
+            <div class="plane">
+                <img src="./img/plane.svg" alt="">
+                <img src="./img/propeller.svg" alt="">
+            </div>
+            `
+            // 初始化飞机的位置
+            const plane = document.querySelector('.plane')
+            plane.style.transform = `translateX(${window.innerWidth * 0.5 + 400}px)`
+            // 过渡完成事件
+            plane.addEventListener('transitionend', () => {
+                plane.classList.remove('active')
+                plane.classList.add('fly')
+            })
+            // 播放飞入动画
+            setTimeout(() => {
+                plane.classList.add('active')
+            }, 100)
+        })
+        document.body.appendChild(ball)
+    })
+
+
+
+</script>
+
+</html>
