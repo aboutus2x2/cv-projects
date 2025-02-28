@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cube {
+            width: 200px;
+            height: 200px;
+            /* border: 5px solid #f00; */
+
+            /* 开启3d变换 */
+            transform-style: preserve-3d;
+
+            /* 设置灭点 */
+            perspective: 500px;
+
+            /* 透视原点(灭点的坐标) */
+            perspective-origin: center center;
+
+            position: relative;
+        }
+
+        .face {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+            opacity: 0.3;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-weight: bolder;
+            font-size: 32px;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .front {
+            background-color: #000;
+            animation: front 1s linear 4s forwards;
+        }
+
+        @keyframes front {
+            from {
+                transform: translateZ(0);
+            }
+
+            to {
+                transform: translateZ(200px);
+            }
+        }
+
+        .back {
+            background-color: #ff0;
+        }
+
+        .left {
+            background-color: #f00;
+            transform-origin: left center;
+
+            animation: left 1s linear forwards;
+        }
+
+        @keyframes left {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(-90deg);
+            }
+        }
+
+        .right {
+            background-color: #0f0;
+            transform-origin: right center;
+            animation: right 1s linear 1s forwards;
+        }
+
+        @keyframes right {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(90deg);
+            }
+        }
+
+        .up {
+            background-color: #00f;
+            transform-origin: center top;
+            animation: up 1s linear 2s forwards;
+        }
+
+        @keyframes up {
+            from {
+                transform: rotateX(0deg);
+            }
+
+            to {
+                transform: rotateX(90deg);
+            }
+        }
+
+        .down {
+            background-color: #0ff;
+            transform-origin: center bottom;
+            animation: down 1s linear 3s forwards;
+        }
+
+        @keyframes down {
+            from {
+                transform: rotateX(0deg);
+            }
+
+            to {
+                transform: rotateX(-90deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube">
+        <div class="face front">前</div>
+        <div class="face back">后</div>
+        <div class="face left">左</div>
+        <div class="face right">右</div>
+        <div class="face up">上</div>
+        <div class="face down">下</div>
+    </div>
+</body>
+
+</html>
