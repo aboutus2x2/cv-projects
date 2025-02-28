@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .cube {
+            width: 100px;
+            height: 100px;
+            /* border: 5px solid #f00; */
+            position: absolute;
+            top: 200px;
+            left: 300px;
+
+            /* 开启3变换 */
+            transform-style: preserve-3d;
+            /* 灭点 */
+            perspective: 25000000px;
+            perspective-origin: center center;
+
+            position: relative;
+
+            /* 过渡 */
+            transition: all 1s;
+
+            /* 初始状态 */
+            transform: rotateX(0deg);
+        }
+
+        /* 鼠标悬停时 */
+        .cube:hover {
+            /* 结束动画状态 */
+            transform: rotateX(-90deg);
+        }
+
+        .face {
+            width: 100px;
+            height: 100px;
+            color: #fff;
+            font-weight: bolder;
+            font-size: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .front {
+            background-color: pink;
+            transform: translateZ(50px);
+        }
+
+        .up {
+            background-color: #0f0;
+            transform: translateY(-50px) rotateX(90deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cube">
+        <div class="face front">牛</div>
+        <div class="face up">逼</div>
+    </div>
+</body>
+
+</html>
