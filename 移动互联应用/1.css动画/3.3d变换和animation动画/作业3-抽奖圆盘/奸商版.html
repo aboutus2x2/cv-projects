@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pan-container {
+            position: relative;
+        }
+
+        .pan {
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            border: 10px solid #b39558;
+            background-color: #404443;
+            position: relative;
+
+            transition: all 2s;
+            transform: rotate(0deg);
+        }
+
+        .line {
+            width: 4px;
+            height: 400px;
+            background-color: #b39558;
+            position: absolute;
+            top: 0;
+            left: calc(50% - 2px);
+        }
+
+        .rewards {
+            width: 100px;
+            height: 200px;
+            /* border: 5px solid #f00; */
+            position: absolute;
+            top: 0;
+            left: calc(50% - 50px);
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            transform-origin: center bottom;
+        }
+
+        .cry {
+            position: relative;
+            top: -50px;
+        }
+
+        .words {
+            color: #b39558;
+            font-weight: bolder;
+            font-size: 18px;
+            text-align: center;
+            position: relative;
+            top: -50px;
+        }
+
+        .btn {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid #000;
+            background-color: #b39558;
+            box-sizing: border-box;
+            position: absolute;
+            top: calc(50% - 75px);
+            left: calc(50% - 75px);
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            color: #fff;
+            font-size: 24px;
+        }
+
+        .pointer {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 30px 16px;
+            border-color: transparent transparent #000 transparent;
+            position: absolute;
+            top: -62px;
+            left: 54px;
+        }
+
+        .pointer::before {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 25px 12px;
+            border-color: transparent transparent #b39558 transparent;
+            position: absolute;
+            top: -16px;
+            left: -12px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pan-container">
+        <div class="pan">
+            <div class="rewards">
+                <!-- 哭脸 -->
+                <!-- <img class="cry" src="./img/cry.png" alt=""> -->
+                <!-- 奖金 -->
+                <div class="words">
+                    <div>5</div>
+                    <div>元话费</div>
+                </div>
+            </div>
+        </div>
+        <!-- 抽奖按钮 -->
+        <div class="btn">
+            <div>开始抽奖</div>
+            <div>START</div>
+
+            <div class="pointer"></div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const pan = document.querySelector('.pan')
+    const btn = document.querySelector('.btn')
+
+    // 奖金池
+    let pool = [
+        {
+            money: 0,
+            // 起始角度
+            start: 0,
+            // 结束角度
+            end: 30,
+            // 权重
+            weight: 5
+        },
+        {
+            money: 5,
+            start: 30,
+            end: 60,
+            weight: 1
+        },
+        {
+            money: 10,
+            weight: 1
+        },
+        {
+            money: 0,
+            weight: 5
+        },
+        {
+            money: 2,
+            weight: 3
+        },
+        {
+            money: 1,
+            weight: 3
+        },
+        {
+            money: 0,
+            weight: 5
+        },
+        {
+            money: 2,
+            weight: 3
+        },
+        {
+            money: 8,
+            weight: 2
+        },
+        {
+            money: 0,
+            weight: 5
+        },
+        {
+            money: 3,
+            weight: 1
+        },
+        {
+            money: 100,
+            weight: 100
+        },
+    ]
+
+    // 总重量
+    let total = 0
+
+    // 循环奖金池设置每一个的属性
+    pool.forEach((reward, i) => {
+        reward.start = i * 30
+        reward.end = i * 30 + 30
+
+
+
+        // 奖品权重的起始值
+        reward.startW = total
+        // 权重的结束值
+        reward.endW = total + reward.weight
+
+        // 计算总重量
+        total += reward.weight
+
+    })
+
+    console.log(pool);
+    console.log(total);
+
+
+    // 画线
+    function drawLine() {
+        let html = ''
+        for (let i = 0; i < 6; i++) {
+            html += `<div class="line" style="transform: rotate(${i * 30}deg);"></div>`
+        }
+        pan.innerHTML = html
+    }
+
+    // 画奖金
+    function drawRewards() {
+        let html = ''
+        for (let i = 0; i < pool.length; i++) {
+            const reward = pool[i];
+            html += `
+                <div class="rewards" style="transform: rotate(${-15 - i * 30}deg)">
+                    ${reward.money === 0 ? `<img class="cry" src="./img/cry.png">` : `
+                        <div class="words">
+                            <div>${reward.money}</div>
+                            <div>元话费</div>
+                        </div>
+                    `}
+                </div>
+            `
+        }
+        pan.innerHTML += html
+    }
+
+    drawLine()
+    drawRewards()
+
+    // 当前圆盘旋转的角度
+    let d = 0
+    // 中将奖品
+    let reward
+
+    btn.addEventListener('click', () => {
+
+        // 随机奖品
+        let rand = Math.random() * total
+        // 找到随机重量落在哪个奖品
+        reward = pool.find(reward => rand >= reward.startW && rand < reward.endW)
+        console.log(reward);
+        // 计算旋转角度
+        // 叠加一个当前角度的360度的补角
+        let b = 360 - d % 360
+        d += b
+        // 随机一个对应奖品的起始角度到结束角度之间的数字
+        rand = reward.start + Math.random() * (reward.end - reward.start)
+        d += rand
+
+        // 赋值圆盘角度
+        pan.style.transform = `rotate(${d}deg)`
+    })
+
+    // 旋转动画播放结束后
+    pan.addEventListener('transitionend', () => {
+        // 显示奖品金额
+        alert(reward.money)
+    })
+</script>
+
+</html>
