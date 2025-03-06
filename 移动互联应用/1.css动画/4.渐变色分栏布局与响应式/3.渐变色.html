@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .p {
+            height: 300px;
+            /* 参考：https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient */
+            background-color: yellow;
+            /* 线性渐变色 */
+            /* 注意：渐变色的值，适用于 background-image 属性，而不是 background-color */
+            /* linear-gradient
+                第一个参数: 渐变的方向，也可以是个角度值
+                默认方向为: to bottom
+                后续颜色参数可以追加一个距离值
+            */
+            /* background-image: linear-gradient(to right, red, yellow 100px, green 200px); */
+            background-image: linear-gradient(30deg, red, red 100px, blue 100px, blue 200px, black 200px);
+
+            /* 径向渐变 */
+            background-image: radial-gradient(red, yellow);
+            background-image: radial-gradient(red, red 100px, yellow 100px, yellow 200px, black 200px);
+
+            /* 重复线性渐变 */
+            background-image: repeating-linear-gradient(to right, black, black 50px, white 50px, white 100px);
+
+            /* 重复径向渐变 */
+            background-image: repeating-radial-gradient(red, red 50px, yellow 50px, yellow 100px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="p"></div>
+</body>
+
+</html>
