@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .box1 {
+            height: 150px;
+            background-image: repeating-linear-gradient(to right, #000, #000 5%, #fff 5%, #fff 10%);
+            animation: box1-move 3s linear infinite;
+        }
+
+        @keyframes box1-move {
+            from {
+                background-position-x: 0;
+            }
+
+            to {
+                background-position-x: 100vw;
+            }
+        }
+
+        .box2 {
+            display: grid;
+            grid-template-columns: 100px 100px 100px;
+            grid-template-rows: repeat(3, 100px);
+        }
+
+        .pan {
+            background-image: radial-gradient(red, yellow, blue, #0f0);
+        }
+
+        .box3 {
+            height: 150px;
+            background-image: linear-gradient(to right, #000 0px, #f00 100px, #000 200px);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1"></div>
+    <div class="box2">
+        <div class="pan"></div>
+        <div class="pan"></div>
+        <div class="pan"></div>
+        <div class="pan"></div>
+        <div class="pan"></div>
+        <div class="pan"></div>
+        <div class="pan"></div>
+        <div class="pan"></div>
+        <div class="pan"></div>
+    </div>
+    <div class="box3"></div>
+</body>
+<script>
+    const box = document.querySelector('.box3')
+    box.addEventListener('mousemove', ev => {
+        console.log(ev);
+        // 鼠标横坐标
+        let x = ev.offsetX
+        // 计算x的界限
+        x = Math.max(Math.min(x, box.clientWidth - 100), 100)
+        // 设置渐变色的背景图
+        box.style.backgroundImage = `linear-gradient(to right, #000 ${x - 100}px, #f00 ${x}px, #000 ${x + 100}px)`
+    })
+</script>
+
+</html>
