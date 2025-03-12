@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 参考地址：https://developer.mozilla.org/zh-CN/docs/Web/CSS/@media */
+        /* https://developer.mozilla.org/zh-CN/docs/Web/CSS/Media_Queries/Using_media_queries */
+
+        /* 响应式是什么？
+            当某个事情发生后，立即做出反应就叫响应式
+            此处我们讨论的是页面的响应式
+        */
+
+        /* 什么是页面的响应式？
+            页面的元素样式会根据页面的宽度做出变化
+        */
+
+        /* 如何实现响应式？ */
+        /* 使用媒体查询，来实现响应式布局 */
+        /* 媒体查询的作用：当媒体查询条件成立时，将应用花括号中代码块的样式 */
+
+        /* 语法：@media media-type and (condition1) and (condition2) */
+
+        /* 媒体类型 media-type：
+            备选项
+            all: 所有设备
+            print：打印机的预览模式
+            screen：显示屏
+            speech：语音合成器
+         */
+        /* min-width: 屏幕最小宽度 */
+        @media screen and (min-width: 700px) {
+            .box {
+                background-color: #f00 !important;
+            }
+        }
+
+        /* max-width: 屏幕最大宽度 */
+        @media screen and (max-width: 1000px) {
+            .box {
+                background-color: #00f !important;
+            }
+        }
+
+        .box {
+            height: 300px;
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+<script>
+
+</script>
+
+</html>
