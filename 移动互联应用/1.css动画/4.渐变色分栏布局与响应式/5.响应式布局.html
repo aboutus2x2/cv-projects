@@ -56,7 +56,7 @@
             font-size: 32px;
         }
 
-        @media (prefers-color-scheme: dark) {
+        /* @media (prefers-color-scheme: dark) {
             .box2 {
                 background-color: #000;
                 color: #fff;
@@ -68,6 +68,23 @@
                 background-color: #ff0;
                 color: #000;
             }
+        } */
+
+        /* 规定默认的主题样式 */
+        :root {
+            --theme-background-color: #ff0;
+            --theme-color: #000;
+        }
+
+        .box2 {
+            background-color: var(--theme-background-color);
+            color: var(--theme-color);
+        }
+
+        /* 声明深色模式下的样式 */
+        .dark-mode {
+            --theme-background-color: #000;
+            --theme-color: #fff;
         }
     </style>
 </head>
@@ -75,10 +92,16 @@
 <body>
     <div class="box"></div>
     <div class="box2">hello world</div>
+    <button class="toggle-theme">切换主题</button>
 </body>
 
 <script>
-
+    const btn = document.querySelector('.toggle-theme')
+    btn.addEventListener('click', () => {
+        // document.documentElement 指的是 html 标签
+        // classList.toggle 开关类名，若不存在就添加，否则就删除类名
+        document.documentElement.classList.toggle('dark-mode')
+    })
 </script>
 
 </html>
