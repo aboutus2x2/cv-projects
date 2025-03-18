@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            color: var(--theme-color);
+            background-color: var(--theme-background-color);
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .side-bar {
+            width: 200px;
+            height: 100vh;
+            border-right: 5px solid var(--theme-border-color);
+        }
+
+        .side-bar>div {
+            padding: 16px;
+            border-bottom: 5px solid var(--theme-border-color);
+            font-size: 32px;
+            text-align: center;
+        }
+
+
+        .side-bar-mini {
+            display: none;
+            width: 64px;
+            height: 100vh;
+            border-right: 5px solid var(--theme-border-color);
+        }
+
+        .side-bar-mini>div {
+            padding: 16px;
+            border-bottom: 5px solid var(--theme-border-color);
+            font-size: 32px;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 700px) {
+            .side-bar {
+                display: none;
+            }
+
+            .side-bar-mini {
+                display: block;
+            }
+        }
+
+        /* 规定主题相关参数 */
+        :root {
+            --theme-background-color: #fff;
+            --theme-color: #000;
+            --theme-border-color: #000;
+        }
+
+        .toggle-theme {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+        }
+
+        /* 暗色主题样式 */
+        .dark-mode {
+            --theme-background-color: #000;
+            --theme-color: #fff;
+            --theme-border-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="side-bar">
+        <div>首页</div>
+        <div>咨询</div>
+        <div>视频</div>
+    </div>
+    <div class="side-bar-mini">
+        <div>首</div>
+        <div>咨</div>
+        <div>视</div>
+    </div>
+    <button class="toggle-theme">切换主题</button>
+</body>
+
+<script>
+    const btn = document.querySelector('.toggle-theme')
+    btn.addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark-mode');
+    })
+</script>
+
+</html>
