@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .left {
+            width: 500px;
+            height: 400px;
+            background-color: #f00;
+            margin-right: 8px;
+        }
+
+        .right {
+            flex-grow: 1;
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px 8px;
+        }
+
+        .content {
+            background-color: #00f;
+        }
+
+        @media screen and (max-width: 1000px) {
+            .right {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .rest {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 布局容器 -->
+    <div class="container">
+        <div class="left"></div>
+        <div class="right">
+            <div class="content"></div>
+            <div class="content"></div>
+            <div class="content"></div>
+            <div class="content"></div>
+            <div class="content rest"></div>
+            <div class="content rest"></div>
+        </div>
+    </div>
+</body>
+
+</html>
