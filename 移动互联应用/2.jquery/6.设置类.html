@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box active"></div>
+    <div class="box active"></div>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+
+    let $boxs = $('.box')
+
+    // 添加类
+    $boxs.addClass('my-box')
+
+    // 删除类
+    $boxs.removeClass('active')
+
+    // 判断是否存在某个类
+    console.log($boxs.hasClass('box'));
+    console.log($boxs.hasClass('active'));
+
+    // 开关类
+    $boxs.toggleClass('box2')
+
+
+</script>
+
+</html>

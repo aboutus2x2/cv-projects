@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 150px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" style="height: 200px; background-color: #f00;"></div>
+    <div class="box" style="background-color: #ff0"></div>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+
+    // 参考：https://www.jquery123.com/css/
+
+    let $boxs = $('.box')
+
+    // 使用css函数来设置和读取样式
+
+    // 读取样式
+    console.log($boxs.css('width'));
+    console.log($boxs.css('height'));
+
+    // 读取多个样式
+    console.log($boxs.css(['width', 'height']));
+
+
+    // 设置样式
+    // $boxs.css('background-color', '#f00')
+
+    // 通过函数设置样式
+    $boxs.css('background-color', function (index, value) {
+        // 当前成员的索引
+        console.log(index);
+        // 当前元素的对应属性值
+        console.log(value);
+
+        // 返回一个新的属性值
+        return index % 2 === 0? '#0f0': '#00f'
+    })
+
+
+</script>
+
+</html>

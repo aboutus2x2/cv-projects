@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-bottom: 15px;
+        }
+
+        .box-yellow {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+    // 创建元素
+    let $box = $(`<div class="box box-yellow"></div>`)
+    console.log($box);
+
+    // 查找被插入的元素对象
+    let $body = $(document.body)
+    let $box2 = $('.box:nth-child(2)')
+    console.log($box2);
+
+    // append
+    // prepend
+    // 在元素内追加另一个元素
+    $body.append($box)
+    $body.prepend($box)
+
+    // appendTo
+    // prependTo
+    // 将一个元素插入到另一个元素的子节点中
+    $box.appendTo($body)
+    $box.prependTo($body)
+
+    // after
+    // before
+    // 一个元素的后面或前面添加另一个元素
+    $box2.after($box)
+    $box2.before($box)
+
+    // insertAfter
+    // insertBefore
+    // 一个元素被插入到另一个元素的前或后面
+    $box.insertAfter($box2)
+    $box.insertBefore($box2)
+
+
+</script>
+
+</html>
