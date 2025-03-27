@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 150px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+    let $box = $('.box')
+
+    // 给jquery对象绑定事件时，直接调用该事件名称对应的函数
+    // $box.click(function (ev) {
+    //     console.log(ev);
+    //     console.log('click');
+    // })
+
+    // $box.mousemove(function (ev) {
+    //     console.log(ev);
+    //     console.log('move');
+    // })
+
+    // $box.mouseenter(function (ev) {
+    //     console.log('enter');
+    // })
+
+    // 手动触发事件
+    // $box.click()
+    // $box.mouseenter()
+
+    // 使用 on 函数绑定事件
+    const click1 = function (ev) {
+        console.log('click1');
+        console.log(ev);
+    }
+    $box.on('click', click1)
+
+    $box.on('click', function (ev) {
+        console.log('click2');
+        console.log(ev);
+    })
+
+    // 使用 off 解绑事件
+    // 如果只写一个参数，会解绑所有的对应事件
+    // $box.off('click')
+    $box.off('click', click1)
+
+
+    // 使用 one 函数，可以让绑定的事件只触发一次
+    // $box.one('click', (ev) => {
+    //     console.log('one click');
+    //     console.log(ev);
+    // })
+
+    $box[0].addEventListener('click', function () {
+        console.log('one click');
+        $box[0].removeEventListener('click', arguments.callee)
+    })
+
+    // 页面加载完成事件
+    $(function () {
+        console.log('load');
+    })
+
+</script>
+
+</html>
