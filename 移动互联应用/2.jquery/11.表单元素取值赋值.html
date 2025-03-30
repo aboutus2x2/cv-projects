@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form>
+        <div><label>姓名: <input name="name" /></label></div>
+        <div>性别:
+            <label><input type="radio" name="sex" value="male" />男</label>
+            <label><input type="radio" name="sex" value="female" />女</label>
+            <label><input type="radio" name="sex" value="other" checked />其他</label>
+        </div>
+        <div>爱好:
+            <label><input type="checkbox" name="hobbies" value="dlq" />打篮球</label>
+            <label><input type="checkbox" name="hobbies" value="tzq" />踢足球</label>
+            <label><input type="checkbox" name="hobbies" value="ymq" />羽毛球</label>
+        </div>
+        <div><label>部门:
+                <select name="dep">
+                    <option value="" selected disabled>请选择</option>
+                    <option value="it">IT部</option>
+                    <option value="hr">人事部</option>
+                    <option value="ec">行政部</option>
+                </select>
+            </label></div>
+        <div>
+            <label>简介：<textarea name="desc"></textarea></label>
+        </div>
+        <button>提交</button>
+    </form>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+    const $btn = $('form button')
+    const $name = $('input[name=name]')
+    const $sexs = $('input[name=sex]')
+    const $dep = $('select[name=dep]')
+    const $desc = $('textarea[name=desc]')
+    const $hobbies = $('input[name=hobbies]')
+
+
+    // 用于回显的数据
+    let user = {
+        name: '李四',
+        sex: 'female',
+        hobbies: ['ymq', 'tzq'],
+        dep: 'hr',
+        desc: '这是一个\n英雄的母亲'
+    }
+
+
+    // 声明一个变量来保存选项值
+    let sex = 'other'
+    // 用来保存选项的数组
+    let hobbies = []
+
+    // 绑定元素变化事件
+    $sexs.on('change', ev => {
+        console.log(ev);
+        // ev.target 触发事件的dom对象
+        // 保存当前选择的元素值
+        sex = ev.target.value
+    })
+
+    $hobbies.on('change', ev => {
+        console.log(ev);
+        // ev.target 触发事件的dom对象
+        // 通过 checked 属性来判断是否勾选元素
+        console.log(ev.target.checked);
+        if (ev.target.checked) {
+            // 判断数组中是否存在选项值
+            if (!hobbies.includes(ev.target.value)) hobbies.push(ev.target.value)
+        } else {
+            // 判断数组中是否存在选项值，存在就删除掉
+            let i = hobbies.findIndex(hobby => hobby === ev.target.value)
+            if (i !== -1) hobbies.splice(i, 1)
+        }
+    })
+
+    // 点击事件
+    $btn.click(function (ev) {
+        // 屏蔽默认事件行为
+        ev.preventDefault()
+
+        // 读值
+        console.log($name.val());
+
+        console.log(sex);
+
+        console.log($dep.val())
+
+        console.log($desc.val());
+
+        console.log(hobbies);
+    })
+
+    $(function () {
+        // 数据回显
+        $name.val(user.name)
+        // 回显性别
+        sex = user.sex
+        $sexs.each((index, element) => {
+            if (element.value === sex) element.checked = true
+        })
+        // 回显爱好
+        hobbies = user.hobbies
+        $hobbies.each((index, element) => {
+            // 判断数组中是否包含当前元素的value值
+            if (hobbies.includes(element.value)) element.checked = true
+        })
+
+        $dep.val(user.dep)
+        $desc.val(user.desc)
+    })
+</script>
+
+</html>
