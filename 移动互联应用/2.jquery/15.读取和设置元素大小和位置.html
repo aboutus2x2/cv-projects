@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            width: 500px;
+            height: 500px;
+            background-color: aqua;
+            position: absolute;
+            top: 50px;
+            left: 150px;
+        }
+
+        .box {
+            width: 100px;
+            height: 150px;
+            padding: 50px;
+            background-color: red;
+
+            border: 50px solid black;
+
+            position: absolute;
+            top: 50px;
+            left: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="box"></div>
+    </div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    let $box = $('.box')
+    let $container = $('.container')
+
+    // 位置
+
+    // position 函数可以获得定位属性的 top 和 left 的值
+    console.log($box.position());
+    console.log($container.position());
+
+    // offset 函数可以获得相对于窗口的绝对坐标
+    console.log($box.offset());
+    console.log($container.offset());
+
+
+    // 宽高
+    // 函数参数可以直接赋值
+    console.log($box.width());
+    console.log($box.height());
+
+    // $box.width(200)
+
+    // 包含边框在内的宽高
+    console.log($box.outerWidth());
+    console.log($box.outerHeight());
+
+    // $box.outerWidth(100)
+
+    // 包含内边距的宽高
+    console.log($box.innerWidth());
+    console.log($box.innerHeight());
+
+    // $box.innerWidth(50)
+</script>
+
+</html>

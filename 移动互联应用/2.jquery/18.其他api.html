@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="other box-list">
+        <div class="box-list">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box"><span>4</span></div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+        </div>
+    </div>
+</body>
+<script src="./js/jquery.js"></script>
+<script>
+    let $boxs = $('.box')
+
+    let $box2 = $('.box:nth-child(2)')
+    // index() 查询某个节点在集合中的索引
+    console.log($boxs.index($box2));
+
+    // find() 查询某个节点的后代节点
+
+    let boxList = document.querySelector('.box-list')
+    let box3 = boxList.querySelector('.box:nth-child(3)')
+    console.log(box3);
+
+    console.log($('.box-list').find('.box:nth-child(3)'));
+
+    // closest 查询最近的父节点
+    console.log($box2.closest('.box-list'));
+
+</script>
+
+</html>
