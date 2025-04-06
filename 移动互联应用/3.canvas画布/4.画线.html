@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+
+<script>
+    // 获取画布
+    let c = document.querySelector('canvas')
+    let ctx = c.getContext('2d')
+
+    // 修改笔头宽度
+    ctx.lineWidth = 20
+
+    // 画线之前要开启路径
+    ctx.beginPath()
+
+    // 移动笔头
+    ctx.moveTo(100, 50)
+    // 绘制直线路径
+    ctx.lineTo(200, 50)
+    ctx.lineTo(200, 300)
+    // ctx.lineTo(100, 50)
+
+    // 闭合路径
+    ctx.closePath()
+
+    // 根据路径绘图
+    // 绘制镂空线
+    ctx.stroke()
+    // 绘制填充图形
+    // ctx.fill()
+
+
+    ctx.beginPath()
+    ctx.moveTo(250, 250)
+
+    // 绘制弧形
+    // 第一个和第二个参数: 圆心坐标
+    // 第三个参数: 圆半径
+    // 第四个和第五个参数: 起始弧度和结束弧度
+    // 0 度代表水平向右
+    // 正方向为顺时针
+    ctx.arc(250, 250, 250, Math.PI / 180 * 30, Math.PI)
+
+    ctx.closePath()
+    
+    ctx.stroke()
+    // ctx.fill()
+</script>
+
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+
+<script>
+    // 获取画布
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // 修改填充色
+    ctx.fillStyle = '#ff0'
+
+    // 绘制填充颜色的矩形
+    // rectangle 矩形
+    // 第一个和第二个参数代表矩形左上角的坐标
+    // 第三个和第四个参数是矩形的宽高
+    ctx.fillRect(100, 50, 200, 100)
+
+
+    // 修改镂空描边的颜色
+    ctx.strokeStyle = '#f00'
+
+    // 绘制镂空矩形
+    ctx.strokeRect(100, 300, 200, 100)
+
+    // 清空画布
+    ctx.clearRect(0, 0, 500, 500)
+</script>
+
+</html>
