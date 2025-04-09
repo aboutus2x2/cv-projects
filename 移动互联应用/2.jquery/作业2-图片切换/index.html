@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btns {
+            display: flex;
+        }
+
+        .btn {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #808080;
+        }
+
+        .btn.active {
+            background-color: #ffa600;
+        }
+
+        img {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <img src="./img/1-1.png" alt="">
+    </div>
+    <div class="btns">
+        <div class="btn active"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+        <div class="btn"></div>
+    </div>
+</body>
+<script src="../js/jquery.js"></script>
+<script>
+    // 当前图片采用的索引
+    let currentIndex = 0
+    // 所有图片的数组
+    // let srcs = ['./img/1-1.png', './img/2-2.png', './img/3-3.png', './img/4-4.png', './img/5-5.png', './img/6-6.png', './img/7-7.png']
+
+    // 查询元素
+    let $img = $('img')
+    let $btns = $('.btn')
+
+    $img.on('click', () => {
+
+        // 去掉当前索引对应按钮的active
+        $btns.eq(currentIndex).removeClass('active')
+
+        // 递增索引
+        currentIndex++
+        // 使用模运算来定界
+        // currentIndex %= srcs.length
+        currentIndex %= $btns.length
+        // 修改图片src
+        // $img.attr('src', srcs[currentIndex])
+        $img.attr('src', `./img/${currentIndex + 1}-${currentIndex + 1}.png`)
+
+        // 点亮当前按钮
+        $btns.eq(currentIndex).addClass('active')
+    })
+
+    $btns.on('click', (ev) => {
+
+        // 去掉当前索引对应按钮的active
+        $btns.eq(currentIndex).removeClass('active')
+
+        // 查询被点击按钮的索引
+        currentIndex = $btns.index($(ev.target))
+        console.log(currentIndex);
+        // 赋值图片src
+        // $img.attr('src', srcs[currentIndex])
+        $img.attr('src', `./img/${currentIndex + 1}-${currentIndex + 1}.png`)
+
+        // 点亮当前按钮
+        $btns.eq(currentIndex).addClass('active')
+    })
+</script>
+
+</html>

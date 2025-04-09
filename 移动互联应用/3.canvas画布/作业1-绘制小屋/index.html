@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+<script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // 房屋的参数对象
+    let house = {
+        // 坐标
+        position: {
+            x: 100,
+            y: 100
+        },
+        // 房顶
+        roof: {
+            width: 200,
+            height: 80
+        },
+        // 房体
+        body: {
+            width: 160,
+            height: 100
+        },
+        // 门
+        door: {
+            width: 40,
+            height: 60
+        },
+    }
+
+    // 笔宽
+    ctx.lineWidth = 10
+
+    // 画房顶
+    ctx.beginPath()
+    // 屋的顶点
+    ctx.moveTo(house.position.x + house.roof.width * 0.5, house.position.y)
+    ctx.lineTo(house.position.x, house.position.y + house.roof.height)
+    ctx.lineTo(house.position.x + house.roof.width, house.position.y + house.roof.height)
+    ctx.closePath()
+    ctx.stroke()
+
+    // 画房体
+    ctx.strokeRect(
+        house.position.x + house.roof.width * 0.5 - house.body.width * 0.5,
+        house.position.y + house.roof.height,
+        house.body.width,
+        house.body.height
+    )
+
+    // 画门
+    ctx.fillRect(
+        house.position.x + house.roof.width * 0.5 - house.door.width * 0.5,
+        house.position.y + house.roof.height + (house.body.height - house.door.height),
+        house.door.width,
+        house.door.height
+    )
+</script>
+
+</html>

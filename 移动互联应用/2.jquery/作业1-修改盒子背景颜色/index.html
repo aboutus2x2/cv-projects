@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box-container {
+            display: flex;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- 按钮携带颜色值 -->
+        <button color="#f00">红色</button>
+        <button color="#0f0">绿色</button>
+        <button color="#00f">蓝色</button>
+        <button color="#ff0">黄色</button>
+    </div>
+    <div class="box-container">
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+<script src="../js/jquery.js"></script>
+<script>
+    // 颜色值
+    let color = 'transparent'
+
+    // 查询所有按钮
+    let $btns = $('button')
+    // 查询所有盒子
+    let $boxs = $('.box')
+
+    // 给所有按钮绑定点击事件
+    $btns.on('click', ev => {
+        // 读取color属性并保存到变量中
+        color = $(ev.target).attr('color')
+    })
+
+    $boxs.on('click', ev => {
+        $(ev.target).css('background-color', color)
+    })
+</script>
+
+</html>
