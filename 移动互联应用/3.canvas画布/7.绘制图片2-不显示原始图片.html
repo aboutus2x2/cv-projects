@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+
+<script>
+    const c = document.querySelector('canvas')
+    const ctx = c.getContext('2d')
+
+    // 创建图片标签
+    // let img = document.createElement('img')
+    // img.src = './img/cover.png'
+    // img.addEventListener('load', () => {
+    //     // 加载完成后才能画图
+    //     console.log('load');
+    //     ctx.drawImage(img, 0, 0)
+    // })
+
+
+    // 创建图片类型的实例
+    let img = new Image()
+    img.src = './img/cover.png'
+    img.addEventListener('load', () => {
+        console.log('load');
+        ctx.drawImage(img, 0, 0)
+    })
+</script>
+
+</html>
