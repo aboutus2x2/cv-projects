@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 5px solid pink;
+        }
+
+        .frame {
+            display: inline-block;
+            position: relative;
+        }
+
+        .glass {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0.2;
+        }
+
+        .cover {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="frame">
+        <img width="576" src="./img.jpg" alt="">
+        <!-- 放大镜 -->
+        <div class="glass"></div>
+        <div class="cover"></div>
+    </div>
+    <div>
+        <canvas width="500" height="500"></canvas>
+    </div>
+</body>
+<script>
+    // 图片的缩放率
+    let rate = 0.2
+
+    // 图片上的遮罩
+    const cover = document.querySelector('.cover')
+    // 放大镜
+    const glass = document.querySelector('.glass')
+    // 获取画布
+    const c = document.querySelector('canvas')
+    const ctx = c.getContext('2d')
+    const img = document.querySelector('img')
+
+    img.addEventListener('load', () => {
+        // 图片加载完成后，添加鼠标移动事件
+        cover.addEventListener('mousemove', ev => {
+            // 获取鼠标坐标
+            let x = ev.offsetX - 50
+            let y = ev.offsetY - 50
+
+            x = clamp(x, 0, 2880 * rate - 100)
+            y = clamp(y, 0, 1800 * rate - 100)
+
+            // 设置方块坐标
+            glass.style.left = x + 'px'
+            glass.style.top = y + 'px'
+
+            // 绘制canvas
+            ctx.clearRect(0, 0, 500, 500)
+            // 画图
+            ctx.drawImage(img, x / rate, y / rate, 100 / rate, 100 / rate, 0, 0, 500, 500)
+        })
+    })
+
+
+    function clamp(value, min, max) {
+        return Math.max(Math.min(value, max), min)
+    }
+</script>
+
+</html>
