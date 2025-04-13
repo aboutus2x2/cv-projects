@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+<script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // 盒子参数
+    let box = {
+        width: 50,
+        height: 80,
+        // 坐标
+        position: { x: 0, y: 0 },
+        // 速度(单位:px/f)
+        v: { x: 1, y: 2 }
+    }
+
+    // 动画循环
+    setInterval(() => {
+        // 动画逻辑
+        // 计算对应速度下的新坐标
+        box.position.x += box.v.x
+        box.position.y += box.v.y
+
+        // 画图
+        // 清空画布
+        ctx.clearRect(0, 0, 500, 500)
+        // 绘制方块
+        ctx.fillRect(box.position.x, box.position.y, box.width, box.height)
+    }, 16.667)
+</script>
+
+</html>

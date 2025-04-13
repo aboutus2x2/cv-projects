@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+<script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // 当前扇形旋转的角度
+    let deg = 0
+
+    // 动画循环
+    // setInterval(() => {
+    //     // 动画逻辑
+    //     deg += 1
+
+    //     // 画图
+    //     // 清空画布
+    //     ctx.clearRect(0, 0, 500, 500)
+    //     ctx.beginPath()
+    //     ctx.moveTo(250, 250)
+    //     ctx.arc(250, 250, 200, Math.PI / 180 * deg, Math.PI / 180 * (deg + 15))
+    //     ctx.closePath()
+    //     ctx.fill()
+    // }, 16.667)
+
+    setInterval(() => {
+        // 动画逻辑
+        deg += 1
+        // 画图
+        drawPie()
+    }, 16.667)
+    // drawPie()
+
+
+
+    // 画雷达
+    function drawPie() {
+        // 每个扇形的角度
+        let angle = 0
+        // 扇形的透明度
+        let opacity = 1
+        // 每个扇形的夹角
+        let space = 5
+
+        ctx.fillStyle = '#000'
+        ctx.fillRect(0, 0, 500, 500)
+
+        draw()
+
+        // 画一份扇形
+        function draw() {
+            // 修改饼图颜色
+            ctx.fillStyle = `rgba(0,255,0,${opacity})`
+            // 规划路径
+            ctx.beginPath()
+            ctx.moveTo(250, 250)
+            ctx.arc(250, 250, 200, Math.PI / 180 * (deg - (angle + space)), Math.PI / 180 * (deg - angle))
+            ctx.closePath()
+            ctx.fill()
+
+            opacity -= 0.02
+            angle += space
+
+            if (opacity > 0) draw()
+        }
+    }
+</script>
+
+</html>
