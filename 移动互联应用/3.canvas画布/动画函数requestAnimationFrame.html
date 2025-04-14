@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        canvas {
+            border: 1px solid #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas width="500" height="500"></canvas>
+</body>
+<script>
+    const canvas = document.querySelector('canvas')
+    const ctx = canvas.getContext('2d')
+
+    // 动画目标: 将一个 50 x 50 的方块，以每秒 100px 的速度 向右移动
+
+    // requestAnimationFrame 请求动画的下一帧
+    // 参数是一帧之后的回调函数
+    requestAnimationFrame(render)
+
+    // 上一次动画时长
+    let lastTime = 0
+    // 上一帧到下一帧的间隔时间
+    let deltaTime = 0
+
+    let box = {
+        position: { x: 0, y: 0 },
+        width: 50,
+        height: 50,
+        // 速度: 每秒移动 100px
+        v: 100
+    }
+
+    // time 动画的播放总时长
+    function render(time) {
+
+        // 执行每一帧的逻辑
+
+        // 计算上一帧到这一帧的时间间隔
+        deltaTime = time - lastTime
+        lastTime = time
+        console.log(deltaTime);
+
+        // 速度 * deltaTime = 每帧的速度
+        box.position.x += deltaTime * 0.001 * box.v
+
+
+        // 画图
+        // 清空画布
+        ctx.clearRect(0, 0, 500, 500)
+        ctx.fillRect(box.position.x, box.position.y, box.width, box.height)
+
+        // 循环递归请求下一帧
+        requestAnimationFrame(render)
+    }
+</script>
+
+</html>
