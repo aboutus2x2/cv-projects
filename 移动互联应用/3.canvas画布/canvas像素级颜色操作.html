@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas class="src" width="361" height="245"></canvas>
+    <br />
+    <button>黑白</button>
+    <button>反转</button>
+    <button>灰度</button>
+    <br />
+    <canvas class="target" width="361" height="245"></canvas>
+</body>
+<script>
+    const ctx1 = document.querySelector('.src').getContext('2d')
+    const ctx2 = document.querySelector('.target').getContext('2d')
+    const img = document.createElement('img')
+    img.src = './img/an2.jpg'
+    img.addEventListener('load', () => {
+        ctx1.drawImage(img, 0, 0, img.width, img.height, 0, 0, 361, 245)
+    })
+
+    const btn1 = document.querySelector('button:nth-of-type(1)')
+    const btn2 = document.querySelector('button:nth-of-type(2)')
+    const btn3 = document.querySelector('button:nth-of-type(3)')
+
+    // 灰度公式：g = r*0.299 + g*0.587 + b*0.114
+    // 灰度公式所获得的 g 值，赋值给每个像素点的 rgb 值，这样图像就变成了灰白图
+
+    // 计算 255 一半的值
+    let half = 255 * 0.5
+
+    // 黑白图
+    btn1.addEventListener('click', () => {
+        // 获取图像的像素信息
+        let id = ctx1.getImageData(0, 0, 361, 245)
+        console.log(id);
+        // id.data 每个像素点的信息，是一个数组
+        // 数组中每4个成员是一个像素的信息，代表 rgba 的参数值
+        for (let i = 0; i < id.data.length; i += 4) {
+            // 获取rgb值
+            let r = id.data[i]
+            let g = id.data[i + 1]
+            let b = id.data[i + 2]
+
+            // 计算灰度
+            let gray = r * 0.299 + g * 0.587 + b * 0.114
+
+            if (gray < half) {
+                // 由灰度可知，该像素更趋近于黑色
+                id.data[i] = 0
+                id.data[i + 1] = 0
+                id.data[i + 2] = 0
+            } else {
+                id.data[i] = 255
+                id.data[i + 1] = 255
+                id.data[i + 2] = 255
+            }
+        }
+
+        // 设置图像
+        ctx2.putImageData(id, 0, 0)
+    })
+    // 反转色
+    btn2.addEventListener('click', () => {
+        // 获取图像的像素信息
+        let id = ctx1.getImageData(0, 0, 361, 245)
+        console.log(id);
+        for (let i = 0; i < id.data.length; i += 4) {
+            // 获取rgb值
+            let r = id.data[i]
+            let g = id.data[i + 1]
+            let b = id.data[i + 2]
+
+            // 求 rgb 颜色值 相对于 255 的补值
+            id.data[i] = 255 - r
+            id.data[i + 1] = 255 - g
+            id.data[i + 2] = 255 - b
+        }
+        ctx2.putImageData(id, 0, 0)
+    })
+    // 灰度图
+    btn3.addEventListener('click', () => {
+        // 读取图片信息
+        let id = ctx1.getImageData(0, 0, 361, 245)
+        for (let i = 0; i < id.data.length; i += 4) {
+            // 获取rgb值
+            let r = id.data[i]
+            let g = id.data[i + 1]
+            let b = id.data[i + 2]
+
+            // 计算灰度
+            let gray = r * 0.299 + g * 0.587 + b * 0.114
+
+            // 赋值灰度
+            id.data[i] = gray
+            id.data[i + 1] = gray
+            id.data[i + 2] = gray
+        }
+
+        // 将 imageData 绘制到 ctx2 上
+        ctx2.putImageData(id, 0, 0)
+    })
+</script>
+
+</html>
