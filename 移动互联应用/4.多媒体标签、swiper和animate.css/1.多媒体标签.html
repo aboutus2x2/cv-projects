@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 查看媒体标签的方法： https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLMediaElement -->
+    <!-- 参考 https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video -->
+
+    <!-- 属性
+        width 标签宽度
+        height 标签高度
+        controls 控制面板
+        muted 静音
+        autoplay 自动播放
+        src 媒体源
+        preload 预载模式
+        loop 循环
+        poster 海报
+    -->
+    <!-- 使用自动播放+静音，能实现自动播放的效果 -->
+    <!-- <video width="200" height="200" src="./video/oceans.mp4" controls autoplay muted></video> -->
+
+    <video controls preload="auto" loop poster="./img/1.png">
+        <!-- source 代表视频源 -->
+        <source src="./video/oceans.mp4"></source>
+    </video>
+
+
+
+    <!-- https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/audio -->
+    <!-- 音频播放器 -->
+    <!-- 由于audio和video都属于HTMLMediaElement的实例
+        所以audio的所有使用方法和video一样
+        可以通过 instanceof 来判断一个对象是否是某个类型的实例
+        video instanceof HTMLMediaElement
+    -->
+
+    <!-- source 标签若有多个，那么浏览器会从上至下加载直到某一个被加载成功为止 -->
+
+
+    <!-- 自定义控制器 -->
+    <div>
+        <button class="play">播放</button>
+        <button class="pause">暂停</button>
+        当前时间：<span class="current-time"></span>
+        总时间：<span class="total-time"></span>
+        <input class="inp" /><button class="go-to">跳转到此时间</button>
+        <button class="v-up">音量+</button>
+        <button class="v-down">音量-</button>
+        <button class="muted">静音</button>
+    </div>
+
+    <div>
+        <!-- picture 图片：可以根据不同的媒体查询结果来显示不同图片 -->
+        <!-- picture 中 必须存在一个 img 标签 -->
+
+        <!-- source 标签中有多个待选项时，使用srcset规定资源路径 -->
+        <!-- media 设置媒体查询 -->
+        <!-- 媒体查询的顺序使用min-width由大到小 -->
+
+    </div>
+</body>
+
+<script>
+    let video = document.querySelector('video')
+    let audio = document.querySelector('audio')
+    let playBtn = document.querySelector('.play')
+    let pauseBtn = document.querySelector('.pause')
+    let currentTime = document.querySelector('.current-time')
+    let totalTime = document.querySelector('.total-time')
+    let inp = document.querySelector('.inp')
+    let goTo = document.querySelector('.go-to')
+    let vUp = document.querySelector('.v-up')
+    let vDown = document.querySelector('.v-down')
+    let muted = document.querySelector('.muted')
+
+    // 关于自动播放
+    // 若直接播放媒体资源，将获得一个异常，告诉你浏览器不允许在用户未经允许的请款下自动播放
+    // video.play()
+
+    document.addEventListener('click', () => {
+        // 由于不能直接自动播放，所以需要一个事件触发播放
+
+    })
+
+
+    playBtn.addEventListener('click', () => {
+        // 播放
+        // 获取媒体的总时间
+
+    })
+    pauseBtn.addEventListener('click', () => {
+        // 暂停
+    })
+
+    setInterval(() => {
+        currentTime.innerHTML = video.currentTime
+    }, 1000)
+
+    goTo.addEventListener('click', () => {
+        // 跳转播放时间
+    })
+
+    // 音量加减
+    // 取值范围是0~1
+    vUp.addEventListener('click', () => {
+
+    })
+    vDown.addEventListener('click', () => {
+
+    })
+
+    // 静音与恢复
+    muted.addEventListener('click', () => {
+
+    })
+</script>
+
+</html>
