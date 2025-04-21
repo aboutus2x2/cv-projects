@@ -28,7 +28,8 @@
 
     <video controls preload="auto" loop poster="./img/1.png">
         <!-- source 代表视频源 -->
-        <source src="./video/oceans.mp4"></source>
+        <source src="./video/oceans.mp4">
+        </source>
     </video>
 
 
@@ -41,7 +42,14 @@
         video instanceof HTMLMediaElement
     -->
 
+    <!-- <audio src="./audio/a4.mp3" controls loop></audio> -->
+
     <!-- source 标签若有多个，那么浏览器会从上至下加载直到某一个被加载成功为止 -->
+    <audio controls>
+        <source src="./audio/a4.mp3">
+        <source src="./audio/b4.mp3">
+        <source src="./audio/c4.mp3">
+    </audio>
 
 
     <!-- 自定义控制器 -->
@@ -60,9 +68,14 @@
         <!-- picture 图片：可以根据不同的媒体查询结果来显示不同图片 -->
         <!-- picture 中 必须存在一个 img 标签 -->
 
-        <!-- source 标签中有多个待选项时，使用srcset规定资源路径 -->
-        <!-- media 设置媒体查询 -->
-        <!-- 媒体查询的顺序使用min-width由大到小 -->
+        <picture>
+            <!-- source 标签中有多个待选项时，使用srcset规定资源路径 -->
+            <!-- media 设置媒体查询 -->
+            <!-- 媒体查询的顺序使用min-width由大到小 -->
+            <source srcset="./img/3.png" media="(min-width: 1000px)">
+            <source srcset="./img/2.png" media="(min-width: 700px)">
+            <img src="./img/1.png">
+        </picture>
 
     </div>
 </body>
@@ -80,45 +93,56 @@
     let vDown = document.querySelector('.v-down')
     let muted = document.querySelector('.muted')
 
+    // 可以通过音频类型 Audio 来播放音效
+    let aud = new Audio('./audio/a4.mp3')
+
     // 关于自动播放
     // 若直接播放媒体资源，将获得一个异常，告诉你浏览器不允许在用户未经允许的请款下自动播放
     // video.play()
 
-    document.addEventListener('click', () => {
-        // 由于不能直接自动播放，所以需要一个事件触发播放
+    // setTimeout(() => {
+    //     video.play()
+    // }, 5000)
 
-    })
+    // document.addEventListener('click', () => {
+    //     // 由于不能直接自动播放，所以需要一个事件触发播放
+    //     video.play()
+    // })
 
 
     playBtn.addEventListener('click', () => {
         // 播放
+        video.play()
         // 获取媒体的总时间
-
+        totalTime.innerHTML = video.duration
     })
     pauseBtn.addEventListener('click', () => {
         // 暂停
+        video.pause()
     })
 
     setInterval(() => {
+        // video.currentTime 当前媒体播放的进度时间
         currentTime.innerHTML = video.currentTime
     }, 1000)
 
     goTo.addEventListener('click', () => {
         // 跳转播放时间
+        video.currentTime = Number(inp.value)
     })
 
     // 音量加减
     // 取值范围是0~1
     vUp.addEventListener('click', () => {
-
+        video.volume = Math.min(1, video.volume + 0.1)
     })
     vDown.addEventListener('click', () => {
-
+        video.volume = Math.max(0, video.volume - 0.1)
     })
 
     // 静音与恢复
     muted.addEventListener('click', () => {
-
+        video.muted = !video.muted
     })
 </script>
 
