@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper-bundle.css">
+    <style>
+        .swiper {
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- swiper布局 -->
+    <!-- 布局容器 -->
+    <div class="swiper">
+        <!-- 滚动屏的父元素 -->
+        <div class="swiper-wrapper">
+            <!-- 滑块 -->
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- 分页工具 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</body>
+<script src="./js/swiper-bundle.js"></script>
+<script>
+    // 事件： https://swiperjs.com/swiper-api#events
+    const swiper = new Swiper('.swiper', {
+        speed: 3000,
+        // 使用 on 属性配置事件
+        on: {
+            // 当前激活的 slide 的索引发生变化事件
+            activeIndexChange(swiper) {
+                // swiper.activeIndex 当前被激活的 slide 的索引
+                console.log(swiper.activeIndex);
+            }
+        }
+    })
+
+
+    const handler = swiper => {
+        console.log('click');
+        console.log(swiper);
+    }
+    // 通过on方法绑定事件
+    swiper.on('click', handler)
+
+    // 滚动到底部事件
+    swiper.on('reachEnd', swiper => {
+        console.log('到达底部');
+    })
+
+    // 解绑事件
+    swiper.off('click', handler)
+
+    // 滑块动画播放结束事件
+    swiper.on('slideChangeTransitionEnd', swiper => {
+        console.log('滑块动画播放结束事件');
+    })
+</script>
+
+</html>

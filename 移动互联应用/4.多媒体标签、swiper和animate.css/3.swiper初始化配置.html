@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper-bundle.css" />
+    <style>
+        .swiper {
+            width: 500px;
+            height: 400px;
+            border: 1px solid red;
+        }
+
+        .swiper-wrapper>.swiper-slide:nth-child(1) {
+            background-color: red
+        }
+
+        .swiper-wrapper>.swiper-slide:nth-child(2) {
+            background-color: green
+        }
+
+        .swiper-wrapper>.swiper-slide:nth-child(3) {
+            background-color: blue
+        }
+    </style>
+</head>
+
+<body>
+    <!-- swiper布局 -->
+    <!-- 布局容器 -->
+    <div class="swiper">
+        <!-- 滚动屏的父元素 -->
+        <div class="swiper-wrapper">
+            <!-- 滑块 -->
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- 分页工具 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+</body>
+<script src="./js/swiper-bundle.js"></script>
+<script>
+    // 初始化创建 swiper 对象
+    // 第一个参数：代表swiper容器的选择器
+    // 第二个参数：初始化配置项，是一个json对象
+
+    // 配置项参考地址：https://swiperjs.com/swiper-api#parameters
+    const swiper = new Swiper('.swiper', {
+        // 滚动方向
+        // 带选项： 
+        // horizontal：横向； vertical：纵向
+        direction: 'vertical',
+        // 是否循环
+        loop: false,
+        // 特效
+        effect: 'fade',
+        // 动画播放时长
+        speed: 3000
+    })
+</script>
+
+</html>
