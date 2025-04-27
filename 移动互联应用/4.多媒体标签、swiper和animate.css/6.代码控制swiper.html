@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/swiper-bundle.css">
+    <style>
+        .swiper {
+            width: 600px;
+            height: 400px;
+        }
+
+        .swiper-slide {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 64px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- swiper布局 -->
+    <!-- 布局容器 -->
+    <div class="swiper">
+        <!-- 滚动屏的父元素 -->
+        <div class="swiper-wrapper">
+            <!-- 滑块 -->
+            <div class="swiper-slide">Slide 1</div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <!-- 分页工具 -->
+        <div class="swiper-pagination"></div>
+
+        <!-- 导航按钮 -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+
+        <!-- 滚动条 -->
+        <div class="swiper-scrollbar"></div>
+    </div>
+
+    <div>
+        <button class="slide-next">滑动到下一个</button>
+        <button class="slide-prev">滑动到上一个</button>
+        <button class="slide-over">滑动到最后一个</button>
+    </div>
+</body>
+<script src="./js/swiper-bundle.js"></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+        pagination: {
+            el: '.swiper-pagination'
+        }
+    })
+
+    // 给 swiper 添加 滑动元素
+    swiper.addSlide(1, `<div class="swiper-slide">hello world</div>`)
+
+    // 添加滑块到末尾
+    swiper.appendSlide(`<div class="swiper-slide">append Child</div>`)
+
+    // 删除slide
+    swiper.removeSlide(2)
+
+
+    swiper.on('slideChangeTransitionEnd', (_swiper) => {
+        console.log(_swiper.activeIndex);
+    })
+
+    document.querySelector('.slide-next').addEventListener('click', () => {
+        // 滑动到下一个
+        // 第一个参数: 动画播放时长
+        // 第二个参数: 是否触发动画播放事件
+        swiper.slideNext(3000, false)
+    })
+
+    document.querySelector('.slide-prev').addEventListener('click', () => {
+        // 滑动到上一个
+        // 第一个参数: 动画播放时长
+        // 第二个参数: 是否触发动画播放事件
+        swiper.slidePrev(2000, true)
+    })
+
+    document.querySelector('.slide-over').addEventListener('click', () => {
+        // 滑动到指定位置
+        // 第一个参数: 指定slide的索引
+        // 第二个参数: 动画播放时长
+        // 第三个参数: 是否触发动画播放事件
+        swiper.slideTo(3, 5000, false)
+    })
+
+
+</script>
+
+</html>
