@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/swiper-bundle.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        :root {
+            --animate-duration: 1s;
+        }
+
+        .swiper {
+            width: 320px;
+            height: 486px;
+            background: url(./img/full_bg.png) center center no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            height: 100%;
+            background: url(./img/full_bg.png) no-repeat;
+            background-size: cover;
+            opacity: 0;
+        }
+
+        .container>* {
+            position: absolute;
+        }
+
+        .frame {
+            width: 100%;
+            height: 100%;
+        }
+
+        .frame.active {
+            animation: scale 1s;
+        }
+
+        @keyframes scale {
+            from {
+                transform: scale(2);
+            }
+
+            to {
+                transform: scale(1);
+            }
+        }
+
+        .layer1 {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(./img/big_bg.png) no-repeat center center;
+            background-size: cover;
+            opacity: 0.8;
+        }
+
+        .layer2 {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: url(./img/big_bg.png) no-repeat center center;
+            background-size: cover;
+            transform: scale(1.06);
+        }
+
+        .word {
+            left: 4px;
+            top: 50%;
+        }
+
+        .circle1-1 {
+            top: 41px;
+            left: 8px;
+        }
+
+        .circle1-2 {
+            bottom: 56px;
+            right: -18px;
+        }
+
+        .logo1 {
+            left: calc(50% - 77px);
+            top: 52px;
+        }
+
+        .logo2 {
+            left: calc(50% - 121px);
+            top: 58px;
+        }
+
+        .line1 {
+            left: 18px;
+            top: calc(50% + 75px);
+        }
+
+        .line2 {
+            right: 6px;
+            top: calc(50% - 60px);
+        }
+
+        .circle2 {
+            right: 7px;
+            top: calc(50% + 18px);
+        }
+
+        .trig {
+            bottom: 22px;
+            left: 8px;
+        }
+
+        .title-container {
+            padding: 3px 32px;
+            bottom: 64px;
+            left: calc(50% - 100px);
+        }
+
+        .title-container>.bg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #6543a3ab;
+            border-radius: 15px;
+        }
+
+        .title {
+            color: #fff;
+            font-weight: bolder;
+            font-size: 19px;
+            position: relative;
+        }
+
+        .shadow {
+            bottom: 117px;
+            left: calc(50% - 68px);
+        }
+
+        .human {
+            top: calc(50% - 42px);
+            left: calc(50% - 80px);
+            transform: translateY(290px);
+        }
+
+        .human.active {
+            animation: slideIn 0.8s cubic-bezier(0, 0, 0.43, 0.97) 1s forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(290px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .bgm-btn {
+            position: absolute;
+            z-index: 999;
+            width: 30px;
+            height: 30px;
+            top: 16px;
+            right: 16px;
+        }
+
+        .bgm-btn.active {
+            animation: rotate 1.5s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div style="display: inline-block; position: relative;">
+        <img class="bgm-btn" src="./img/bgmBtn.svg" alt="">
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="container" style="opacity: 1;">
+                        <div class="frame active">
+                            <div class="layer1"></div>
+                            <div class="layer2"></div>
+                        </div>
+                        <img class="word animate__animated animate__flipInX animate__delay-1s" src="./img/word.png"
+                            alt="">
+                        <img class="circle1-1 animate__animated animate__zoomIn animate__delay-1s"
+                            src="./img/circle1.png" alt="">
+                        <div class="title-container">
+                            <div class="bg-left bg animate__animated animate__fadeInLeftBig animate__delay-2s"></div>
+                            <div class="bg-right bg animate__animated animate__fadeInRightBig animate__delay-2s"></div>
+                            <div class="title animate__animated animate__zoomIn animate__delay-3s">易企秀友谊冰球赛</div>
+                        </div>
+                        <img class="circle1-2 animate__animated animate__zoomIn animate__delay-1s"
+                            src="./img/circle1.png" alt="">
+                        <img class="logo2 animate__animated animate__zoomIn animate__delay-2s" src="./img/logo2.png"
+                            alt="">
+                        <img class="logo1 animate__animated animate__flipInX animate__delay-3s" src="./img/logo1.png"
+                            alt="">
+                        <img class="line1 animate__animated animate__fadeInLeftBig animate__delay-3s"
+                            src="./img/line.png" alt="">
+                        <img class="line2 animate__animated animate__fadeInRightBig animate__delay-3s"
+                            src="./img/line.png" alt="">
+                        <img class="circle2 animate__animated animate__zoomIn animate__delay-2s" src="./img/circle2.png"
+                            alt="">
+                        <img class="trig animate__animated animate__zoomIn animate__delay-1s" src="./img/trig.png"
+                            alt="">
+                        <img class="shadow animate__animated animate__bounceInLeft animate__delay-2s"
+                            src="./img/shadow.png" alt="">
+                        <img class="human animate__animated animate__fadeInUpBig animate__delay-1s"
+                            src="./img/human.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="container">
+                        <div class="frame">
+                            <div class="layer1"></div>
+                            <div class="layer2"></div>
+                        </div>
+                        <img class="word" src="./img/word.png" alt="">
+                        <img class="circle1-1" src="./img/circle1.png" alt="">
+                        <div class="title-container">
+                            <div class="bg-left bg"></div>
+                            <div class="bg-right bg"></div>
+                            <div class="title">易企秀友谊冰球赛</div>
+                        </div>
+                        <img class="circle1-2" src="./img/circle1.png" alt="">
+                        <img class="logo2" src="./img/logo2.png" alt="">
+                        <img class="logo1" src="./img/logo1.png" alt="">
+                        <img class="line1" src="./img/line.png" alt="">
+                        <img class="line2" src="./img/line.png" alt="">
+                        <img class="circle2" src="./img/circle2.png" alt="">
+                        <img class="trig" src="./img/trig.png" alt="">
+                        <img class="shadow" src="./img/shadow.png" alt="">
+                        <img class="human" src="./img/human.png" alt="">
+                    </div>
+                </div>
+                <div class="swiper-slide">Slide 3</div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../js/swiper-bundle.js"></script>
+<script>
+    const container = document.querySelectorAll('.container')
+    const frame = document.querySelectorAll('.frame')
+    const word = document.querySelectorAll('.word')
+    const circle1_1 = document.querySelectorAll('.circle1-1')
+    const bgLeft = document.querySelectorAll('.bg-left')
+    const bgRight = document.querySelectorAll('.bg-right')
+    const title = document.querySelectorAll('.title')
+    const circle1_2 = document.querySelectorAll('.circle1-2')
+    const logo2 = document.querySelectorAll('.logo2')
+    const logo1 = document.querySelectorAll('.logo1')
+    const line1 = document.querySelectorAll('.line1')
+    const line2 = document.querySelectorAll('.line2')
+    const circle2 = document.querySelectorAll('.circle2')
+    const trig = document.querySelectorAll('.trig')
+    const shadow = document.querySelectorAll('.shadow')
+    const human = document.querySelectorAll('.human')
+
+
+    const swiper = new Swiper('.swiper', {
+        direction: 'vertical'
+    })
+
+    const audio = new Audio('./img/music.mp3')
+
+    const bgmBtn = document.querySelector('.bgm-btn')
+    bgmBtn.addEventListener('click', () => {
+        if (!bgmBtn.classList.contains('active')) {
+            bgmBtn.classList.add('active')
+            audio.play()
+        } else {
+            if (getComputedStyle(bgmBtn).animationPlayState === 'running') {
+                bgmBtn.style.animationPlayState = 'paused'
+                audio.pause()
+            } else {
+                bgmBtn.style.animationPlayState = 'running'
+                audio.play()
+            }
+        }
+    })
+
+    // 当前播放动画的索引
+    let currentIndex = 0
+
+    // 添加swiper动画事件
+    swiper.on('slideChangeTransitionEnd', () => {
+        // 通过eval动态读取要调用的重置函数
+        const reset = eval(`reset${currentIndex}`)
+        reset()
+        // 修改当前索引
+        currentIndex = swiper.activeIndex
+        // 动态获取下一屏的播放函数
+        const play = eval(`play${currentIndex}`)
+        play()
+    })
+
+    // 播放第一屏动画
+    function play0() {
+        container[0].style.opacity = '1'
+        frame[0].classList.add('active')
+        word[0].classList.add('animate__animated', 'animate__flipInX', 'animate__delay-1s')
+        circle1_1[0].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        bgLeft[0].classList.add('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-2s')
+        bgRight[0].classList.add('animate__animated', 'animate__fadeInRightBig', 'animate__delay-2s')
+        title[0].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-3s')
+        circle1_2[0].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        logo2[0].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        logo1[0].classList.add('animate__animated', 'animate__flipInX', 'animate__delay-3s')
+        line1[0].classList.add('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-3s')
+        line2[0].classList.add('animate__animated', 'animate__fadeInRightBig', 'animate__delay-3s')
+        circle2[0].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        trig[0].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        shadow[0].classList.add('animate__animated', 'animate__bounceInLeft', 'animate__delay-2s')
+        human[0].classList.add('animate__animated', 'animate__fadeInUpBig', 'animate__delay-1s')
+    }
+
+    function play1() {
+        container[1].style.opacity = '1'
+        frame[1].classList.add('active')
+        word[1].classList.add('animate__animated', 'animate__flipInX', 'animate__delay-1s')
+        circle1_1[1].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        bgLeft[1].classList.add('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-2s')
+        bgRight[1].classList.add('animate__animated', 'animate__fadeInRightBig', 'animate__delay-2s')
+        title[1].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-3s')
+        circle1_2[1].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        logo2[1].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        logo1[1].classList.add('animate__animated', 'animate__flipInX', 'animate__delay-3s')
+        line1[1].classList.add('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-3s')
+        line2[1].classList.add('animate__animated', 'animate__fadeInRightBig', 'animate__delay-3s')
+        circle2[1].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        trig[1].classList.add('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        shadow[1].classList.add('animate__animated', 'animate__bounceInLeft', 'animate__delay-2s')
+        human[1].classList.add('animate__animated', 'animate__fadeInUpBig', 'animate__delay-1s')
+    }
+
+    // 重置第一屏动画
+    function reset0() {
+        container[0].style.opacity = '0'
+        frame[0].classList.remove('active')
+        word[0].classList.remove('animate__animated', 'animate__flipInX', 'animate__delay-1s')
+        circle1_1[0].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        bgLeft[0].classList.remove('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-2s')
+        bgRight[0].classList.remove('animate__animated', 'animate__fadeInRightBig', 'animate__delay-2s')
+        title[0].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-3s')
+        circle1_2[0].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        logo2[0].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        logo1[0].classList.remove('animate__animated', 'animate__flipInX', 'animate__delay-3s')
+        line1[0].classList.remove('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-3s')
+        line2[0].classList.remove('animate__animated', 'animate__fadeInRightBig', 'animate__delay-3s')
+        circle2[0].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        trig[0].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        shadow[0].classList.remove('animate__animated', 'animate__bounceInLeft', 'animate__delay-2s')
+        human[0].classList.remove('animate__animated', 'animate__fadeInUpBig', 'animate__delay-1s')
+    }
+
+    function reset1() {
+        container[1].style.opacity = '0'
+        frame[1].classList.remove('active')
+        word[1].classList.remove('animate__animated', 'animate__flipInX', 'animate__delay-1s')
+        circle1_1[1].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        bgLeft[1].classList.remove('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-2s')
+        bgRight[1].classList.remove('animate__animated', 'animate__fadeInRightBig', 'animate__delay-2s')
+        title[1].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-3s')
+        circle1_2[1].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        logo2[1].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        logo1[1].classList.remove('animate__animated', 'animate__flipInX', 'animate__delay-3s')
+        line1[1].classList.remove('animate__animated', 'animate__fadeInLeftBig', 'animate__delay-3s')
+        line2[1].classList.remove('animate__animated', 'animate__fadeInRightBig', 'animate__delay-3s')
+        circle2[1].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-2s')
+        trig[1].classList.remove('animate__animated', 'animate__zoomIn', 'animate__delay-1s')
+        shadow[1].classList.remove('animate__animated', 'animate__bounceInLeft', 'animate__delay-2s')
+        human[1].classList.remove('animate__animated', 'animate__fadeInUpBig', 'animate__delay-1s')
+    }
+</script>
+
+</html>
