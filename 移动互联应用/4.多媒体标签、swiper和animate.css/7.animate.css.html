@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/animate.css">
+    <style>
+        :root {
+            --animate-duration: 3s;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title {
+            font-size: 64px;
+
+            /* animate.css 本质上是animation动画，所以可以手动添加animation相关样式 */
+            /* animation-delay: 10s; */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 动画必须添加 animate__animated
+        其次添加动画名称所代表的类名
+    -->
+
+    <!-- <div class="title animate__animated animate__backInLeft">Hello World</div> -->
+
+    <!-- 辅助类 -->
+
+    <!-- 延迟 -->
+    <!-- <div class="title animate__animated animate__backInLeft animate__delay-10s">Hello World</div> -->
+
+
+    <!-- 播放速度
+        animate__slow	2s
+        animate__slower	3s
+        animate__fast	800ms
+        animate__faster	500ms
+    -->
+    <!-- <div class="title animate__animated animate__backInLeft animate__faster">Hello World</div> -->
+
+
+    <!-- 动画播放次数
+        animate__repeat-1	1
+        animate__repeat-2	2
+        animate__repeat-3	3
+        animate__infinite	infinite
+    -->
+    <!-- <div class="title animate__animated animate__backInLeft animate__repeat-3">Hello World</div> -->
+
+
+    <!-- 动态添加动画 -->
+    <!-- <div class="title">Hello World</div>
+    <button class="play">播放</button> -->
+
+    <!-- 动画的叠加 
+        只需要添加多级元素来播放不同的动画即可
+    -->
+    <!-- <div class="animate__animated animate__fadeIn animate__slower">
+        <div class="title animate__animated animate__heartBeat animate__slower">Hello World</div>
+    </div> -->
+
+
+
+    <!-- 自定义动画
+        由于animate.css本质上是使用的 animation 样式播放的动画，所以可以手动强制修改 animation相关样式，来实现自定义
+    -->
+    <div class="title animate__animated animate__heartBeat">Hello World</div>
+</body>
+
+<script>
+    // 知识点：
+    // 什么是animate.css?
+    // 如何安装
+    // 如何静态播放动画
+    // 动画辅助类
+    //      延迟 animation-delay
+    //      播放速度 animation-duration
+    //      重复次数
+    // 如何动态播放动画
+    // 如何叠加多组动画
+    // 自定义动画
+
+    // 官网：https://animate.style/
+
+    // 什么是animate.css?
+    // animate.css 是一个 css 的动画库
+
+    const title = document.querySelector('.title')
+
+    // 动态添加类名 播放动画
+    // document.querySelector('.play').addEventListener('click', () => {
+    //     // 动态添加动画相关类名
+    //     title.classList.add('animate__animated', 'animate__backInLeft', 'animate__slower')
+    // })
+
+    // 动画播放结束事件
+    title.addEventListener('animationend', () => {
+        // 移除动画类名
+        title.classList.remove('animate__animated', 'animate__backInLeft', 'animate__slower')
+    })
+
+</script>
+
+</html>
