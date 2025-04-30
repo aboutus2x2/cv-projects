@@ -1,0 +1,9 @@
+<view>hello view</view>
+<text>hello text1</text>
+<text>hello text2</text>
+<!-- 分组标签 -->
+<block>
+  <view>张三</view>
+  <view>男</view>
+  <view>17</view>
+</block>
