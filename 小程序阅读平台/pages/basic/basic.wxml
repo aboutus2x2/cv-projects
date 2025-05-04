@@ -7,3 +7,10 @@
   <view>男</view>
   <view>17</view>
 </block>
+<!-- 相对路径 -->
+<!-- <image src="../../img/desktop.png"></image> -->
+<!-- 绝对路径
+  以斜杠开头，开头的斜杠代表项目的根目录
+ -->
+<!-- <image src="/img/desktop.png" mode="widthFix" style="width: 200px"></image> -->
+<image src="/img/desktop.png" mode="heightFix" style="height: 100px"></image>
