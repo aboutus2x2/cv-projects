@@ -1,0 +1,15 @@
+.box {
+  background-color: #f00;
+  width: 375rpx;
+  /* width: 160px; */
+  height: 375rpx;
+  /* height: 160px; */
+}
+
+.box2 {
+  background-color: #ff0;
+  /* width: 100px; */
+  width: 234.375rpx;
+  /* height: 100px; */
+  height: 234.375rpx;
+}
