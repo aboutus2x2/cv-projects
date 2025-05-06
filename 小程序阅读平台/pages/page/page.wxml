@@ -1,0 +1,4 @@
+<view>{{title}}</view>
+<!-- navigator 标签 类似于 a 标签 进行页面跳转 -->
+<navigator url="./child1/child1">跳转到 child1</navigator>
+<view style="height: 3000px; display: flex; flex-direction: column-reverse;">bottom</view>

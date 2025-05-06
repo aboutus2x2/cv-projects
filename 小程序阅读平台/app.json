@@ -1,9 +1,12 @@
 {
   "pages": [
+    "pages/page/page",
     "pages/rpx/rpx",
     "pages/basic/basic",
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/page/child1/child1",
+    "pages/page/child2/child2"
   ],
   "window": {
     "backgroundTextStyle": "light",
