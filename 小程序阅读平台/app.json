@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/page/lang/lang",
     "pages/page/page",
     "pages/rpx/rpx",
     "pages/basic/basic",

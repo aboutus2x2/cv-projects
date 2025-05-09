@@ -1,0 +1,28 @@
+<block>
+  <view>姓名: {{user.name}}</view>
+  <view>年龄: {{user.age}}</view>
+</block>
+
+<view>{{12 + 5}}</view>
+<view>{{0 > 15}}</view>
+
+<!-- 条件渲染 -->
+<view wx:if="{{user.sex === 'male'}}">男</view>
+<view wx:elif="{{user.sex === 'female'}}">女</view>
+<view wx:else>其他</view>
+
+<!-- 循环渲染 -->
+<!-- 循环渲染请一定要添加 wx:key
+  key 是数据的唯一标识
+ -->
+ <!-- wx:for-item: 定义每个数组成员的变量名 -->
+ <!-- wx:for-index: 定义数组成员索引的变量名 -->
+<view style="padding: 8px" wx:for="{{videos}}" wx:key="id" wx:for-item="it" wx:for-index="in">
+  <!-- 图片 -->
+  <!-- item: 循环遍历的每个数组成员 -->
+  <!-- <image src="{{item.img}}" style="width: 100%;" mode="widthFix"></image> -->
+  <image src="{{it.img}}" style="width: 100%;" mode="widthFix"></image>
+  <!-- index: 当前的索引 -->
+  <!-- <text>{{index}} {{item.title}}</text> -->
+  <text>{{in}} {{it.title}}</text>
+</view>
