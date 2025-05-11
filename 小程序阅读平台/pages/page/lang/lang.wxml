@@ -1,3 +1,7 @@
+<view class="nav-bar">
+  导航栏
+</view>
+
 <block>
   <view>姓名: {{user.name}}</view>
   <view>年龄: {{user.age}}</view>

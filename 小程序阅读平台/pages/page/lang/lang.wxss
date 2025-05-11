@@ -1,1 +1,9 @@
 /* pages/page/lang/lang.wxss */
+.nav-bar {
+  height: 80px;
+  background-color: #f00;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
