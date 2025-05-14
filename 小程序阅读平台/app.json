@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/read/read",
     "pages/page/lang/lang",
     "pages/page/page",
     "pages/rpx/rpx",
@@ -14,7 +15,6 @@
     "navigationBarBackgroundColor": "#00f",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "white",
-    "navigationStyle": "custom",
     "backgroundColor": "#ff0",
     "enablePullDownRefresh": true
   },
