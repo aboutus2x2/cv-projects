@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="./font/iconfont.css">
+    <!-- 引入js 才能显示彩色图标 -->
+    <script src="./js/iconfont.js"></script>
+    <style>
+        /* 彩色图标需要书写以下样式 */
+        .icon {
+            width: 1em;
+            height: 1em;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 图标被当作字符处理，所以可以使用类似span i b u 这种处理文本的标签来显示图标 -->
+
+    <!-- 方法一: unicode 编码 -->
+    <!-- &开头;分号结尾的内容 称为 html 实体 -->
+    <!-- 图标所在的标签位置，一定要添加字体家族簇的名称 -->
+    <span class="iconfont" style="color: #0f0; font-size: 64px">hello&#xe7ed;world</span>
+
+    <!-- 方法二: class类名 -->
+    <div>
+        hello<i class="iconfont icon-qianbi1"></i>world
+    </div>
+
+    <!-- 方法三: symbol 引入彩色图标 -->
+    <!-- 同样使用 font-size 来修改大小 -->
+    <svg style="font-size: 64px" class="icon" aria-hidden="true">
+        <!-- xlink:href 处添加图标名 -->
+        <use xlink:href="#icon-dagu"></use>
+    </svg>
+</body>
+
+</html>
