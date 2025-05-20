@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/get-set/get-set",
     "pages/read/read",
     "pages/page/lang/lang",
     "pages/page/page",

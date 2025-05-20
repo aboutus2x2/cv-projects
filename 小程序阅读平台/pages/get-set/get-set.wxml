@@ -1,0 +1,5 @@
+<view>{{title}}</view>
+<view>{{age}}</view>
+
+<!-- bindtap 绑定点击事件 -->
+<button bindtap="onBtnTap">修改title</button>
