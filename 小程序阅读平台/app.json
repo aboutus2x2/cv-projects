@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/tabbars/tab1/tab1",
     "pages/iconfont/iconfont",
     "pages/get-set/get-set",
     "pages/read/read",
@@ -10,7 +11,8 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/page/child1/child1",
-    "pages/page/child2/child2"
+    "pages/page/child2/child2",
+    "pages/tabbars/tab2/tab2"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -21,5 +23,20 @@
     "enablePullDownRefresh": true
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "color": "#00f",
+    "selectedColor": "#f00",
+    "list": [{
+      "pagePath": "pages/tabbars/tab1/tab1",
+      "text": "选项卡1",
+      "iconPath": "/img/tab_icon1.png",
+      "selectedIconPath": "/img/tab_icon1_active.png"
+    },{
+      "pagePath": "pages/tabbars/tab2/tab2",
+      "text": "选项卡2",
+      "iconPath": "/img/tab_icon2.png",
+      "selectedIconPath": "/img/tab_icon2_active.png"
+    }]
+  }
 }
