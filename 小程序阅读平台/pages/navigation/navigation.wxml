@@ -1,0 +1,12 @@
+<view>navigation</view>
+
+<!-- 
+  navigator 导航标签 用于页面跳转
+  url: 要跳转的页面
+  open-type: 跳转方式
+    navigate: 入栈导航
+    redirect: 重定向
+    switchTab: 切换选项卡
+    reLaunch: 清空导航栈，并跳转页面
+ -->
+<navigator url="./child1/child1?x=1&y=2&z=3" open-type="navigate">跳转到 child1</navigator>

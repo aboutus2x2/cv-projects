@@ -1,2 +1,3 @@
 <!--pages/tabbars/tab1/tab1.wxml-->
 <text>pages/tabbars/tab1/tab1.wxml</text>
+<navigator url="../tab2/tab2" open-type="switchTab">跳转到 tab2</navigator>
