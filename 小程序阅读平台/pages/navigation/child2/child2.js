@@ -62,5 +62,21 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  reLaunchToNavigation() {
+    wx.reLaunch({
+      url: '../navigation',
+    })
+  },
+
+  back() {
+    // 返回
+    wx.navigateBack({
+      // 返回层数
+      delta: 2
+    })
+
+    // wx.navigateBack()
   }
 })

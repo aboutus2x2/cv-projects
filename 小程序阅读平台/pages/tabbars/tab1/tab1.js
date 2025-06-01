@@ -62,5 +62,12 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  switchTab2() {
+    // 切换选项卡
+    wx.switchTab({
+      url: '../tab2/tab2',
+    })
   }
 })

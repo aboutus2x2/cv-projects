@@ -63,5 +63,16 @@ Page({
    */
   onShareAppMessage() {
 
-  }
+  },
+
+  redirectChild2() {
+    // 重定向
+    wx.redirectTo({
+      url: '../child2/child2',
+    })
+
+    // wx.navigateTo({
+    //   url: '../child2/child2',
+    // })
+  },
 })

@@ -4,3 +4,5 @@
 <navigator url="../child2/child2" open-type="redirect">跳转到 child2</navigator>
 
 <navigator open-type="navigateBack">返回</navigator>
+
+<button bindtap="redirectChild2">重定向到child2</button>

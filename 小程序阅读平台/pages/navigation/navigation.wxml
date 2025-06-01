@@ -11,3 +11,11 @@
     navigateBack: 返回
  -->
 <navigator url="./child1/child1?x=1&y=2&z=3" open-type="navigate">跳转到 child1</navigator>
+
+<button bindtap="toChild1">跳转到child1</button>
+
+
+
+
+<!-- <view class="box" style="transform: translateY({{translateY}}px)"></view> -->
+<view class="box" style="{{animation}}"></view>

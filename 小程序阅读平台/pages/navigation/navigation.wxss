@@ -1,1 +1,17 @@
 /* pages/navigation/navigation.wxss */
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: #f00;
+  transition: all 1s linear;
+}
+
+@keyframes move {
+  from {
+    transform: translateY(0)
+  }
+
+  to {
+    transform: translateY(100px);
+  }
+}

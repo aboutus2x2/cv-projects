@@ -1,2 +1,4 @@
 <view>child2</view>
 <navigator url="../navigation" open-type="reLaunch">清空栈，跳转到 navigation</navigator>
+<button bindtap="reLaunchToNavigation">清空栈，跳转到 navigation</button>
+<button bindtap="back">返回</button>
