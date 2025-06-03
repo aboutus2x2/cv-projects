@@ -79,7 +79,8 @@ Page({
     // 入栈导航
     wx.navigateTo({
       // 跳转路径
-      url: './child1/child1?a=1&b=2&c=3',
+      // url: './child1/child1?a=1&b=2&c=3',
+      url: '/pages/navigation/child1/child1?a=1&b=2&c=3',
       // 跳转成功后的回调
       success: () => {
         // 使用箭头函数，则此处可以使用this关键字来访问页面对象模型

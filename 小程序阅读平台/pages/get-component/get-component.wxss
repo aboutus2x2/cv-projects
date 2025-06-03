@@ -1,0 +1,10 @@
+/* pages/get-component/get-component.wxss */
+
+.box {
+  width: 200px;
+  height: 100px;
+  background-color: #f00;
+  position: absolute;
+  top: 50px;
+  left: 150px;
+}

@@ -1,0 +1,11 @@
+/* components/my-component/index.wxss */
+
+.box {
+  background-color: #00f;
+  width: 100px;
+  height: 100px;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

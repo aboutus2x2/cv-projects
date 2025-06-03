@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/get-component/get-component",
     "pages/navigation/navigation",
     "pages/tabbars/tab1/tab1",
     "pages/iconfont/iconfont",

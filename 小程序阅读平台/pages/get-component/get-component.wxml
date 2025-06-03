@@ -1,0 +1,4 @@
+<!-- data- 开头的属性是自定义属性 -->
+<navigator url="abc" class="box" data-id="我是自定义id"></navigator>
+
+<my-component class="my-c"></my-component>
