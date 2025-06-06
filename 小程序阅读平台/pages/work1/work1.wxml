@@ -1,0 +1,2 @@
+<view class="box" style="background-color: {{color}}"></view>
+<button bindtap="onToggle">开关</button>

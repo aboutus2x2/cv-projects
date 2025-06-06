@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/work1/work1",
     "pages/get-component/get-component",
     "pages/navigation/navigation",
     "pages/tabbars/tab1/tab1",
