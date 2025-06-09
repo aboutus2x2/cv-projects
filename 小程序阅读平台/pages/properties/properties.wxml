@@ -1,0 +1,6 @@
+<!-- data-color 就是一个自定义属性
+  自定义属性必须以 data- 开头
+ -->
+<view class="my-view" data-color="#f00">hello 自定义属性</view>
+
+<button data-id="自定义id" bindtap="onTap">点击</button>

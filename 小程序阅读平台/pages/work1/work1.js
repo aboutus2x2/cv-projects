@@ -6,7 +6,20 @@ Page({
    */
   data: {
     // 设置颜色值
-    color: '#000'
+    color: '#000',
+    users: [{
+        id: 1,
+        name: '张三'
+      },
+      {
+        id: 2,
+        name: '李四'
+      },
+      {
+        id: 3,
+        name: '老王'
+      },
+    ]
   },
 
   /**
@@ -68,7 +81,39 @@ Page({
   onToggle() {
     // 要更新页面的话就必须使用 this.setData 方法
     this.setData({
-      color: this.data.color === '#000'? '#ff0': '#000'
+      color: this.data.color === '#000' ? '#ff0' : '#000'
+    })
+  },
+
+  remove(ev) {
+    // 读取id
+    let id = ev.target.dataset.id
+    console.log(id);
+
+    // showModel 显示模态窗口
+    wx.showModal({
+      // 标题
+      title: '删除',
+      // 信息
+      content: '确定删除吗?',
+      success: res => {
+        console.log(res);
+        if (res.confirm) {
+          // 用户点击了确定
+          // 删除数据
+          // 查询索引
+          let i = this.data.users.findIndex(user => user.id === id)
+          // 删除数组成员
+          this.data.users.splice(i, 1)
+          console.log(this.data.users);
+          // 更新页面
+          this.setData({
+            users: this.data.users
+          })
+        } else if (res.cancel) {
+          // 用户点击了取消
+        }
+      }
     })
   }
 })

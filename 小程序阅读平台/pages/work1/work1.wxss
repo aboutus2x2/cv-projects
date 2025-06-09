@@ -4,3 +4,17 @@
   height: 100px;
   background-color: #000;
 }
+
+.user {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background-color: #ececec;
+  margin-top: 8px;
+}
+
+.user>button {
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+}
