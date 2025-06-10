@@ -1,0 +1,21 @@
+/* pages/work2/work2.wxss */
+
+.btn-container {
+  display: flex;
+  justify-content: center;
+  padding: 32px;
+}
+
+button {
+  margin: 0 !important;
+  background-color: #000 !important;
+  color: #fff;
+
+  transition: all 2s cubic-bezier(1, -0.65, 0, 1.7);
+
+  transform: scale(1);
+}
+
+button.active {
+  transform: scale(2);
+}

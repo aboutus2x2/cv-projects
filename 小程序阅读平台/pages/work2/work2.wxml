@@ -1,0 +1,3 @@
+<view class="btn-container">
+  <button class="{{clazz}}" bindtap="onTap">激活</button>
+</view>
