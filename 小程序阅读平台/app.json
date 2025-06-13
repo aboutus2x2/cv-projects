@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/global-data/global-data",
     "pages/work2/work2",
     "pages/work1/work1",
     "pages/properties/properties",
@@ -19,7 +20,8 @@
     "pages/page/child2/child2",
     "pages/tabbars/tab2/tab2",
     "pages/navigation/child1/child1",
-    "pages/navigation/child2/child2"
+    "pages/navigation/child2/child2",
+    "pages/global-data/child/child"
   ],
   "window": {
     "backgroundTextStyle": "dark",
