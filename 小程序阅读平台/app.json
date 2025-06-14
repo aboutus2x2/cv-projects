@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/global-data/global-data",
+    "pages/event/event",
     "pages/work2/work2",
+    "pages/global-data/global-data",
     "pages/work1/work1",
     "pages/properties/properties",
     "pages/get-component/get-component",

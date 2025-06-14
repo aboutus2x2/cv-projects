@@ -1,0 +1,7 @@
+<!-- <view bind:tap="onBind2"> -->
+<!-- <view capture-bind:tap="onCaptureBind1"> -->
+<view capture-catch:tap="onCaptureCatch1">
+  <view bind:tap="onBind1">tap me!!!</view>
+  <!-- <view catch:tap="onBind1">tap me!!!</view> -->
+  <!-- <view catchtap="onBind1">tap me!!!</view> -->
+</view>
