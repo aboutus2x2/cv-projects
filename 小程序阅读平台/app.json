@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/form/form",
     "pages/event/event",
     "pages/work2/work2",
     "pages/global-data/global-data",

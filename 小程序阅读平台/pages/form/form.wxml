@@ -1,0 +1,32 @@
+<!-- 一个输入框需要绑定一个 value 作为初始值
+  还需要绑定一个 input 事件，来修改输入框的值
+ -->
+<label>姓名: <input type="text" value="{{name}}" bindinput="onNameInput" maxlength="5" /></label>
+<label>密码: <input type="text" password="true" value="{{pwd}}" bindinput="onPwdInput" placeholder="请输入密码" /></label>
+<view>性别:
+  <!-- 单选按钮组 -->
+  <radio-group bindchange="onSexChange">
+    <!-- 每个radio是一个选项，每个选项都应该有 value -->
+    <radio checked="{{sex === 'male'}}" value="male">男</radio>
+    <radio checked="{{sex === 'female'}}" value="female">女</radio>
+    <radio checked="{{sex === 'other'}}" value="other">其他</radio>
+  </radio-group>
+</view>
+<view>爱好:
+  <checkbox-group bindchange="onHobbiesChange">
+    <checkbox wx:for="{{hobbies}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">{{item.text}}</checkbox>
+  </checkbox-group>
+</view>
+<view>班级:
+
+</view>
+<label>同意协议吗
+  <switch type="switch" checked="{{agree}}" bindchange="onAgreeChange"></switch>
+</label>
+<view>
+  <label>简介:
+    <textarea auto-height="true" value="{{desc}}" bindinput="onDescInput"></textarea>
+  </label>
+</view>
+
+<button bindtap="onSubmit">提交</button>
