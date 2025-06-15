@@ -17,8 +17,18 @@
     <checkbox wx:for="{{hobbies}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">{{item.text}}</checkbox>
   </checkbox-group>
 </view>
-<view>班级:
-
+<view>国家:
+  <!-- 点击picker可以弹出选择框 -->
+  <!-- 
+    mode: 选择模式
+    range: 选择范围，可以是数组或对象数组
+    range-key: 当 range 是对象数组的时候，要显示的对象中的 key 值
+    value: 设置初始值
+   -->
+  <picker mode="selector" range="{{range}}" range-key="text" value="{{country}}" bindchange="onCountryChange">
+    <!-- 标签体中可以添加提示文本，用来提示当前选项 -->
+    当前选择: {{range[country].text}}
+  </picker>
 </view>
 <label>同意协议吗
   <switch type="switch" checked="{{agree}}" bindchange="onAgreeChange"></switch>

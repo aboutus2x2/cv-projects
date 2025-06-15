@@ -26,7 +26,24 @@ Page({
       },
     ],
     agree: false,
-    desc: '123\n456'
+    desc: '123\n456',
+
+    // range: ['中国', '日本', '韩国']
+
+    country: '2',
+    range: [{
+        value: 'CN',
+        text: '中国'
+      },
+      {
+        value: 'JP',
+        text: '日本'
+      },
+      {
+        value: 'KO',
+        text: '韩国'
+      },
+    ]
   },
 
   /**
@@ -132,6 +149,13 @@ Page({
   onDescInput(ev) {
     this.setData({
       desc: ev.detail.value
+    })
+  },
+
+  onCountryChange(ev) {
+    console.log(ev);
+    this.setData({
+      country: ev.detail.value
     })
   },
 
