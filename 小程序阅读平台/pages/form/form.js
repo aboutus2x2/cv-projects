@@ -43,6 +43,36 @@ Page({
         value: 'KO',
         text: '韩国'
       },
+    ],
+
+    clazz: ['1', '2'],
+    multiRange: [
+      [{
+          value: '1b',
+          text: '一班'
+        },
+        {
+          value: '2b',
+          text: '二班'
+        },
+        {
+          value: '3b',
+          text: '三班'
+        },
+      ],
+      [{
+          value: '1z',
+          text: '一组'
+        },
+        {
+          value: '2z',
+          text: '二组'
+        },
+        {
+          value: '3z',
+          text: '三组'
+        },
+      ]
     ]
   },
 
@@ -156,6 +186,13 @@ Page({
     console.log(ev);
     this.setData({
       country: ev.detail.value
+    })
+  },
+
+  onClazzChange(ev) {
+    console.log(ev);
+    this.setData({
+      clazz: ev.detail.value
     })
   },
 

@@ -30,6 +30,11 @@
     当前选择: {{range[country].text}}
   </picker>
 </view>
+<view>班级
+  <picker mode="multiSelector" range="{{multiRange}}" range-key="text" value="{{clazz}}" bindchange="onClazzChange">
+    当前选择: {{ multiRange[0][clazz[0]].text + ' ' + multiRange[1][clazz[1]].text}}
+  </picker>
+</view>
 <label>同意协议吗
   <switch type="switch" checked="{{agree}}" bindchange="onAgreeChange"></switch>
 </label>
