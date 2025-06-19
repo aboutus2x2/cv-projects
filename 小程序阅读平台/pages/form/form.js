@@ -198,5 +198,40 @@ Page({
 
   onSubmit() {
     console.log(this.data);
+  },
+
+  onFormSubmit(ev) {
+    console.log(ev);
+  },
+
+  onFormReset(ev) {
+    console.log(ev);
+    console.log(this.data);
+
+    this.setData({
+      name: '李四',
+      pwd: '123',
+      sex: 'other',
+      hobbies: [{
+          value: 'dlq',
+          text: '打篮球',
+          checked: false
+        },
+        {
+          value: 'tzq',
+          text: '踢足球',
+          checked: true
+        },
+        {
+          value: 'ymq',
+          text: '羽毛球',
+          checked: true
+        },
+      ],
+      agree: false,
+      desc: '123\n456',
+      country: '2',
+      clazz: ['1', '2']
+    })
   }
 })

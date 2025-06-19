@@ -1,47 +1,58 @@
-<!-- 一个输入框需要绑定一个 value 作为初始值
+<!-- bindsubmit 表单提交事件
+  bindreset 表单重置事件
+ -->
+<form bindsubmit="onFormSubmit" bindreset="onFormReset">
+
+  <!-- 一个输入框需要绑定一个 value 作为初始值
   还需要绑定一个 input 事件，来修改输入框的值
  -->
-<label>姓名: <input type="text" value="{{name}}" bindinput="onNameInput" maxlength="5" /></label>
-<label>密码: <input type="text" password="true" value="{{pwd}}" bindinput="onPwdInput" placeholder="请输入密码" /></label>
-<view>性别:
-  <!-- 单选按钮组 -->
-  <radio-group bindchange="onSexChange">
-    <!-- 每个radio是一个选项，每个选项都应该有 value -->
-    <radio checked="{{sex === 'male'}}" value="male">男</radio>
-    <radio checked="{{sex === 'female'}}" value="female">女</radio>
-    <radio checked="{{sex === 'other'}}" value="other">其他</radio>
-  </radio-group>
-</view>
-<view>爱好:
-  <checkbox-group bindchange="onHobbiesChange">
-    <checkbox wx:for="{{hobbies}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">{{item.text}}</checkbox>
-  </checkbox-group>
-</view>
-<view>国家:
-  <!-- 点击picker可以弹出选择框 -->
-  <!-- 
+  <label>姓名: <input name="name" type="text" value="{{name}}" bindinput="onNameInput" maxlength="5" /></label>
+  <label>密码: <input name="pwd" type="text" password="true" value="{{pwd}}" bindinput="onPwdInput" placeholder="请输入密码" /></label>
+  <view>性别:
+    <!-- 单选按钮组 -->
+    <radio-group name="sex" bindchange="onSexChange">
+      <!-- 每个radio是一个选项，每个选项都应该有 value -->
+      <radio checked="{{sex === 'male'}}" value="male">男</radio>
+      <radio checked="{{sex === 'female'}}" value="female">女</radio>
+      <radio checked="{{sex === 'other'}}" value="other">其他</radio>
+    </radio-group>
+  </view>
+  <view>爱好:
+    <checkbox-group name="hobbies" bindchange="onHobbiesChange">
+      <checkbox wx:for="{{hobbies}}" wx:key="value" value="{{item.value}}" checked="{{item.checked}}">{{item.text}}</checkbox>
+    </checkbox-group>
+  </view>
+  <view>国家:
+    <!-- 点击picker可以弹出选择框 -->
+    <!-- 
     mode: 选择模式
     range: 选择范围，可以是数组或对象数组
     range-key: 当 range 是对象数组的时候，要显示的对象中的 key 值
     value: 设置初始值
    -->
-  <picker mode="selector" range="{{range}}" range-key="text" value="{{country}}" bindchange="onCountryChange">
-    <!-- 标签体中可以添加提示文本，用来提示当前选项 -->
-    当前选择: {{range[country].text}}
-  </picker>
-</view>
-<view>班级
-  <picker mode="multiSelector" range="{{multiRange}}" range-key="text" value="{{clazz}}" bindchange="onClazzChange">
-    当前选择: {{ multiRange[0][clazz[0]].text + ' ' + multiRange[1][clazz[1]].text}}
-  </picker>
-</view>
-<label>同意协议吗
-  <switch type="switch" checked="{{agree}}" bindchange="onAgreeChange"></switch>
-</label>
-<view>
-  <label>简介:
-    <textarea auto-height="true" value="{{desc}}" bindinput="onDescInput"></textarea>
+    <picker name="country" mode="selector" range="{{range}}" range-key="text" value="{{country}}" bindchange="onCountryChange">
+      <!-- 标签体中可以添加提示文本，用来提示当前选项 -->
+      当前选择: {{range[country].text}}
+    </picker>
+  </view>
+  <view>班级
+    <picker name="clazz" mode="multiSelector" range="{{multiRange}}" range-key="text" value="{{clazz}}" bindchange="onClazzChange">
+      当前选择: {{ multiRange[0][clazz[0]].text + ' ' + multiRange[1][clazz[1]].text}}
+    </picker>
+  </view>
+  <label>同意协议吗
+    <switch name="agree" type="switch" checked="{{agree}}" bindchange="onAgreeChange"></switch>
   </label>
-</view>
+  <view>
+    <label>简介:
+      <textarea name="desc" auto-height="true" value="{{desc}}" bindinput="onDescInput"></textarea>
+    </label>
+  </view>
 
-<button bindtap="onSubmit">提交</button>
+  <button bindtap="onSubmit">提交</button>
+
+  <!-- 给按钮添加 form-type 来充当表单中的提交或重置按钮 -->
+  <button form-type="submit">提交表单</button>
+  <button form-type="reset">重置表单</button>
+
+</form>
