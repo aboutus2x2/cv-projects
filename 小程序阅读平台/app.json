@@ -1,6 +1,8 @@
 {
   "pages": [
+    "pages/native/native",
     "pages/form/form",
+    "pages/auth/auth",
     "pages/event/event",
     "pages/work2/work2",
     "pages/global-data/global-data",
@@ -52,5 +54,22 @@
         "selectedIconPath": "/img/tab_icon2_active.png"
       }
     ]
-  }
+  },
+  "subpackages": [
+    {
+      "root": "packageA",
+      "pages": [
+        "pages/cat/cat",
+        "pages/dog/dog"
+      ]
+    },
+    {
+      "root": "packageB",
+      "name": "pack2",
+      "pages": [
+        "pages/apple/apple",
+        "pages/banana/banana"
+      ]
+    }
+  ]
 }

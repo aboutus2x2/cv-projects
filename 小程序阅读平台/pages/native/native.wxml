@@ -1,0 +1,6 @@
+<button bindtap="scanCode">扫描二维码</button>
+<button bindtap="takePhoto">拍照</button>
+
+<!-- 相机组件 -->
+<camera style="height: 200px"></camera>
+<image src="{{src}}"></image>

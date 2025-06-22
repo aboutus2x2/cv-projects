@@ -56,3 +56,5 @@
   <button form-type="reset">重置表单</button>
 
 </form>
+
+<navigator url="/packageA/pages/cat/cat">to cat</navigator>
