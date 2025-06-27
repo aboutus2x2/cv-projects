@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/screen/screen",
     "pages/auth/auth",
     "pages/native/native",
     "pages/form/form",

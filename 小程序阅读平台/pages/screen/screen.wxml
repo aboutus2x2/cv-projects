@@ -1,0 +1,25 @@
+<view style="position: sticky; top: 0;">
+  <view class="placeholder" style="height: {{statuBarHeight}}px;"></view>
+  <view class="nav-bar">自定义导航栏</view>
+</view>
+
+<!-- <view class="content">
+  content
+</view> -->
+
+<!-- 增加一个用于填充底部的元素，否则上面的 content 会被底部选项卡 tabbar 遮挡 -->
+<!-- <view style="height: {{bottomPlaceholder}}px;"></view> -->
+
+<!-- scroll-view: 滚动显示区域
+  scroll-y: 是否允许纵向滚动
+ -->
+<scroll-view class="scroll-view" scroll-y="true" style="height: {{scrollViewHeight}}px;" refresher-enabled refresher-default-style="dark" refresher-background="pink" refresher-triggered="{{triggered}}" bindrefresherrefresh="onPullDownRefresh">
+  <view class="content">
+    content
+  </view>
+</scroll-view>
+
+<view class="tabbar">
+  <view class="tabbar-content">自定义底部选项卡</view>
+  <view class="placeholder" style="height: {{tabbarBottom}}px"></view>
+</view>

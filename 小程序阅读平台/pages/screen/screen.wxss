@@ -1,0 +1,42 @@
+/* pages/screen/screen.wxss */
+.nav-bar {
+  height: 50px;
+  background-color: #f00;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.placeholder {
+  background-color: #f00;
+}
+
+.tabbar {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+.tabbar-content {
+  height: 50px;
+  background-color: #f00;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  height: 3000px;
+  display: flex;
+  flex-direction: column-reverse;
+  font-size: 64px;
+}
+
+
+.scroll-view {
+  border: 5px solid #000;
+  height: 300px;
+  box-sizing: border-box;
+}
