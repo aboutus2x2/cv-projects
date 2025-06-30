@@ -12,7 +12,7 @@ Page({
     // 底部占位符高度
     bottomPlaceholder: 0,
     // 滚动屏的高度
-    scrollViewHeight: 0
+    scrollViewHeight: 666
   },
 
   /**
@@ -65,6 +65,21 @@ Page({
    */
   onPullDownRefresh() {
     console.log('开启下拉刷新');
+    // 下拉刷新开始的时候，设置 triggered 为 true 打开下拉刷新
+    this.setData({
+      triggered: true
+    })
+
+
+    // 使用setTimeout假装进行了3秒钟的网络请求
+    setTimeout(() => {
+      // 加载完成后，关闭下拉刷新
+
+      // 设置triggered 为false 关闭下拉刷新
+      this.setData({
+        triggered: false
+      })
+    }, 3000)
   },
 
   /**

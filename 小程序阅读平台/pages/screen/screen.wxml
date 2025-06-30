@@ -13,7 +13,7 @@
 <!-- scroll-view: 滚动显示区域
   scroll-y: 是否允许纵向滚动
  -->
-<scroll-view class="scroll-view" scroll-y="true" style="height: {{scrollViewHeight}}px;" refresher-enabled refresher-default-style="dark" refresher-background="pink" refresher-triggered="{{triggered}}" bindrefresherrefresh="onPullDownRefresh">
+<scroll-view class="scroll-view" scroll-y="true" style="height: {{scrollViewHeight}}px;" refresher-enabled refresher-default-style="black" refresher-background="pink" refresher-triggered="{{triggered}}" bindrefresherrefresh="onPullDownRefresh">
   <view class="content">
     content
   </view>

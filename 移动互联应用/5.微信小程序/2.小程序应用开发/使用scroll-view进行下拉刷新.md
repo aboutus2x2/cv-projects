@@ -38,44 +38,4 @@
     }
   })
   ```
-- 动态设置 `scroll-view` 高度
-  ```js
-  Page({
-    ...
-    // 在 onReady 事件中添加如下代码
-    onReady() {
-
-        // 这里由于使用了自定义的 van-nav-bar 所以需要获取元素高度
-        // 然后使用设备高度减去 van-nav-bar 高度 得到最终 scroll-view 高度
-
-
-
-        // 读取组件内元素的信息
-        // 获取要读取的组件
-        const component = this.selectComponent('.my-navbar')
-        console.log(component);
-        // 调用 in 函数，将组件 component 作为参数传入
-        let query = wx.createSelectorQuery().in(component)
-        // 下面其余部分和普通的查询元素一样
-        let nodeRef = query.select('.van-nav-bar')
-        nodeRef.fields({
-            size: true
-        }, (res) => {
-            // 该 res 就是查询的结果
-            console.log(res)
-            // this.setData({ scrollHeight: 'calc(100% - ' + res.height + 'px)' })
-
-            // wx.getSystemInfoSync() 同步获取设备信息
-            // wx.getSystemInfoSync().windowHeight 设备显示屏的像素高度
-            // wx.getSystemInfoSync().windowWidth 设备显示屏的像素宽度
-            // res.height 导航栏高度
-            this.setData({
-                scrollHeight: wx.getSystemInfoSync().windowHeight - res.height
-            })
-        }).exec()
-    },
-    ...
-  })
-
-  ```
   
