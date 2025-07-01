@@ -1,0 +1,5 @@
+<view capture-bind:theme-change="onParentThemeChange">
+  <navbar class="navbar" title="{{title}}" bind:theme-change="onThemeChange"></navbar>
+</view>
+<button bindtap="changeTitle">改变title值</button>
+<button bindtap="toggleDarkMode">切换夜间模式</button>

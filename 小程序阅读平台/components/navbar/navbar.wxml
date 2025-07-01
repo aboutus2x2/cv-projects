@@ -1,0 +1,4 @@
+<view class="navbar" style="background-color: {{backgroundColor}}">
+  <view class="placeholder" style="height: {{placeholder}}px"></view>
+  <view class="content">{{title}}</view>
+</view>
