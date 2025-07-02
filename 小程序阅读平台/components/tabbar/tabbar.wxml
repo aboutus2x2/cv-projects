@@ -1,0 +1,6 @@
+<view class="tabbar">
+  <view class="content" style="grid-template-columns: repeat({{tabs.length}}, 1fr);">
+    <navigator url="{{item.url}}" wx:for="{{_tabs}}" wx:key="url" class="{{item.active? 'btn active': 'btn'}}">{{item.text}}</navigator>
+  </view>
+  <view class="placeholder" style="height: {{placeholder}}px"></view>
+</view>

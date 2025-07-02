@@ -3,3 +3,7 @@
 </view>
 <button bindtap="changeTitle">改变title值</button>
 <button bindtap="toggleDarkMode">切换夜间模式</button>
+
+
+
+<tabbar tabs="{{tabs}}"></tabbar>

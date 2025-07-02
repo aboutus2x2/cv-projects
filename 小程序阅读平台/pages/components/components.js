@@ -5,7 +5,16 @@ Page({
    * 页面的初始数据
    */
   data: {
-    title: '组件展示页'
+    title: '组件展示页',
+    tabs: [{
+        url: '/abc',
+        text: '选项卡1'
+      },
+      {
+        url: '/xyz',
+        text: '选项卡2'
+      }
+    ]
   },
 
   /**

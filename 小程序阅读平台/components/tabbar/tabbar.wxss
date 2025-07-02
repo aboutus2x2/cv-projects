@@ -1,0 +1,30 @@
+/* components/tabbar/tabbar.wxss */
+.tabbar {
+  width: 100%;
+  background-color: #f00;
+  position: fixed;
+  bottom: 0;
+  /* overflow: visible; */
+}
+
+.content {
+  height: 40px;
+  display: grid;
+  /* overflow: visible; */
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: #f00;
+  font-size: 20px;
+
+  transform-origin: center bottom;
+}
+
+.btn.active {
+  transform: scale(1.2);
+  background-color: rgb(255, 114, 114);
+}
