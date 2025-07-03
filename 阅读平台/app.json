@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/read/read",
+    "pages/category/category",
+    "pages/desk/desk",
+    "pages/ucenter/ucenter"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#b5d2fe",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "white"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/read/read",
+      "text": "阅读",
+      "iconPath": "img/tab_icon1.png",
+      "selectedIconPath": "img/tab_icon1_active.png"
+    },{
+      "pagePath": "pages/category/category",
+      "text": "分类",
+      "iconPath": "img/tab_icon2.png",
+      "selectedIconPath": "img/tab_icon2_active.png"
+    },{
+      "pagePath": "pages/desk/desk",
+      "text": "书桌",
+      "iconPath": "img/tab_icon3.png",
+      "selectedIconPath": "img/tab_icon3_active.png"
+    },{
+      "pagePath": "pages/ucenter/ucenter",
+      "text": "个人中心",
+      "iconPath": "img/tab_icon4.png",
+      "selectedIconPath": "img/tab_icon4_active.png"
+    }]
+  }
+}

@@ -1,0 +1,24 @@
+<!-- 一个新闻卡片 -->
+<view class="news-card" wx:for="{{artData}}" wx:key="id">
+  <!-- 头像行 -->
+  <view class="row1">
+    <image class="head-icon" src="{{item.aPhoto}}"></image>
+    <text class="author">{{item.author}}</text>
+  </view>
+  <!-- 大图片 -->
+  <image class="big-img" src="{{item.bigImg}}"></image>
+  <!-- 标题行 -->
+  <view>
+    <text class="hot">热点</text>
+    <text class="title">{{item.tit}}</text>
+  </view>
+  <!-- 信息 -->
+  <view class="info">
+    {{item.words}}
+  </view>
+  <!-- 点赞行 -->
+  <view class="row2">
+    <text>{{item.clickNum}}点击 · 4本书</text>
+    <text>{{item.great}}</text>
+  </view>
+</view>
