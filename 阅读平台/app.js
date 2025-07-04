@@ -1,3 +1,6 @@
+const AV = require('./libs/av-core-min.js');
+const adapters = require('./libs/leancloud-adapters-weapp.js');
+
 // app.js
 App({
   onLaunch() {
@@ -12,6 +15,13 @@ App({
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
     })
+
+    AV.setAdapters(adapters);
+    AV.init({
+      appId: "UrSuYRev392dvKthkmVVzj7K-gzGzoHsz",
+      appKey: "G5c7JhuaIUQAGqpGTXe7ZNWX",
+      serverURL: "https://ursuyrev.lc-cn-n1-shared.com"
+    });
   },
   globalData: {
     userInfo: null

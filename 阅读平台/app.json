@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/read/read",
     "pages/category/category",
+    "pages/read/read",
     "pages/desk/desk",
     "pages/ucenter/ucenter"
   ],
