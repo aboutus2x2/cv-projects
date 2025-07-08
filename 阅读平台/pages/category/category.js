@@ -5,7 +5,27 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    navItem: [{
+        id: '0',
+        name: '神话',
+        cover: '/img/img/book10.jpg',
+      },
+      {
+        id: '1',
+        name: '神话2',
+        cover: '/img/img/book11.jpg',
+      },
+      {
+        id: '2',
+        name: '神话3',
+        cover: '/img/img/book12.jpg',
+      },
+      {
+        id: '3',
+        name: '神话4',
+        cover: '/img/img/book13.jpg',
+      }
+    ]
   },
 
   /**

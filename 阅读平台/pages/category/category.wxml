@@ -25,20 +25,8 @@
 
 <!-- 分类按钮 -->
 <view class="nav-list">
-  <navigator class="nav-item" url="abc">
-    <image src="/img/img/book6.jpg"></image>
-    <text>神话</text>
-  </navigator>
-  <navigator class="nav-item" url="abc">
-    <image src="/img/img/book6.jpg"></image>
-    <text>神话</text>
-  </navigator>
-  <navigator class="nav-item" url="abc">
-    <image src="/img/img/book6.jpg"></image>
-    <text>神话</text>
-  </navigator>
-  <navigator class="nav-item" url="abc">
-    <image src="/img/img/book6.jpg"></image>
-    <text>神话</text>
+  <navigator class="nav-item" url="abc" wx:for="{{navItem}}" wx:key="id">
+    <image src="{{item.cover}}"></image>
+    <view>{{item.name}}</view>
   </navigator>
 </view>
