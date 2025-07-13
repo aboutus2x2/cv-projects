@@ -23,11 +23,14 @@ App({
     });
 
     // 测试读取数据
-    const query = new AV.Query('Test')
-    // 调用find 查询数据
-    query.find().then(res => {
-      console.log(res);
-    })
+    // const query = new AV.Query('Test')
+    // // 调用find 查询数据
+    // query.find().then(res => {
+    //   console.log(res);
+    // })
+
+    // 将AV保存到全局对象中
+    this.globalData.AV = AV
   },
   globalData: {
     userInfo: null

@@ -1,3 +1,6 @@
+// 引入 leanCloud sdk
+const AV = getApp().globalData.AV
+
 // pages/category/category.js
 Page({
 
@@ -32,7 +35,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 查询数据库
+    this.query()
   },
 
   /**
@@ -82,5 +86,18 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  // 查询所有的分类信息
+  query() {
+    const query = new AV.Query('Category')
+    query.find().then(res => {
+      this.setData({
+        navItem: res.map(item => ({
+          id: item.id,
+          ...item.attributes
+        }))
+      })
+    })
   }
 })
