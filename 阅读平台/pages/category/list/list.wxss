@@ -1,0 +1,35 @@
+/* pages/category/list/list.wxss */
+
+.container {
+  padding: 0 32rpx;
+}
+
+.words {
+  padding: 64rpx;
+  font-size: 36rpx;
+  position: relative;
+}
+
+.icon-quotesleft {
+  position: absolute;
+  top: 16rpx;
+  left: 16rpx;
+  font-size: 128rpx;
+  opacity: 0.2;
+}
+
+.author-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.author-row>text {
+  margin-left: 16rpx;
+}
+
+.head-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+}

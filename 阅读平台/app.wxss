@@ -7,3 +7,9 @@ page {
 .iconfont {
   font-size: 32rpx;
 }
+
+.space {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 32rpx;
+}

@@ -1,0 +1,16 @@
+<!-- 名人名言 -->
+<view class="words">
+  {{words}}
+
+  <text class="iconfont icon-quotesleft"></text>
+</view>
+
+<view class="container">
+
+  <!-- 作者 -->
+  <view class="author-row">
+    <image class="head-icon" src="{{cover}}"></image>
+    <text>{{author}}</text>
+  </view>
+
+</view>

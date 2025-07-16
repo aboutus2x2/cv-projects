@@ -1,0 +1,50 @@
+/* pages/ucenter/publish/publish.wxss */
+page {
+  padding: 32rpx;
+  width: calc(100% - 64rpx);
+}
+
+input {
+  border-bottom: 1rpx solid rgb(177, 177, 177);
+  padding: 8rpx;
+}
+
+.cover {
+  width: 200rpx;
+  height: 200rpx;
+  background-color: rgb(214, 214, 214);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-camera {
+  font-size: 64rpx;
+  color: #fff;
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+}
+
+textarea {
+  width: calc(100% - 18rpx);
+  border: 1rpx solid rgb(177, 177, 177);
+  padding: 8rpx;
+}
+
+.btns {
+  display: flex;
+}
+
+.btns>button {
+  width: 0;
+  flex-grow: 1;
+}
+
+.btns>button:nth-child(2) {
+  background-color: #0f0;
+  color: #fff;
+  margin-left: 32rpx;
+}

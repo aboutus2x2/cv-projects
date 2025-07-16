@@ -1,0 +1,39 @@
+<form bindsubmit="onSubmit" bindreset="onReset">
+  <view class="space">
+    <view>
+      书名:
+      <input name="name" type="text" value="{{name}}" bindinput="onNameInput" />
+    </view>
+    <view>
+      作者:
+      <input name="author" type="text" value="{{author}}" bindinput="onAuthorInput" />
+    </view>
+    <view>
+      <picker name="category" mode="selector" range="{{range}}" value="{{category}}" bindchange="onCategoryChange">
+        <view>
+          当前选择: {{range[category]}}
+        </view>
+      </picker>
+    </view>
+    <view>
+      封面:
+      <view class="cover" bindtap="upload">
+        <text wx:if="{{cover === ''}}" class="iconfont icon-camera"></text>
+        <image wx:else class="preview" src="{{cover}}"></image>
+      </view>
+    </view>
+    <view>
+      简介:
+      <textarea name="desc" auto-height="true" value="{{desc}}" bindinput="onDescInput"></textarea>
+    </view>
+    <view>
+      目录:
+      <textarea name="dir" auto-height="true" value="{{dir}}" bindinput="onDirInput"></textarea>
+    </view>
+
+    <view class="btns">
+      <button form-type="reset">重置</button>
+      <button form-type="submit">提交</button>
+    </view>
+  </view>
+</form>
