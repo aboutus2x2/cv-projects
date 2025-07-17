@@ -1,2 +1,45 @@
-<!--pages/desk/desk.wxml-->
-<text>pages/desk/desk.wxml</text>
+<!-- 整理按钮 -->
+<view class="iconfont icon-all-fill" bindtap="onOpen"></view>
+<!-- 滚动屏 -->
+<view class="swiper-container">
+  <swiper indicator-dots="{{false}}" duration="{{300}}" bindchange="onSwiperChange">
+    <block wx:for="{{swiperItem}}" wx:key="id">
+      <swiper-item>
+        <image src="/img/img/book2.jpg"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view class="dots">
+  <view wx:for="{{3}}" wx:key="index" class="{{index === current ? 'active': ''}}"></view>
+</view>
+
+<!-- 书名 -->
+<view style="text-align: center;">
+  {{ swiperItem[current].name }}
+</view>
+<!-- 作者 -->
+<view style="text-align: center;">
+  {{ swiperItem[current].author }}
+</view>
+
+<!-- 整理面板 -->
+<view class="list" style="transform: scale({{show? 1: 0}}); opacity: {{show? 1: 0}};">
+  <!-- 按钮行 -->
+  <view class="btns">
+    <view class="btn" bindtap="onClose">关闭</view>
+    <view class="btn">整理</view>
+  </view>
+  <!-- 列表 -->
+  <view class="book-list">
+    <view wx:for="{{listData}}" wx:key="id">
+      <navigator url="/pages/detail/detail?id={{item.id}}">
+        <view class="box-3x4">
+          <image src="{{item.cover}}"></image>
+        </view>
+        <text>{{item.name}}</text>
+      </navigator>
+    </view>
+  </view>
+</view>

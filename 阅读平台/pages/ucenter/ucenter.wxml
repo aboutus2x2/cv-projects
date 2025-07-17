@@ -1,2 +1,34 @@
-<!--pages/ucenter/ucenter.wxml-->
-<text>pages/ucenter/ucenter.wxml</text>
+<!-- 个人信息 -->
+<view class="user-info">
+  <!-- 头像 -->
+  <view class="head-icon">
+    <image src="/img/img/book8.jpg"></image>
+    <text class="iconfont icon-female"></text>
+  </view>
+  <view>用户名</view>
+  <!-- 时长和代币 -->
+  <view class="info">
+    <!-- 读书时长 -->
+    <view class="item">
+      <text class="value">0分钟</text>
+      <text class="label">读书时长</text>
+    </view>
+    <!-- 竖线 -->
+    <view class="line"></view>
+    <!-- 蜗牛壳 -->
+    <view class="item">
+      <text class="value">0</text>
+      <text class="label">蜗牛壳</text>
+    </view>
+    <text class="iconfont icon-arrow-right"></text>
+  </view>
+</view>
+
+<view class="btns">
+  <navigator class="btn" url="/pages/ucenter/publish/publish">
+    <view>
+      <text class="iconfont icon-editor"></text>
+      <text>图书发布</text>
+    </view>
+  </navigator>
+</view>

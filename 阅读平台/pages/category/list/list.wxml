@@ -13,4 +13,14 @@
     <text>{{author}}</text>
   </view>
 
+  <!-- 列表 -->
+  <view class="list">
+    <navigator class="item" wx:for="{{listData}}" wx:key="id" url="/pages/detail/detail?id={{item.id}}">
+      <view class="box-3x4">
+        <image src="{{item.cover}}"></image>
+      </view>
+      <text>{{item.name}}</text>
+    </navigator>
+  </view>
+
 </view>

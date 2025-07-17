@@ -13,3 +13,13 @@ page {
   grid-template-columns: 1fr;
   row-gap: 32rpx;
 }
+
+.box-3x4 {
+  position: relative;
+}
+
+.box-3x4::before {
+  content: '';
+  display: block;
+  padding-top: 133%;
+}

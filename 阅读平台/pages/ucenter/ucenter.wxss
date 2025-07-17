@@ -1,1 +1,81 @@
 /* pages/ucenter/ucenter.wxss */
+page {
+  background-color: #ebebeb;
+
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  padding-top: 64rpx;
+}
+
+.icon-female {
+  background-color: pink;
+  color: #fff;
+  border-radius: 50%;
+  padding: 10rpx;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.head-icon {
+  width: 180rpx;
+  height: 180rpx;
+  position: relative;
+}
+
+.head-icon>image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32rpx 0;
+  position: relative;
+}
+
+.info>.item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  width: 50%;
+}
+
+.line {
+  width: 3rpx;
+  height: 32rpx;
+  background-color: #919191;
+}
+
+.value {
+  font-weight: bolder;
+}
+
+.label {
+  color: #919191;
+}
+
+.icon-arrow-right {
+  position: absolute;
+  right: 32rpx;
+}
+
+.btns {
+  margin-top: 32rpx;
+  background-color: #fff;
+}
+
+.btn {
+  font-weight: bolder;
+}

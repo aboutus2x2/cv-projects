@@ -11,7 +11,29 @@ Page({
     title: '',
     words: '',
     author: '',
-    cover: ''
+    cover: '',
+    listData: [
+      {
+        id: 0,
+        cover: '/img/img/book10.jpg',
+        name:'书1'
+      },
+      {
+        id: 1,
+        cover: '/img/img/book11.jpg',
+        name:'书2'
+      },
+      {
+        id: 2,
+        cover: '/img/img/book12.jpg',
+        name:'书3'
+      },
+      {
+        id: 3,
+        cover: '/img/img/book13.jpg',
+        name:'书4'
+      },
+    ]
   },
 
   /**
