@@ -1,0 +1,58 @@
+/* pages/ucenter/list/list.wxss */
+page {
+  height: 100vh;
+  background-color: rgb(211, 211, 211);
+}
+
+.cover {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.book {
+  display: flex;
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+  background-color: #fff;
+}
+
+.cover {
+  margin-right: 32rpx;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16rpx;
+  color: #fff;
+  border-radius: 16rpx;
+}
+
+.btn:nth-child(1) {
+  background-color: #0f0;
+  margin-bottom: 16rpx;
+}
+
+.btn:nth-child(2) {
+  background-color: #f00;
+}
+
+.btn:active {
+  background-color: rgb(204, 204, 204);
+}
+
+.bottom {
+  padding: 32rpx;
+  background-color: #fff;
+}

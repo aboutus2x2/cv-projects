@@ -29,17 +29,25 @@
   <!-- 按钮行 -->
   <view class="btns">
     <view class="btn" bindtap="onClose">关闭</view>
-    <view class="btn">整理</view>
+    <view class="btn" bindtap="openManageMode" wx:if="{{!manageMode}}">整理</view>
+    <view class="btn" bindtap="closeManageMode" wx:else>退出</view>
   </view>
   <!-- 列表 -->
   <view class="book-list">
-    <view wx:for="{{listData}}" wx:key="id">
+    <view style="position: relative;" wx:for="{{listData}}" wx:key="id">
       <navigator url="/pages/detail/detail?id={{item.id}}">
         <view class="box-3x4">
           <image src="{{item.cover}}"></image>
         </view>
         <text>{{item.name}}</text>
       </navigator>
+
+
+      <view class="cover {{item.checked? 'checked': ''}}" wx:if="{{manageMode}}" data-id="{{item.id}}" bindtap="onChecked">
+        <text class="iconfont icon-renzheng"></text>
+      </view>
     </view>
   </view>
+
+  <view wx:if="{{showDelete}}" class="delete-btn" bindtap="onDelete">删除</view>
 </view>

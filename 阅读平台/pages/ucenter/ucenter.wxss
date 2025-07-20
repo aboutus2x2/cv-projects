@@ -69,6 +69,7 @@ page {
 .icon-arrow-right {
   position: absolute;
   right: 32rpx;
+  top: calc(50% - 16rpx);
 }
 
 .btns {
@@ -77,5 +78,18 @@ page {
 }
 
 .btn {
+  position: relative;
   font-weight: bolder;
+  padding: 32rpx;
+}
+
+.icon-editor {
+  font-size: 48rpx;
+  vertical-align: middle;
+  margin-right: 8rpx;
+}
+
+.line2 {
+  height: 1rpx;
+  background-color: #ebebeb;
 }

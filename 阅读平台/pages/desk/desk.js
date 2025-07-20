@@ -6,30 +6,35 @@ Page({
    */
   data: {
     // 是否显示整理面板
-    show: false,
+    show: true,
     listData: [{
         id: 0,
         cover: '/img/img/book10.jpg',
         name: '书1',
-        author: '作者1'
+        author: '作者1',
+        // 当前数据是否勾选
+        checked: false
       },
       {
         id: 1,
         cover: '/img/img/book11.jpg',
         name: '书2',
-        author: '作者2'
+        author: '作者2',
+        checked: false
       },
       {
         id: 2,
         cover: '/img/img/book12.jpg',
         name: '书3',
-        author: '作者3'
+        author: '作者3',
+        checked: false
       },
       {
         id: 3,
         cover: '/img/img/book13.jpg',
         name: '书4',
-        author: '作者4'
+        author: '作者4',
+        checked: false
       },
     ],
 
@@ -37,7 +42,13 @@ Page({
     swiperItem: [],
 
     // 当前swiper的索引
-    current: 0
+    current: 0,
+
+    // 整理模式
+    manageMode: false,
+
+    // 是否显示删除按钮
+    showDelete: false
   },
 
   /**
@@ -105,10 +116,17 @@ Page({
     })
   },
   onClose() {
-    // todo 清空选择项
+    // 清空选择项
+    this.data.listData.forEach(item => {
+      item.checked = false
+    })
+
     // 关闭面板
     this.setData({
-      show: false
+      show: false,
+      showDelete: false,
+      listData: this.data.listData,
+      manageMode: false
     })
   },
 
@@ -118,6 +136,58 @@ Page({
     let i = ev.detail.current
     this.setData({
       current: i
+    })
+  },
+
+  // 开启管理模式
+  openManageMode() {
+    this.setData({
+      manageMode: true
+    })
+  },
+
+  // 关闭管理模式
+  closeManageMode() {
+    // 清空选择项
+    this.data.listData.forEach(item => {
+      item.checked = false
+    })
+
+    this.setData({
+      manageMode: false,
+      listData: this.data.listData,
+      showDelete: false
+    })
+  },
+
+  // 勾选选项
+  onChecked(ev) {
+    // 读取收藏id
+    let id = ev.currentTarget.dataset.id
+    console.log(id);
+
+    let i = this.data.listData.findIndex(item => item.id === id)
+    this.data.listData[i].checked = !this.data.listData[i].checked
+
+    // 判断是否至少有一个成员被勾选了
+    let some = this.data.listData.some(item => item.checked)
+
+    this.setData({
+      listData: this.data.listData,
+      showDelete: some
+    })
+  },
+
+  onDelete() {
+    // 先保留checked为true的数组成员
+    // 再map一个id数组
+    let ids = this.data.listData.filter(item => item.checked).map(item => item.id)
+    console.log(ids);
+
+    let arr = this.data.listData.filter(item => !ids.includes(item.id))
+    this.setData({
+      listData: arr,
+      showDelete: false
     })
   }
 })

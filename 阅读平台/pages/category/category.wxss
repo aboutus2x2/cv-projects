@@ -117,3 +117,41 @@ page {
   display: block;
   padding-top: 100%;
 }
+
+.search-panel {
+  width: calc(100vw - 64rpx);
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  z-index: 999;
+  padding: 0 32rpx;
+}
+
+.search-panel {
+  padding-top: 32rpx;
+}
+
+.search-panel .search-bar {
+  margin-right: 0;
+  height: 64rpx;
+  padding: 0 32rpx;
+}
+
+.search-panel input {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.result {
+  padding: 32rpx;
+  border: 1rpx solid #000;
+  border-top: none;
+  border-bottom-left-radius: 16rpx;
+  border-bottom-right-radius: 16rpx;
+}
+
+.result>view:nth-child(2) {
+  text-align: right;
+}

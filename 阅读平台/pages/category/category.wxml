@@ -2,7 +2,7 @@
 
   <!-- 搜索 -->
   <view class="search">
-    <view class="search-bar">
+    <view class="search-bar" bindtap="onSearchTap">
       <text class="iconfont icon-search"></text>搜索
     </view>
     <text class="iconfont icon-scan"></text>
@@ -29,4 +29,20 @@
     <image src="{{item.cover}}"></image>
     <view>{{item.name}}</view>
   </navigator>
+</view>
+
+
+<!-- 搜索面板 -->
+<view wx:if="{{showSearch}}" class="search-panel" bindtap="onSearchPanelTap">
+  <view class="search-bar" bindtap="onSearchTap">
+    <input capture-catch:tap="onSearchBarTap" type="text" />
+    <text capture-catch:tap="onSearchPanelTap">取消</text>
+  </view>
+
+  <view class="search-result">
+    <view class="result" capture-bind:tap="onResultTap">
+      <view>书名</view>
+      <view>——作者</view>
+    </view>
+  </view>
 </view>

@@ -28,7 +28,9 @@ Page({
         name: '神话4',
         cover: '/img/img/book13.jpg',
       }
-    ]
+    ],
+
+    showSearch: false
   },
 
   /**
@@ -36,7 +38,7 @@ Page({
    */
   onLoad(options) {
     // 查询数据库
-    this.query()
+    // this.query()
   },
 
   /**
@@ -99,5 +101,27 @@ Page({
         }))
       })
     })
+  },
+
+  // 搜索框被点击了
+  onSearchTap() {
+    this.setData({
+      showSearch: true
+    })
+  },
+
+  onSearchPanelTap() {
+    console.log('panel tap');
+    this.setData({
+      showSearch: false
+    })
+  },
+
+  onSearchBarTap() {
+    console.log('tap');
+  },
+
+  onResultTap() {
+    console.log('result tap');
   }
 })

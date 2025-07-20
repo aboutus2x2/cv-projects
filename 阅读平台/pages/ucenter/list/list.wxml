@@ -1,0 +1,13 @@
+<view class="book" wx:for="{{listData}}" wx:key="id">
+  <image class="cover" src="{{item.cover}}"></image>
+  <view class="info">
+    <view>{{item.name}}</view>
+    <view>{{item.author}}</view>
+  </view>
+  <view class="btns">
+    <navigator class="btn" url="/pages/ucenter/publish/publish?id={{item.id}}">编辑</navigator>
+    <view class="btn" data-id="{{item.id}}" bindtap="onRemove">删除</view>
+  </view>
+</view>
+
+<view class="bottom" wx:if="{{over}}">我是有底线的~~~</view>
