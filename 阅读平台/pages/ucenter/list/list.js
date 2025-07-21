@@ -19,7 +19,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.query()
+    // this.query()
   },
 
   /**
@@ -33,7 +33,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.onPullDownRefresh()
   },
 
   /**
@@ -97,6 +97,7 @@ Page({
     // 分页查询
     // 限制查询数据的数量
     query.limit(5)
+    // skip 跳过多少数据不查询
     query.skip((this.data.page - 1) * 5)
     // 按照 updatedAt (更新时间) 进行降序排列
     query.descending('updatedAt')

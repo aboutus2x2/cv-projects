@@ -29,8 +29,13 @@ Page({
         cover: '/img/img/book13.jpg',
       }
     ],
+    // 查询结果
+    result: [],
 
-    showSearch: false
+    showSearch: false,
+
+    // 防抖用的计时器id
+    timer: undefined
   },
 
   /**
@@ -113,7 +118,8 @@ Page({
   onSearchPanelTap() {
     console.log('panel tap');
     this.setData({
-      showSearch: false
+      showSearch: false,
+      result: []
     })
   },
 
@@ -121,7 +127,48 @@ Page({
     console.log('tap');
   },
 
-  onResultTap() {
+  onResultTap(ev) {
     console.log('result tap');
+    console.log(ev.currentTarget.dataset.id);
+    wx.navigateTo({
+      url: '/pages/detail/detail?id=' + ev.currentTarget.dataset.id
+    })
+  },
+
+  // 搜索输入框输入事件
+  onInput(ev) {
+    clearTimeout(this.data.timer)
+    let timer = setTimeout(() => {
+      if (ev.detail.value.trim() === '') {
+        this.setData({
+          result: []
+        })
+        return
+      }
+      // 构造书名查询条件
+      const query1 = new AV.Query('Book')
+      // 查询name字段包含ev.detail.value的数据
+      query1.contains('name', ev.detail.value)
+      // 构造作者的查询条件
+      const query2 = new AV.Query('Book')
+      query2.contains('author', ev.detail.value)
+
+      // 或运算
+      const query = AV.Query.or(query1, query2)
+      query.find().then(res => {
+        console.log(res);
+        this.setData({
+          result: res.map(item => {
+            return {
+              id: item.id,
+              ...item.attributes
+            }
+          })
+        })
+      })
+    }, 500)
+    this.setData({
+      timer
+    })
   }
 })

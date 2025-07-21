@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/ucenter/ucenter",
     "pages/ucenter/list/list",
     "pages/category/category", 
-    "pages/ucenter/ucenter",
     "pages/desk/desk",
     "pages/detail/detail",
     "pages/category/list/list",

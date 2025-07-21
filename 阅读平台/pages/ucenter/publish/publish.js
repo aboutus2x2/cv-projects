@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    id: undefined,
     name: '',
     author: '',
     // 分类名称
@@ -26,6 +27,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.setData({
+      id: options.id
+    })
+
+    console.log(this.data.id);
+    if (this.data.id) {
+      wx.setNavigationBarTitle({
+        title: '编辑图书',
+      })
+    }
+
     this.query()
   },
 
@@ -80,12 +92,36 @@ Page({
 
   // 查询分类
   query() {
-    const query = new AV.Query('Category')
+    let query = new AV.Query('Category')
     query.find().then(res => {
       this.setData({
         range: res.map(item => item.attributes.name)
       })
       console.log(this.data.range);
+
+      // 若当前是编辑图书的话
+      if (this.data.id) {
+        // 查询对应图书id的数据
+        query = new AV.Query('Book')
+        // 查询一条等于对应id的数据
+        query.equalTo('objectId', this.data.id)
+        query.find().then(res => {
+          console.log(res);
+          if (res.length > 0) {
+            // 有数据的话就回显数据
+            let [data] = res
+            this.setData({
+              name: data.attributes.name,
+              author: data.attributes.author,
+              category: this.data.range.findIndex(item => item === data.attributes.category),
+              cover: data.attributes.cover,
+              desc: data.attributes.desc,
+              dir: data.attributes.dir,
+            })
+          }
+        })
+      }
+
     })
   },
 
@@ -169,11 +205,65 @@ Page({
 
     console.log(ev);
 
-    // 声明 class
-    const Book = AV.Object.extend('Book');
+    // if (!this.data.id) {
+    //   // 新增数据
+    //   // 声明 class
+    //   const Book = AV.Object.extend('Book');
 
-    // 构建对象
-    const book = new Book();
+    //   // 构建对象
+    //   const book = new Book();
+
+    //   // 为属性赋值
+    //   book.set('name', this.data.name);
+    //   book.set('author', this.data.author);
+    //   book.set('category', this.data.range[this.data.category]);
+    //   book.set('cover', this.data.cover);
+    //   book.set('desc', this.data.desc);
+    //   book.set('dir', this.data.dir);
+
+    //   // 将对象保存到云端
+    //   book.save().then(_book => {
+    //     // 成功保存之后，执行其他逻辑
+    //     console.log(`保存成功。objectId：${_book.id}`);
+
+    //     // 返回页面
+    //     wx.navigateBack()
+    //   }, (error) => {
+    //     // 异常处理
+    //     console.error(error);
+    //   }).finally(() => {
+    //     // 隐藏加载中提示
+    //     wx.hideLoading()
+    //   })
+    // } else {
+    //   // 修改数据
+    //   const book = AV.Object.createWithoutData('Book', this.data.id)
+    //   // 修改数据
+    //   book.set('name', this.data.name);
+    //   book.set('author', this.data.author);
+    //   book.set('category', this.data.range[this.data.category]);
+    //   book.set('cover', this.data.cover);
+    //   book.set('desc', this.data.desc);
+    //   book.set('dir', this.data.dir);
+    //   // 修改数据时间戳
+    //   book.set('updatedAt', new Date())
+    //   // 保存
+    //   book.save()
+    // }
+
+
+    let book
+    if (!this.data.id) {
+      // 新增数据
+      // 声明 class
+      const Book = AV.Object.extend('Book');
+
+      // 构建对象
+      book = new Book();
+    } else {
+      // 修改数据
+      book = AV.Object.createWithoutData('Book', this.data.id)
+    }
 
     // 为属性赋值
     book.set('name', this.data.name);
@@ -197,5 +287,6 @@ Page({
       // 隐藏加载中提示
       wx.hideLoading()
     })
+
   }
 })
