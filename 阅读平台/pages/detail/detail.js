@@ -1,3 +1,5 @@
+const AV = getApp().globalData.AV
+
 // pages/detail/detail.js
 Page({
 
@@ -8,14 +10,25 @@ Page({
     // 按钮数据
     btns: [{
         title: '详情',
-        active: true
+        active: false
       },
       {
         title: '目录',
-        active: false
+        active: true
       },
     ],
-    placeholderHeight: 0
+    placeholderHeight: 0,
+    // 封面图
+    cover: '/img/img/book10.jpg',
+    // 书名
+    name: '书名',
+    // 作者
+    author: '作者',
+    desc: '详情',
+    dir: [],
+
+    // 收藏id
+    deskId: undefined
   },
 
   /**
@@ -23,11 +36,17 @@ Page({
    */
   onLoad(options) {
     console.log(options.id);
+    // 假id
+    // options.id = '63b3c6f360195e6845fca940'
 
     const wi = wx.getWindowInfo()
+
     this.setData({
+      id: options.id,
       placeholderHeight: wi.screenHeight - wi.safeArea.bottom
     })
+
+    this.query()
   },
 
   /**
@@ -93,6 +112,75 @@ Page({
 
     this.setData({
       btns: this.data.btns
+    })
+  },
+
+  query() {
+    wx.showLoading({
+      title: '查询中',
+    })
+
+    let query = new AV.Query('Book')
+    // 添加查询条件
+    query.equalTo('objectId', this.data.id)
+    query.find().then(res => {
+      console.log(res);
+      let data = res[0].attributes
+      this.setData({
+        cover: data.cover,
+        name: data.name,
+        author: data.author,
+        desc: data.desc,
+        dir: data.dir.split('\n')
+      })
+      console.log(this.data.dir);
+    }).finally(() => {
+      wx.hideLoading()
+    })
+
+
+    // 查询收藏id
+    query = new AV.Query('Desk')
+    query.equalTo('bookId', this.data.id)
+    query.find().then(res => {
+      if (res.length > 0) {
+        // 保存收藏id
+        this.setData({
+          deskId: res[0].id
+        })
+      }
+    })
+  },
+  onEnterDesk() {
+    wx.showLoading({
+      title: '加入中',
+    })
+    const Desk = AV.Object.extend('Desk')
+    let desk = new Desk()
+    desk.set('bookId', this.data.id)
+    desk.save().then(res => {
+      console.log(res);
+      this.setData({
+        deskId: res.id
+      })
+    }).finally(() => {
+      wx.hideLoading()
+    })
+  },
+
+  // 移出书桌
+  onRemoveDesk() {
+    wx.showLoading({
+      title: '移出中',
+    })
+    // 构造书桌对象
+    const desk = AV.Object.createWithoutData('Desk', this.data.deskId)
+    desk.destroy().then(res => {
+      this.setData({
+        deskId: null
+      })
+    }).finally(() => {
+      wx.hideLoading()
     })
   }
 })

@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/desk/desk",
+    "pages/category/category", 
+    "pages/detail/detail",
     "pages/ucenter/ucenter",
     "pages/ucenter/list/list",
-    "pages/category/category", 
-    "pages/desk/desk",
-    "pages/detail/detail",
     "pages/category/list/list",
     "pages/ucenter/publish/publish",
     "pages/read/read"

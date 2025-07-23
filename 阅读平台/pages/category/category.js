@@ -43,7 +43,7 @@ Page({
    */
   onLoad(options) {
     // 查询数据库
-    // this.query()
+    this.query()
   },
 
   /**

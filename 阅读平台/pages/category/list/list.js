@@ -12,26 +12,25 @@ Page({
     words: '',
     author: '',
     cover: '',
-    listData: [
-      {
+    listData: [{
         id: 0,
         cover: '/img/img/book10.jpg',
-        name:'书1'
+        name: '书1'
       },
       {
         id: 1,
         cover: '/img/img/book11.jpg',
-        name:'书2'
+        name: '书2'
       },
       {
         id: 2,
         cover: '/img/img/book12.jpg',
-        name:'书3'
+        name: '书3'
       },
       {
         id: 3,
         cover: '/img/img/book13.jpg',
-        name:'书4'
+        name: '书4'
       },
     ]
   },
@@ -105,7 +104,7 @@ Page({
   query() {
     wx.showLoading()
 
-    const query = new AV.Query('Category')
+    let query = new AV.Query('Category')
     query.equalTo('objectId', this.data.categoryId)
     query.find().then(res => {
       console.log(res);
@@ -122,7 +121,26 @@ Page({
       wx.setNavigationBarTitle({
         title: this.data.title,
       })
-    }).finally(()=>{
+
+
+
+
+      // 查询图书列表
+      query = new AV.Query('Book')
+      // 用分类名称作为查询条件查询图书
+      query.equalTo('category', data.name)
+      query.find().then(res => {
+        console.log(res);
+        this.setData({
+          listData: res.map(item => ({
+            id: item.id,
+            ...item.attributes
+          }))
+        })
+      })
+
+
+    }).finally(() => {
       wx.hideLoading()
     })
   }

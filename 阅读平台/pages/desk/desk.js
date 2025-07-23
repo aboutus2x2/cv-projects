@@ -1,3 +1,5 @@
+const AV = getApp().globalData.AV
+
 // pages/desk/desk.js
 Page({
 
@@ -6,7 +8,7 @@ Page({
    */
   data: {
     // 是否显示整理面板
-    show: true,
+    show: false,
     listData: [{
         id: 0,
         cover: '/img/img/book10.jpg',
@@ -55,11 +57,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // todo 设置 swiper 的加数据
+    // 设置 swiper 的加数据
     this.setData({
       swiperItem: this.data.listData.slice(0, 3)
     })
     console.log(this.data.swiperItem);
+
+    this.query()
   },
 
   /**
@@ -188,6 +192,42 @@ Page({
     this.setData({
       listData: arr,
       showDelete: false
+    })
+  },
+
+  query() {
+    let query = new AV.Query('Desk')
+    query.find().then(res => {
+      console.log(res);
+      // 构造一个 bookId 的数组
+      let bookIds = res.map(item => item.attributes.bookId)
+
+      console.log('bookIds.........');
+      console.log(bookIds);
+
+      query = new AV.Query('Book')
+      // containedIn 查询某个字段包含于某个数组中的数据
+      // 第一个参数: 要查询的字段
+      // 第二个参数: 被包含的数组
+      query.containedIn('objectId', bookIds)
+      query.find().then(res => {
+        console.log(res);
+        this.setData({
+          listData: res.map(item => ({
+            id: item.id,
+            ...item.attributes,
+            // 每个数据要设置一个 checked 用来进行勾选
+            checked: false
+          }))
+        })
+
+        console.log(this.data.listData);
+
+        this.setData({
+          swiperItem: this.data.listData.slice(0, 3)
+        })
+        console.log(this.data.swiperItem);
+      })
     })
   }
 })

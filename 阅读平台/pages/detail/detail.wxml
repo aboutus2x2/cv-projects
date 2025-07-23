@@ -5,13 +5,13 @@
     <!-- 图片 -->
     <view class="row1">
       <view class="box-3x4">
-        <image src="/img/img/book2.jpg"></image>
+        <image src="{{cover}}"></image>
       </view>
     </view>
     <!-- 名字 -->
-    <view class="row2">神话</view>
+    <view class="row2">{{name}}</view>
     <!-- 作者 -->
-    <view class="row3">作者</view>
+    <view class="row3">{{author}}</view>
     <!-- 人数 -->
     <view class="row4">1075人在读<text class="iconfont icon-arrow-right"></text></view>
 
@@ -30,19 +30,20 @@
 
 <!-- 详情 -->
 <view wx:if="{{btns[0].active}}">
-  详情
+  {{desc}}
 </view>
 
 <!-- 目录 -->
 <view wx:elif="{{btns[1].active}}">
-  目录
+  <view class="dir" wx:for="{{dir}}" wx:key="index">{{item}}</view>
 </view>
 
 <!-- 底部按钮 -->
 <view class="bottom">
   <!-- 两个按钮 -->
   <view class="b-btns">
-    <view>加入书桌</view>
+    <view wx:if="{{deskId}}" bindtap="onRemoveDesk">移出书桌</view>
+    <view wx:else bindtap="onEnterDesk">加入书桌</view>
     <view>阅读</view>
   </view>
   <!-- 占位高度 -->

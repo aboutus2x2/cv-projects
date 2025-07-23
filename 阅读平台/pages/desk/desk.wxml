@@ -5,7 +5,7 @@
   <swiper indicator-dots="{{false}}" duration="{{300}}" bindchange="onSwiperChange">
     <block wx:for="{{swiperItem}}" wx:key="id">
       <swiper-item>
-        <image src="/img/img/book2.jpg"></image>
+        <image src="{{item.cover}}"></image>
       </swiper-item>
     </block>
   </swiper>

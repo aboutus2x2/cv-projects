@@ -112,3 +112,8 @@
   background-color: #ccb483;
   color: #fff;
 }
+
+.dir {
+  padding: 32rpx;
+  border-bottom: 1rpx solid #e1e1e1;
+}
