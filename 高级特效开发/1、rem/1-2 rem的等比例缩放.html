@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box{
+      width:6.25rem;
+      height: 6.25rem;
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 标准：寻找一个屏幕的参照 -->
+  <div class="box">
+    中国的领土绝不允许侵犯
+  </div>
+</body>
+<script>
+  // 1、设置rem 为单位的长宽 或 字体大小
+  // 2、寻找一个标准 iphone5 320 / 16
+  // 3、比例公式 ：标准屏幕宽度 / 标准字体大小 = 新屏幕宽度 / 新的字体大小
+  //   新屏幕宽度 = window.innerWidth
+  //   新的字体大小 = window.innerWidth / (320 / 16)
+
+  // 4、监听窗口大小改变 window  的 'resize' 监听事件 
+  //    监听窗口加载 window 的 'load' 监听事件
+  // 5、将新字体的大小设置给html标记
+
+  window.addEventListener('resize',(ev) => {
+    // console.log(window.innerWidth)
+    //获取新字体的大小
+    resize()
+  })
+
+  window.addEventListener('load',(ev)=>{
+    resize()
+  })
+
+  function resize(){
+    let newFontSize = window.innerWidth / (320 / 16)
+    document.querySelector('html').style.fontSize = `${newFontSize}px`
+  }
+
+
+</script>
+</html>
