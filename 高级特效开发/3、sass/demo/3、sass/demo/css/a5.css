@@ -1,0 +1,20 @@
+@charset "UTF-8";
+.child2, .child {
+  font-size: 20px;
+  color: cornflowerblue;
+  font-family: "黑体";
+}
+
+.child {
+  font-weight: 300;
+}
+
+.child2 {
+  color: red;
+}
+
+.exmaple {
+  color: red;
+}
+
+/*# sourceMappingURL=a5.css.map */
