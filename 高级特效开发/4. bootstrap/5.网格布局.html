@@ -54,6 +54,49 @@
       </div>
     </div>
 
+    <!-- 网格的纵向设置 -->
+    <div class="row border" style="height: 200px;">
+      <div class="col-3 border align-self-start">1</div>
+      <div class="col-3 border align-self-center">2</div>
+      <div class="col-3 border align-self-end">3</div>
+    </div>
+
+    <!-- 网格的横向设置 class="row" 弹性容器display:flex -->
+    <!-- justify-content-{center|start|end} -->
+    <div class="row border justify-content-start ">
+      <div class="col-3 border bg-danger">1</div>
+      <div class="col-3 border bg-warning">2</div>
+      <div class="col-3 border bg-info">3</div>
+    </div>
+    <div class="row border justify-content-center">
+      <div class="col-3 border bg-danger">1</div>
+      <div class="col-3 border bg-warning">2</div>
+      <div class="col-3 border bg-info">3</div>
+    </div>
+    <div class="row border justify-content-end">
+      <div class="col-3 border bg-danger">1</div>
+      <div class="col-3 border bg-warning">2</div>
+      <div class="col-3 border bg-info">3</div>
+    </div>
+
+    <!-- 网格设置一行中列的显示个数 -->
+    <!-- row-cols-{breakpoint}-{number} -->
+    <div class="row row-cols-3">
+      <div class="col border">1</div>
+      <div class="col border">2</div>
+      <div class="col border">3</div>
+    </div>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
+      <div class="col border">1</div>
+      <div class="col border">2</div>
+      <div class="col border">3</div>
+      <div class="col border">4</div>
+      <div class="col border">5</div>
+      <div class="col border">6</div>
+    </div>
+  </div>
+
   </div>
 </body>
 </html>
