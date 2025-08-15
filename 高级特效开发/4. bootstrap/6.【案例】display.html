@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+</head>
+<body>
+  <!-- lg ：显示三列内容  md : 显示两列内容 sm : 显示一列内容 -->
+  <!-- 参考：https://v5.bootcss.com/docs/utilities/display/ -->
+  <!-- display -->
+  <div class="d-none d-lg-block d-xl-none">
+    <div class="row">
+      <div class="col-4 border">JACK</div>
+      <div class="col-4 border">SMITH</div>
+      <div class="col-4 border">TOM</div>
+    </div>
+  </div>
+  <div class="d-none d-md-block d-lg-none">
+    <div class="row">
+      <div class="col-6 border">JACK</div>
+      <div class="col-6 border">SMITH</div>
+      <div class="col-6 border">TOM</div>
+    </div>
+  </div>
+  <div class="d-none d-sm-block d-md-none">
+    <div class="row">
+      <div class="col-12 border">JACK</div>
+      <div class="col-12 border">SMITH</div>
+      <div class="col-12 border">TOM</div>
+    </div>
+  </div>
+</body>
+</html>

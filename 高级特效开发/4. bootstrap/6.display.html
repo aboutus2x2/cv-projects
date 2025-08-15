@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+</head>
+<body>
+  <!-- 父元素设置位置 align-items-{start|center|end|baseline} -->
+  <!-- 子元素设置位置 align-self-{start|center|end} -->
+  <div class="row border d-flex justify-content-evenly align-items-center" style="height:100px;">
+    <div class="col-3 bg-danger">1-1</div>
+    <div class="col-3 bg-warning">1-2</div>
+    <div class="col-3 bg-info">1-3</div>
+  </div>
+
+  <!-- flex-{column|row} -->
+  <!-- flex:1 = flex-grow:1 + flex-shrink:1-->
+  <div class="row border d-flex flex-column">
+    <div class="col-3 bg-danger">1-1</div>
+    <div class="col-3 bg-warning">1-2</div>
+    <div class="col-3 bg-info">1-3</div>
+  </div>
+
+</body>
+</html>
