@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+</head>
+<body>
+  <div class="row">
+    <!-- 设置文本在标记中的位置 text-align -->
+    <!-- text-{breakpointer}-{start|center|end} -->
+    <div class="col-4 border border-danger text-center">
+      文本内容
+    </div>
+
+    <!-- 设置文本换行 -->
+    <!-- text-{wrap|nowrap} -->
+    <!-- overflow-{hidden|scroll|auto} -->
+    <div class="col-4 border border-danger text-nowrap overflow-scroll">
+      文本内容 文本内容 文本内容 文本内容
+      文本内容 文本内容 文本内容 文本内容
+      文本内容 文本内容 文本内容 文本内容
+      文本内容 文本内容 文本内容 文本内容
+      文本内容 文本内容 文本内容 文本内容
+      文本内容 文本内容 文本内容 文本内容
+    </div>
+
+    <!-- 设置字体大小 -->
+    <!-- fs-{number} 1~6 -->
+    <!-- 设置字体的粗细 -->
+    <!-- fw-{bold|bolder|semibold|normal|light|lighter} -->
+    <!-- 设置行高 -->
+    <!-- lh-{1|base|sm|lg} -->
+    <!-- 设置字体颜色 -->
+    <!-- text-{colors} -->
+    <div class="col-4 border border-danger fs-4 fw-bold lh-1">
+      文本内容
+    </div>
+
+    <!-- text-decoration-{underline|line-through|none} -->
+    <div class="col-4 border border-danger text-decoration-underline">
+      文本内容
+    </div>
+    <div class="col-4 border border-danger text-decoration-line-through">
+      文本内容
+    </div>
+    <a href="#" class="text-decoration-none">
+      文本内容
+    </a>
+
+  </div>
+</body>
+</html>
