@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+</head>
+<body>
+  <!-- enctype="multipart/form-data" 完成表单的图文上传 -->
+  <form class="container" onsubmit="return false">
+
+    <!-- 输入框 -->
+    <!-- form-control  -->
+    <!-- 输入框大小 form-control-{sm|lg} -->
+    <div style="width: 200px;">
+      <label for="stuName" class="form-label">姓名</label>
+      <input type="text" class="form-control form-control-sm" id="stuName" />
+    </div>
+    <div style="width: 200px;">
+      <label for="stuPwd" class="form-label">密码</label>
+      <input type="password" class="form-control" id="stuPwd" />
+    </div>
+    <div style="width: 200px;">
+      <label for="stuComment" class="form-label">评论</label>
+      <textarea class="form-control" id="stuComment"></textarea>
+    </div>
+
+    <!-- disabled readonly -->
+    <div style="width: 200px;">
+      <input type="text" class="form-control" value="编辑框内容" disabled />
+      <input type="text" class="form-control" value="编辑框内容" readonly />
+    </div>
+
+    <!-- select -->
+    <!-- form-select -->
+    <!-- select大小 form-select-{sm|lg} -->
+    <div style="width: 200px;">
+      <label class="form-label" for="city">选择城市</label>
+      <select id="city" class="form-select">
+        <option selected disabled>--请选择--</option>
+        <option value="cq">重庆</option>
+        <option value="sh">上海</option>
+        <option value="gd">广东</option>
+      </select>
+    </div>
+
+    <!-- 上传文件 -->
+    <div style="width: 200px;">
+      <label class="form-label" for="upload">上传文件</label>
+      <input type="file" class="form-control" id="upload" multiple />
+    </div>
+
+    <!-- 日期 -->
+    <div style="width: 200px;">
+      <label class="form-label" for="date">日期选择</label>
+      <input type="datetime-local" class="form-control" id="date"/>
+    </div>
+
+    
+
+  </form>
+</body>
+</html>
