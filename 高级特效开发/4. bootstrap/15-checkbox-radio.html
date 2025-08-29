@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+</head>
+<body>
+  <!-- checkbox -->
+  <label>请选择爱好:</label>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">唱歌</label>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">跳舞</label>
+  </div>
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">rappe</label>
+  </div>
+
+  <!-- 横向放置checkbox -->
+  <label>请选择爱好:</label>
+  <div class="form-check-inline">
+    <input type="checkbox" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">唱歌</label>
+  </div>
+  <div class="form-check-inline">
+    <input type="checkbox" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">跳舞</label>
+  </div>
+  <div class="form-check-inline">
+    <input type="checkbox" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">rappe</label>
+  </div>
+
+  <!-- Indeterminate -->
+  <!-- <div class="form-check">
+    <input class="form-check-input" type="checkbox" value="" id="indeterminate">
+    <label class="form-check-label" for="indeterminate">
+      Indeterminate checkbox
+    </label>
+  </div> -->
+
+  <br>
+  <!-- radio -->
+  <label>请选择身份:</label>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="hobbys" id="hobbys" checked />
+    <label class="form-check-label" for="hobbys">公民</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">团员</label>
+  </div>
+  <div class="form-check">
+    <input type="radio" class="form-check-input" name="hobbys" id="hobbys" disabled />
+    <label class="form-check-label" for="hobbys">党员</label>
+  </div>
+
+  <br>
+  <!-- radio 横向设置 -->
+  <label>请选择身份:</label>
+  <div class="form-check-inline">
+    <input type="radio" class="form-check-input" name="hobbys" id="hobbys" checked />
+    <label class="form-check-label" for="hobbys">公民</label>
+  </div>
+  <div class="form-check-inline">
+    <input type="radio" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">团员</label>
+  </div>
+  <div class="form-check-inline">
+    <input type="radio" class="form-check-input" name="hobbys" id="hobbys" />
+    <label class="form-check-label" for="hobbys">党员</label>
+  </div>
+
+  <!-- switch -->
+  <div class="form-check form-switch">
+    <input type="checkbox" class="form-check-input" role="switch" id="openLight" />
+    <label for="openLight" class="form-check-label">打开开关</label>
+  </div>
+
+  <!-- 按钮checkbox -->
+  <div class="form-check">
+    <input type="checkbox" class="btn-check" id="selectContent" autocomplete="off" />
+    <label for="selectContent" class="btn btn-primary">选择内容</label>
+  </div>
+
+  <br>
+  请选择：
+  <!-- 按钮radio -->
+  <div class="form-check-inline">
+    <input type="radio" name="fruits" class="btn-check" id="apple" autocomplete="off" checked />
+    <label for="apple" class="btn btn-danger">苹果</label>
+  </div>
+  <div class="form-check-inline">
+    <input type="radio" name="fruits" class="btn-check" id="banala" autocomplete="off" />
+    <label for="banala" class="btn btn-danger">香蕉</label>
+  </div>
+</body>
+</html>
