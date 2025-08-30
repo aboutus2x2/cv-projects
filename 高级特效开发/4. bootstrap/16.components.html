@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <script src="./js/bootstrap.bundle.js"></script>
+</head>
+<body>
+
+  <!-- 常见的component组件 -->
+  <!-- button、button-group、cards、dropdown、modal、Navbar -->
+
+  <nav class="navbar bg-danger">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Navbar</a>
+      <!-- 右边内容设置 -->
+      <div class="d-flex">
+        <a href="#">Navbar</a>
+      </div>
+    </div>
+    
+  </nav>
+
+  <!-- <div class="row gap-2">
+    <button class="btn btn-primary" type="button">Button</button>
+    <button class="btn btn-primary" type="button">Button</button>
+  </div> -->
+
+  <!-- <div class="row card">
+    <div class="col">内容</div>
+  </div> -->
+
+  <!--dropdown 组件  -->
+  <!-- dropdown 弹出效果 需要bootstrap.bundle.js -->
+  <div class="dropdown">
+    <!-- dropdown-toggle -->
+    <!-- role="button" 遵循button规则 -->
+    <!-- data-bs-toggle="dropdown" aria-expanded="false" -->
+    <a class="btn btn-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="./img/dog.jpg" width="50" height="50"  />
+    </a>
+  
+    <!-- dropdown-menu 菜单列表 -->
+    <ul class="dropdown-menu">
+      <!-- dropdown-item 列表选项 -->
+      <li><a class="dropdown-item" href="#">Action</a></li>
+      <li><a class="dropdown-item" href="#">Another action</a></li>
+      <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+  </div>
+</body>
+</html>
