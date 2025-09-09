@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <script src="./js/bootstrap.bundle.js"></script>
+</head>
+<body>
+  <!-- 参考：https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Form_validation -->
+  <form style="width: 300px;" onsubmit="return false">
+    <div class="mb-3">
+      <label class="form-label" for="stuName">学生姓名</label>
+      <input type="text" id="stuName" class="form-control" required minlength="2" maxlength="3" />
+      
+      <label class="form-label" for="stuAge">学生年龄</label>
+      <input min="16" max="30" type="number" id="stuAge" class="form-control"/>
+    
+      <label class="form-label" for="stuID">学生编号</label>
+      <input pattern="stu[0-9]{5}" type="text" id="stuID" class="form-control"/>
+        
+      <input type="checkbox" id="accept" class="form-check-input" required/>
+      <label class="form-check-label" for="accept">同意用户协议和说明</label>
+    </div>
+    <div>
+      <button class="btn btn-primary w-100" type="submit">提交</button>
+    </div>
+  </form>
+</body>
+<script>
+  /*
+  validity 每个表单元素（input select）的验证状态的对象
+  validity.valid 只有当表单元素通过校验，valid = true 否则为false
+  
+  validity.patternMismatch 表单中正则表达式pattern不匹配 返回true
+  validity.rangeOverflow 表单中要求数值超出max不匹配 返回true
+  validity.rangeUnderflow 表单中要求数值低于min不匹配 返回true
+  validity.tooLong 表单中输入的内容超出了maxlength，返回为true
+  validity.tooShort 表单中输入的内容低于minlength，返回为true
+  validity.typeMismatch 与表单中输入要求type 不匹配，返回为true（type="email" 输入电话）
+  validity.valueMissing 如果表单中有required限制，但步步输入 返回为true
+  */
+  // 设置按钮的监听事件
+  let form = document.querySelector('form')
+  let btn = document.querySelector('button')
+  let stuName = document.querySelector('#stuName')
+  let stuAge = document.querySelector('#stuAge')
+  let stuID = document.querySelector('#stuID')
+  let accept = document.querySelector('accept')
+
+  btn.addEventListener('click',()=>{
+
+    // 如果不输入必要内容
+    if(stuName.validity.valueMissing){
+      //setCustomValidity(string) 设置自定义的提示内容
+      stuName.setCustomValidity("请输入正确的姓名")
+    }else if(stuName.validity.tooShort){
+      stuName.setCustomValidity("姓名太短")
+    }else if(stuName.validity.tooLong){
+      stuName.setCustomValidity("姓名太长")
+    }
+
+    if(stuAge.validity.rangeOverflow){
+      stuAge.setCustomValidity("年龄太大")
+    }else if(stuAge.validity.rangeUnderflow){
+      stuAge.setCustomValidity("年龄太小")
+    }
+
+    // 验证通过的条件 针对元素的校验成功或者失败
+    // if(stuName.validity.valid
+    // && stuAge.validity.valid
+    // && stuID.validity.valid
+    // && accept.validity.valid){
+    //   console.log('验证通过')
+    // }
+
+    //form.checkValidity() 整个表单校验通过就返回true 否则为false
+    if(!form.checkValidity()){
+      form.reportValidity()
+    }else{
+      console.log('验证通过')
+    }
+
+  })
+
+  // form.addEventListener('submit',()=>{
+  // })
+
+</script>
+</html>

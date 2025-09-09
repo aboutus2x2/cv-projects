@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <script src="./js/bootstrap.bundle.js"></script>
+</head>
+<body>
+  <!-- 参考：https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Form_validation -->
+  <form style="width: 300px;" onsubmit="return false">
+    <div class="mb-3">
+      <!-- <label class="form-label" for="stuName">学生姓名</label> -->
+      <!-- required 必填项的属性 -->
+      <!-- minlength 最小字符输入个数 -->
+      <!-- maxlength 最多字符输入个数 -->
+      <!-- <input type="text" id="stuName" class="form-control" required minlength="2" maxlength="3" /> -->
+
+
+      <!-- min 数值的最小要求 -->
+      <!-- max 数值的最大要求 -->
+          <!-- <label class="form-label" for="stuAge">学生年龄</label>
+          <input min="16" max="30" type="number" id="stuAge" class="form-control"/> -->
+    
+      <!-- stu10001 -->
+      <!-- pattern 要求正则表达式格式 -->
+          <!-- <label class="form-label" for="stuID">学生编号</label>
+          <input pattern="stu[0-9]{5}" type="text" id="stuID" class="form-control"/> -->
+        
+          <input type="checkbox" id="accept" class="form-check-input" required/>
+          <label class="form-check-label" for="accept">同意用户协议和说明</label>
+      </div>
+    <div>
+      <button class="btn btn-primary w-100" type="submit">提交</button>
+    </div>
+  </form>
+</body>
+</html>
