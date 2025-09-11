@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/bootstrap.css" />
+  <script src="./js/bootstrap.bundle.js"></script>
+</head>
+<body>
+  <!-- 参考：https://developer.mozilla.org/zh-CN/docs/Learn/Forms/Form_validation -->
+  <!-- novalidate 取消html原本的验证行为 -->
+  <form style="width: 300px;" onsubmit="return false" novalidate>
+    <div class="mb-3">
+          <input type="checkbox" id="accept" class="form-check-input" required/>
+          <label class="form-check-label" for="accept">同意用户协议和说明</label>
+    <div>
+      <button class="btn btn-primary w-100" type="submit">提交</button>
+    </div>
+  </form>
+
+  <hr>
+
+  <!-- <form style="width: 300px;" onsubmit="return false">
+    <div class="mb-3">
+          <input type="checkbox" id="accept" class="form-check-input" required/>
+          <label class="form-check-label" for="accept">同意用户协议和说明</label>
+    <div>
+      <button class="btn btn-primary w-100" type="submit">提交</button>
+    </div>
+  </form> -->
+</body>
+<script>
+  let form = document.querySelector('form')
+  let btn = document.querySelector('button')
+  let accept = document.querySelector('#accept')
+
+  btn.addEventListener('click',()=>{
+    if(accept.validity.valueMissing){
+      accept.setCustomValidity('请同意该协议')
+    }
+
+    //校验不通过
+    if(!form.checkValidity()){
+      //发送校验“不通过”的报告  setCustomValidity显示结果
+      //novalidate 取消html原本的验证行为
+      //当表单设置novalidate时,使用reportValidity，会正常显示官方html校验结果
+      form.reportValidity()
+    }else{
+      console.log('校验通过')
+    }
+  })
+
+  
+</script>
+</html>
