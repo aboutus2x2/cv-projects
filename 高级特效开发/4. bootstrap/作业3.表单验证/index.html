@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表单验证</title>
+  <link rel="stylesheet" href="../css/bootstrap.css"/>
+</head>
+<body>
+  <form class="vstack gap-2" style="width: 300px;" novalidate>
+    <div>
+      <label class="form-label" for="name">学生姓名</label>
+      <input name="name" class="form-control" id="name" type="text" required minlength="2" maxlength="200" />
+      <div class="invalid-feedback"></div>
+    </div>
+
+    <div>
+      <label class="form-label" for="clazz">学生班级</label>
+      <select name="clazz" class="form-select" id="clazz" required>
+        <option value="" disabled selected>请选择班级</option>
+        <option value="1">1班</option>
+        <option value="2">2班</option>
+        <option value="3">3班</option>
+      </select>
+      <div class="invalid-feedback">
+        请选择
+      </div>
+    </div>
+
+    <div class="form-check-inline">
+      <label class="form-check-label">学生爱好</label>
+      <input type="checkbox" name="hobbies" class="form-check-input" id="sing"/>
+      <label class="form-check-label" for="sing">唱歌</label>
+      <input type="checkbox" name="hobbies" class="form-check-input" id="jump"/>
+      <label class="form-check-label" for="jump">跳</label>
+      <input type="checkbox" name="hobbies" class="form-check-input" id="rappe"/>
+      <label class="form-check-label" for="rappe">rappe</label>
+      <input type="checkbox" name="hobbies" class="form-check-input" id="basketball"/>
+      <label class="form-check-label" for="basketball">篮球</label>
+      <div class="invalid-feedback"></div>
+    </div>
+
+    <div>
+      <label class="form-label" for="desc">学生描述</label>
+      <textarea name="desc" class="form-control" id="desc" maxlength="200" ></textarea>
+      <div class="invalid-feedback"></div>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" type="submit">提交</button>
+    </div>
+  </form>
+</body>
+<script>
+  let form = document.querySelector('form')
+  let name = document.querySelector('#name')
+  let nameFeedback = document.querySelector('#name~.invalid-feedback')
+  let desc = document.querySelector('#desc')
+  let descFeedback = document.querySelector('#desc~.invalid-feedback')
+  let clazz = document.querySelector('#clazz')
+  let clazzFeedback = document.querySelector('#clazz~.invalid-feedback')
+  let basketball = document.querySelector('#basketball')
+  let hobbiesFeedback = document.querySelector('#sing~.invalid-feedback')
+
+  form.addEventListener('submit',(ev)=>{
+    ev.preventDefault()
+    ev.stopPropagation()
+
+    let f = new FormData(form)
+    let nameVal = f.get('name')
+    let descVal = f.get('desc')
+    let clazzVal = f.get('clazz')
+    let hobbies = f.getAll('hobbies')
+
+    if(checkName(nameVal)&&
+    checkDesc(descVal)&&
+    checkClazz(clazzVal)&&
+    checkHobbies(hobbies)){
+      alert('验证通过')
+    }
+
+    
+    
+
+    form.classList.add('was-validated')
+  })
+
+  // function checkName(name){
+  //   let valid = true
+  //   if(name.validity.valueMissing){
+  //     nameFeedback.innerHTML = '名字为空'
+  //     valid = false
+  //   }else if(name.validity.tooShort){
+  //     nameFeedback.innerHTML = '名字太短'
+  //     valid = false
+  //   }else if(name.validity.tooLong){
+  //     nameFeedback.innerHTML = '名字太长'
+  //     valid = false
+  //   }
+
+  //   let nameVal = name.value
+  //   if(nameVal.includes('共产党')){
+  //     nameFeedback.innerHTML = '包含敏感词'
+  //     valid = false
+  //   }
+
+  //   name.classList.remove('is-valid','is-invalid')
+  //   name.classList.add(valid ? 'is-valid':'is-invalid')
+  // }
+
+
+  //content = name.value
+  function checkName(content){
+    let valid = true
+
+    if(content.includes('共产党')){
+      nameFeedback.innerHTML = '包含敏感词'
+      valid = false
+    }else if(content.trim() === ''){
+      nameFeedback.innerHTML = '名字为空'
+      valid = false
+    }else if(content.trim().length > 20){
+      nameFeedback.innerHTML = '名字太长'
+      valid = false
+    }else if(content.trim().length < 2){
+      nameFeedback.innerHTML = '名字太短'
+      valid = false
+    }
+
+    name.classList.remove('is-valid','is-invalid')
+    name.classList.add(valid ? 'is-valid':'is-invalid')
+
+    return valid
+  }
+
+  function checkDesc(content){
+    let valid = true
+
+    if(content.length > 200){
+      descFeedback.innerHTML = '内容太长'
+      valid = false
+    }else if(content.includes('张三') || content.includes('奇迹')){
+      descFeedback.innerHTML = '包含了张三或者奇迹'
+      valid = false
+    }
+
+    desc.classList.remove('is-valid','is-invalid')
+    desc.classList.add(valid ? 'is-valid':'is-invalid')
+  }
+
+  function checkClazz(content){
+    let valid = true
+
+    console.log(content)
+
+    if(content === null){
+      clazzFeedback.innerHTML = '请选择班级'
+      valid = false
+    }
+
+    clazz.classList.remove('is-valid','is-invalid')
+    clazz.classList.add(valid ? 'is-valid':'is-invalid')
+
+    return valid
+  }
+
+  function checkHobbies(hobbies){
+    let valid = true
+
+    if(hobbies.length > 3){
+      hobbiesFeedback.innerHTML = '选择数超过了3'
+      valid = false
+    }
+
+    basketball.classList.remove('is-valid','is-invalid')
+    basketball.classList.add(valid ? 'is-valid':'is-invalid')
+
+    return valid
+  }
+</script>
+</html>
