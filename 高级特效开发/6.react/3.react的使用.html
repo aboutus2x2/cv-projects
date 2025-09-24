@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/babel.min.js"></script>
+  <script src="./js/react.development.js"></script>
+  <script src="./js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  // React 创建标记
+  // React.createElement(参数1,参数2,...参数3)
+  // 参数1：标记的名称
+  // 参数2：标记的属性  {class:'box',width:'200'... }
+  // 参数3：标记的子节点 (节点树)
+  // let h2 = React.createElement('h2',null,'Hello World')
+  let div = React.createElement('div',{class:'a',style:{background:'red',}},'Hello World',
+  React.createElement('h2',null,'Hello World'))
+  // ReactDOM 渲染标记到root中
+  // ReactDOM.render(需要渲染的标记,渲染容器)
+  // ReactDOM.render(div,document.querySelector('#root'))
+
+  //React18
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(div)
+</script>
+</html>

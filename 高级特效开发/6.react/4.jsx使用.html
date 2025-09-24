@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/babel.min.js"></script>
+  <script src="./js/react.development.js"></script>
+  <script src="./js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  // let div = React.createElement('div',{class:'a',style:{background:'red',}},'Hello World',
+  // React.createElement('h2',null,'Hello World'))
+
+  //JSX语法
+   const div = <div className="a" style={{background:'red'}}><h1>Hello World</h1></div>
+
+  //React18
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(div)
+</script>
+</html>
