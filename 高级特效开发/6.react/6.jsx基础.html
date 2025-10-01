@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/babel.min.js"></script>
+  <script src="./js/react.development.js"></script>
+  <script src="./js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  // 1、JSX中的元素的属性需要用驼峰法命名
+  // 2、class在JSX中为className for为htmlFor
+  // 3、没有子节点的React元素可以用`/>` 结束
+  // 4、推荐：使用`小括号包裹JSX`，从而避免JS中的自动插入分号陷阱
+  // 5、所有React组件名称均用驼峰法命名
+   const InnerBox = (<div className="a" 
+   style={{background:'red',fontSize:'30px'}}>
+    <h1>Hello World</h1>
+    </div>)
+
+  const Box = (<div><InnerBox /></div>)
+
+  // InnerBox实际是一个jsx的对象(object)
+  console.log(InnerBox)
+
+  let root = document.querySelector('#root')
+  // ReactDOM.createRoot 创建出React页面根节点
+  // render 根节点渲染React对象
+
+  //JSX 是JS的预编译语言，需要通过babel处理成JavaScript
+  ReactDOM.createRoot(root).render(div)
+</script>
+</html>
