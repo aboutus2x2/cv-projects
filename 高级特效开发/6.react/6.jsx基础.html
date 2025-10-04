@@ -23,8 +23,6 @@
     <h1>Hello World</h1>
     </div>)
 
-  const Box = (<div><InnerBox /></div>)
-
   // InnerBox实际是一个jsx的对象(object)
   console.log(InnerBox)
 
@@ -33,6 +31,6 @@
   // render 根节点渲染React对象
 
   //JSX 是JS的预编译语言，需要通过babel处理成JavaScript
-  ReactDOM.createRoot(root).render(div)
+  ReactDOM.createRoot(root).render(InnerBox)
 </script>
 </html>
