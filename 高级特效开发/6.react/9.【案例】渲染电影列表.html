@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <style>
+    .list-item{
+      width: 300px;
+      height: 80px;
+      box-shadow: 0 0 5px 5px #ccc;
+      margin-bottom: 20px;
+      display: flex;
+      position: relative;
+    }
+    .item-icon{
+      height: 100%;
+    }
+    .item-info{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .item-title{
+      font-size: 20px;
+      font-weight: bold;
+      color: #1a1a1a;
+    }
+    .item-genre{
+      font-size: 14px;
+      color: #8a8a8a;
+    }
+    .item-rate{
+      position: absolute;
+      padding: 8px;
+      background-color: orange;
+      border-radius: 10px;
+      right: 10px;
+      top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <!-- <div class="list-item">
+      <img class="item-icon" src="./imgs/a.jpg" />
+      <div class="item-info">
+        <div class="item-title">示例标题</div>
+        <div class="item-genre">类型/类型/类型</div>
+      </div>
+      <div class="item-rate">5.7</div>
+    </div> -->
+  </div>
+</body>
+<script src="./movies.js"></script>
+<script type="text/babel">
+
+  function Movies(){
+    return (
+      <div>
+        {movies.map(item => (
+          <div className="list-item">
+            <img className="item-icon" src="./imgs/a.jpg" />
+            <div className="item-info">
+              <div className="item-title">{item.title.substring(0,8) + '...'}</div>
+              <div className="item-genre">{item.genre}</div>
+            </div>
+            <div className="item-rate">{item.rate}</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+ 
+ let root = document.querySelector('#root')
+ ReactDOM.createRoot(root).render(<Movies />)
+</script>
+</html>
