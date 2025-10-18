@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <style>
+    .list-item{
+      display: flex;
+      margin: 10px;
+    }
+    .item-icon{
+      width: 200px;
+    }
+    .item-info{
+      padding-left: 30px;
+    }
+    .item-title{
+      font-size: 25px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .item-title~a{
+      text-decoration: none;
+      color: #8a8a8a;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <!-- <div className="list-item">
+      <img className="item-icon" src="../imgs/b.jpeg" />
+      <div className="item-info">
+        <div className="item-title">新闻标题</div>
+        <span className="item-desc">新闻描述</span><a href="#">查看更多></a>
+      </div>
+    </div> -->
+  </div>
+</body>
+<script type="text/babel">
+
+  const news = [
+    {
+      img:'../imgs/a.jpg', 
+      title:'新闻标题1',
+      content:'新闻内容1',
+      link:'https://www.baidu.com'
+    },
+    {
+      img:'', 
+      title:'新闻标题2',
+      content:'',
+      link:'https://www.baidu.com'
+    },
+  ]
+
+  function ShowNews(){
+    return (
+      <div>
+        {/* 三目运算  逻辑运算 */}
+        {/* 列表渲染 与 条件渲染 */}
+        {news.map((item,index) => (
+          <div key={index} className="list-item">
+            <img className="item-icon" src={item.img === ''? '../imgs/b.jpeg':item.img} />
+            <div className="item-info">
+              <div className="item-title">{item.title}</div>
+              {(item.content != '') && (<span className="item-desc">{item.content}</span>)}
+              <a href={item.link}>查看更多&gt;</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<ShowNews />)
+
+</script>
+</html>
