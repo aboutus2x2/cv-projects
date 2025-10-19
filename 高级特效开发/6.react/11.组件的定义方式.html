@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  // 组件的定义方式：1、函数定义组件  2、class定义组件
+  //1、函数组件定义方式: 
+  //        首页字母大写、
+  //        return 返回React元素或者null,返回null时就不显示内容
+  //注意：return的React元素有且只有一个父级元素作为容器
+  function MyApp1(){
+
+    return (
+      <div>
+        <div>Hello World</div>
+        <div>Hello World</div>
+        <hr />
+      </div>
+    )
+  }
+
+  function MyApp2(){
+    return (
+      <div>
+        {/*组件可以复用，可以组合使用*/}
+        {/*单标记时，不需要定义中间内容， 双标记，需要定义中间内容*/}
+        <MyApp1 />
+        <MyApp1 >
+          <div></div>
+        </MyApp1>
+      </div>
+    )
+  }
+
+  //2、类组件的定义方式：
+  //        使用class 定义一个类，类名必须首字母大写
+  //        使用extends 继承React.Component
+  //        定义一个render函数，作为渲染组件的函数
+  //        在render函数定义return返回值，返回React元素
+
+  // 函数组件又被称为“无状态组件” 类组件又被称为“有状态组件”
+  class MyApp3 extends React.Component{
+
+    render(){
+      return (
+        <div>Hello</div>
+      )
+    }
+
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<MyApp3 />)
+</script>
+</html>
