@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  // 事件绑定的基本格式 on + 事件名称
+  // 事件名称 用驼峰法命名 比如 onClick onFocus onMouseDown
+
+
+  //函数组件
+  function App(){
+
+    //函数
+    function handleClick(){
+      alert('事件被触发')
+    }
+
+    return (
+      <div>
+        <button onClick={handleClick}>点击按钮</button>
+      </div>
+    )
+  }
+
+  // 类组件
+  class App1 extends React.Component{
+
+    handleClick(){
+      alert('事件被触发')
+    }
+
+    render(){
+      return (
+        <div>
+          {/*在类中调用函数，要使用 this.函数 */}
+          <button onClick={this.handleClick}>点击按钮</button>
+        </div>
+      )
+    }
+  }
+
+  //处理事件
+  class App2 extends React.Component{
+
+  //事件对象 event 简写ev 、e
+  handleClick(ev){
+    console.log('点击事件')
+    console.log(ev)
+  }
+
+  render(){
+    return (
+      <div>
+        <button onClick={this.handleClick}>点击按钮</button>
+      </div>
+    )
+  }
+}
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App2 />)
+
+</script>
+</html>
