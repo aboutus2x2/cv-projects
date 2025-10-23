@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+   //类组件
+   class StateComponent extends React.Component{
+    //state 状态参数对象
+
+    //构造函数中定义state
+    constructor(){
+      super()
+      this.state = {
+        //state中的值都可以设置，改变
+        count:1,
+        name:'张三',
+        array:['a','b','c'],
+        getMessage:()=>{ return (<h3>函数</h3>) },
+        datas:{ info:'123',test:'123' }
+      }
+    }
+
+    //注意：state中的参数不可以使用 "this.state.字段 = 值"
+    //     类组件使用  this.setState 对字段进行更新，才可以渲染至页面中
+    handleClick(){
+      // this.state.count = 3 
+      this.setState({
+        count:this.state.count + 1,
+        //向数组中增加一个内容，问题：减少一个内容？
+        array:[...this.state.array,'d']
+      })
+      console.log(this.state.count)
+    }
+
+    render(){
+      return (
+        <div>
+          <div>{this.state.count}</div>
+          <div>{this.state.name}</div>
+          <div>{this.state.array.map((item,index) => (<span key={index}>{item}</span>))}</div>
+          <div>{this.state.getMessage()}</div>
+          <div>{this.state.datas.info}</div>
+          <button onClick={this.handleClick.bind(this)}>点击改变count</button>
+        </div>
+      )
+    }
+  }
+
+  //总结： 类组件的state 管理  ：1、state 获取状态参数值  2、setState 修改状态参数值。
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<StateComponent />)
+</script>
+</html>
