@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  //函数组件中没有state参数
+  //React 提供了一个useState 函数，设置state中的参数状态
+  //格式 ： const [状态值，设置状态的函数名称] = React.useState(状态默认值)
+  //       const [getter，setter] = React.useState(默认值)
+  // getter === this.state.xxxx
+  // setter === this.setState({xxx:...})
+  function App(){
+
+    //案例:点击按钮count+1
+    // count 状态值
+    // setCount 设置状态值 
+    // React.useState() 使用时就会创建一个组件中状态值.
+    const [count,setCount] = React.useState(0)
+    const [number,setNumber] = React.useState(1)
+
+    return (
+      <div>
+        <div>{count}</div>
+        <button onClick={()=>{ setCount(count + 1) }}>点击+1</button>
+      </div>
+    )
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
