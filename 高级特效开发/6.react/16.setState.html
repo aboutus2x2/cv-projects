@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  class App extends React.Component{
+
+    constructor(){
+      super()
+      this.state = {
+        count:0
+      }
+    }
+
+    handleClick(){
+      // setState 异步函数
+      // 当多个异步函数同时执行,最终会影响结果的正常显示
+
+      //setState中的回调函数,有多个参数可以使用
+      //为了解决setState异步问题,我们在使用时,改为 setState((state,props) => {})
+      //   让结果不再依赖原本的state中的值,而是依赖整个回调函数
+
+      // this.setState({
+      //   count:this.state.count + 1
+      // })
+
+      //setState(参数1,参数2) 
+      // 参数1:回调函数,有两个形参
+      // 形参一: state 状态参数对象
+      // 形参二: props 组件与组件之间值传递的对象
+
+      // 参数2:函数,当前面的回调函数执行结束后,该函数会被执行.
+      this.setState((state,props)=>{
+        return {
+          count:state.count + 1
+        }
+      },()=>{
+        console.log('上述内容执行完成')
+      })
+      this.setState((state,props)=>{
+        return {
+          count:state.count + 1
+        }
+      })
+      this.setState((state,props)=>{
+        return {
+          count:state.count + 1
+        }
+      })
+    }
+
+    render(){
+      return (
+        <div>
+          <div>{this.state.count}</div>
+          <button onClick={this.handleClick.bind(this)}>点击+3</button>
+        </div>
+      )
+    }
+
+  }
+
+  function Test() {
+
+    const [name,setName] = React.useState('张三')
+
+    function handleClick(){
+      //useState 中的setName函数
+      //避免异步函数的方式,使用箭头函数,且必须有返回值
+      // this.setName('李四') // name = '李四'
+      setName(name=>'李四')
+    }
+
+     return (
+      <div>
+        <div>{name}</div>
+        <button onClick={handleClick}>修改内容</button>  
+      </div>
+     ) 
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<Test />)
+</script>
+</html>
