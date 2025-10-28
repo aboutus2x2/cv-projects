@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <style>
+    html,body,#root{
+      height: 100%;
+    }
+    #container{
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+    }
+    .dialog{
+      width: 200px;
+      height: 200px;
+      box-shadow: 0 0 3px 3px #8a8a8a;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    
+  </div>
+</body>
+<script type="text/babel">
+
+  function App(){
+
+    // 设置一个显示的状态值
+    const [show,setShow] = React.useState(false)
+
+    return (
+      <div id="container">
+        {show && (
+          <div class="dialog">
+            <div class="title">标题</div>
+            <hr />
+            <div class="msg">信息</div>
+            <div class="footer">
+              <button onClick={()=>{setShow(false)}}>关闭窗口</button>
+            </div>
+          </div>)}
+        {!show && (<button onClick={()=>{setShow(true)}}>打开窗口</button>)}
+      </div>
+      
+    )
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+
+</script>
+</html>

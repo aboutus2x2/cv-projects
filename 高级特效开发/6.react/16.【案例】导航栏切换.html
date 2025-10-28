@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <style>
+    .nav{
+      display: flex;
+      width: 360px;
+      border: 1px solid black;
+    }
+    .nav-item{
+      width: 120px;
+      height: 60px;
+      text-align: center;
+      line-height: 60px;
+    }
+    .active{
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <!-- <div class="nav">
+      <div class="nav-item active">首页</div>
+      <div class="nav-item">商品</div>
+      <div class="nav-item">个人</div>
+    </div> -->
+  </div>
+</body>
+<script type="text/babel">
+
+  function App(){
+
+    const [navList,setNavList] = React.useState(
+      [
+        {name:'首页',active:true},
+        {name:'商品',active:false},
+        {name:'个人',active:false}
+      ])
+
+    function handleClick(index){
+      setNavList(_navList =>{
+        _navList.forEach(item => {
+          item.active = false
+        })
+        _navList[index].active = true
+        return [..._navList]
+      })
+    }
+
+    return (
+      <div className="nav">
+        {navList.map((item,index) => (
+          <div key={index} 
+            className={item.active?'nav-item active':'nav-item'} 
+            onClick={()=>{handleClick(index)}}>{item.name}
+          </div>
+          ))}
+      </div>
+    )
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+
+</script>
+</html>
