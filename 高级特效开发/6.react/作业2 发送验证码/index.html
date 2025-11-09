@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  // 类组件实现 state
+  class App extends React.Component{
+
+    state = {
+      second:5,
+      isDisabled:false
+    }
+
+    handleClick(){
+      // let {second,isDisabled} = this.state
+      this.timer = setInterval(()=>{
+        //当秒数 > 0 每次计时-1，且无法被点击 
+        if(this.state.second > 0){
+          //秒数减1
+          this.setState((state,props) => {
+            return {
+              second:state.second - 1,
+              isDisabled:true
+            }
+          })
+        }else{//当秒数 <= 0 就停止计时器和复原state，可被点击
+          clearInterval(this.timer)
+          this.setState((state,props) => {
+            return {
+              second:5,
+              isDisabled:false
+            }
+          })
+        }
+      },1000)
+    }
+
+    render(){
+      // let {second,isDisabled} = this.state
+      return (
+        <div>
+          <input type="text" />
+          <button disabled={isDisabled} onClick={this.handleClick.bind(this)}>
+            {isDisabled ? second + "秒后可以发送":"发送验证码"}
+          </button>
+        </div>
+      )
+    }
+  }
+
+  //5.1 5.0 :ReactDOM.render
+  //5.2 :ReactDOM.createRoot
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+
+</script>
+</html>
