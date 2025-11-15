@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  //Ref转发：可以通过转发方式让组件受控
+  //  1、通过React.createRef() 创建转发对象
+  //  2、在React元素中设置ref属性，并将1步的对象赋值给该属性
+  //  3、通过第1步中的“对象.current” 获取该React元素DOM对象
+  
+  class App extends React.Component{
+
+    constructor(){
+      super()
+      this.inputRef = React.createRef()
+      this.state = {
+        content:''
+      }
+    }
+
+    handleClick = ()=>{
+      //this.inputRef.current 获取input元素的DOM对象
+      let inputVal = this.inputRef.current.value
+      //将input DOM的value值赋值给 content
+      this.setState({
+        content:inputVal
+      })
+    }
+
+    render(){
+      return (
+        <div>
+          <input ref={this.inputRef} type="text" />
+          <button onClick={this.handleClick}>获取input中的内容</button>
+          <div>显示:{this.state.content}</div>
+        </div>
+      )
+    }
+
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
