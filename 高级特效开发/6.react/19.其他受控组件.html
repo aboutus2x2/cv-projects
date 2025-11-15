@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  class App extends React.Component{
+
+    state = {
+      content:'123',
+      selectName:'ls',
+      isChecked:true
+    }
+
+    // handleChange(ev){
+    //   this.setState((state,props) => {
+    //    return { content:ev.target.value}
+    //   })
+    // }
+
+    // handleSelectChange(ev){
+    //   this.setState((state,props) => {
+    //    return { selectName:ev.target.value}
+    //   })
+    // }
+
+    // handleCheckChange(ev){
+    //   this.setState((state,props) => {
+    //    return { isChecked:!state.isChecked}
+    //   })
+    // }
+
+    //多个受控的表单组件设置
+    handleChange(ev){
+      let target = ev.target
+
+      //target.type 表单的类型 text checkbox...
+      let result = target.type === 'checkbox'?
+      !this.state.isChecked : target.value
+
+      //属性的名称
+      let name = target.name
+
+      this.setState((state,props) => {
+       return {
+        //[变量] 灵活变量，将变量值变成属性名称
+          [name]:result
+       }
+      })
+    }
+
+    render(){
+      return (
+        <div>
+          <input type="text" name="content" value={this.state.content} onChange={this.handleChange.bind(this)} /><br />
+          {/*select*/}
+          <select name="selectName" value={this.state.selectName} onChange={this.handleChange.bind(this)}>
+            <option value="zs">张三</option>
+            <option value="ls">李四</option>
+            <option value="ww">王五</option>
+          </select><br />
+          {/*checkbox radio*/}
+          <input name="isChecked" type="checkbox" checked={this.state.isChecked} 
+            onChange={this.handleChange.bind(this)} /><br />
+        </div>
+      )
+    }
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
