@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <style>
+    .con{
+      padding: 10px;
+      border: 1px solid black;
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+  </div>
+</body>
+<script type="text/babel">
+
+  class App extends React.Component{
+
+    // state 中的参数一旦发生改变，就会被React监听到，然后执行一次render
+    //列表渲染
+    state = {
+      list:[],
+      //受控组件
+      name:'',
+      comment:''
+    }
+
+    handleNameChange = (ev)=>{
+      this.setState((state,props)=>{
+        return {name:ev.target.value}
+      })
+    }
+
+    handleCommentChange = (ev)=>{
+      this.setState((state,props)=>{
+        return {comment:ev.target.value}
+      })
+    }
+
+    //发表评论 ：在list中添加一个内容
+    submitComment = ()=>{
+      this.setState((state,props)=>{
+        return {
+          list:[...state.list,{name:state.name,comment:state.comment}],
+          name:'',
+          comment:''
+        }
+      })
+    }
+
+    render(){
+      const {list,name,comment} = this.state
+      return (
+        <div className="con">
+          <div>
+            <input value={name} type="text" placeholder="请输入评论人" onChange={this.handleNameChange} /><br />
+            <br />
+            <textarea rows="10" cols="30" placeholder="请输入评论内容" onChange={this.handleCommentChange} value={comment}></textarea><br />
+            <button onClick={this.submitComment}>发表评论</button><br />
+          </div>
+          {/*条件渲染*/}
+          {
+            list.length > 0 ?
+            (<ul>
+            {/*<li>
+              <h3>评论人：张三</h3>
+              <div>评论内容:为我独尊</div>
+            </li>*/}
+            {list.map((item,index) => (<li key={index}>
+              <h3>评论人{item.name}</h3>
+              <div>评论内容:{item.comment}</div>
+            </li>))}
+          </ul>):'暂无评论，快来评论吧'
+          }
+        </div>
+      )
+    }
+
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
