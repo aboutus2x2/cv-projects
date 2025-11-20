@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  //props 组件与组件通信 ：
+  //1、父组件向子组件传递信息
+  //2、子组件向父组件传递信息
+  //3、子组件和子组件传递信息
+
+  //父组件向子组件传递信息
+  // 1、在子组件标记中自定义一个属性名称
+  // 2、将父组件中的内容给子组件标记属性赋值
+  // 3、子组件可以通过this.props.属性 获取传递过来的信息
+  class App extends React.Component{
+
+    //state在类组件调用 this.state
+    //props在类组件调用 this.props
+    state = {
+      content:'父组件的内容'
+    }
+
+    render(){
+      return (
+          <div className="parent">
+            <Child1 data={this.state.content} />
+            <Child2 data={this.state.content} />
+          </div>
+        )
+    }
+  }
+
+  //类组件
+  class Child1 extends React.Component{
+
+    render(){
+      return (
+        <div className="child1">
+          <h3>{this.props.data}</h3>
+        </div>)
+    }
+  }
+
+  //函数组件
+  function Child2(props){
+    return (
+      <div className="child2">
+        <h3>{props.data}</h3>
+      </div>)
+  }
+
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
