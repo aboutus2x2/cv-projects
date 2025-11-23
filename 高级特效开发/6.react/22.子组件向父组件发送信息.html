@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  //子组件向父组件发送信息
+  // 1、在父组件中设置一个触发事件函数（形参）
+  // 2、在子组件标记中自定义属性,并传入上述的函数名称
+  // 3、在子组件中设置props传递过来的函数
+  //父组件
+  class App extends React.Component {
+
+    state = {
+      price : 20
+    }
+
+    getChildNumber = (number)=>{
+      this.setState((state,props)=>{
+        return {price:state.price - number}
+      })
+    }
+
+    render() {
+      return (
+        <div className="parent">
+          父组件中的price：{this.state.price}
+          <Child getChildNumber={this.getChildNumber} />
+        </div>
+      )
+    }
+  }
+
+  //子组件
+  class Child extends React.Component {
+
+    constructor(props){
+      super(props)
+      this.state = {
+        number : 10
+      }
+    }
+
+    handleClick = ()=>{
+      this.props.getChildNumber(this.state.number)
+    }
+
+    render(){
+      return (
+        <div className="child">
+          <h3>子组件</h3>
+          <button onClick={this.handleClick}>向父组件发送消息</button>
+        </div>)
+    }
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>
