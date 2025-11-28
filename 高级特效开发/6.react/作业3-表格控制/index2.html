@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <style>
+    .box{
+      display: flex;
+    }
+    .left,.right{
+      padding: 20px;
+      border: 1px solid black;
+    }
+    .male{
+      color: blue;
+      font-weight: bold;
+    }
+    .female{
+      color: red;
+      text-decoration: underline;
+    }
+    .other{
+      color: yellow;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+  </div>
+</body>
+<script type="text/babel">
+
+  class App extends React.Component{
+
+    //受控组件
+    state = {
+      name:'',
+      sex:'',
+      age:0,
+      list:[
+      ]
+    }
+
+    //绑定change事件函数
+    handleChange = (ev)=>{
+      let target = ev.target
+      let name = target.name
+      this.setState(state => {
+          return {[name]:target.value}
+        })
+    }
+
+    //绑定按钮的监听事件
+    handleClick = ()=>{
+      let {name,sex,age,list} = this.state
+      let sexName
+      if(sex == 'male') sexName = '男'
+      if(sex == 'female') sexName = '女'
+      if(sex == 'other') sexName = '其他'
+      this.setState(state => {
+        return {
+          list:[{name:name,sex:sexName,age:age,style:sex},...list]
+        }
+      })
+    }
+
+    //删除列表选项
+    handleDelete(index){
+      let tmpList = this.state.list
+      // filter 避免操作原数组
+      tmpList.splice(index,1)
+      this.setState(state => {
+        return {
+          list:[...tmpList]
+        }
+      })
+    }
+
+
+    render(){
+      const {name,sex,age,list} = this.state
+      return (
+        <div className="box">
+          <table className="left">
+            <thead>
+              <tr>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.map((item,index) => (<tr key={index} className={item.style}>
+                <td>{item.name}</td>
+                <td>{item.sex}</td>
+                <td>{item.age}</td>
+                <td><button onClick={this.handleDelete.bind(this,index)}>删除</button></td>
+              </tr>))}
+              
+            </tbody>
+          </table>
+          <div className="right">
+            <label htmlFor="name">姓名</label>
+            <input name="name" id="name" type="text" value={name} onChange={this.handleChange} /><br />
+            <label>性别</label>
+            <input checked={sex === 'male'} value="male" onChange={this.handleChange} id="male" type="radio" name="sex" /><label htmlFor="male">男</label>
+            <input checked={sex === 'female'} value="female" onChange={this.handleChange} id="female" type="radio" name="sex" /><label htmlFor="female">女</label>
+            <input checked={sex === 'other'} value="other" onChange={this.handleChange} id="other" type="radio" name="sex" /><label htmlFor="other">其他</label><br />
+            <label htmlFor="age">年龄</label>
+            <input name="age" id="age" type="number" value={age} onChange={this.handleChange} /><br />
+            <button onClick={this.handleClick}>添加</button>
+          </div>
+        </div>
+      )
+    }
+
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
