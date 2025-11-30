@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+  <link rel="stylesheet" href="../css/bootstrap.css" />
+  <style>
+    .box{
+      width: 300px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+  </div>
+</body>
+<script type="text/babel">
+
+  class Computer extends React.Component{
+
+    state = {
+      inpStr:''
+    }
+
+    handleNumberInp = (ev)=>{
+      let number = ev.target.innerText
+      this.setState(state =>{
+        return {inpStr:state.inpStr + number}
+      })
+    }
+
+    //等号输出结果
+    handleEqual = ()=>{
+      let str = this.state.inpStr
+      let numberArray = []
+      let result = eval(str)
+      // if(str.includes('+')){
+      //   //2个数字
+      //   numberArray = str.split('+')
+      //   result = Number(numberArray[0]) + Number(numberArray[1])
+      // }else if(str.includes('-')){
+      //   numberArray = str.split('-')
+      //   result = Number(numberArray[0]) - Number(numberArray[1])
+      // }
+      this.setState(state =>{
+        return {inpStr:`${result}`}
+      })
+    }
+
+    //清空输入
+    handleClear = ()=>{
+      this.setState(state =>{
+        return {inpStr:''}
+      })
+    }
+
+    render(){
+      let {inpStr} = this.state
+      return (
+        <div className="box container vstack gap-2">
+          <div className="row">
+            <input className="form-control" type="text" value={inpStr} />
+          </div>
+          <div className="row hstack gap-1">
+            <button className="col btn btn-secondary" onClick={this.handleNumberInp}>1</button>
+            <button className="col btn btn-secondary" onClick={this.handleNumberInp}>2</button>
+            <button className="col btn btn-secondary" onClick={this.handleNumberInp}>+</button>
+            <button className="col btn btn-secondary" onClick={this.handleNumberInp}>-</button>
+          </div>
+          <div className="row hstack gap-1">
+            <button className="col btn btn-secondary" onClick={this.handleEqual}>=</button>
+            <button className="col btn btn-secondary" onClick={this.handleClear}>C</button>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<Computer />)
+</script>
+</html>
