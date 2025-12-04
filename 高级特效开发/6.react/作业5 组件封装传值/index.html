@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  class App extends React.Component{
+
+    state = {
+      zhangSan : {
+      name: '张三',
+      sex: 'male',
+      age: 17
+      },
+      liSi : {
+        name: '李四',
+        sex: 'female',
+        age: 17
+      },
+      laoWang : {
+        name: '老王',
+        sex: 'female',
+        age: 17
+      }
+    }
+
+    render(){
+      return (
+        <div>
+          <Students info={this.state.zhangSan} />
+          <Students info={this.state.liSi} />
+          <Students info={this.state.laoWang} />
+        </div>
+      )
+    }
+  }
+
+  function Students(props){
+    return (
+      <div className="student">
+        <h3>{props.info.name}</h3>
+        <div>{props.info.sex == 'male'?'男':props.info.sex == 'female'?'女':'其他'}</div>
+        <div>{props.info.age}</div>
+      </div>
+    )
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
