@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  // context可以设置主题、语言...
+  //Context的官方使用方式：
+  //  context页面中储存共享数据的对象
+  // 1、通过React.createContxt 创建一个Context对象（共享数据）
+  // 2、通过 context对象可以得到"context对象.Provider" 和"context对象.Comsumer"
+  // 3、context对象.Provider 的value属性传值
+  // 4、在接收数据的组件中绑定context，设置"static contextType = context对象"
+  //    或者"组件名.contextType = context对象"
+  // 5、在组件中可以通过"this.context"访问到context中的值
+
+  const ThemeContext = React.createContext()
+
+  const themes = {
+    dark:{
+      background:'black',
+      color:'white'
+    },
+    light:{
+      background:'white',
+      color: 'black'
+    }
+  }
+  
+  class App extends React.Component{
+
+    render(){
+      return (
+        <div className="app">
+          <ThemeContext.Provider value='light'>
+            <Navbar />
+          </ThemeContext.Provider>
+        </div>
+      )
+    }
+  }
+  class Navbar extends React.Component{
+
+    state = {
+      style:''
+    }
+
+    handleClick = ()=>{
+      this.setState(state => {
+        return {
+          style:state.theme === 'dark'? 'light':'dark'
+        }
+      })
+    }
+
+    render(){
+      return (
+        <div className="navbar" style={themes[this.state.style]}>
+          <ThemeButton onClick={this.handleClick}/>
+        </div>
+      )
+    }
+  }
+
+  
+  class ThemeButton extends React.Component{
+
+    static contextType = ThemeContext
+
+    state = {
+      theme:this.context
+    }
+
+    render(){
+      return (
+        <div className="themebutton">
+          <button {...this.props}>切换主题</button>
+        </div>
+      )
+    }
+  }
+  //接收context传值的组件需要绑定context对象
+  // ThemeButton.contextType = ThemeContext
+  
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
