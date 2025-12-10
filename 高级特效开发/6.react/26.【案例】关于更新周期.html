@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  //父组件 --> 子组件
+  class Parent extends React.Component{
+
+    state = {
+      count:12
+    }
+
+    handleClick =()=>{
+      this.setState((state,props) => {
+        return {count:state.count + 1}
+      })
+    }
+
+    render(){
+      return (
+        <div>父组件：<button onClick={this.handleClick}>点击+1</button>
+          <Child count={this.state.count} /></div>
+      )
+    }
+  }
+
+  class Child extends React.Component{
+
+    constructor(props){
+      super(props)
+      this.state = {
+        a:0
+      }
+      //报错：Warning: Can't call setState on a component that is not yet mounted. 
+      // this.setState((state,props) => {
+      //   return {a:props.count}
+      // })
+    }
+
+    
+    componentDidMount(){
+      // 挂载完成时，只执行了一次，之后不再设置
+      // this.setState((state,props) => {
+      //   return {a:props.count}
+      // })
+    }
+
+    componentDidUpdate(prevProps){
+      //prevProps 每一次调用时，会获得props更新前的值
+      console.log('Child componentDidUpdate 执行')
+      console.log(prevProps)
+      //prevProps 之前的值 this.props当前的值
+      if(prevProps != this.props){
+        this.setState((state,props) => {
+          return {a:props.count}
+        })
+      }
+    }
+
+    render(){
+      return (<h3>子组件：{this.state.a}</h3>)
+    }
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<Parent />)
+</script>
+</html>
