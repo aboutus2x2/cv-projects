@@ -16,7 +16,7 @@
 
   //更新时触发条件：
 // 1、有新的props传入
-// 2、setState方法被调用
+// 2、setState方法被调用（只有组件本身的setState，才能触发组件本身更新事件,不会更新其他组件的更新事件）
 // 3、forceUpdate(强制重新渲染)执行
 
 //更新时，执行 render -> componentDidUpdate
