@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  // useEffect : 监听state或者props中的值变化
+  // useEffect(callback,[value]) 
+  // 1、callback回调函数，会因为值的变化而执行
+  // 2、需要监视的值
+
+  function App() {
+
+    const [count, setCount] = React.useState(0)
+
+    //监视count值的变化
+    //useEffect 相当于 componentDidMount 作用
+    // React.useEffect(() => {
+    //   console.log('执行useEffect回调函数')
+    // }, [count])
+
+    //useEffect 的参数 回调函数callback可以设置return (带返回值)
+    //          如果callback设置return，就会呈现出，之前状态和当前状态值。
+    // useEffect更新时 componentDidUpdate(prevProps)
+    // React.useEffect(() => {
+    //   console.log('current:',count)
+    //   return ()=>{//return 取决于count是否发生变化
+    //     console.log('prev:',count)
+    //   }
+    // }, [count])
+
+    // 当useEffect 的第二个参数为[] ，这个时候可以通过回调，设置挂载和卸载两个生命周期
+    // [] 就相当于监视了整个组件
+    React.useEffect(() => {
+      console.log('App componentDidMount')
+      return ()=>{
+        console.log('App componentWillUnMount')
+      }
+    }, [])
+
+    return (
+      <div>
+        {count}
+        <button onClick={() => { setCount(count + 1) }}>点击+1</button>
+      </div>
+    )
+
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>
