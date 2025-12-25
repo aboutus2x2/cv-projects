@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+  //定义错误边界的步骤：
+  //1、创建类组件，设置生命周期函数
+  //     componentDidCatch(error,errorInfo),使其称为错误边界组件
+  //2、创建子组件, 并设置错误和异常 （render、其他生命周期函数）
+  //3、使用错误边界组件 包裹子组件
+   class ErrorBoundary extends React.Component{
+
+    state = {
+      //是否有错误产生
+      hasError:false
+    }
+
+    //捕获子组件的异常或者错误
+    componentDidCatch(error,errorInfo){
+      console.log('ErrorBoundary componentDidCatch 执行')
+      console.log(error)
+      console.log(errorInfo)
+      this.setState(state => {
+        return {hasError:true}
+      })
+    }
+
+    render(){
+      return (<div>
+        {/* this.props.children 获取子组件内容 */}
+        {this.state.hasError ? <h2>错误页面</h2> : this.props.children}
+        </div>)
+    }
+
+   }
+
+   //定义子组件
+   class Child extends React.Component{
+
+    state = {
+      count:0
+    }
+
+    componentDidMount(){
+      // bbb.c()
+    }
+
+    componentDidUpdate(){
+      // aaa.c()
+    }
+
+    handleClick = ()=>{
+      this.setState(state =>{
+        return {count:state.count + 1}
+      })
+    }
+
+    render(){
+      return (<div>
+        {this.state.count > 5 ? abc.d():null}
+        {this.state.count}<br />
+        <button onClick={this.handleClick}>点击内容+1</button>
+        </div>)
+    }
+
+   } 
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root)
+  .render(<ErrorBoundary><Child /></ErrorBoundary>)
+</script>
+</html>
