@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  //要求，使用传送门Portals
+  //1、在页面中设置一个按钮，点击该按钮弹出窗口
+  //2、在弹出窗口中，设置一个按钮名为“确认”，取消该窗口显示
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<AudioParamMap />)
+</script>
+</html>

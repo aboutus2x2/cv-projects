@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+  <div id="dialog"></div>
+</body>
+<script type="text/babel">
+
+//ReactDOM.createPortal(child, container)
+//第一个参数（child）是任何可渲染的 React 子元素，例如一个元素，字符串或 fragment。
+//第二个参数（container）是一个 DOM 元素。
+
+//child 载入container中
+//应用场景：Portal 传送门常用于弹窗设置
+
+  class Dialog extends React.Component{
+    render(){
+      return ReactDOM.createPortal(
+        this.props.children,
+        document.querySelector('#dialog')
+      )
+    }
+  }
+
+  class DialogContent extends React.Component{
+
+    handleClick = ()=>{
+
+    }
+
+    render(){
+      return (
+        <React.Fragment>
+          <h3>弹窗标题</h3>
+          <p>弹窗内容</p>
+          <button onClick={this.handleClick}>确认</button>
+        </React.Fragment>
+      )
+    }
+  }
+
+  class App extends React.Component{
+
+    render(){
+      return (
+        <React.Fragment>
+          <Dialog>
+            <DialogContent/>
+          </Dialog>
+        </React.Fragment>
+      )
+    }
+
+  }
+
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>
