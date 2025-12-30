@@ -11,13 +11,58 @@
 </head>
 <body>
   <div id="root"></div>
+  <div id="dialog"></div>
 </body>
 <script type="text/babel">
 
-  //要求，使用传送门Portals
-  //1、在页面中设置一个按钮，点击该按钮弹出窗口
-  //2、在弹出窗口中，设置一个按钮名为“确认”，取消该窗口显示
+//ReactDOM.createPortal(child, container)
+//第一个参数（child）是任何可渲染的 React 子元素，例如一个元素，字符串或 fragment。
+//第二个参数（container）是一个 DOM 元素。
+
+//child 载入container中
+//应用场景：Portal 传送门常用于弹窗设置
+
+  class Dialog extends React.Component{
+    render(){
+      return ReactDOM.createPortal(
+        this.props.children,
+        document.querySelector('#dialog')
+      )
+    }
+  }
+
+  class DialogContent extends React.Component{
+
+    handleClick = ()=>{
+
+    }
+
+    render(){
+      return (
+        <React.Fragment>
+          <h3>弹窗标题</h3>
+          <p>弹窗内容</p>
+          <button onClick={this.handleClick}>确认</button>
+        </React.Fragment>
+      )
+    }
+  }
+
+  class App extends React.Component{
+
+    render(){
+      return (
+        <React.Fragment>
+          <Dialog>
+            <DialogContent/>
+          </Dialog>
+        </React.Fragment>
+      )
+    }
+
+  }
+
   let root = document.querySelector('#root')
-  ReactDOM.createRoot(root).render(<AudioParamMap />)
+  ReactDOM.createRoot(root).render(<App />)
 </script>
 </html>
