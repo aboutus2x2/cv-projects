@@ -15,34 +15,40 @@
 </body>
 <script type="text/babel">
 
-//ReactDOM.createPortal(child, container)
-//第一个参数（child）是任何可渲染的 React 子元素，例如一个元素，字符串或 fragment。
-//第二个参数（container）是一个 DOM 元素。
+  //要求，使用传送门Portals
+  //1、在页面中设置一个按钮，点击该按钮弹出窗口
+  //2、在弹出窗口中，设置一个按钮名为“确认”，取消该窗口显示
 
-//child 载入container中
-//应用场景：Portal 传送门常用于弹窗设置
+  // Context.Provider Consumber
+  // ceateRef
+  // props 子传父 父传子
 
   class Dialog extends React.Component{
+
+    handleClick = ()=>{
+      this.props.getShowFromDialog(!this.props.show)
+    }
+
     render(){
-      return ReactDOM.createPortal(
-        this.props.children,
-        document.querySelector('#dialog')
+      return (
+        this.props.show ? 
+        ReactDOM.createPortal(
+          //设置内容中的点击事件参数，这个onClick参数会发送给DialogContent props
+          (<DialogContent onClick={this.handleClick} />),
+          document.querySelector('#dialog')
+        ):null
       )
     }
   }
 
   class DialogContent extends React.Component{
 
-    handleClick = ()=>{
-
-    }
-
     render(){
       return (
         <React.Fragment>
           <h3>弹窗标题</h3>
           <p>弹窗内容</p>
-          <button onClick={this.handleClick}>确认</button>
+          <button {...this.props}>确认</button>
         </React.Fragment>
       )
     }
@@ -50,10 +56,30 @@
 
   class App extends React.Component{
 
+    state = {
+      show:false
+    }
+
+    //1、点击按钮，弹窗出现
+    handleClick = ()=>{
+      this.setState(state =>{
+        return {show:true}
+      })
+    }
+
+    //2、弹窗消失
+    getShowFromDialog =(s)=>{
+      this.setState(state =>{
+        return {show:s}
+      })
+    }
+
     render(){
       return (
         <React.Fragment>
-          <Dialog>
+          <button onClick={this.handleClick}>打开窗口</button>
+          <Dialog show={this.state.show} 
+          getShowFromDialog={this.getShowFromDialog}>
             <DialogContent/>
           </Dialog>
         </React.Fragment>
