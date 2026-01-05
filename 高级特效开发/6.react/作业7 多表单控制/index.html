@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/bootstrap.css" />
+  <script src="../js/babel.min.js"></script>
+  <script src="../js/react.development.js"></script>
+  <script src="../js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script type="text/babel">
+
+  class FormDemo extends React.Component {
+
+    //受控组件
+    state = {
+      name: "",
+      age: 0,
+      sex: "other"
+    }
+
+    submitForm = (ev) => {
+      //阻止提交默认事件
+      ev.preventDefault()
+      ev.stopPropagation()
+
+    }
+
+    //设置受控组件绑定函数
+    handleChange = (ev) => {
+      let target = ev.target
+      let name = target.name
+      // console.log(target.name,":",target.value)
+      this.setState(state => {
+        return {
+          [name]: target.value
+        }
+      })
+    }
+
+    resetForm = () => {
+      this.setState(state => {
+        return {
+          name: "",
+          age: 0,
+          sex: "other"
+        }
+      })
+    }
+
+    render() {
+      const { name, age, sex } = this.state
+      return (
+        <form style={{ width: '400px' }} className="p-4 border">
+          <div className="row align-items-center">
+            <div className="col-3">姓名</div>
+            <div className="col">
+              <input name="name" onChange={this.handleChange} value={name} type="text" className="form-control" />
+            </div>
+          </div>
+          <label className="col-4">性别</label>
+          <div className="form-check-inline">
+            <input onChange={this.handleChange} checked={sex === 'male'} id="male" type="radio" name="sex" value="male" className="form-check-input" />
+            <label htmlFor="male" className="form-check-label">男</label>
+          </div>
+          <div className="form-check-inline">
+            <input onChange={this.handleChange} checked={sex === 'female'} id="female" type="radio" name="sex" value="female" className="form-check-input" />
+            <label htmlFor="female" className="form-check-label">女</label>
+          </div>
+          <div className="form-check-inline">
+            <input onChange={this.handleChange} checked={sex === 'other'} id="other" type="radio" name="sex" value="other" className="form-check-input" />
+            <label htmlFor="other" className="form-check-label">其他</label>
+          </div>
+          <div className="row align-items-center">
+            <div className="col-3">年龄</div>
+            <div className="col">
+              <input onChange={this.handleChange} name="age" type="number" className="form-control" value={age} />
+            </div>
+          </div>
+          <div className="row">
+            <button className="col-6 btn btn-primary" onClick={this.submitForm}>提交</button>
+            <button className="col-6 btn btn-warning" onClick={this.resetForm}>重置</button>
+          </div>
+        </form>
+      )
+    }
+  }
+
+  class App extends React.Component {
+
+    constructor(){
+      super()
+      //document.querySelector => DOM
+      this.Ref1 = React.createRef()
+      this.Ref2 = React.createRef()
+    }
+
+    getAllFormData = ()=>{
+      //获取所有表单元素中的内容
+      console.log(this.Ref1.current.state)
+    }
+
+    resetAll = ()=>{
+      //重置了所有的表单表单元素
+      this.Ref1.current.resetForm()
+      this.Ref2.current.resetForm()
+    }
+
+    render(){
+      return (
+      <div>
+        {/* 函数组件调用时，没有ref属性 */}
+        <FormDemo ref={this.Ref1} />
+        <FormDemo ref={this.Ref2} />
+        <button className="btn btn-primary" onClick={this.getAllFormData}>获取所有表单数据</button>
+        <button className="btn btn-outline-primary" onClick={this.resetAll}>重置所有</button>
+      </div>
+    )
+    }
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>
