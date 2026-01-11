@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  //Profiler 检测工具 （检测程序执行效率问题）
+  //1、使用<React.Profiler></React.Profiler> 包裹需要测试的组件
+  //2、在Profiler标记中，设置id属性为了区分其他Profiler
+  //   设置onRender的回调函数，该回调函数中有如下形参：
+  // id, // 发生提交的 Profiler 树的 “id”
+  // phase, // "mount" （如果组件树刚加载） 或者 "update" （如果它重渲染了）之一
+  // actualDuration, // 本次更新 committed 花费的渲染时间
+  // baseDuration, // 估计不使用 memoization 的情况下渲染整棵子树需要的时间
+  // startTime, // 本次更新中 React 开始渲染的时间
+  // commitTime, // 本次更新中 React committed 的时间
+  // interactions // 属于本次更新的 interactions 的集合
+
+  class Demo extends React.Component {
+
+    constructor() {
+      super()
+      this.state = {
+        time: ''
+      }
+    }
+
+    start = () => {
+      setInterval(() => {
+        let current = new Date().toLocaleString()
+        this.setState(state => {
+          return {
+            time: current
+          }
+        })
+      }, 1000)
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.timer)
+      this.timer = null
+    }
+
+    render() {
+      return (
+        <>
+          <button onClick={this.start}>点击开始</button>
+          <div>{this.state.time}</div>
+        </>
+      )
+    }
+  }
+
+  class App extends React.Component {
+
+    onRenderCallback = (
+      id, // 发生提交的 Profiler 树的 “id”
+      phase, // "mount" （如果组件树刚加载） 或者 "update" （如果它重渲染了）之一
+      actualDuration, // 本次更新 committed 花费的渲染时间
+      baseDuration, // 估计不使用 memoization 的情况下渲染整棵子树需要的时间
+      startTime, // 本次更新中 React 开始渲染的时间
+      commitTime, // 本次更新中 React committed 的时间
+      interactions // 属于本次更新的 interactions 的集合
+    ) => {
+      console.log(id)
+      console.log(phase)
+      console.log(actualDuration)
+      console.log(baseDuration)
+      console.log(startTime)
+      console.log(commitTime)
+      console.log(interactions)
+    }
+
+    render() {
+      return (
+        <div>
+          <React.Profiler id="first" onRender={this.onRenderCallback}>
+            <Demo />
+          </React.Profiler>
+        </div>
+      )
+    }
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>
