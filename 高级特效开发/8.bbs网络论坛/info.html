@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <link rel="stylesheet" href="css/github-markdown-light.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <script src="components/navbar.js" type="text/babel"></script>
+  <script src="components/copyright.js" type="text/babel"></script>
+</head>
+
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script type="text/babel">
+
+  function App() {
+    return (
+      <>
+        <Navbar />
+        <div className="container mt-4">
+          {/*标题*/}
+          <div className="markdown-body border p-2">
+            <h2 className="m-2">
+              <a className="anchor" aria-hidden="true">
+                <span className="octicon octicon-link"></span>
+              </a>
+              <div>贴子标题</div>
+            </h2>
+            <blockquote>发帖用户的信息</blockquote>
+          </div>
+          {/*回复*/}
+          <div className="card mt-4">
+            <div className="card-header">
+              <div className="float-start text-secondary">1分钟前</div>
+              <div className="float-end">点赞</div>
+            </div>
+            <div className="card-body">
+              这是一句经典评论
+            </div>
+          </div>
+          {/*发送回复*/}
+          <div className="mt-4">
+            <label className="form-label fw-bold" htmlFor="reply">添加回复</label>
+            <textarea className="form-control" id="reply" rows="4"></textarea>
+          </div>
+          <div className="mt-4">
+            <button className="btn btn-success">回复</button>
+          </div>
+          <Copyright />
+        </div>
+      </>
+    )
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>

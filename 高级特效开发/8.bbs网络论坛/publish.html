@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <script type="text/babel" src="components/navbar.js"></script>
+</head>
+
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script type="text/babel">
+
+  function App() {
+
+    const [title,setTitle] = React.useState('')
+    const [template,setTemplate] = React.useState('')
+    const [content,setContent] = React.useState('')
+
+    //原创 或 转载模式选择
+    const [sendstyle,setSendstyle] = React.useState('')
+
+    //保存草稿
+    function savePublish(){
+
+    }
+
+    //发送
+    function publish(){
+
+    }
+
+    return (
+      <>
+      <Navbar />
+      <div className="container vstack gap-2">
+        <div className="fw-bold fs-3">发帖</div>
+        <div className="row align-items-center">
+          <div className="col-1">标题：</div>
+          <div className="col-9">
+            <input type="text" className="form-control" value={title} onChange={(ev)=>{setTitle(ev.target.value)}} />
+          </div>
+          <div className="col-2">
+            <select className="form-select" defaultValue={template} onChange={(ev)=>{setTemplate(ev.target.value)}} >
+              <option disabled value="">选择模块</option>
+              <option value="1">娱乐八卦</option>
+              <option value="2">股市论坛</option>
+              <option value="3">视频专区</option>
+            </select>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-1">内容：</div>
+          <div className="col-11">
+            <nav className="navbar bg-light border">
+              <div className="d-flex hstack gap-1">
+                <div className="text-decoration-underline">朋友</div>
+                <div className="text-decoration-underline">图片</div>
+                <div className="text-decoration-underline">表情</div>
+                <div className="text-decoration-underline">视频</div>
+                <div className="text-decoration-underline">投票</div>
+              </div>
+              <div>
+                草稿箱
+              </div>
+            </nav>
+            <textarea className="form-control" rows="10" defaultValue={content} onChange={(ev)=>{setContent(ev.target.value)}}></textarea>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-5 offset-1">
+            请遵守公约言论规则，不得违反国家法律法规
+          </div>
+          <div className="col-6 text-end">
+            <div className="form-check-inline">
+              <input type="radio" id="tips" name="tips" className="form-check-input" value="orginal" 
+              checked={sendstyle === 'orginal'} onChange={(ev)=>{setSendstyle(ev.target.value)}} />
+              <label className="form-check-label" htmlFor="tips">原创</label>
+            </div>
+            <div className="form-check-inline">
+              <input type="radio" id="tips" name="tips" className="form-check-input" value="transport" 
+              checked={sendstyle === 'transport'} onChange={(ev)=>{setSendstyle(ev.target.value)}}/>
+              <label className="form-check-label" htmlFor="tips">转载</label>
+            </div>
+            <button className="btn btn-outline-primary" onClick={savePublish}>保存草稿</button>
+            <button className="btn btn-primary" onClick={publish}>发表(Ctrl+Enter)</button>
+          </div>
+        </div>
+      </div>
+      </>
+    )
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>
