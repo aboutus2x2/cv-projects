@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登录</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script type="text/babel">
+
+// Shift + Alt + F ：格式化代码
+
+  function App() {
+
+    // 受控组件 绑定表单元素
+    const [user,setUser] = React.useState('')
+    const [pwd,setPwd] = React.useState('')
+
+    //const [isRemember,setIsRemember] = React.useState(false)
+    const [remember,setRemember] = React.useState('')
+
+    //登录
+    function loginIn(){
+      
+    }
+
+    function formSubmit(ev){
+      ev.preventDefault()
+      ev.stopPropagation()
+      document.querySelector('#login').classList.add('was-validated')
+    }
+    
+
+    return (
+      <div className="container-fluid vh-100 bg-light d-flex align-items-center">
+        <div className="container col-4">
+          <div className="text-center">
+            <img src="./img/logo.png" height="72" />
+            <h3>用户登录</h3>
+          </div>
+          <form noValidate id="login" className="border p-3 vstack gap-2 bg-white" onSubmit={formSubmit}>
+            <div>
+              <label className="form-label fw-bold" htmlFor="user">账号</label>
+              <input type="text" id="user" className="form-control" placeholder="请输入账号" value={user} 
+              onChange={ev => {setUser(ev.target.value)}} required/>
+              <div class="invalid-feedback">
+                请输入账号
+              </div>
+            </div>
+            <div>
+              <label className="form-label fw-bold" htmlFor="pwd">密码</label>
+              <a href="#" className="float-end">忘记密码？</a>
+              <input type="password" id="pwd" className="form-control" placeholder="请输入密码" value={pwd}
+              onChange={ev => {setPwd(ev.target.value)}} required />
+              <div class="invalid-feedback">
+                请输入密码
+              </div>
+            </div>
+            <div className="form-check-inline">
+              <input type="checkbox" id="remember" className="form-check-input" value="remember" checked={remember === 'remember'} 
+              onChange={ev => {setRemember(ev.target.value)}}/>
+              <label className="form-check-label" htmlFor="remember">记住我</label>
+            </div>
+            <div>
+              <button className="btn btn-success w-100" onClick={loginIn}>登录</button>
+            </div>
+          </form>
+          <div className="border p-2 mt-3 bg-white">
+            没有账号?<a href="./signUp.html">点击创建</a>
+          </div>
+        </div>
+      </div>
+    )
+  }
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <script type="text/babel" src="components/copyright.js"></script>
+  <script type="text/babel" src="components/navbar.js"></script>
+</head>
+
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script type="text/babel">
+
+  function App() {
+
+    const [navList, setNavList] = React.useState([
+      { name: '基本信息', active: true },
+      { name: '账号设置', active: false }
+    ])
+
+    const [pageIndex, setPageIndex] = React.useState(0)
+
+    // 切换菜单
+    function changeNav(index) {
+      console.log(index)
+      navList.forEach(item => {
+        item.active = false
+      })
+      navList[index].active = true
+      console.log(navList)
+      setNavList([...navList])
+      setPageIndex(index)
+    }
+
+    //头像设置
+    const imgRef = React.useRef()
+    const [imgSrc,setImgSrc] = React.useState("./img/avatar-max-img.png")
+
+    function selectImg(){
+      // click() 点击该元素
+      imgRef.current.click()
+    }
+
+    function changeInp(ev){
+      // ev.target.files 选择后的所有文件
+      console.log(ev.target.files[0])
+      let file = ev.target.files[0]
+      //将file进行转化成src可以设置的模式
+      // 文件读取器
+      let reader = new FileReader()
+      //将文件对象进行读取
+      reader.readAsDataURL(file)
+      // 将文件对应的链接地址显示出来
+      reader.onload = () =>{
+        //图片的Base64地址
+        console.log(reader.result)
+        //设置图片
+        setImgSrc(reader.result)
+      }
+    }
+
+    //绑定所有的表单内容
+    
+
+    return (
+      <>
+        <Navbar />
+        <div className="container mt-4">
+          <div className="row">
+            <div className="col-3">
+              <ul className="list-group">
+                {/*<li className="list-group-item active">基本信息</li>
+              <li className="list-group-item">账号设置</li>*/}
+                {navList.map((item, index) => <li key={index} onClick={changeNav.bind(this, index)}
+                  className={`list-group-item ${item.active ? "active" : ""}`}>{item.name}</li>)}
+              </ul>
+            </div>
+            <div className="col-6 vstack gap-2">
+              {pageIndex === 0 && (<><div>
+                <label className="form-label fw-bold">账号</label>
+                <div className="form-text">111</div>
+              </div>
+                <div>
+                  <label className="form-label fw-bold" htmlFor="nickname">昵称</label>
+                  <input className="form-control" type="text" id="nickname" />
+                </div>
+                <div>
+                  <label className="form-label fw-bold" htmlFor="desc">简介</label>
+                  <textarea className="form-control" type="text" id="desc"></textarea>
+                </div>
+                <div>
+                  <label className="form-label fw-bold">性别</label><br />
+                  <div className="form-check-inline">
+                    <input type="radio" name="sex" value="male" id="male" className="form-check-input" />
+                    <label className="form-check-label" htmlFor="male">男</label>
+                  </div>
+                  <div className="form-check-inline">
+                    <input type="radio" name="sex" value="female" id="female" className="form-check-input" />
+                    <label className="form-check-label" htmlFor="female">女</label>
+                  </div>
+                  <div className="form-check-inline">
+                    <input type="radio" name="sex" value="other" id="other" className="form-check-input" />
+                    <label className="form-check-label" htmlFor="other">其他</label>
+                  </div>
+                </div>
+                <div>
+                  <label className="form-label fw-bold" htmlFor="birthday">生日</label>
+                  <input className="form-control" type="date" id="birthday" />
+                </div>
+                <div>
+                  <button className="btn btn-success">保存</button>
+                </div></>)}
+              {pageIndex === 1 && (<>
+                <h2>修改密码</h2>
+                <hr />
+                <div>
+                  <label className="form-label fw-bold" htmlFor="currentPwd">当前密码</label>
+                  <input className="form-control" type="password" id="currentPwd" />
+                </div>
+                <div>
+                  <label className="form-label fw-bold" htmlFor="newPwd">新的密码</label>
+                  <input className="form-control" type="password" id="newPwd" />
+                </div>
+                <div>
+                  <label className="form-label fw-bold" htmlFor="surePwd">确认密码</label>
+                  <input className="form-control" type="password" id="surePwd" />
+                </div>
+                <div>
+                  <button className="btn btn-success">保存</button>
+                </div>
+                <hr />
+                <div>
+                  一旦注销,不可找回,谨慎操作<br />
+                  <button className="btn btn-danger">删除</button>
+                </div>
+              </>)}
+
+              <Copyright />
+            </div>
+            <div className="col-3">
+              <div className="fw-bold">头像设置</div>
+              <img src={imgSrc} width="80" height="80" onClick={selectImg} />
+              <input type="file" ref={imgRef} className="d-none" onChange={changeInp} />
+            </div>
+          </div>
+        </div>
+      </>
+    )
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>

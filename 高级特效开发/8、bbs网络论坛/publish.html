@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <script type="text/babel" src="components/navbar.js"></script>
+  <script type="text/babel" src="components/comment.js"></script>
+
+</head>
+
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script type="text/babel">
+
+  function App() {
+
+    const [title, setTitle] = React.useState('')
+    const [template, setTemplate] = React.useState('')
+    
+
+    return (
+      <>
+        <Navbar />
+        <div className="container vstack gap-2">
+          <div className="fw-bold fs-3">发帖</div>
+          <div className="row align-items-center">
+            <div className="col-1">标题：</div>
+            <div className="col-9">
+              <input type="text" className="form-control" value={title} onChange={(ev) => { setTitle(ev.target.value) }} />
+            </div>
+            <div className="col-2">
+              <select className="form-select" defaultValue={template} onChange={(ev) => { setTemplate(ev.target.value) }} >
+                <option disabled value="">选择模块</option>
+                <option value="1">娱乐八卦</option>
+                <option value="2">股市论坛</option>
+                <option value="3">视频专区</option>
+              </select>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-1">内容：</div>
+            <div className="col-11">
+              <Comment />
+            </div>
+          </div>
+
+        </div>
+      </>
+    )
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>
