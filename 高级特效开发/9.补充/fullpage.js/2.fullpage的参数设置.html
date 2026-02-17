@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./node_modules/fullpage.js/dist/fullpage.min.css" />
+  <script src="./node_modules/fullpage.js/dist/fullpage.min.js"></script>
+  <style>
+    .box{
+      position: fixed;
+      top: 0;
+      z-index: 9999;
+    }
+  </style>
+</head>
+
+<body>
+
+  <ul class="box menu">
+    <li><a data-menuanchor="#firstAnchor" href="#firstAnchor">firstAnchor</a></li>
+    <li><a data-menuanchor="#secondAnchor" href="#secondAnchor">secondAnchor</a></li>
+    <li><a data-menuanchor="#thirdAnchor" href="#thirdAnchor">thirdAnchor</a></li>
+  </ul>
+
+  <div id="a" style="font-size: 100px;color: red;">
+    <div class="section" style="background-color: gray;">1</div>
+    <!-- 只需要在class中加入active 那么该页面会在初始化时，被选中 -->
+    <div class="section active" style="background-color: gray;">2</div>
+    <div class="section">
+      <div class="slide" style="background-color: gray;">3</div>
+      <div class="slide" style="background-color: gray;">4</div>
+      <div class="slide" style="background-color: gray;">5</div>
+    </div>
+  </div>
+</body>
+
+<script>
+
+  //section的外部导航设置步骤：
+  //1、new fullpage 对象中设置anchors，anchors的属性数组中设置section的data-anchor属性
+  //2、在结构中创建class="menu"的ul标记,通过li中的a标记属性data-menuanchor导航到对应的section
+
+
+  new fullpage('#a',{
+    autoScrolling:true, 
+	  scrollHorizontally: true,
+    // 锚点属性: 给所有的直属section 定义一个data-anchor的属性值
+    anchors:['firstAnchor','secondAnchor','thirdAnchor'],
+    //开启导航小圆点（section）
+    navigation:true,
+    // 设置导航小圆点的位置（left,right）
+    navigationPosition:'left',
+    // 设置导航小圆点的提示
+    navigationTooltips:['firstAnchor','secondAnchor','thirdAnchor'],
+    // 主动显示小圆点提示
+    showActiveTooltip:true,
+    //开启导航小圆点（slide）
+    slidesNavigation:true,
+    //设置导航小圆点的位置（top,bottom）
+    slidesNavPosition:'top',
+    // 设置对应顺序的section background-color
+    sectionsColor:['red','green','blue'],
+    // 设置滚动的速度，毫秒单位
+    scrollingSpeed:500,
+    // 设置slide的左右箭头是否显示
+    controlArrows:true,
+    // 自定义左右箭头的样式
+    controlArrowsHTML: [
+      '<div>《</div>', 
+      '<div>》</div>'
+    ],
+  })
+</script>
+
+</html>
