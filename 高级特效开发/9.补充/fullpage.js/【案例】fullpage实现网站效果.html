@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./node_modules/fullpage.js/dist/fullpage.min.css" />
+  <script src="./node_modules/fullpage.js/dist/fullpage.min.js"></script>
+  <style>
+    a {
+      text-decoration: none;
+    }
+
+    .nav {
+      position: fixed;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: black;
+      opacity: 0.6;
+      color: white;
+      padding: 10px;
+      font-size: 18px;
+      z-index: 9999;
+    }
+
+    .box {
+      list-style: none;
+      display: flex;
+    }
+
+    .box li {
+      padding: 4px 10px;
+    }
+
+    .box li.active {
+      color: blue;
+      background-color: rgba(255, 255, 255, 0.5)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <img src="./logo.svg" height="50" />
+    <ul class="box menu">
+      <li class="active"><a data-menuanchor="#a" href="#a">首页</a></li>
+      <li><a data-menuanchor="#b" href="#b">关于</a></li>
+      <li><a data-menuanchor="#c" href="#c">服务</a></li>
+      <li><a data-menuanchor="#d" href="#d">方案</a></li>
+      <li><a data-menuanchor="#e" href="#e">客户</a></li>
+      <li><a data-menuanchor="#f" href="#f">联系</a></li>
+    </ul>
+    <span>1888888888</span>
+  </div>
+
+  <div id="fullpage">
+    <div class="section">
+      1
+    </div>
+    <div class="section">2</div>
+    <div class="section">
+      <button id="moveup">向上滑动</button>
+      3
+    </div>
+    <div class="section">4</div>
+    <div class="section">5</div>
+    <div class="section">6</div>
+  </div>
+</body>
+<script>
+  new fullpage('#fullpage', {
+    autoScrolling: true,
+    anchors: ['a', 'b', 'c', 'd', 'e', 'f'],
+    menu: true,
+    sectionsColor: ['red', 'green', 'white', 'red', 'green', 'white'],
+    // 整个fullpage滑动，那么该如何监听的问题
+    // 钩子函数：当section切换时触发
+    afterLoad: function (origin, destination, direction, trigger) {
+      console.log('从', origin.index, '到', destination.index)
+      // console.log('destination',destination)
+      // console.log('direction',direction)
+      // console.log('trigger',trigger)
+      aLi.forEach(item => {
+        item.classList.remove('active')
+      })
+      aLi[destination.index].classList.add('active')
+
+    }
+  })
+
+  //fullpage的 API
+  document.querySelector('#moveup').addEventListener('click', () => {
+    // fullpage_api.moveSectionUp()
+    // fullpage_api.moveTo('a')
+  })
+
+
+  let aLi = document.querySelectorAll('.box li')
+  for (let li of aLi) {
+    li.onclick = function () {
+      aLi.forEach(item => {
+        item.classList.remove('active')
+      })
+      this.classList.add('active')
+    }
+  }
+
+
+
+
+</script>
+
+</html>
