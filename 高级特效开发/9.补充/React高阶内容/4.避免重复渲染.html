@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  class Parent2 extends React.Component {
+
+    state = {
+      count: 0,
+      name: '父组件2'
+    }
+
+    updateState = () => {
+      this.setState(state => {
+        return {
+          count: Math.floor(Math.random() * 3)
+        }
+      })
+    }
+
+    //如果组件在更新时，内容没有发生变化，那么就不应该发生更新
+    //如何防止上述事件发生（只有当state中内容发生改变，我们才更新页面）
+    //shouldComponentUpdate 会在更新渲染前进行判断 
+    //shouldComponentUpdate 返回值 true 更新页面 false 不更新页面
+    shouldComponentUpdate(nextProps, nextState) {
+      //原理：防止重复渲染，防止state被更新
+      console.log('当前的state', nextState, '之前的state', this.state)
+
+      // if(nextState.count !== this.state.count){
+      //   return true
+      // }
+      // return false
+
+      return nextState.count !== this.state.count
+    }
+
+    render() {
+      console.log('父组件的render')
+      return (
+        <>
+          {this.state.count}<br />
+          <button onClick={this.updateState}>更新一下父组件2</button>
+          <Child1 />
+        </>
+      )
+    }
+  }
+
+  class Child1 extends React.Component {
+
+    //nextProps 当前更新传入的props
+    //阻止子组件的更新 render
+    shouldComponentUpdate(nextProps, nextState) {
+      return nextProps.name !== this.props.name
+    }
+
+    render() {
+      console.log(`${this.props.name}-子组件1 render`)
+      return (
+        <div>
+          子组件1
+        </div>
+      )
+    }
+  }
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<Parent2 />)
+
+</script>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  function App(){
+    //JSX 语法的内容
+    const content = (<div id="app">Hello World</div>)
+
+    //最终的React元素
+    console.log(content)
+
+    return (
+      <>
+        {content}
+      </>
+    )
+  }
+
+  //总结：JSX 转化过程： JSX语法 --> createElement --> React元素对象
+
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+</html>

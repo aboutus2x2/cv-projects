@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script type="text/babel">
+
+  function App() {
+    return (
+      <>
+        <Parent1 />
+        <Parent2 />
+      </>
+    )
+  }
+
+  class Parent1 extends React.Component {
+
+    state = {
+      count: 0,
+      name: '父组件1'
+    }
+
+    updateState = () => {
+      this.setState(state => {
+        return {
+          count: state.count + 1
+        }
+      })
+    }
+
+    render() {
+      console.log('父组件的render')
+      return (
+        <>
+          {this.state.count}<br />
+          <button onClick={this.updateState}>更新一下父组件1</button>
+          <Child1 name={this.state.name} />
+          <Child2 name={this.state.name} />
+        </>
+      )
+    }
+  }
+
+  class Parent2 extends React.Component {
+
+    state = {
+      count: 0,
+      name: '父组件2'
+    }
+
+    updateState = () => {
+      this.setState(state => {
+        return {
+          count: state.count + 1
+        }
+      })
+    }
+
+    render() {
+      console.log('父组件的render')
+      return (
+        <>
+          {this.state.count}<br />
+          <button onClick={this.updateState}>更新一下父组件2</button>
+          <Child1 name={this.state.name} />
+          <Child2 name={this.state.name} />
+        </>
+      )
+    }
+  }
+
+  class Child1 extends React.Component {
+    render() {
+      console.log(`${this.props.name}-子组件1 render`)
+      return (
+        <div>
+          子组件1
+        </div>
+      )
+    }
+  }
+
+  class Child2 extends React.Component {
+    render() {
+      console.log(`${this.props.name}-子组件1 render`)
+      return (
+        <div>
+          子组件2
+        </div>
+      )
+    }
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+
+  //总结：父组件的state的更新，会让其子组件和所有的子节点，发生更新
+
+
+</script>
+
+</html>
