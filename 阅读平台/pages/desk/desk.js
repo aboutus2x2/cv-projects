@@ -58,12 +58,12 @@ Page({
    */
   onLoad(options) {
     // 设置 swiper 的加数据
-    this.setData({
-      swiperItem: this.data.listData.slice(0, 3)
-    })
-    console.log(this.data.swiperItem);
+    // this.setData({
+    //   swiperItem: this.data.listData.slice(0, 3)
+    // })
+    // console.log(this.data.swiperItem);
 
-    this.query()
+
   },
 
   /**
@@ -77,7 +77,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    this.query()
   },
 
   /**
@@ -183,15 +183,34 @@ Page({
   },
 
   onDelete() {
-    // 先保留checked为true的数组成员
-    // 再map一个id数组
-    let ids = this.data.listData.filter(item => item.checked).map(item => item.id)
-    console.log(ids);
+    wx.showModal({
+      title: '删除',
+      content: '确定删除吗?',
+      success: res => {
+        if (res.confirm) {
+          // 先保留checked为true的数组成员
+          // 再map一个id数组
+          let ids = this.data.listData.filter(item => item.checked).map(item => item.deskId)
+          console.log(ids);
 
-    let arr = this.data.listData.filter(item => !ids.includes(item.id))
-    this.setData({
-      listData: arr,
-      showDelete: false
+          // let arr = this.data.listData.filter(item => !ids.includes(item.id))
+          // this.setData({
+          //   listData: arr,
+          //   showDelete: false
+          // })
+
+          // 从数据库删除数组中对应id的数据
+          // 构造要删除的对象数组
+          let objects = ids.map(deskId => {
+            return AV.Object.createWithoutData('Desk', deskId)
+          })
+          AV.Object.destroyAll(objects).then(() => {
+            wx.reLaunch({
+              url: '/pages/desk/desk',
+            })
+          })
+        }
+      }
     })
   },
 
@@ -199,8 +218,17 @@ Page({
     let query = new AV.Query('Desk')
     query.find().then(res => {
       console.log(res);
+      // 声明临时数据
+      // key: bookId
+      // value: deskId
+      let temp = {}
       // 构造一个 bookId 的数组
-      let bookIds = res.map(item => item.attributes.bookId)
+      let bookIds = res.map(item => {
+        // 缓存
+        temp[item.attributes.bookId] = item.id
+        return item.attributes.bookId
+      })
+
 
       console.log('bookIds.........');
       console.log(bookIds);
@@ -213,9 +241,11 @@ Page({
       query.find().then(res => {
         console.log(res);
         this.setData({
-          listData: res.map(item => ({
+          listData: res.map((item) => ({
             id: item.id,
             ...item.attributes,
+            // 图书对应的收藏id
+            deskId: temp[item.id],
             // 每个数据要设置一个 checked 用来进行勾选
             checked: false
           }))
