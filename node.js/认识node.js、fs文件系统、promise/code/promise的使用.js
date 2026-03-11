@@ -22,6 +22,7 @@
 // 如不想使用嵌套应该使用 promise
 
 // Promise 的基本语法
+// Promise 里面的回调函数，将在promise对象实例化完成后被调用
 const promise = new Promise((resolve, reject) => {
     // 此回调函数就是promise承诺要完成的事情
     // resolve: 当promise对象正确的处理完自己的事情时，一定要调用 resolve()
@@ -77,3 +78,4 @@ promise.then(() => {
         })
     })
 })
+
