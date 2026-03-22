@@ -3,3 +3,6 @@ console.log(process.argv)
 // 其余 process.argv 内容 就是命令行参数
 
 // console.log(process.argv0) // process.argv0 等价于 process.argv[0]
+
+// 访问环境变量
+console.log(process.env)
