@@ -20,6 +20,6 @@ app.on('request', (req, res) => {
 // 127.0.0.1: 本机地址
 // 192.168.124.48: 本机在路由器内网中的ip
 // 0.0.0.0: 尽可能多的绑定本机支持的所有ip
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, () => {
     console.log(`server start on: http://127.0.0.1:${port}`)
 })
