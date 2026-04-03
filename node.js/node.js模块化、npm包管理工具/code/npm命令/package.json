@@ -1,16 +1,17 @@
 {
   "name": "npm-command",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/main.js"
   },
-  "author": "",
+  "author": "张三",
   "license": "ISC",
   "dependencies": {
-    "moment": "^2.29.4",
-    "vue": "^3.2.47",
-    "webpack": "^5.75.0"
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "typescript": "^4.9.5"
   }
 }
