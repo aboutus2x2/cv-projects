@@ -12,8 +12,14 @@
 // const m1 = require('modules/module1')
 // 导入一个目录，代表导入目录中的 index.js 文件
 const index = require('./modules')
+// 结构赋值的时候可以给属性取别名
+const {sex: se} = require('./modules/module2')
 
 
+let sex = 'male'
+
+console.log(se)
+console.log(sex)
 
 // console.log(m1)
 console.log(index)
