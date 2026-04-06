@@ -14,7 +14,9 @@
 import {sex as se} from './modules/module1.js'
 
 // import moment from 'moment'
-// import mod from './module2'
+// 最新的node.js规范中不允许引入一个文件夹，若要引入文件夹，需要加入选项--experimental-specifier-resolution=node，如下:
+// node --experimental-specifier-resolution=node main.js
+import mod from './module2'
 
 let sex = 'other'
 
