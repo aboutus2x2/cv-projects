@@ -1,3 +1,7 @@
+#!/usr/bin/env node
+
+// 第一行的作用是设置脚本的运行环境为 node.js
+
 console.log('hello world')
 console.log(process.argv)
 const args = process.argv.slice(2)
