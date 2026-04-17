@@ -1,0 +1,14 @@
+{
+  "name": "demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node main.js D:\\projects\\学校\\课程笔记\\221102-h5\\node.js\\node.js模块化、npm包管理工具\\作业2-命令行接口\\testdir"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "blackList": "main.js"
+  }
+}
