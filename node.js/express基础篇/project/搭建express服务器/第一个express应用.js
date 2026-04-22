@@ -10,6 +10,10 @@ app.get('/greeting', (req, res) => {
     res.end('hello world')
 })
 
+app.get('/', (req, res) => {
+    res.end('ok123')
+})
+
 // 启动服务器
 app.listen(port, () => {
     console.log(`server start on: http://127.0.0.1`)
