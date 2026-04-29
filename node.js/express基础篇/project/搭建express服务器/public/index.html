@@ -7,6 +7,25 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Hello Express!!!</h1>
+<button class="get">get请求</button>
 </body>
+<script>
+    const getBtn = document.querySelector('.get')
+    getBtn.addEventListener('click', () => {
+        // 创建 xhr 示例对象
+        const xhr = new XMLHttpRequest()
+        // 打开连接
+        // 第一个参数: 请求方法
+        // 第二个参数: 请求路径
+        // 第三个参数: 是否异步
+        xhr.open('GET', '/add?a=1&b=2', true)
+        // 监听load事件，请求得到响应的时候就会触发该事件
+        xhr.addEventListener('load', ev => {
+            console.log(ev)
+        })
+        // 可选: 添加参数
+        // 发送请求
+        xhr.send()
+    })
+</script>
 </html>
