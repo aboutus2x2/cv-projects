@@ -8,9 +8,15 @@
 </head>
 <body>
 <button class="get">get请求</button>
+<button class="post-json">post请求 application/json</button>
+<button class="post-qs">post请求 application/x-www-form-urlencoded</button>
 </body>
 <script>
     const getBtn = document.querySelector('.get')
+    const pjBtn = document.querySelector('.post-json')
+    const pqsBtn = document.querySelector('.post-qs')
+
+    // get请求及传参
     getBtn.addEventListener('click', () => {
         // 创建 xhr 示例对象
         const xhr = new XMLHttpRequest()
@@ -27,5 +33,43 @@
         // 发送请求
         xhr.send()
     })
+
+    // post 请求并发送 json 格式参数
+    pjBtn.addEventListener('click', () => {
+        const xhr = new XMLHttpRequest()
+        xhr.open('post', '/postJson?a=1&b=2', true)
+        xhr.addEventListener('load', ev => {
+            console.log(ev.currentTarget.responseText)
+        })
+        // 构造参数
+        let param = {
+            x: 1, y: 2
+        }
+        // 设置请求头
+        // 告诉服务器参数类型
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.send(JSON.stringify(param))
+    })
+
+    // post 请求并发送 querystring 格式参数
+    pqsBtn.addEventListener('click', () => {
+        const xhr = new XMLHttpRequest()
+        xhr.open('post', '/postQs', true)
+        xhr.addEventListener('load', ev=>{
+            console.log(ev.currentTarget.responseText)
+        })
+        // 构造参数
+        let param = 'x=1&y=2'
+        // 添加请求头
+        xhr.setRequestHeader('Content-Type', 'appliaction/x-www-form-urlencoded')
+        xhr.send(param)
+    })
+
+
+    // 总结:
+    // 同源策略
+    // 什么时候用 get 请求? 什么时候用 post 请求?
+    // get post 请求参数的特点
+
 </script>
 </html>
