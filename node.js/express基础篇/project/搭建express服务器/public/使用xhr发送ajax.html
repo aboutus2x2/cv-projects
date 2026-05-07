@@ -10,11 +10,13 @@
 <button class="get">get请求</button>
 <button class="post-json">post请求 application/json</button>
 <button class="post-qs">post请求 application/x-www-form-urlencoded</button>
+<input class="upload" type="file">
 </body>
 <script>
     const getBtn = document.querySelector('.get')
     const pjBtn = document.querySelector('.post-json')
     const pqsBtn = document.querySelector('.post-qs')
+    const uploadBtn = document.querySelector('.upload')
 
     // get请求及传参
     getBtn.addEventListener('click', () => {
@@ -55,7 +57,7 @@
     pqsBtn.addEventListener('click', () => {
         const xhr = new XMLHttpRequest()
         xhr.open('post', '/postQs', true)
-        xhr.addEventListener('load', ev=>{
+        xhr.addEventListener('load', ev => {
             console.log(ev.currentTarget.responseText)
         })
         // 构造参数
@@ -65,11 +67,54 @@
         xhr.send(param)
     })
 
+    // 上传文件
+    // 绑定文件变化事件
+    uploadBtn.addEventListener('change', ev => {
+        // 获取用户选择的文件
+        console.log(ev.target.files)
+        let file = ev.target.files[0]
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('post', '/upload', true)
+        xhr.addEventListener('load', ev=>{
+            console.log(ev.currentTarget.responseText)
+        })
+        // 构造参数
+        const fd = new FormData()
+        // 追加文件数据
+        fd.append('f', file)
+        xhr.send(fd)
+    })
+
+    // 上传文件总结
+    // 服务器:
+    // 安装 express-fileupload
+    // 配置解析文件的方法 app.use(fileUpload(...))
+    // 接口中使用 req.files 读取文件数据
+    // 将临时文件拷贝到上传目录中
+    // 删除临时文件
+    // 网页:
+    // 创建一个type="file"的输入框
+    // 给输入框绑定change事件
+    // 在change事件中发送ajax请求
+    // 请求数据是一个 FormData 数据
+
+
 
     // 总结:
     // 同源策略
+    // 浏览器只允许同一个域名下的网络访问，例如 http://127.0.0.1:1024 的页面 只能访问 http://127.0.0.1:1024 相同域名的接口
+
     // 什么时候用 get 请求? 什么时候用 post 请求?
+    // get请求多用于拉取资源，例如: 下载文件，获取图标
+    // post请求多用于请求业务数据，例如: 登录 注册 查询表格
+
+
     // get post 请求参数的特点
+    // get请求参数在url末尾用?问好拼接一个 querystring
+    // post请求参数在数据体body中，url上看不到，post请求依然可以使用 querystring
+    // get请求没有 Content-Type
+    // post请求需要区分 Content-Type
 
 </script>
 </html>
