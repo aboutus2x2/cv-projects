@@ -19,12 +19,15 @@ app.use(fileUpload({
     // 使用临时文件
     useTempFiles: true,
     // 临时文件夹路径
-    tempFileDir: path.join(__dirname, 'tmp')
+    tempFileDir: path.join(__dirname, 'tmp'),
+    // 解决中文乱码的字符集参数
+    defParamCharset: 'utf8'
 }))
 
 
 app.get('/say', (req, res) => {
-    res.json({msg: 'hello'})
+    // res.json({msg: 'hello'})
+    res.send('ok')
 })
 
 app.get('/add', (req, res) => {
