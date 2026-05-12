@@ -33,7 +33,17 @@ app.get('/say', (req, res) => {
 app.get('/add', (req, res) => {
     // get 请求的参数可以直接通过 req.query 获取
     // res.json(req.query)
-    res.json({result: Number(req.query.a) + Number(req.query.b)})
+    // res.json({result: Number(req.query.a) + Number(req.query.b)})
+
+    res.setHeader('Content-Type', 'text/html')
+    res.send(`
+    <html>
+    <head></head>
+    <body>
+        <h1>结果: ${Number(req.query.a) + Number(req.query.b)}</h1>
+    </body>
+    </html>
+    `)
 })
 
 app.post('/postJson', (req, res) => {

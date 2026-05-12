@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<h1>get请求</h1>
+<form action="/add" method="get">
+  <div><label>a: <input name="a" type="text"></label></div>
+  <div><label>b: <input name="b" type="text"></label></div>
+  <button>提交</button>
+</form>
+
+<h1>post请求</h1>
+<h2>表单的post请求的参数类型是 x-www-form-urlencoded</h2>
+<form action="/postQs" method="post">
+    <div><label>x: <input name="x" type="text"></label></div>
+    <div><label>y: <input name="y" type="text"></label></div>
+    <button>提交</button>
+</form>
+
+<h1>上传文件</h1>
+<form action="/upload" method="post" enctype ="multipart/form-data">
+    <div><label>file: <input name="f" type="file"></label></div>
+    <button>提交</button>
+</form>
+</body>
+</html>
