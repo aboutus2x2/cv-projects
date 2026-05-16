@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <style>
+        .upload-btn {
+            width: 200px;
+            height: 200px;
+            border: 10px solid #000;
+            font-size: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<button class="now">报时</button>
+<button class="add">加法</button>
+<button class="sub">减法</button>
+<div class="upload-btn">+</div>
+<img style="width: 200px; height: 200px;" src="" alt="">
+<input style="display: none;" type="file">
+</body>
+<script>
+    const nowBtn = document.querySelector('.now');
+    const addBtn = document.querySelector('.add');
+    const subBtn = document.querySelector('.sub');
+    const uploadBtn = document.querySelector('.upload-btn')
+    const fileInput = document.querySelector('input[type=file]')
+    const img = document.querySelector('img')
+
+    nowBtn.addEventListener('click', () => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('get', '/now', true)
+        xhr.addEventListener('load', ev => {
+            console.log(ev.currentTarget.responseText)
+        })
+        xhr.send()
+    })
+
+    addBtn.addEventListener('click', () => {
+        fetch('/add?x=4&y=9', {
+            method: 'get'
+        }).then(res => res.json()).then(data => {
+            console.log(data)
+        })
+    })
+
+    subBtn.addEventListener('click', ev => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('post', '/sub', true)
+        xhr.addEventListener('load', ev => {
+            console.log(ev.currentTarget.responseText)
+        })
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+        xhr.send('x=11&y=65')
+    })
+
+    uploadBtn.addEventListener('click', () => {
+        fileInput.click()
+    })
+
+    fileInput.addEventListener('change', ev => {
+        const file = ev.target.files[0]
+        const fd = new FormData()
+        fd.append('headIcon', file)
+        fetch('/uploadHeadIcon', {
+            method: 'post',
+            body: fd
+        }).then(res => res.json()).then(data => {
+            console.log(data)
+            // 设置img的src
+            img.src = data.url
+        })
+    })
+</script>
+</html>
