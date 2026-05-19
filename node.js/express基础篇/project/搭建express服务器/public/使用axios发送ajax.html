@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<button class="get">get请求</button>
+<button class="post-json">post请求 application/json</button>
+<button class="post-qs">post请求 application/x-www-form-urlencoded</button>
+<input class="upload" type="file">
+</body>
+<script src="/js/axios.js"></script>
+<script>
+    const getBtn = document.querySelector('.get')
+    const pjBtn = document.querySelector('.post-json')
+    const pqsBtn = document.querySelector('.post-qs')
+    const uploadBtn = document.querySelector('.upload')
+
+    // get请求及传参
+    getBtn.addEventListener('click', () => {
+        // axios 请求方法调用完后返回promise对象
+        axios.get('/add?a=1&b=4').then(res => {
+            console.log(res.data)
+        })
+    })
+
+    // post 请求并发送 json 格式参数
+    pjBtn.addEventListener('click', () => {
+        // 第一个参数: 请求路径
+        // 第二个参数: 请求参数
+        // 第三个参数: 请求的额外配置，例如 配置请求头
+        // axios 会自动检测数据类型，所以请求头的 content-type 可以不写
+        // axios.post('/postJson', {x: 1, y: 2}, {headers: {'Content-Type': 'application/json'}}).then(res => {
+        axios.post('/postJson', {x: 1, y: 2}).then(res => {
+            console.log(res.data)
+        })
+    })
+
+    // post 请求并发送 querystring 格式参数
+    pqsBtn.addEventListener('click', () => {
+        // axios.post('/postQs', 'a=1&b=3&z=7', {headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(res=>{
+        axios.post('/postQs', 'a=1&b=3&z=7').then(res => {
+            console.log(res.data)
+        })
+    })
+
+    // 上传文件
+    // 绑定文件变化事件
+    uploadBtn.addEventListener('change', ev => {
+        let file = ev.target.files[0]
+        const fd = new FormData()
+        fd.append('f', file)
+        axios.post('/upload', fd).then(res => {
+            console.log(res.data)
+        })
+    })
+</script>
+</html>
