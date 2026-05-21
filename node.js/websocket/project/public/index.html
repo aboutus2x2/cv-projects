@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<button class="connect">连接</button>
+</body>
+<script>
+    const connectBtn = document.querySelector('.connect');
+    connectBtn.addEventListener('click', () => {
+        // 创建websocket连接
+        const socket = new WebSocket('ws://127.0.0.1/')
+        // 绑定一个连接成功事件
+        socket.addEventListener('open', () => {
+            // 发送消息给服务器
+            socket.send('hello websocket server')
+        })
+
+        // 绑定一个接收消息的事件
+        socket.addEventListener('message', ev => {
+            // ev.data 是服务器发来的消息
+            console.log(ev.data)
+        })
+    })
+
+    // 总结:
+    // 客户端:
+    // 创建ws连接
+    // 监听 ws 连接成功事件(open)，应该在连接成功后发送消息
+    // 监听 ws 的消息事件(message)，服务器发送消息可以通过该事件接收
+    // 服务器:
+    // 安装 express-ws 模块
+    // 初始模块将 app 服务器对象作为参数传入模块中 require('express-ws')(app)
+    // 创建 ws 协议接口
+    // 在接口中监听消息事件  ws.on('message', (msg) => {})
+    // 若要发送消息给客户端，则使用 ws.send
+</script>
+</html>
