@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<div>昵称: <input class="name" type="text">
+    <button onclick="connect()">连接</button>
+</div>
+<div>
+    <div>接收人: <input class="receiver" type="text"></div>
+    <div>消息: <input class="message" type="text"></div>
+    <button onclick="send()">发送</button>
+</div>
+</body>
+<script>
+    const nameInp = document.querySelector('.name')
+    const receiverInp = document.querySelector('.receiver')
+    const messageInp = document.querySelector('.message')
+
+    let socket
+
+    // 创建连接
+    function connect() {
+        socket = new WebSocket('ws://127.0.0.1/chat')
+        socket.addEventListener('open', () => {
+            // 当连接建立成功后向服务器表明身份
+            socket.send(JSON.stringify({type: 'login', data: nameInp.value.trim()}))
+        })
+
+        socket.addEventListener('message', ev => {
+            console.log(ev.data)
+            // 显示消息
+            let p = document.createElement('p')
+            p.textContent = ev.data
+            document.body.appendChild(p)
+        })
+    }
+
+    // 发送数据
+    function send() {
+        socket.send(JSON.stringify({
+            type: 'send',
+            data: {receiver: receiverInp.value.trim(), message: messageInp.value}
+        }))
+    }
+</script>
+</html>

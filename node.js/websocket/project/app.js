@@ -21,6 +21,37 @@ app.ws('/', (ws, req) => {
     })
 })
 
+// 用于存储连接的对象
+const wsMap = {}
+// 自增id
+let id = 0
+
+// 聊天连接
+app.ws('/chat', (ws, req) => {
+    ws.on('message', (msg) => {
+        // 反序列化数据对象
+        msg = JSON.parse(msg)
+        switch (msg.type) {
+            case 'login':
+                // 存储连接
+                wsMap[msg.data] = ws
+                // 分配id
+                ws.id = id++
+                wsMap[ws.id] = msg.data
+                ws.send('连接成功')
+                break;
+            case 'send':
+                // 读取要发送数据的连接
+                // 找到消息接收人
+                let _ws = wsMap[msg.data.receiver]
+                // 获取发送人的名字
+                let sender = wsMap[ws.id]
+                // 发送消息
+                _ws.send(`${sender}: ${msg.data.message}`)
+                break;
+        }
+    })
+})
 
 app.listen(80, () => {
     console.log('server start on: http://127.0.0.1')
