@@ -22,7 +22,7 @@
     // get请求及传参
     getBtn.addEventListener('click', () => {
         // axios 请求方法调用完后返回promise对象
-        axios.get('/add?a=1&b=4').then(res => {
+        axios.get('/add?a=1&b=4&c=5&c=9&c=3').then(res => {
             console.log(res.data)
         })
     })
@@ -42,7 +42,7 @@
     // post 请求并发送 querystring 格式参数
     pqsBtn.addEventListener('click', () => {
         // axios.post('/postQs', 'a=1&b=3&z=7', {headers: {'content-type': 'application/x-www-form-urlencoded'}}).then(res=>{
-        axios.post('/postQs', 'a=1&b=3&z=7').then(res => {
+        axios.post('/postQs', 'a=1&b=3&z[0]=7&z[1]=9&z[2]=10&h[0][name]=张三&h[0][sex]=male&h[1][name]=李四&h[1][sex]=female').then(res => {
             console.log(res.data)
         })
     })

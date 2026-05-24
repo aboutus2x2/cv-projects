@@ -35,6 +35,8 @@ app.get('/add', (req, res) => {
     // res.json(req.query)
     // res.json({result: Number(req.query.a) + Number(req.query.b)})
 
+    console.log(req.query)
+
     res.setHeader('Content-Type', 'text/html')
     res.send(`
     <html>
