@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<!-- 模板语法，官方地址：https://github.com/mde/ejs/blob/master/docs/syntax.md -->
+<%#这是ejs的注释，注释的内容不会被ejs渲染%>
+<%#模板标签，分为标签头和标签尾两种，分别有不同意义%>
+
+<%#标签头%>
+
+<%# 插值 %>
+<div><%= 4 - 2 % 2%></div>
+<%# 插值变量 %>
+<div><%= name%></div>
+<div style="color: <%= '#fff'%>"></div>
+<%# 不能被当作 html 渲染，防止注入攻击 %>
+<div <%= 'class="box active"'%>></div>
+<div><%= '<p style="color: #f00"></p>'%></div>
+
+
+<%#插值html%>
+<div <%- 'class="box active"'%>></div>
+
+
+<%#代码块%>
+<!-- ejs 中 <%%> 这一个符号中可以填入js代码成为一个 js 代码块 -->
+<%#if语句%>
+<%if(sex === 'male'){%>
+<div>男</div>
+<%} else if(sex === 'female') {%>
+<div>女</div>
+<%} else {%>
+<div>其他</div>
+<%}%>
+
+
+<%#for循环%>
+<%for(let i=0;i<users.length;i++){%>
+    <ul>
+        <li>姓名: <%=users[i].name%></li>
+        <li>年龄: <%=users[i].age%></li>
+    </ul>
+<%}%>
+
+<%# 去掉渲染出来的html标签前面的多余空格 %>
+<%_ for(let i=0;i<users.length;i++){%>
+<ul>
+    <li>姓名: <%=users[i].name%></li>
+    <li>年龄: <%=users[i].age%></li>
+</ul>
+<%_ }%>
+
+
+<%#标签尾%>
+
+<%# 以下标签在标签尾上多了个减号，可以用于去除标签中多余的空行 %>
+<div>
+Beginning of template
+<%  'this is a statement'
++ ' that is long'
++ ' and long'
++ ' and long' %>
+End of template
+---
+Beginning of template
+<%  'this is a statement'
++ ' that is long'
++ ' and long'
++ ' and long' -%>
+End of template
+</div>
+
+
+<%# 转义标签头和尾 %>
+<div><%%</div>
+<div>%%></div>
+
+
+<%# 引入其他模板%>
+<div class="insert">
+<%- include('./child.ejs', {childName: child})%>
+</div>
+
+</body>
+</html>
