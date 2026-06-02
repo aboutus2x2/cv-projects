@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<h1>编辑</h1>
+<form method="post" action="/update">
+    <div><label>姓名: <input type="text" name="name" value="<%= user.name %>" readonly></label></div>
+    <div>性别:
+        <label><input type="radio" name="sex" value="male" <%= user.sex === 'male'? 'checked': '' %>>男</label>
+        <label><input type="radio" name="sex" value="female" <%= user.sex === 'female'? 'checked': '' %>>女</label>
+        <label><input type="radio" name="sex" value="other" <%= user.sex === 'other'? 'checked': '' %>>其他</label>
+    </div>
+    <div><label>年龄: <input type="number" name="age" value="<%= user.age %>"></label></div>
+    <button>提交</button>
+</form>
+</body>
+</html>
