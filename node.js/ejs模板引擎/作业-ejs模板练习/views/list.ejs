@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<table border>
+    <div><input type="text" class="search-input" value="<%= kw %>">
+        <button onclick="search()">查询</button>
+    </div>
+    <thead>
+    <tr>
+        <th>学号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>年级</th>
+        <th>班级</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% list.forEach(item=>{ %>
+        <tr>
+            <td><%= item.no %></td>
+            <td><%= item.name %></td>
+            <td><%= item.sex %></td>
+            <td><%= item.grade %></td>
+            <td><%= item.clazz %></td>
+            <td>
+                <button>编辑</button>
+                <button>删除</button>
+            </td>
+        </tr>
+    <% }) %>
+    </tbody>
+</table>
+<div>
+    <button onclick="page(<%= page %> - 1, <%= total %>)">上一页</button>
+    <button onclick="page(<%= page %> + 1, <%= total %>)">下一页</button>
+</div>
+</body>
+<script>
+    const si = document.querySelector('.search-input');
+
+    // 查询分页
+    // p: 当前页
+    // total: 总页数
+    function page(p, total) {
+        console.log(p)
+        console.log(total)
+        p = Math.min(Math.max(1, p), total)
+        location.href = '/list.html?page=' + p + '&size=2&kw=' + si.value
+    }
+
+    // 查询
+    function search() {
+        location.href = '/list.html?kw=' + si.value
+    }
+</script>
+</html>
