@@ -1,8 +1,21 @@
 # mongodb安装
 
+## mongodb 服务器程序
+
 [MongoDB Server下载地址](https://www.mongodb.com/try/download/community)
 
+## 操作 mongodb 的命令行工具
+
+mongo shell 运行的是 js
+
 [MongoDB Shell下载地址](https://www.mongodb.com/try/download/shell)
+
+## 数据库 GUI（graphics user interface） 工具
+
+类似的gui工具还有:
+
+- mongobooster
+- studio 3T
 
 [MongoDB Compass下载地址](https://www.mongodb.com/try/download/compass)
 
