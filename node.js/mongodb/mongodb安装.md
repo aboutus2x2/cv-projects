@@ -78,13 +78,13 @@ mongodb 默认没有用户，也不会校验数据库权限
 // 切换到管理员数据库
 use admin
 // 创建用户
-db.createUser(
+db.createUser({
     user: 'root',
     pwd: 'xxxxxx',
     roles: [
         'root'
     ]
-)
+})
 ```
 
 db.createUser[详情请见](https://www.mongodb.com/docs/manual/reference/method/db.createUser/)
