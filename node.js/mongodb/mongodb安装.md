@@ -1,21 +1,8 @@
 # mongodb安装
 
-## mongodb 服务器程序
-
 [MongoDB Server下载地址](https://www.mongodb.com/try/download/community)
 
-## 操作 mongodb 的命令行工具
-
-mongo shell 运行的是 js
-
 [MongoDB Shell下载地址](https://www.mongodb.com/try/download/shell)
-
-## 数据库 GUI（graphics user interface） 工具
-
-类似的gui工具还有:
-
-- mongobooster
-- studio 3T
 
 [MongoDB Compass下载地址](https://www.mongodb.com/try/download/compass)
 
@@ -79,6 +66,8 @@ mongod -f <配置文件路径>
 
 ## 添加用户并开启权限检测
 
+### 添加用户
+
 mongodb 默认没有用户，也不会校验数据库权限
 
 为了安全起见，需要添加用户，例如: root权限用户、数据库管理员和普通用户
@@ -86,5 +75,46 @@ mongodb 默认没有用户，也不会校验数据库权限
 请使用 mongo shell 或 mongo compass 执行以下命令
 
 ```js
+// 切换到管理员数据库
+use admin
+// 创建用户
+db.createUser(
+    user: 'root',
+    pwd: 'xxxxxx',
+    roles: [
+        'root'
+    ]
+)
+```
 
+db.createUser[详情请见](https://www.mongodb.com/docs/manual/reference/method/db.createUser/)
+
+创建用户的内置角色[详情请见](https://www.mongodb.com/docs/manual/reference/built-in-roles/#built-in-roles)
+
+可以在 mongodb shell 中使用 `db.createUser.help()` 查看帮助信息，`createUser` 方法名替换成其他方法就能查看其他方法的帮助信息了
+
+### 开启权限检测
+
+在 `mongod.conf` 配置文件中添加如下配置
+
+```yml
+# 安全选项
+security:
+   # 是否开启权限校验
+   authorization: enabled
+```
+
+开启权限后，若要操作数据库，需要在对应数据库下登录用户
+
+```js
+// 切换数据库到创建用户的数据库下
+use admin
+// 登录
+db.auth('root', 'xxxxxx')
+```
+
+登录完后可以操作任意数据库的数据了，例如
+
+```js
+db.getCollection('stu').insert({name: '张三', sex: 'male'})
 ```
