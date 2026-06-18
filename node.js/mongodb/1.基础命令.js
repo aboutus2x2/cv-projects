@@ -81,4 +81,6 @@ db.game.save({
     platform: 'ns pro'
 })
 
+// 查询数据量
+db.game.count({ name: { $regex: /^[\s\S]*张[\s\S]*$/}})
 
