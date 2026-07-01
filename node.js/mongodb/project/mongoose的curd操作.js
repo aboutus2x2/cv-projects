@@ -9,13 +9,8 @@ const schema = new Schema({
     // default: 字段的默认值
     // createdAt: {type: Date, default: new Date(), index: true},
     // updatedAt: {type: Date, default: new Date(), index: true},
-    createdAt: {
-        type: Date, default: () => {
-            new Date()
-        }, index: true
-    },
-    updatedAt: {type: Date, default: new Date(), index: true},
 }, {
+    // 添加时间戳
     timestamps: true
 });
 
@@ -32,6 +27,56 @@ const Game = model('game', schema);
     })
     await mongoose.connect('mongodb://admin:111111@127.0.0.1:27017/test')
     console.log('连接成功')
+
+
+    // let r = await Game.insertMany([
+    //     {
+    //         name: 'Super Mario Bros',
+    //         price: 320,
+    //         platform: 'FC'
+    //     },
+    //     {
+    //         name: 'The Last Of Us',
+    //         price: 400,
+    //         platform: 'PS'
+    //     },
+    //     {
+    //         name: 'Mather',
+    //         price: 250,
+    //         platform: 'FC'
+    //     },
+    //     {
+    //         name: 'Dead Space',
+    //         price: 300,
+    //         platform: 'XBOX'
+    //     },
+    //     {
+    //         name: 'Final Fantasy 10 Remaster',
+    //         price: 280,
+    //         platform: 'PS'
+    //     },
+    //     {
+    //         name: 'Halo',
+    //         price: 366,
+    //         platform: 'XBOX'
+    //     },
+    //     {
+    //         name: 'Gears Of War',
+    //         price: 333,
+    //         platform: 'XBOX'
+    //     },
+    //     {
+    //         name: 'God Of War',
+    //         price: 420,
+    //         platform: 'PS'
+    //     },
+    //     {
+    //         name: 'Legend Of Zalda',
+    //         price: 460,
+    //         platform: 'FC'
+    //     }
+    // ])
+
 
     // 新增数据
     // let doc = new Game({
@@ -62,29 +107,29 @@ const Game = model('game', schema);
     // })
 
     // 查询并修改数据
-    let r = await Game.findOneAndUpdate({name: 'Diablo2'}, {
-        price: 230,
-        platform: 'PC'
-    }, {
-        // 是否修改时间戳
-        timestamps: true,
-        // 是否没有数据就插入数据
-        // 当数据查询不到时就添加新数据
-        upsert: true,
-        // 返回修改后的数据
-        new: true,
-        // 若添加数据的话就要设置一些默认数据
-        setDefaultsOnInsert: true
-    })
+    // let r = await Game.findOneAndUpdate({name: 'Diablo'}, {
+    //     price: 500,
+    //     platform: 'PC'
+    // }, {
+    //     // 是否修改时间戳
+    //     timestamps: true,
+    //     // 是否没有数据就插入数据
+    //     // 当数据查询不到时就添加新数据
+    //     upsert: true,
+    //     // 返回修改后的数据
+    //     new: true,
+    //     // 若添加数据的话就要设置一些默认数据
+    //     setDefaultsOnInsert: true
+    // })
 
 
     // 查询
     // $where 添加一个约束条件，值是一个用于数据库查询的js脚本，脚本里写一个布尔表达式
-    // let r = await Game.find({$where: `this.updatedAt === this.createdAt`}, '-platform -price', {
-    //     sort: {updatedAt: -1},
-    //     skip: 1,
-    //     limit: 2
-    // })
+    let r = await Game.find({/*$where: `this.updatedAt === this.createdAt`*/}, '-platform -price', {
+        sort: {updatedAt: -1},
+        skip: 1,
+        limit: 2
+    })
 
     // 判断是否存在符合条件的数据
     // let r = await Game.exists({name: 'Start Craft'})
