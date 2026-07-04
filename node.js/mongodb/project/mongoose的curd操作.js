@@ -125,17 +125,29 @@ const Game = model('game', schema);
 
     // 查询
     // $where 添加一个约束条件，值是一个用于数据库查询的js脚本，脚本里写一个布尔表达式
-    let r = await Game.find({/*$where: `this.updatedAt === this.createdAt`*/}, '-platform -price', {
-        sort: {updatedAt: -1},
-        skip: 1,
-        limit: 2
-    })
+    // let r = await Game.find({/*$where: `this.updatedAt === this.createdAt`*/}, '-platform -price', {
+    //     sort: {updatedAt: -1},
+    //     skip: 1,
+    //     limit: 2
+    // })
 
     // 判断是否存在符合条件的数据
     // let r = await Game.exists({name: 'Start Craft'})
 
     // 查询数量
     // let r = await Game.count({platform: 'PC'})
+
+    let r = await Game.aggregate([
+        // $match 用来过滤数据
+        {$match: {price: {$gt: 300}}},
+        // 数组中每个对象是一个聚合的条件
+        // 其中 $group 必填
+        // _id: 代表用什么字段进行分组，可以写 null 代表不分组
+        // $avg: 是内置的命令，用来求字段的平均值
+        {$group: {_id: "$platform", avgPrice: {$avg: "$price"}}},
+        // $count 用于统计数量
+        // { $count: 'total' },
+    ])
 
     console.log(r)
 })()
