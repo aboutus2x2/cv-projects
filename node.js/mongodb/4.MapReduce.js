@@ -25,7 +25,7 @@ db.game.mapReduce(
 )
 
 
-
+// https://www.mongodb.com/docs/v6.0/reference/command/mapReduce/
 
 db.games.mapReduce(
     // 第一个参数是 map 方法
@@ -57,3 +57,5 @@ db.games.mapReduce(
         }
     }
 )
+
+// mongodb6中 mapReduce 已被弃用，官方推荐使用聚合函数
