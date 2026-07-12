@@ -29,4 +29,5 @@ db.games.aggregate([
     { $group: { _id: "$platform", avgPrice: { $avg: "$price" } } },
     // $count 用于统计数量
     // { $count: 'total' },
+    { $sort: { avgPrice: -1 } }
 ], { explain: true }) // explain: 显示本次聚合查询的信息
