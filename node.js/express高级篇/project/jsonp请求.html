@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="action()">jsonp跨域访问</button>
+</body>
+<!--<script>-->
+<!--    // 用来接收服务器的参数-->
+<!--    function myCallback(data) {-->
+<!--        console.log('服务器参数: ', data)-->
+<!--    }-->
+<!--</script>-->
+<!-- script标签src是不受跨域影响的 -->
+<!--<script src="http://127.0.0.1/jsonp?callback=myCallback"></script>-->
+<script>
+    // 封装一个发送jsonp请求的方法
+    // 第一个参数: 请求地址
+    // 第二个参数: 请求成功后的回调
+    function jsonp(url, callback) {
+        // 注册一个回调函数用于接收服务器响应
+        window.jsonpCallback = callback
+        const script = document.createElement('script')
+        script.src = `${url}?callback=jsonpCallback`
+        script.addEventListener('load', () => {
+            // 清除jsonp请求的临时数据
+            delete window.jsonpCallback
+            script.remove()
+        })
+        document.body.appendChild(script)
+    }
+
+    function action() {
+        jsonp('http://127.0.0.1/jsonp', data => {
+            console.log('接收到服务器响应: ', data)
+        })
+    }
+</script>
+</html>
