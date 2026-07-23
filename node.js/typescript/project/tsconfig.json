@@ -1,0 +1,14 @@
+{
+  "include": [
+    "src/**/*"
+  ],
+  "compilerOptions": {
+    "module": "AMD",
+    "target": "ES6",
+    "sourceMap": true,
+    "outDir": "./dist"
+  },
+  "exclude": [
+    "src/b.ts"
+  ]
+}
