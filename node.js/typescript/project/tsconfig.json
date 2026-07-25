@@ -1,6 +1,6 @@
 {
   "include": [
-    "src/**/*"
+    "语法/**/*"
   ],
   "compilerOptions": {
     "module": "AMD",
