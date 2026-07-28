@@ -251,3 +251,5 @@ function logStudent(stu: Student) {
 
 logStudent(stu1)
 logStudent(stu2)
+
+export {}
