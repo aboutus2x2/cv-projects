@@ -124,3 +124,5 @@ function logObjAttr<K extends keyof O, O extends { [key: string]: any }>(key: K,
 }
 
 logObjAttr('name', {name: '张三'})
+
+export {}
