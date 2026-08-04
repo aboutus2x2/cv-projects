@@ -1,12 +1,13 @@
 {
   "include": [
-    "语法/**/*"
+    "语法/迭代器.ts"
   ],
   "compilerOptions": {
     "module": "AMD",
-    "target": "ES6",
+    "target": "ES5",
     "sourceMap": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "experimentalDecorators": true
   },
   "exclude": [
     "src/b.ts"
