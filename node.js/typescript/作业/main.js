@@ -16,48 +16,72 @@ var Student = /** @class */ (function () {
 var Com = /** @class */ (function () {
     function Com() {
     }
-    Com.prototype.add = function (stus) {
-        if (Array.isArray(stus) && stus.length > 0) {
-            return stus.reduce(function (p, n) {
-                p.score += n.score;
-                return p;
-            }).score;
-        }
-        else {
-            return 0;
-        }
+    // @validate
+    // add(@required([]) stus?: Student[]): number {
+    //     if (Array.isArray(stus) && stus.length > 0) {
+    //         return stus.reduce((p, n) => {
+    //             p.score += n.score
+    //             return p
+    //         }).score
+    //     } else {
+    //         return 0
+    //     }
+    // }
+    Com.prototype.add = function (x, y) {
+        return x + y;
     };
     __decorate([
         validate,
-        __param(0, required)
+        __param(0, required(4)),
+        __param(1, required(7))
     ], Com.prototype, "add", null);
     return Com;
 }());
+// function validate(target: { [key: string]: any }, fnName: string, descriptor: PropertyDescriptor) {
+//     // 保存原来的add方法
+//     const method = descriptor.value
+//
+//     // 替换 add 方法
+//     descriptor.value = function (...arg: any[]) {
+//         // 若需要验证参数
+//         if (globalThis['needValidate']) {
+//             // 校验参数
+//             arg[0] = Array.isArray(arg[0]) ? arg[0] : []
+//         }
+//         return method.apply(this, arg)
+//     }
+// }
+// function required(target: { [key: string]: any }, fnName: string, index: number) {
+//     // 利用全局对象立一个flag 告诉 @validate 装饰器 调用方法前需要校验参数
+//     globalThis['needValidate'] = true
+// }
 function validate(target, fnName, descriptor) {
-    console.log('validate');
+    if (!globalThis['needValidate'])
+        return;
+    if (!globalThis['needValidate'][fnName])
+        return;
+    var paramMap = globalThis['needValidate'][fnName];
     var method = descriptor.value;
-    // 替换class类的方法
-    // 通过原型替换
     descriptor.value = function () {
-        var arg = [];
+        var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            arg[_i] = arguments[_i];
+            args[_i] = arguments[_i];
         }
-        console.log('needValidate');
-        console.log(globalThis['needValidate']);
-        // 若需要验证参数
-        if (globalThis['needValidate']) {
-            console.log('modify');
-            // 校验参数
-            arg[0] = Array.isArray(arg[0]) ? arg[0] : [];
-            console.log(arg[0]);
+        for (var index in paramMap) {
+            if (typeof args[index] === 'undefined')
+                args[index] = paramMap[index];
         }
-        return method.apply(this, arg);
+        return method.apply(this, args);
     };
 }
-function required(target, fnName, index) {
-    // 利用全局对象立一个flag 告诉 @validate 装饰器 调用方法前需要校验参数
-    globalThis['needValidate'] = true;
+function required(defaultValue) {
+    console.log(defaultValue);
+    return function (target, fnName, index) {
+        globalThis['needValidate'] = globalThis['needValidate'] || {};
+        globalThis['needValidate'][fnName] = globalThis['needValidate'][fnName] || {};
+        var paramMap = globalThis['needValidate'][fnName];
+        paramMap[index] = defaultValue;
+    };
 }
 var com = new Com();
 // console.log(com.add([new Student(15)]))
