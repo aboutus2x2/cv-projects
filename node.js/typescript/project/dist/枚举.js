@@ -34,7 +34,7 @@ var Day;
 })(Day || (Day = {}));
 // 使用枚举
 // 语法：<枚举名>.<枚举项>
-var zhangSan = { name: '张三', sex: Sex.Male };
+let zhangSan = { name: '张三', sex: Sex.Male };
 // 修改枚举值
 // 枚举在编程语言中通常被存储成数字，所以枚举的本质是数字
 zhangSan.sex = Sex.Other;
@@ -76,9 +76,9 @@ function ComputerDo() {
     console.log('run some code');
 }
 // 假设已知一个枚举值
-var value = Goods.VideoGame;
+let value = Goods.VideoGame;
 // 使用索引方式读取枚举名
-var enumName = Goods[value];
+let enumName = Goods[value];
 // 最后通过名称调用对应的函数
-eval("".concat(enumName, "Do()"));
+eval(`${enumName}Do()`);
 //# sourceMappingURL=%E6%9E%9A%E4%B8%BE.js.map

@@ -5,13 +5,21 @@ var m = new Map([
     ['b', 2],
     ['c', 3]
 ]);
-// for (const item of m) {
-//     console.log(item)
-// }
-var keys = m.keys();
-var key;
-while (!(key = keys.next()).done) {
+// 使用 for of 迭代 Map
+for (var _i = 0, m_1 = m; _i < m_1.length; _i++) {
+    var value = m_1[_i];
+    console.log(value);
+}
+// 结果发现：上述代码可以在浏览器上成功输出，但是ts中就不行
+// 这是因为：当面向 ES5 或 ES3 兼容引擎时，迭代器只允许用于Array类型的值。for..of对非 Array 值使用循环是错误的
+// 此时我们可以使用迭代器的经典使用方法：
+var iterator = m.keys(); // keys 函数返回一个迭代器函数
+var key; // 声明 key 用于存放每一个被遍历的 key
+// 调用 iterator.next 则迭代器会从集合中取出一个成员
+// 此处不仅取出了一个成员，还用 key 来保存了该成员
+// 当取完所有成员时，next 函数将返回空，就可以跳出循环了
+// 这是经典迭代器函数的使用方法，java c# 与此类似
+while (key = iterator.next().value) {
     console.log(key);
-    console.log(m.get(key.value));
 }
 //# sourceMappingURL=%E8%BF%AD%E4%BB%A3%E5%99%A8.js.map

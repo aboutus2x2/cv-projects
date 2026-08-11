@@ -8,21 +8,6 @@
 // 访问器装饰器
 // 属性装饰器
 // 参数装饰器
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -43,16 +28,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 // 类装饰
 // 装饰器本质上就是函数
 // 类装饰函数的书写方式有两种
-var BugReport = /** @class */ (function () {
-    function BugReport(t) {
+let BugReport = class BugReport {
+    constructor(t) {
         this.type = "report";
         this.title = t;
     }
-    BugReport = __decorate([
-        classDecorator('this is type')
-    ], BugReport);
-    return BugReport;
-}());
+};
+BugReport = __decorate([
+    classDecorator('this is type')
+], BugReport);
 // 方法一: 装饰器 @decorator 后面不带参数的时候
 // 类装饰器的第一个参数默认为类构造函数
 // function classDecorator<T extends { new(...args: any[]): object }>(cons: T) {
@@ -73,30 +57,24 @@ var BugReport = /** @class */ (function () {
 // 返回一个装饰器函数
 function classDecorator(type) {
     return function (cons) {
-        return /** @class */ (function (_super) {
-            __extends(class_1, _super);
-            function class_1() {
-                var _this = _super !== null && _super.apply(this, arguments) || this;
-                _this.type = type;
-                return _this;
+        return class extends cons {
+            constructor() {
+                super(...arguments);
+                this.type = type;
             }
-            return class_1;
-        }(cons));
+        };
     };
 }
 console.log(new BugReport('this is title'));
 // 方法装饰器
-var FunctionDecoratorClass = /** @class */ (function () {
-    function FunctionDecoratorClass() {
-    }
-    FunctionDecoratorClass.prototype.fn = function (a, b) {
+class FunctionDecoratorClass {
+    fn(a, b) {
         return a + b;
-    };
-    __decorate([
-        functionDecorator
-    ], FunctionDecoratorClass.prototype, "fn", null);
-    return FunctionDecoratorClass;
-}());
+    }
+}
+__decorate([
+    functionDecorator
+], FunctionDecoratorClass.prototype, "fn", null);
 // 第一个参数: 实例对象的原型
 // 第二个参数: 方法名
 // 第三个参数: 方法的属性描述
@@ -108,26 +86,21 @@ function functionDecorator(type, fnName, descriptor) {
 // console.log(new FunctionDecoratorClass().fn(1, 2))
 // 访问器装饰器
 // 访问器装饰器返回的参数和方法装饰器相同
-var Point = /** @class */ (function () {
-    function Point(x, y) {
+class Point {
+    constructor(x, y) {
         this._x = x;
         this._y = y;
     }
-    Object.defineProperty(Point.prototype, "x", {
-        get: function () {
-            return this._x;
-        },
-        set: function (value) {
-            this._x = value;
-        },
-        enumerable: false,
-        configurable: true
-    });
-    __decorate([
-        xDecorator
-    ], Point.prototype, "x", null);
-    return Point;
-}());
+    get x() {
+        return this._x;
+    }
+    set x(value) {
+        this._x = value;
+    }
+}
+__decorate([
+    xDecorator
+], Point.prototype, "x", null);
 function xDecorator(type, fnName, descriptor) {
     console.log(type);
     console.log(fnName);
@@ -136,35 +109,31 @@ function xDecorator(type, fnName, descriptor) {
 new Point(1, 2).x;
 // 属性装饰器
 // 参数和方法装饰器相同 不过没有第三个参数
-var Greeter = /** @class */ (function () {
-    function Greeter(greeting) {
+class Greeter {
+    constructor(greeting) {
         this.greeting = greeting;
     }
-    __decorate([
-        greetingDecorator
-    ], Greeter.prototype, "greeting", void 0);
-    return Greeter;
-}());
+}
+__decorate([
+    greetingDecorator
+], Greeter.prototype, "greeting", void 0);
 function greetingDecorator(type, propName) {
     console.log(type);
     console.log(propName);
 }
 new Greeter('greeting human');
 // 参数修饰符
-var Com = /** @class */ (function () {
-    function Com() {
-    }
-    Com.prototype.add = function (x, y) {
+class Com {
+    add(x, y) {
         console.log('add be called');
         console.log(this);
         return x + y;
-    };
-    __decorate([
-        __param(0, paramDecorator),
-        __param(1, paramDecorator)
-    ], Com.prototype, "add", null);
-    return Com;
-}());
+    }
+}
+__decorate([
+    __param(0, paramDecorator),
+    __param(1, paramDecorator)
+], Com.prototype, "add", null);
 // 参数装饰器函数中的参数
 // 第一个参数: 实例对象的原型
 // 第二个参数: 方法名

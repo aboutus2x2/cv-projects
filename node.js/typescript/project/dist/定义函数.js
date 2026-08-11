@@ -6,28 +6,27 @@
 // 可选参数
 // 函数重载
 // 定义 rest parameters
-var myFn = function (m) {
+let myFn = (m) => {
     console.log(m);
 };
 // 若类型为 Function 则代表任意签名的函数
-var fn = function (a, b) {
+let fn = (a, b) => {
     return a + b;
 };
 function f(prefix, msg) {
     return prefix + msg;
 }
 f.fnName = '张三';
-var fn2 = f;
+let fn2 = f;
 // 构造函数
 // 使用 new() 来定义一个构造函数
 // class类的构造函数若满足该定义 则将通过类型检测
-var Card = /** @class */ (function () {
-    function Card(face, point) {
+class Card {
+    constructor(face, point) {
         this.face = face;
         this.point = point;
     }
-    return Card;
-}());
+}
 function createInstance(mc) {
     return new mc('face', 0);
 }
@@ -46,11 +45,7 @@ function getTime(timeOrYear, month, day) {
 }
 // 定义 rest parameters
 // c 是一个 rest parameters 可以传入任意个数的参数
-function restParams(x, y) {
-    var rest = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        rest[_i - 2] = arguments[_i];
-    }
+function restParams(x, y, ...rest) {
 }
 restParams(1, 2, 'hello', 'string', 123, true);
 //# sourceMappingURL=%E5%AE%9A%E4%B9%89%E5%87%BD%E6%95%B0.js.map
