@@ -82,4 +82,15 @@ class World {
 }
 console.log(World.getInstance());
 console.log(World.getInstance());
+// 抽象类
+// 抽象类只能用来做父类 不能直接实例化 因为他是抽象的不是具体的
+class Ship {
+}
+class FastShip extends Ship {
+    // 子类需要全部实现抽象类的抽象方法
+    run() {
+        console.log('run');
+    }
+}
+console.log(new FastShip());
 //# sourceMappingURL=%E5%AE%9A%E4%B9%89class%E7%B1%BB.js.map
