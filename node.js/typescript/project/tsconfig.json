@@ -1,13 +1,15 @@
 {
   "include": [
-    "语法/**/*.ts"
+    "语法/声明语法与类型声明文件/类型声明文件.ts"
   ],
   "compilerOptions": {
-    "module": "AMD",
+    "module": "commonjs",
     "target": "ES6",
     "sourceMap": true,
     "outDir": "./dist",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "declaration": true,
+    "declarationDir": "./d"
   },
   "exclude": [
     "src/b.ts",
