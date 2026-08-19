@@ -1,12 +1,14 @@
 {
-  "files": [
-    "main.ts"
+  "include": [
+    "./**/*.ts"
   ],
   "compilerOptions": {
     "module": "commonjs",
     "target": "ES6",
     "sourceMap": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "experimentalDecorators": true
   },
   "exclude": [
     "node_modules"
