@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>注册</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+</head>
+
+<body>
+  <div id="root">
+  </div>
+</body>
+<script type="text/babel">
+
+  function App() {
+
+    const [user, setUser] = React.useState('')
+    const [pwd, setPwd] = React.useState('')
+    const [nickname, setNickname] = React.useState('')
+
+
+    function signUp() {
+      
+    }
+
+    //提交校验
+    function formSubmit(ev){
+      ev.preventDefault()
+      ev.stopPropagation()
+      document.querySelector('#regist').classList.add('was-validated')
+    }
+
+    return (
+      <div className="container-fluid vh-100 bg-light d-flex align-items-center">
+        <div className="container col-4">
+          <div className="text-center">
+            <img src="./img/logo.png" height="72" />
+            <h3>用户注册</h3>
+          </div>
+          <form noValidate id="regist" className="border p-3 vstack gap-2 bg-white" onSubmit={formSubmit}>
+            <div>
+              <label className="form-label fw-bold" htmlFor="user">账号</label>
+              <input type="text" id="user" className="form-control" placeholder="请输入账号" value={user}
+                onChange={ev => { setUser(ev.target.value) }} required />
+              <div className="invalid-feedback">
+                请输入账号
+              </div>
+            </div>
+            <div>
+              <label className="form-label fw-bold" htmlFor="pwd">密码</label>
+              <input type="password" id="pwd" className="form-control" placeholder="请输入密码" value={pwd}
+                onChange={ev => { setPwd(ev.target.value) }} required />
+              <div className="invalid-feedback">
+                请输入密码
+              </div>
+            </div>
+            <div>
+              <label className="form-label fw-bold" htmlFor="nickname">昵称</label>
+              <input type="text" id="nickname" className="form-control" placeholder="请输入昵称" value={nickname}
+                onChange={ev => { setNickname(ev.target.value) }} required />
+              <div className="invalid-feedback">
+                请输入昵称
+              </div>
+            </div>
+            <div>
+              <button className="btn btn-success w-100" onClick={signUp}>注册</button>
+            </div>
+          </form>
+          <div className="border p-2 mt-3 bg-white">
+            已有账号?<a href="./signIn.html">点击登录</a>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+
+
+</script>
+
+</html>

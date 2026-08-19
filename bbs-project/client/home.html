@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>首页</title>
+  <link rel="stylesheet" href="css/bootstrap.css" />
+  <script src="js/bootstrap.bundle.js"></script>
+  <script src="js/babel.min.js"></script>
+  <script src="js/react.development.js"></script>
+  <script src="js/react-dom.development.js"></script>
+  <script type="text/babel" src="components/navbar.js"></script>
+  <script type="text/babel" src="components/copyright.js"></script>
+  <script type="text/babel" src="components/listitem.js"></script>
+</head>
+
+<body>
+  <div id="root">
+
+  </div>
+</body>
+<script type="text/babel">
+
+  function App() {
+
+    const [list,setList] = React.useState([
+      {id:1,headIcon:'./img/avatar-max-img.png',title:'人类即将登陆火星'},
+      {id:2,headIcon:'./img/avatar-max-img.png',title:'汽油即将停产'},
+      {id:3,headIcon:'./img/avatar-max-img.png',title:'房价有可能下跌？'},
+      ])
+
+    return (
+      <div className="container-fluid vh-100 p-0">
+        <Navbar />
+        {list.map(item => (<Listitem id={item.id} headIcon={item.headIcon} title={item.title} />))}
+        <div className="container mt-4">
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li className="page-item">
+                <a className="page-link" href="#" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li className="page-item"><a className="page-link" href="#">1</a></li>
+              <li className="page-item"><a className="page-link" href="#">2</a></li>
+              <li className="page-item"><a className="page-link" href="#">3</a></li>
+              <li className="page-item">
+                <a className="page-link" href="#" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div className="container">
+          <Copyright />
+        </div>
+      </div>
+    )
+  }
+
+  let root = document.querySelector('#root')
+  ReactDOM.createRoot(root).render(<App />)
+</script>
+
+</html>
