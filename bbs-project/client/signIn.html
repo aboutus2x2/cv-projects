@@ -55,7 +55,7 @@
               <label className="form-label fw-bold" htmlFor="user">账号</label>
               <input type="text" id="user" className="form-control" placeholder="请输入账号" value={user} 
               onChange={ev => {setUser(ev.target.value)}} required/>
-              <div class="invalid-feedback">
+              <div className="invalid-feedback">
                 请输入账号
               </div>
             </div>
@@ -64,7 +64,7 @@
               <a href="#" className="float-end">忘记密码？</a>
               <input type="password" id="pwd" className="form-control" placeholder="请输入密码" value={pwd}
               onChange={ev => {setPwd(ev.target.value)}} required />
-              <div class="invalid-feedback">
+              <div className="invalid-feedback">
                 请输入密码
               </div>
             </div>
