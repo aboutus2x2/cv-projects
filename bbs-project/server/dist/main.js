@@ -17,6 +17,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const App_js_1 = require("./helper/App.js");
 const assert_1 = __importDefault(require("assert"));
 const path_1 = __importDefault(require("path"));
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const _app = (0, express_1.default)();
 const app = new App_js_1.App(_app);
 // 静态资源文件夹
@@ -24,6 +25,7 @@ _app.use('/', express_1.default.static(path_1.default.join(__dirname, '../../cli
 // 参数解析
 _app.use(express_1.default.urlencoded({ extended: true }));
 _app.use(express_1.default.json());
+_app.use((0, cookie_parser_1.default)());
 // 引入路由器
 const userRouter_js_1 = __importDefault(require("./routers/userRouter.js"));
 const BusinessResponse_js_1 = require("./types/BusinessResponse.js");

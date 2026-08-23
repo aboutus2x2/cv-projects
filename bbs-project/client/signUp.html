@@ -17,6 +17,9 @@
 <div id="root">
 </div>
 </body>
+<script src="./js/axios.js"></script>
+<script src="./js/request.js"></script>
+<script src="./js/crypto-js.js"></script>
 <script type="text/babel">
 
     function App() {
@@ -36,9 +39,11 @@
             ev.stopPropagation()
             // document.querySelector('#regist').classList.add('was-validated')
 
-            fetch('/user/signUp', {
-                method: 'post',
-            }).then(res => res.json()).then(data => {
+            // 使用 md5 进行双重加密
+            let _pwd = CryptoJS.MD5(CryptoJS.MD5(pwd).toString()).toString()
+            console.log(_pwd)
+
+            request.post('/user/signUp', {account: user, pwd: _pwd, nickname}).then(data => {
                 console.log(data)
             })
         }

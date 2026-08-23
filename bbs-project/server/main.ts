@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 import {App} from "./helper/App.js";
 import assert from "assert";
 import path from "path";
+import cookieParser from 'cookie-parser'
 
 const _app = express()
 const app = new App(_app)
@@ -13,11 +14,13 @@ _app.use('/', express.static(path.join(__dirname, '../../client')))
 // 参数解析
 _app.use(express.urlencoded({extended: true}))
 _app.use(express.json())
+_app.use(cookieParser())
 
 
 // 引入路由器
 import userRouter from "./routers/userRouter.js";
 import {BusinessResponse} from "./types/BusinessResponse.js";
+
 
 _app.use('/user', userRouter)
 
