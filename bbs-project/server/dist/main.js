@@ -18,6 +18,8 @@ const App_js_1 = require("./helper/App.js");
 const assert_1 = __importDefault(require("assert"));
 const path_1 = __importDefault(require("path"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+const express_session_1 = __importDefault(require("express-session"));
+const getUserInfo_1 = require("./middleware/getUserInfo");
 const _app = (0, express_1.default)();
 const app = new App_js_1.App(_app);
 // 静态资源文件夹
@@ -26,6 +28,10 @@ _app.use('/', express_1.default.static(path_1.default.join(__dirname, '../../cli
 _app.use(express_1.default.urlencoded({ extended: true }));
 _app.use(express_1.default.json());
 _app.use((0, cookie_parser_1.default)());
+_app.use((0, express_session_1.default)({
+    secret: 'this is my key'
+}));
+_app.use((0, getUserInfo_1.getUserInfo)());
 // 引入路由器
 const userRouter_js_1 = __importDefault(require("./routers/userRouter.js"));
 const BusinessResponse_js_1 = require("./types/BusinessResponse.js");
@@ -37,6 +43,7 @@ app.get('/test', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 // 全局异常捕获
 _app.use((err, req, res, next) => {
     if (err) {
+        console.error(err);
         res.json(BusinessResponse_js_1.BusinessResponse.fail(err));
     }
     else {

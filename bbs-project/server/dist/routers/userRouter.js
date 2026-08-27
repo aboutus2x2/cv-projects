@@ -18,6 +18,7 @@ const BusinessResponse_js_1 = require("../types/BusinessResponse.js");
 const user_js_1 = __importDefault(require("../models/user.js"));
 const token_js_1 = __importDefault(require("../models/token.js"));
 const assert_1 = __importDefault(require("assert"));
+const checkSignIn_1 = require("../middleware/checkSignIn");
 const router = (0, express_1.Router)();
 const app = new App_js_1.App(router);
 // 注册
@@ -54,6 +55,12 @@ app.post('/signIn', (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     // 通过 cookie 保存到客户端
     res.cookie('token', token._id, { maxAge, httpOnly: true });
     res.json(BusinessResponse_js_1.BusinessResponse.success({ tokenId: token._id }));
+}));
+// 引入检测登录状态的中间件
+router.use((0, checkSignIn_1.checkSignIn)());
+// 获取用户信息
+app.post('/info', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.json(BusinessResponse_js_1.BusinessResponse.success({ nickname: req.session.user.nickname, headIcon: req.session.user.headIcon }));
 }));
 exports.default = router;
 //# sourceMappingURL=userRouter.js.map

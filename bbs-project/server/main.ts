@@ -4,6 +4,8 @@ import {App} from "./helper/App.js";
 import assert from "assert";
 import path from "path";
 import cookieParser from 'cookie-parser'
+import session from 'express-session'
+import {getUserInfo} from "./middleware/getUserInfo";
 
 const _app = express()
 const app = new App(_app)
@@ -15,6 +17,10 @@ _app.use('/', express.static(path.join(__dirname, '../../client')))
 _app.use(express.urlencoded({extended: true}))
 _app.use(express.json())
 _app.use(cookieParser())
+_app.use(session({
+    secret: 'this is my key'
+}))
+_app.use(getUserInfo())
 
 
 // 引入路由器
@@ -33,6 +39,7 @@ app.get('/test', async (req, res) => {
 // 全局异常捕获
 _app.use((err, req, res, next) => {
     if (err) {
+        console.error(err)
         res.json(BusinessResponse.fail(err))
     } else {
         res.json(BusinessResponse.fail())

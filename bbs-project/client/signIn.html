@@ -46,7 +46,7 @@
 
             let _pwd = CryptoJS.MD5(CryptoJS.MD5(pwd).toString()).toString()
             request.post('/user/signIn', {account: user, pwd: _pwd}).then(data => {
-                console.log(data)
+                location.href = '/home.html'
             })
         }
 

@@ -4,6 +4,7 @@ import {BusinessResponse} from "../types/BusinessResponse.js";
 import User from '../models/user.js'
 import Token from "../models/token.js";
 import assert from "assert";
+import {checkSignIn} from "../middleware/checkSignIn";
 
 const router = Router()
 const app = new App(router)
@@ -49,6 +50,14 @@ app.post('/signIn', async (req, res) => {
     // 通过 cookie 保存到客户端
     res.cookie('token', token._id, {maxAge, httpOnly: true})
     res.json(BusinessResponse.success({tokenId: token._id}))
+})
+
+// 引入检测登录状态的中间件
+router.use(checkSignIn())
+
+// 获取用户信息
+app.post('/info', async (req, res) => {
+    res.json(BusinessResponse.success({nickname: req.session.user.nickname, headIcon: req.session.user.headIcon}))
 })
 
 export default router
