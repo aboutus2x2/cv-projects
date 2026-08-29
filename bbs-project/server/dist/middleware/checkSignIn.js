@@ -19,7 +19,7 @@ function checkSignIn() {
     return (0, express_async_handler_1.default)((req, res, next) => __awaiter(this, void 0, void 0, function* () {
         if (!req.session.user) {
             // 若未登录直接重定向到登录页
-            res.redirect('/signIn.html');
+            next(new Error('登录检测失败'));
         }
         else
             next();

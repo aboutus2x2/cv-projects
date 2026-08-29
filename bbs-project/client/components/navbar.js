@@ -11,6 +11,9 @@ function Navbar() {
             console.log(res)
             setName(res.data.nickname)
             setHeadIcon(res.data.headIcon)
+            if (typeof window.getUserInfoCallback === 'function') {
+                window.getUserInfoCallback(res.data)
+            }
         })
     }, [])
 
@@ -19,7 +22,10 @@ function Navbar() {
     }
 
     function loginOut() {
-        setIsSignIn(false)
+        // setIsSignIn(false)
+        request.post('/user/signOut').then(res => {
+            location.href = '/signIn.html'
+        })
     }
 
     function openSignIn() {

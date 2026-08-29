@@ -42,7 +42,7 @@ export function getUserInfo() {
 }
 
 // 清缓存
-function clearCache(req, res) {
+export function clearCache(req, res) {
     // 清session缓存
     delete req.session.user
     // 清cookie缓存

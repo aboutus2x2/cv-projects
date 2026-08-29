@@ -13,6 +13,9 @@ const request = (() => {
             // 服务器请求业务失败
             // 统一打印失败信息
             alert(res.data.msg)
+            if (res.data.msg === '登录检测失败') {
+                location.href = '/signIn.html'
+            }
             return Promise.reject(new Error(res.data.msg))
         }
     })

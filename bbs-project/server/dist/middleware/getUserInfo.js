@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getUserInfo = void 0;
+exports.clearCache = exports.getUserInfo = void 0;
 // 中间件工厂函数
 const token_1 = __importDefault(require("../models/token"));
 const user_1 = __importDefault(require("../models/user"));
@@ -62,4 +62,5 @@ function clearCache(req, res) {
     // 清cookie缓存
     res.cookie('token', '', { maxAge: 0 });
 }
+exports.clearCache = clearCache;
 //# sourceMappingURL=getUserInfo.js.map

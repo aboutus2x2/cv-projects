@@ -6,12 +6,14 @@ import path from "path";
 import cookieParser from 'cookie-parser'
 import session from 'express-session'
 import {getUserInfo} from "./middleware/getUserInfo";
+import fileUpload from 'express-fileupload'
 
 const _app = express()
 const app = new App(_app)
 
 // 静态资源文件夹
 _app.use('/', express.static(path.join(__dirname, '../../client')))
+_app.use('/upload', express.static(path.join(__dirname, '../upload')))
 
 // 参数解析
 _app.use(express.urlencoded({extended: true}))
@@ -19,6 +21,16 @@ _app.use(express.json())
 _app.use(cookieParser())
 _app.use(session({
     secret: 'this is my key'
+}))
+_app.use(fileUpload({
+    // 文件大小限制
+    limits: {fileSize: 10 * 1024 * 1024},
+    // 使用临时文件
+    useTempFiles: true,
+    // 临时文件夹路径
+    tempFileDir: path.join(__dirname, 'tmp'),
+    // 解决中文乱码的字符集参数
+    defParamCharset: 'utf8'
 }))
 _app.use(getUserInfo())
 
