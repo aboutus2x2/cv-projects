@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+<div id="root">
+    <!-- 1. 根节点模板声明 -->
+    <h1>{{title}}</h1>
+</div>
+</body>
+<script src="./js/vue.global.js"></script>
+<script>
+
+    // 知识点：
+    // vue应用创建的必要步骤
+    // 引入依赖
+    // 创建应用根节点
+    // 创建app对象
+    // 挂载应用
+    // 关于模板的声明方法
+    //   1. 在根节点中
+    //   2. 在配置对象中使用 template 属性
+    //   3. 在配置对象中使用 render 函数
+
+
+    // 2. template 方式模板声明
+
+    // 3. render 方式模板声明
+    // https://staging-cn.vuejs.org/api/render-function.html#h
+    // 在 react 当中 返回的东西称为 ReactDOM 对象
+    // 在 vue 中称为 VNode 对象
+
+    // h 函数接收三个参数
+    //     // 第一个参数：标签或组件
+    //     // 第二个参数：props属性
+    //     // 第三个参数：children数组(可以当作innerHTML使用)，用来描述 innerHTML，该参数和第二个参数的innerHTML属性冲突
+
+
+    // 创建 app 对象
+    // app 就是 viewmodel
+    const app = Vue.createApp({
+        // data 工厂函数 返回一个数据对象
+        // 该对象就是 响应式原理图中的 data
+        data() {
+            return {
+                title: 'vue的第一个应用程序'
+            }
+        }
+    })
+
+    // 挂载应用
+    app.mount('#root')
+</script>
+
+</html>
