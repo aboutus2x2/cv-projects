@@ -42,7 +42,7 @@
         <!--<img v-bind:src="mySrc">-->
 
         <!-- v-bind的缩写为冒号 -->
-<!--        <img v-bind:src="mySrc" :width="100 + 100" :height="200">-->
+        <!--        <img v-bind:src="mySrc" :width="100 + 100" :height="200">-->
 
         <!-- 一次绑定多个属性值 -->
         <img v-bind="imgAttrs">
@@ -71,6 +71,8 @@
         -->
         <!-- 此处以 .prevent 为例 -->
         <form action="https://www.baidu.com">
+            <!-- 绑定按钮的点击事件，事件触发后会调用 submit 方法 -->
+            <button v-on:click.prevent="submit">提交</button>
         </form>
 
     </div>
@@ -108,6 +110,9 @@
         methods: {
             getName() {
                 return 'this is a name'
+            },
+            submit() {
+                console.log('submit')
             }
         }
     })
