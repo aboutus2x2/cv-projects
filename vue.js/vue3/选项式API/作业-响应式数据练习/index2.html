@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="../js/vue.global.js"></script>
+</head>
+<body>
+<div id="root">
+    <div>
+        <div v-bind:style=" `background-color: ${color}; width: ${width}px; height: ${height}px;` "></div>
+        <div>宽度: <input class="width" type="text"></div>
+        <div>高度: <input class="height" type="text"></div>
+        <div>颜色: <input class="color" type="text"></div>
+        <div>
+            <button v-on:click="action">修改</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const vm = Vue.createApp({
+        data() {
+            return {
+                width: '100',
+                height: '100',
+                color: '#000'
+            }
+        },
+        methods: {
+            action() {
+                // 查询元素
+                const width = document.querySelector('.width');
+                const height = document.querySelector('.height');
+                const color = document.querySelector('.color');
+                // 修改响应式属性
+                this.width = width.value
+                this.height = height.value
+                this.color = color.value
+            }
+        }
+    }).mount('#root')
+</script>
+</html>
