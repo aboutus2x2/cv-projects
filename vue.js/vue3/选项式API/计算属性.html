@@ -10,8 +10,13 @@
 </head>
 
 <body>
-    <div id="app">
+<div id="app">
+    <div>
+        <div>人名币: {{rmb}}</div>
+        <div>美元: {{usd}}</div>
+        <div>英镑: {{uk}}</div>
     </div>
+</div>
 </body>
 <script>
     // 知识点：
@@ -31,6 +36,39 @@
     // 1. 某个页面元素宽高需要通过其他页面元素的宽高来确定
     // 2. 页面中拥有一个响应式属性，通过该属性格式化出不同的显示效果时，可以使用计算属性，例如: 时间格式化，货币格式化
 
+    const vm = Vue.createApp({
+        data() {
+            return {
+                // 人名币
+                rmb: 100
+            }
+        },
+        // 计算属性
+        computed: {
+            // 计算属性名 => 计算函数
+            usd() {
+                // 必须返回一个计算结果
+                return this.rmb * 0.15
+            },
+            // 通过访问器声明计算属性
+            uk: {
+                get() {
+                    // 必须返回一个属性值
+                    return this.rmb * 0.12
+                },
+                set(value) {
+                    // 接收参数 value，代表被赋值的内容
+                    this.rmb = value / 0.12
+                }
+            }
+        },
+        methods: {
+            action() {
+                // 组件内访问计算属性
+                console.log(this.usd)
+            }
+        }
+    }).mount('#app')
 
 </script>
 
