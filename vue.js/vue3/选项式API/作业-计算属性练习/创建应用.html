@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.global.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+
+<body>
+<div id="root">
+    <div style="height: 100vh;">
+        <div class="box1" v-bind:style="`background-color: #f0f; height: ${box1Height}px;`">box1</div>
+        <div class="box2" v-bind:style="`background-color: #0ff; height: ${box2Height}px;`">box2
+            <input type="text">
+            <button v-on:click="action">修改高度</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                box1Height: 200
+            }
+        },
+
+        computed: {
+            // box2Height() {
+            //     return window.innerHeight - this.box1Height
+            // }
+
+            // 为了能够给计算属性赋值
+            // 所以使用计算属性的 set get 方法
+            box2Height: {
+                get() {
+                    return window.innerHeight - this.box1Height
+                },
+                set(value) {
+                    // 重新计算box1Height
+                    this.box1Height = window.innerHeight - Number(value)
+                }
+            }
+        },
+
+        methods: {
+            action() {
+                // 查询属性
+                const inp = document.querySelector('input');
+                this.box2Height = inp.value
+            }
+        }
+    })
+    const vm = app.mount('#root')
+</script>
+
+</html>
