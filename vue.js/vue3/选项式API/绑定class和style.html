@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .color1 {
+            color: #f00;
+        }
+
+        .color2 {
+            color: #0f0;
+        }
+
+        .fs1 {
+            font-size: 24px;
+        }
+
+        .fs2 {
+            font-size: 32px;
+        }
+    </style>
+    <script src="js/vue.global.js"></script>
+</head>
+
+<body>
+<!-- 创建一个用于 vue 对象挂载的节点 -->
+<div id="app">
+    <div :class="class1">hello world</div>
+    <div :class="class2">hello world</div>
+    <div :class="class3">hello world</div>
+    <div :style="style1">hello world</div>
+    <div :style="style2">hello world</div>
+    <div :style="style3">hello world</div>
+    <div :style="style4">hello world</div>
+</div>
+</body>
+<script>
+
+    // 知识点：
+
+    // 绑定 HTML class
+    // 绑定字符串
+    // 绑定对象
+    // 绑定数组
+    // 数组中使用对象
+
+
+    // 绑定内联样式
+    // 绑定字符串
+    // 绑定对象
+    // 绑定数组(多个样式对象)
+    // 样式多值
+
+
+    // 创建 vue 应用程序
+    let app = Vue.createApp({
+        data() {
+            return {
+
+                // 绑定 class 属性
+                // 使用字符串绑定class
+                class1: 'color1 fs1',
+
+
+                // key: 类名 value: bool值，代表是否显示该类
+                class2: {
+                    color1: true,
+                    fs1: true,
+                    color2: false,
+                    fs2: false
+                },
+
+
+                // 数组成员就是类名
+                // 可以通过添加和删除数组成员来控制类名
+                // 还可以将数组成员设为空字符串，来关闭类名
+                // 数组成员也可以是对象
+                class3: ['color1', {fs2: true}],
+
+
+                // 绑定 style 属性
+                // 通过字符串修改样式
+                style1: 'background-color: #f00; color: #00f',
+
+                // key: css属性名 value: 属性值
+                style2: {
+                    backgroundColor: '#ff0',
+                    color: '#f00',
+                    fontSize: '64px'
+                },
+
+
+                // 数组成员为一个 style 的对象
+                style3: [{
+                    backgroundColor: '#f00',
+                    color: '#fff',
+                }, {
+                    fontSize: '48px'
+                }],
+
+
+                // 同一个属性可以写多个值
+                // 浏览器渲染时只会取多个值中最后一个有效值
+                style4: { display: ['-webkit-box', '-ms-flexbox', 'flex'] }
+            }
+        }
+    })
+
+    // 挂载应用
+    let vm = app.mount('#app')
+</script>
+
+</html>
