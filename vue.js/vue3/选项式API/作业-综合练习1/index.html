@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="../js/vue.global.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+<body>
+<div id="root">
+    <!-- app 对应的根节点 -->
+    <div>
+        <div>
+            生日: <input type="date">
+        </div>
+        <div>
+            年龄: {{age}}
+        </div>
+        <div>
+            <button v-on:click="showAge">显示年龄</button>
+        </div>
+        <div>
+            {{count}}
+        </div>
+        <div>
+            <button v-on:click="increaseCount">+</button>
+        </div>
+        <div class="box" :style="boxStyle">
+        </div>
+        <div>
+            box样式: <input type="text">
+        </div>
+        <div>
+            <button v-on:click="modify">修改</button>
+            <button v-on:click="reset">重置</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // 创建vue app对象
+    const app = Vue.createApp({
+        data() {
+            return {
+                // 年龄
+                age: 0,
+                // 计数
+                count: 0,
+                // 盒子的样式
+                boxStyle: ''
+            }
+        },
+
+        // 方法写在 methods 中
+        methods: {
+            showAge() {
+                // 计算年龄
+                const inp = document.querySelector('input[type="date"]')
+                console.log(inp.value)
+                // js 中处理时间使用 Date 对象
+                const birthday = new Date(inp.value)
+                // 计算从出生到今天的时间差
+                let age = Date.now() - birthday.getTime()
+                // 换算单位
+                age = age / 1000 / 60 / 60 / 24 / 365
+                // 向上取整
+                this.age = Math.ceil(age)
+            },
+            increaseCount() {
+                this.count++
+            },
+            modify() {
+                const inp = document.querySelector('input[type="text"]')
+                console.log(inp.value)
+                this.boxStyle = inp.value
+            },
+            reset() {
+                // 调用初始的配置
+                // 返回一个默认数据对象
+                const data = this.$options.data()
+                this.boxStyle = data.boxStyle
+            }
+        }
+    })
+
+    // 挂载
+    app.mount('#root')
+</script>
+</html>
