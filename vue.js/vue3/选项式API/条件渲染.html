@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.global.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <div>
+        <!-- 条件渲染时可以考虑把所有情况的内容都写出来 -->
+        <!-- v-if 的值是布尔表达式，当表达式的值为 true 时 该元素显示，否则就不显示 -->
+        <div v-if="sex === 'male'">男</div>
+        <!-- ctrl + shift + / 多行注释 -->
+        <!-- ctrl+/ 单行注释 -->
+        <div v-else-if="sex === 'female'">女</div>
+        <div v-else>其他</div>
+
+        <!-- v-show 的值是布尔表达式，当表达式的值为 true 时 该元素显示，否则就不显示 -->
+        <div v-show="isShow">使用v-show进行显示</div>
+
+        <div v-show="sex === 'male'">男</div>
+        <!-- ctrl + y 删除单行 -->
+        <div v-show="sex === 'female'">女</div>
+        <div v-show="sex === 'other'">其他</div>
+
+
+        <!-- v-if 和 v-show 的区别:
+            v-if: 当值为false的时候 不会创建对应的节点
+            v-show: 通过样式 display 来完成显示和隐藏，所以节点本身是存在的
+         -->
+    </div>
+</div>
+</body>
+<script>
+    // 知识点：
+    // v-if
+    // v-show
+    // v-if 和 v-show 区别
+
+
+    // 什么是条件渲染?
+    // 按照一定条件显示或不显示一些元素
+
+
+    const App = {
+        data() {
+            return {
+                sex: 'other',
+                isShow: true
+            }
+        }
+    }
+    let app = Vue.createApp(App)
+    let vm = app.mount('#app')
+</script>
+
+</html>

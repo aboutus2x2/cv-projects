@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <table border>
+            <thead>
+                <tr>
+                    <th>索引</th>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+<script>
+    // 知识点：
+    // v-for key
+    // 注意事项
+    // 若要修改数组，请尽量使用数组的方法，例如 push splice unshift shift pop，而不是给数组的索引赋值
+    // 因为在 vue2 给数组索引直接赋值，会导致数组成员变成非响应式的
+
+
+    const App = {
+        data() {
+            return {
+                users: [
+                    {
+                        name: '张三',
+                        sex: 'female',
+                        age: 16
+                    },
+                    {
+                        name: '李四',
+                        sex: 'male',
+                        age: 24
+                    },
+                    {
+                        name: '老王',
+                        sex: 'other',
+                        age: 30
+                    },
+                ]
+            }
+        },
+        methods: {
+
+        }
+    }
+    let app = Vue.createApp(App)
+    let vm = app.mount('#app')
+</script>
+
+</html>
