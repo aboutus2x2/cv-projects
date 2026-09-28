@@ -10,22 +10,53 @@
 </head>
 
 <body>
-    <div id="app">
-        <table border>
-            <thead>
-                <tr>
-                    <th>索引</th>
-                    <th>姓名</th>
-                    <th>性别</th>
-                    <th>年龄</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
+<div id="app">
+    <table border>
+        <thead>
+        <tr>
+            <th>索引</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>年龄</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 创建循环模板 填充假数据 -->
+        <!--<tr>
+            <td>0</td>
+            &lt;!&ndash; ctrl + d 单行复制 &ndash;&gt;
+            &lt;!&ndash; alt + shift + up/down 移动代码 &ndash;&gt;
+            <td>张三</td>
+            <td>男</td>
+            <td>15</td>
+            <td>
+                <button>删除</button>
+            </td>
+        </tr>-->
 
-            </tbody>
-        </table>
-    </div>
+        <!-- 开始使用 v-for 进行循环 -->
+        <!-- users: 要循环的数组变量 -->
+        <!-- user: 被遍历的每个数组成员 -->
+        <!-- index: 数组成员的索引 -->
+        <!--<tr v-for="user in users">-->
+
+        <!-- 循环渲染一定要绑定key 将一个不会重复的字段拿来充当 key -->
+        <tr v-for="(user, index) in users" v-bind:key="user.id">
+            <td>{{index}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.sex === 'male' ? '男' :
+                    user.sex === 'female' ? '女' : '其他'
+                }}
+            </td>
+            <td>{{user.age}}</td>
+            <td>
+                <button v-on:click="remove(user.id)">删除</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 <script>
     // 知识点：
@@ -35,21 +66,28 @@
     // 因为在 vue2 给数组索引直接赋值，会导致数组成员变成非响应式的
 
 
+    // 什么是循环渲染?
+    // 循环渲染就是vue根据一个固定的模板，套用一个数组的数据，循环的显示出不同的效果
+
+
     const App = {
         data() {
             return {
                 users: [
                     {
+                        id: 1,
                         name: '张三',
                         sex: 'female',
                         age: 16
                     },
                     {
+                        id: 2,
                         name: '李四',
                         sex: 'male',
                         age: 24
                     },
                     {
+                        id: 3,
                         name: '老王',
                         sex: 'other',
                         age: 30
@@ -58,7 +96,13 @@
             }
         },
         methods: {
-
+            remove(id) {
+                // 通过id删除数组成员
+                // 查找索引
+                const i = this.users.findIndex(user => user.id === id)
+                // 删除成员
+                this.users.splice(i, 1)
+            }
         }
     }
     let app = Vue.createApp(App)
