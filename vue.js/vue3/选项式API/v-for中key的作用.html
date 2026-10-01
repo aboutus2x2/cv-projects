@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.global.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <div>
+        <div v-for="(user, index) in users">
+            <input type="text" :value="user.name">
+            <button v-on:click="remove(index)">删除</button>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const App = {
+        data() {
+            return {
+                users: [
+                    {
+                        id: 1,
+                        name: '张三',
+                        sex: 'female',
+                        age: 16
+                    },
+                    {
+                        id: 2,
+                        name: '李四',
+                        sex: 'male',
+                        age: 24
+                    },
+                    {
+                        id: 3,
+                        name: '老王',
+                        sex: 'other',
+                        age: 30
+                    },
+                ]
+            }
+        },
+        methods: {
+            remove(index) {
+                this.users.splice(index, 1)
+            }
+        }
+    }
+    let app = Vue.createApp(App)
+    let vm = app.mount('#app')
+</script>
+</html>

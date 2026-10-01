@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.global.js"></script>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            background: #f00;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+
+    <div>
+        <!-- v-on 绑定了事件 -->
+        <!-- 1. 绑定函数值 -->
+        <button v-on:click="clickHandler">绑定函数值</button>
+        <div>{{count}}</div>
+        <!-- 2. 绑定js表达式 -->
+        <button v-on:click="count++">绑定js表达式</button>
+        <!-- 3. $event -->
+
+
+        <!--1. 事件修饰符-->
+        <!-- $event 是由 vue 在事件绑定一个js表达式时 隐式声明好的 -->
+        <button v-on:click="clickHandler2($event)">js表达式中获取事件对象</button>
+        <form action="http://www.baidu.com">
+            <!-- @ 是 v-on 的缩写 -->
+            <!-- .prevent 阻止事件的默认行为 -->
+            <button @click.prevent="submit">提交</button>
+        </form>
+
+        <div @click="mp3">
+            <div @click="mp2">
+                <!-- .stop 阻止冒泡 -->
+                <button @click.stop="mp1">冒泡</button>
+            </div>
+        </div>
+
+        <div>
+            <!-- .once 只执行一次 -->
+            <button @click.once="onceHandler">只执行一次</button>
+        </div>
+
+        <!--2. 按键修饰符-->
+        <div>
+            <!-- 1. 对应按键被按下才会触发事件
+                可以组合按键
+            -->
+            <!--<input type="text" @keyup.w.q="inputHandler">-->
+            <!-- 2. 系统修饰符
+                .ctrl
+                .shift
+                .alt
+                .meta
+             -->
+            <!--<input type="text" @keyup.ctrl="inputHandler">-->
+            <!-- 3. 按键别名
+                .enter
+                .left .right .up .down  左右上下
+            -->
+            <!--<input type="text" @keyup.up="inputHandler">-->
+
+            <!-- 4. .exact -->
+            <!-- 精确表达只能点住哪些按键才能触发，按多了不会触发 -->
+            <input type="text" @keyup.ctrl.exact="inputHandler">
+        </div>
+
+        <!--3. 鼠标修饰符-->
+        <!-- 按键修饰符 https://staging-cn.vuejs.org/guide/essentials/event-handling.html#key-modifiers -->
+        <div>
+            <!--
+                .left 左键
+                .right 右键
+                .middle 中键
+             -->
+            <div class="box" @click.middle="boxClick"></div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    // 知识点：
+    // v-on绑定事件基础
+    //    1. 绑定函数值
+    //    2. 绑定js表达式
+    //    3. $event
+    // 指令修饰符
+    //    1. 事件修饰符
+    //        1. .prevent
+    //        2. .stop
+    //        3. .once
+    //    2. 按键修饰符
+    //        1. 按键修饰符（例如按下w键等指定字母键）
+    //        2. 系统修饰符
+    //        3. 按键别名（enter space left right 等）
+    //        4. .exact
+    //    3. 鼠标修饰符
+
+
+    const App = {
+        data() {
+            return {
+                count: 0
+            }
+        },
+        methods: {
+            clickHandler(event) {
+                console.log('click')
+                console.log(event)
+            },
+            clickHandler2(event) {
+                console.log(event)
+            },
+            submit() {
+                console.log('submit')
+            },
+            mp1() {
+                console.log('mp1')
+            },
+            // alt + j 多行选择
+            mp2() {
+                console.log('mp2')
+            },
+            mp3() {
+                console.log('mp3')
+            },
+            onceHandler() {
+                console.log('该事件处理程序只执行一次')
+            },
+            inputHandler() {
+                console.log('按键事件触发了')
+            },
+            boxClick() {
+                console.log('boxClick')
+            }
+        }
+    }
+
+    let app = Vue.createApp(App)
+    let vm = app.mount('#app')
+</script>
+
+</html>
