@@ -12,6 +12,9 @@
 <body>
 <div id="app">
     <div>
+        <!-- key的作用:
+            让虚拟节点的排序与真实节点的排序保持一致
+         -->
         <div v-for="(user, index) in users">
             <input type="text" :value="user.name">
             <button v-on:click="remove(index)">删除</button>

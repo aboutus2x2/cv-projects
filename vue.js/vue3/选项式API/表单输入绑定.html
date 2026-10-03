@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.global.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <form>
+        <div>
+            <!-- 通过响应式属性为表单元素赋值 -->
+            <!--<label>姓名: <input type="text" :value="name" @input="nameInput"/></label>-->
+            <!-- 通过 v-model 进行双向绑定
+                双向绑定的含义:
+                1. 属性绑定，属性绑定后，响应式属性变化会触发页面更新
+                2. 事件绑定，事件绑定后，页面元素发生变化，响应式属性会被赋值
+             -->
+            <!-- .trim 自动去掉首位空格 -->
+            <!-- .lazy 懒赋值，当输入框失去焦点时 才会赋值响应式属性 -->
+            <label>姓名: <input type="text" v-model.trim.lazy="name" @input="nameInput"/></label>
+        </div>
+        <div>
+            <!-- .number 自动转换成数字 -->
+            <label>年龄: <input type="text" v-model.number="age"/></label>
+        </div>
+        <div>
+            <label>性别: </label>
+            <label><input v-model="sex" type="radio" value="male">男</label>
+            <label><input v-model="sex" type="radio" value="female">女</label>
+            <label><input v-model="sex" type="radio" value="other">其他</label>
+        </div>
+        <div>
+            <label>爱好: </label>
+            <label><input v-model="hobby" type="checkbox" value="dlq">打篮球</label>
+            <label><input v-model="hobby" type="checkbox" value="tzq">踢足球</label>
+            <label><input v-model="hobby" type="checkbox" value="ymq">羽毛球</label>
+        </div>
+        <div>
+            <label>班级:
+                <select v-model="clazz">
+                    <option value="" disabled>请选择</option>
+                    <option value="1">一班</option>
+                    <option value="2">二班</option>
+                    <option value="3">三班</option>
+                </select>
+            </label>
+        </div>
+        <div>
+            <textarea rows="3" v-model="desc"></textarea>
+        </div>
+        <div>
+            <button @click.prevent.stop="submit">提交</button>
+        </div>
+    </form>
+</div>
+</body>
+<script>
+
+    // 知识点：
+    // 什么是双向绑定
+    // 各种表单元素的v-model双向绑定
+    // 指令修饰符
+    //   1. .trim
+    //   2. .number
+    //   3. .lazy
+    //   4. .prevent
+    //   5. .stop
+    // 双向绑定和响应式的区别
+
+    // 双向绑定和响应式的区别?
+    // 双向绑定，既有属性绑定 又有 事件绑定，是双向的
+    // 然而 响应式（响应式在vue中以响应式属性来体现），是通过属性绑定来完成的，所以页面变化无法修改响应式变量
+
+
+    // 创建 vue 应用程序
+    let app = Vue.createApp({
+        data() {
+            return {
+                name: '张三',
+                age: 16,
+                sex: 'other',
+                hobby: ['dlq', 'tzq', 'ymq'],
+                clazz: '',
+                desc: '你好\n霉丧星',
+            }
+        },
+        methods: {
+            submit() {
+                console.log(this.$data);
+            },
+            nameInput(event) {
+                console.log('输入框', event.target.value)
+                console.log('name', this.name)
+                // 获取输入框中当前value值
+                // 并赋值响应式属性 name
+                // this.name = event.target.value
+            }
+        }
+    })
+
+    // 挂载应用
+    let vm = app.mount('#app')
+</script>
+
+</html>
