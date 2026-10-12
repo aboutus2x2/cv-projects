@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    <script src="../js/vue.global.js"></script>
+</head>
+<body>
+<div id="root">
+    <div>
+        <div>
+            <button @click="isOpenForm = true">+</button>
+        </div>
+        <div>
+            <table border>
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>性别</th>
+                    <th>年龄</th>
+                    <th>爱好</th>
+                    <th>班级</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(data, i) in tableData" :key="i">
+                    <td>
+                        <!-- 正常显示数据 -->
+                        <div>{{data.name}}</div>
+                        <!-- 开启编辑模式 -->
+                        <input type="text" value="张三">
+                    </td>
+                    <td>
+                        <div>{{data.sex === 'male' ? '男' :
+                                data.sex === 'female' ? '女' : '其他'}}
+                        </div>
+                        <div>
+                            <label><input type="radio" value="male"> 男</label>
+                            <label><input type="radio" value="female"> 女</label>
+                            <label><input type="radio" value="other"> 其他</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>{{data.age}}</div>
+                        <input type="number" value="17">
+                    </td>
+                    <td>
+                        <div>{{formatHobbies(data.hobbies)}}</div>
+                        <div>
+                            <label><input type="checkbox" value="dlq"> 打篮球</label>
+                            <label><input type="checkbox" value="tzq"> 踢足球</label>
+                            <label><input type="checkbox" value="ymq"> 羽毛球</label>
+                        </div>
+                    </td>
+                    <td>
+                        <div>{{data.clazz}}班</div>
+                        <select>
+                            <option value="" disabled selected>请选择</option>
+                            <option value="1">1班</option>
+                            <option value="2">2班</option>
+                            <option value="3">3班</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button>编辑</button>
+                        <button>保存</button>
+                        <button>取消</button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- 表单 -->
+        <div v-show="isOpenForm">
+            <div><label>姓名: <input v-model="formData.name" type="text"></label></div>
+            <div><label>年龄: <input v-model="formData.age" type="number"></label></div>
+            <div>性别:
+                <label><input v-model="formData.sex" type="radio" value="male"> 男</label>
+                <label><input v-model="formData.sex" type="radio" value="female"> 女</label>
+                <label><input v-model="formData.sex" type="radio" value="other"> 其他</label>
+            </div>
+            <div>爱好:
+                <label><input v-model="formData.hobbies" type="checkbox" value="dlq"> 打篮球</label>
+                <label><input v-model="formData.hobbies" type="checkbox" value="tzq"> 踢足球</label>
+                <label><input v-model="formData.hobbies" type="checkbox" value="ymq"> 羽毛球</label>
+            </div>
+            <div><label>班级:
+                <select v-model="formData.clazz">
+                    <option value="" disabled>请选择</option>
+                    <option value="1">1班</option>
+                    <option value="2">2班</option>
+                    <option value="3">3班</option>
+                </select>
+            </label></div>
+            <div>
+                <button @click="submit">提交</button>
+                <button @click="closeForm">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    const vm = Vue.createApp({
+        data() {
+            return {
+                // 是否打开表单
+                isOpenForm: false,
+                // 表单数据
+                formData: {
+                    name: '',
+                    sex: 'other',
+                    age: 0,
+                    hobbies: [],
+                    clazz: '',
+                },
+                // 表格数据
+                tableData: [
+                    {
+                        name: '张三2233',
+                        sex: 'female',
+                        age: 30,
+                        hobbies: ['dlq', 'tzq', 'ymq'],
+                        clazz: '3',
+                    }
+                ]
+            }
+        },
+        methods: {
+            // 关闭表单
+            closeForm() {
+                // 清空数据
+                this.formData.name = ''
+                this.formData.sex = 'other'
+                this.formData.age = 0
+                this.formData.hobbies = []
+                this.formData.clazz = ''
+                this.isOpenForm = false
+            },
+            // 提交数据
+            submit() {
+                console.log(this.formData)
+                // 克隆数据
+                // 追加到表格数据中
+                this.tableData.push({...this.formData})
+                // 关闭表单
+                this.closeForm()
+            },
+            // 格式化显示爱好
+            formatHobbies(hobbies) {
+                return hobbies.map(hobby => (hobby === 'dlq' ? '打篮球' :
+                        hobby === 'tzq' ? '踢足球' :
+                            hobby === 'ymq' ? '羽毛球' : '其他'
+                )).join(' | ')
+            }
+        }
+    }).mount('#root')
+</script>
+</html>
