@@ -29,45 +29,49 @@
                 <tr v-for="(data, i) in tableData" :key="i">
                     <td>
                         <!-- 正常显示数据 -->
-                        <div>{{data.name}}</div>
+                        <div v-if="!editData[i]">{{data.name}}</div>
                         <!-- 开启编辑模式 -->
-                        <input type="text" value="张三">
+                        <input v-else type="text" v-model="editData[i].name">
                     </td>
                     <td>
-                        <div>{{data.sex === 'male' ? '男' :
+                        <div v-if="!editData[i]">{{data.sex === 'male' ? '男' :
                                 data.sex === 'female' ? '女' : '其他'}}
                         </div>
-                        <div>
-                            <label><input type="radio" value="male"> 男</label>
-                            <label><input type="radio" value="female"> 女</label>
-                            <label><input type="radio" value="other"> 其他</label>
+                        <div v-else>
+                            <label><input v-model="editData[i].sex" type="radio" value="male"> 男</label>
+                            <label><input v-model="editData[i].sex" type="radio" value="female"> 女</label>
+                            <label><input v-model="editData[i].sex" type="radio" value="other"> 其他</label>
                         </div>
                     </td>
                     <td>
-                        <div>{{data.age}}</div>
-                        <input type="number" value="17">
+                        <div v-if="!editData[i]">{{data.age}}</div>
+                        <input v-else type="number" v-model="editData[i].age">
                     </td>
                     <td>
-                        <div>{{formatHobbies(data.hobbies)}}</div>
-                        <div>
-                            <label><input type="checkbox" value="dlq"> 打篮球</label>
-                            <label><input type="checkbox" value="tzq"> 踢足球</label>
-                            <label><input type="checkbox" value="ymq"> 羽毛球</label>
+                        <div v-if="!editData[i]">{{formatHobbies(data.hobbies)}}</div>
+                        <div v-else>
+                            <label><input v-model="editData[i].hobbies" type="checkbox" value="dlq"> 打篮球</label>
+                            <label><input v-model="editData[i].hobbies" type="checkbox" value="tzq"> 踢足球</label>
+                            <label><input v-model="editData[i].hobbies" type="checkbox" value="ymq"> 羽毛球</label>
                         </div>
                     </td>
                     <td>
-                        <div>{{data.clazz}}班</div>
-                        <select>
-                            <option value="" disabled selected>请选择</option>
-                            <option value="1">1班</option>
-                            <option value="2">2班</option>
-                            <option value="3">3班</option>
-                        </select>
+                        <div v-if="!editData[i]">{{data.clazz}}班</div>
+                        <div v-else>
+                            <select v-model="editData[i].clazz">
+                                <option value="" disabled selected>请选择</option>
+                                <option value="1">1班</option>
+                                <option value="2">2班</option>
+                                <option value="3">3班</option>
+                            </select>
+                        </div>
                     </td>
                     <td>
-                        <button>编辑</button>
-                        <button>保存</button>
-                        <button>取消</button>
+                        <button v-if="!editData[i]" @click="startEdit(i)">编辑</button>
+                        <div v-else>
+                            <button @click="save(i)">保存</button>
+                            <button @click="cancel(i)">取消</button>
+                        </div>
                     </td>
                 </tr>
                 </tbody>
@@ -107,6 +111,10 @@
     const vm = Vue.createApp({
         data() {
             return {
+                // 编辑用的数据
+                // key: 保存要修改的数据索引
+                // value: 克隆后的原始数据
+                editData: {},
                 // 是否打开表单
                 isOpenForm: false,
                 // 表单数据
@@ -120,12 +128,19 @@
                 // 表格数据
                 tableData: [
                     {
-                        name: '张三2233',
-                        sex: 'female',
+                        name: '张三',
+                        sex: 'male',
+                        age: 17,
+                        hobbies: ['dlq', 'tzq'],
+                        clazz: '1',
+                    },
+                    {
+                        name: '老王',
+                        sex: 'other',
                         age: 30,
-                        hobbies: ['dlq', 'tzq', 'ymq'],
+                        hobbies: ['dlq', 'ymq'],
                         clazz: '3',
-                    }
+                    },
                 ]
             }
         },
@@ -155,6 +170,37 @@
                         hobby === 'tzq' ? '踢足球' :
                             hobby === 'ymq' ? '羽毛球' : '其他'
                 )).join(' | ')
+            },
+            // 开始编辑
+            // index: 要编辑的数据索引
+            startEdit(index) {
+                // 填充数据到编辑数据中
+                // key: 保存要修改的数据索引
+                // value: 克隆后的原始数据
+                this.editData[index] = {...this.tableData[index]}
+            },
+            // 取消编辑
+            // index: 要取消编辑的索引
+            cancel(index) {
+                // 删除编辑数据
+                delete this.editData[index]
+            },
+            // 保存编辑结果
+            // index 要保存的索引
+            save(index) {
+                // editData 中的数据 赋值到 tableData 中
+
+                // 原始数据
+                const origin = this.tableData[index]
+                // 编辑后的数据
+                const editData = this.editData[index]
+                // 属性循环赋值
+                for (const key in origin) {
+                    origin[key] = editData[key]
+                }
+
+                // 删除编辑数据
+                this.cancel(index)
             }
         }
     }).mount('#root')
