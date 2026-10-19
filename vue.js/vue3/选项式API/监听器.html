@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.global.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <div>
+        {{usd}}
+        <form>
+            <div><label>name: <input type="text" v-model="name"></label></div>
+            <div><label>form.name: <input type="text" v-model="form.name"></label></div>
+            <div><label>arr[0]: <input type="text" v-model="arr[0]"></label></div>
+            <div><label>arr[1].t: <input type="text" v-model="arr[1].t"></label></div>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    // 知识点：
+    // 什么是监听器
+    // 应用场景
+    // 声明监听器
+    //      1. 属性
+    //      2. 对象属性
+    //      3. 数组成员
+    //      4. 数组成员的属性
+    // 触发监听器
+    // 总结: 监听器的 key 可以使用字符串，通过 . 运算符连接想要访问的引用路径
+
+
+    // 什么是监听器
+    // 用于监听属性变化的函数
+
+    // 应用场景
+
+
+    const App = {
+        data() {
+            return {
+                name: '',
+                form: {
+                    name: ''
+                },
+                rmb: 0,
+                arr: ['1', {t: '2'}]
+            }
+        },
+        computed: {
+            // 返回通过rmb换算的美元值
+            usd() {
+                return this.rmb * 0.16
+            }
+        },
+        // 监听器声明再 watch 中
+        watch: {
+            // 1. 属性
+            name(newValue, oldValue) {
+                // newValue 新值
+                // oldValue 旧值
+                console.log(newValue)
+                console.log(oldValue)
+            },
+            // 计算属性也能监听
+            usd(newValue, oldValue) {
+                console.log(newValue)
+                console.log(oldValue)
+            },
+            // 2. 对象属性
+            'form.name': function (newValue, oldValue) {
+                console.log(newValue)
+                console.log(oldValue)
+            },
+            // 3. 数组成员
+            'arr.0': function (newValue, oldValue) {
+                console.log(newValue)
+                console.log(oldValue)
+            },
+            // 4. 数组成员属性
+            'arr.1.t': function (newValue, oldValue) {
+                console.log(newValue)
+                console.log(oldValue)
+            }
+        }
+    }
+
+    let app = Vue.createApp(App)
+    let vm = app.mount('#app')
+</script>
+
+</html>
