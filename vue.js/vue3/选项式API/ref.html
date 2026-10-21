@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.global.js"></script>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #0f0;
+        }
+
+        .box2 {
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+    <div>
+        <h1>元素上添加ref</h1>
+        <!-- 给元素添加 ref 属性值 -->
+        <div ref="box" class="box"></div>
+        <button @click="getBox">获取box</button>
+        <h1>组件上添加ref</h1>
+        <Child ref="childComponent"></Child>
+        <button @click="getComponent">获取组件</button>
+        <h1>ref函数形式值</h1>
+        <!-- 绑定属性 ref，其值为一个函数，函数中的参数 el 代表当前元素 -->
+        <div :ref="el=>{ box2 = el }" class="box box2"></div>
+        <button @click="getBox2">获取box2</button>
+        <h1>v-for中使用ref</h1>
+        <ul>
+            <li v-for="_ in 3"><input ref="liInp" type="text"></li>
+        </ul>
+        <button @click="getInputs">获取v-for中的input</button>
+    </div>
+</div>
+</body>
+<script>
+    // 知识点：
+    // 什么是ref？
+    // 应用场景
+    // 给html元素添加ref
+    // 读取ref的值
+    // 给组件添加ref
+    // 结合组件expose暴露属性
+    // 函数形式声明ref
+    // v-for 中使用 ref
+
+
+    // 什么是ref？
+    // 一个用于获取页面元素的响应式属性
+
+
+    // 应用场景
+    // ref 的作用：用来获取页面元素或组件
+
+
+    // 声明一个 Child 的组件
+    const Child = {
+        // expose 用于暴露属性，没有暴露的属性，无法访问
+        expose: ['a', 'fn1'],
+        template: `
+          <div>
+          <button>child按钮</button>
+          </div>
+        `,
+        data() {
+            return {
+                a: 1,
+                b: 2
+            }
+        },
+        methods: {
+            fn1() {
+                console.log('fn1');
+            }
+        }
+    }
+
+    const App = {
+        // 注册组件 Child 否则组件无法使用
+        components: {
+            Child
+        },
+        data() {
+            return {
+                // 声明一个响应式属性用来存储页面元素
+                box2: undefined
+            }
+        },
+        methods: {
+            getBox() {
+                // 使用 this.$refs 读取所有的 ref
+                console.log(this.$refs)
+                console.log(this.$refs.box)
+            },
+            getBox2() {
+                console.log(this.box2)
+            },
+            getComponent() {
+                console.log(this.$refs.childComponent)
+                // 调用组件的属性和方法
+                console.log(this.$refs.childComponent.a)
+                console.log(this.$refs.childComponent.b)
+                this.$refs.childComponent.fn1()
+            },
+            getInputs() {
+                console.log(this.$refs.liInp)
+            }
+        }
+    }
+
+    let app = Vue.createApp(App)
+    let vm = app.mount('#app')
+</script>
+
+</html>
