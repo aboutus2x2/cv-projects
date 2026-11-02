@@ -14,7 +14,7 @@
 // 4. 设计响应式属性并显示到页面中
 // 5. 处理组件自身逻辑
 
-import Clock from "@/components/Clock";
+import Clock from "@/components/作业-组件时钟/Clock";
 
 
 export default {
