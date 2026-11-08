@@ -4,8 +4,8 @@
         <!--    <BasicComponent></BasicComponent>-->
         <!--    <PropsComponent></PropsComponent>-->
 <!--        <WorkClock></WorkClock>-->
-<!--        <EventComponent></EventComponent>-->
-        <Work2></Work2>
+        <EventComponent></EventComponent>
+<!--        <Work2></Work2>-->
     </div>
 </template>
 
