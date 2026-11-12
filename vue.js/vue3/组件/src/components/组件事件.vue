@@ -1,7 +1,11 @@
 <template>
     <div>
+        <div>姓名: {{ name }}</div>
         <!-- 绑定事件 -->
-        <EventChild @per-five="receivePerFive"></EventChild>
+        <EventChild
+            @per-five="receivePerFive"
+            v-model="name"
+        ></EventChild>
     </div>
 </template>
 
@@ -13,6 +17,9 @@
 // 事件触发
 // 事件参数
 // 实现组件的v-model
+// vue2
+// v-model 没有参数
+// .native
 
 
 // 什么是组件事件？
@@ -29,7 +36,7 @@ export default {
     },
     data() {
         return {
-            name: '',
+            name: '张三',
             firstName: '',
             lastName: ''
         };
