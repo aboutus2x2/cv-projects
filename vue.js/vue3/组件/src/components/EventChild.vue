@@ -2,6 +2,10 @@
     <div>
         <div class="box">{{ count }}</div>
         <input type="text" :value="modelValue" @input="onInput">
+        <div>
+            firstName: <input type="text" :value="firstName" @input="onFirstNameInput">
+            lastName: <input type="text" :value="lastName" @input="onLastNameInput">
+        </div>
     </div>
 </template>
 
@@ -12,9 +16,11 @@ export default {
     name: "EventChild",
     // 使用 emits 定义事件
     // 自定义 v-model 的事件名，默认为 update:modelValue
-    emits: ['perFive', 'update:modelValue'],
+    // 自定义 v-model 也可以添加自定义事件名 例如 update:firstName
+    emits: [ 'click', 'perFive', 'update:modelValue', 'update:firstName', 'update:lastName'],
     // 自定义 v-model 的属性名，默认为 modelValue
-    props: ['modelValue'],
+    // 自定义 v-model 可以使用自定义名称 例如此处的 firstName
+    props: ['modelValue', 'firstName', 'lastName'],
     data() {
         return {
             count: 0
@@ -37,6 +43,12 @@ export default {
         },
         onInput(ev) {
             this.$emit('update:modelValue', ev.target.value)
+        },
+        onFirstNameInput(ev) {
+            this.$emit('update:firstName', ev.target.value)
+        },
+        onLastNameInput(ev) {
+            this.$emit('update:lastName', ev.target.value)
         }
     }
 }

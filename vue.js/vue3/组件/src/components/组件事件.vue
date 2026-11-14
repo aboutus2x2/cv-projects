@@ -1,10 +1,14 @@
 <template>
     <div>
         <div>姓名: {{ name }}</div>
+        <div>firstName: {{ fn }}; lastName: {{ ln }}</div>
         <!-- 绑定事件 -->
+        <!-- v-model后可以添加参数，例如 v-model:firstName 这个代表双向绑定一个 firstName 属性 -->
         <EventChild
             @per-five="receivePerFive"
             v-model="name"
+            v-model:firstName="fn"
+            v-model:last-name="ln"
         ></EventChild>
     </div>
 </template>
@@ -19,7 +23,7 @@
 // 实现组件的v-model
 // vue2
 // v-model 没有参数
-// .native
+// .native 将事件绑定给原生元素而不是组件
 
 
 // 什么是组件事件？
@@ -37,8 +41,8 @@ export default {
     data() {
         return {
             name: '张三',
-            firstName: '',
-            lastName: ''
+            fn: 'Bob',
+            ln: 'Great'
         };
     },
     methods: {
