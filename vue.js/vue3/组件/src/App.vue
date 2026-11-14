@@ -3,9 +3,10 @@
         <!--    <global-component></global-component>-->
         <!--    <BasicComponent></BasicComponent>-->
         <!--    <PropsComponent></PropsComponent>-->
-<!--        <WorkClock></WorkClock>-->
-        <EventComponent></EventComponent>
-<!--        <Work2></Work2>-->
+        <!--        <WorkClock></WorkClock>-->
+<!--        <EventComponent></EventComponent>-->
+        <!--        <Work2></Work2>-->
+        <AttrExtendComponent></AttrExtendComponent>
     </div>
 </template>
 
@@ -17,6 +18,7 @@ import PropsComponent from '@/components/组件props.vue'
 import WorkClock from '@/components/作业-组件时钟/作业-组件时钟'
 import EventComponent from '@/components/组件事件'
 import Work2 from '@/components/作业-组件设计练习/Index'
+import AttrExtendComponent from '@/components/组件的html属性继承'
 
 export default {
     name: 'App',
@@ -25,7 +27,8 @@ export default {
         PropsComponent,
         WorkClock,
         EventComponent,
-        Work2
+        Work2,
+        AttrExtendComponent
     },
 }
 </script>
