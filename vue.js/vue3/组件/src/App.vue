@@ -4,9 +4,10 @@
         <!--    <BasicComponent></BasicComponent>-->
         <!--    <PropsComponent></PropsComponent>-->
         <!--        <WorkClock></WorkClock>-->
-<!--        <EventComponent></EventComponent>-->
+        <!--        <EventComponent></EventComponent>-->
         <!--        <Work2></Work2>-->
-        <AttrExtendComponent></AttrExtendComponent>
+        <!--        <AttrExtendComponent></AttrExtendComponent>-->
+        <SlotComponent></SlotComponent>
     </div>
 </template>
 
@@ -19,6 +20,7 @@ import WorkClock from '@/components/作业-组件时钟/作业-组件时钟'
 import EventComponent from '@/components/组件事件'
 import Work2 from '@/components/作业-组件设计练习/Index'
 import AttrExtendComponent from '@/components/组件的html属性继承'
+import SlotComponent from '@/components/组件插槽'
 
 export default {
     name: 'App',
@@ -28,7 +30,8 @@ export default {
         WorkClock,
         EventComponent,
         Work2,
-        AttrExtendComponent
+        AttrExtendComponent,
+        SlotComponent
     },
 }
 </script>
