@@ -7,7 +7,9 @@
         <!--        <EventComponent></EventComponent>-->
         <!--        <Work2></Work2>-->
         <!--        <AttrExtendComponent></AttrExtendComponent>-->
-        <SlotComponent></SlotComponent>
+        <!--        <SlotComponent></SlotComponent>-->
+        <!--        <Work3></Work3>-->
+        <DepInjectComponent></DepInjectComponent>
     </div>
 </template>
 
@@ -21,6 +23,8 @@ import EventComponent from '@/components/组件事件'
 import Work2 from '@/components/作业-组件设计练习/Index'
 import AttrExtendComponent from '@/components/组件的html属性继承'
 import SlotComponent from '@/components/组件插槽'
+import Work3 from '@/components/作业-组件综合练习/Father'
+import DepInjectComponent from '@/components/依赖注入'
 
 export default {
     name: 'App',
@@ -31,7 +35,9 @@ export default {
         EventComponent,
         Work2,
         AttrExtendComponent,
-        SlotComponent
+        SlotComponent,
+        Work3,
+        DepInjectComponent
     },
 }
 </script>

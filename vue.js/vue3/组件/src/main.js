@@ -11,7 +11,13 @@ const GlobalComponent = {
     }
 }
 
-createApp(App)
+const app = createApp(App)
     // 全局注册组件
     .component('global-component', GlobalComponent)
-    .mount('#app')
+    // 使用 app 对象定义 应用层 Provide
+    .provide('theme', 'my global theme')
+
+// 配置自动解包
+// app.config.unwrapInjectedRef = true;
+
+app.mount('#app')
