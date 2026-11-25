@@ -9,7 +9,9 @@
         <!--        <AttrExtendComponent></AttrExtendComponent>-->
         <!--        <SlotComponent></SlotComponent>-->
         <!--        <Work3></Work3>-->
-        <DepInjectComponent></DepInjectComponent>
+<!--        <DepInjectComponent></DepInjectComponent>-->
+<!--        <AsyncComponent></AsyncComponent>-->
+        <DyComponent></DyComponent>
     </div>
 </template>
 
@@ -25,6 +27,8 @@ import AttrExtendComponent from '@/components/组件的html属性继承'
 import SlotComponent from '@/components/组件插槽'
 import Work3 from '@/components/作业-组件综合练习/Father'
 import DepInjectComponent from '@/components/依赖注入'
+import AsyncComponent from "@/components/异步组件";
+import DyComponent from '@/components/动态组件'
 
 export default {
     name: 'App',
@@ -37,7 +41,9 @@ export default {
         AttrExtendComponent,
         SlotComponent,
         Work3,
-        DepInjectComponent
+        DepInjectComponent,
+        AsyncComponent,
+        DyComponent
     },
 }
 </script>
