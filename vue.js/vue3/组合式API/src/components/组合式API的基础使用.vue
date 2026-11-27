@@ -1,3 +1,18 @@
+<!-- 单文件据组件中，可以将 setup 生命周期写在页头的 <script setup> 标签中 -->
+<script setup>
+// 此处写入的代码本质上就是在 setup 生命周期运行的代码
+
+import {ref} from "vue";
+
+
+// 在 <script setup> 标签中定义的常量 变量或函数 都将能被模板直接使用
+const count = ref(0)
+
+function increase() {
+    count.value++
+}
+</script>
+
 <template>
     <div>
         <div>count: {{ count }}</div>
@@ -5,7 +20,7 @@
     </div>
 </template>
 
-<script>
+<!--<script>
 // 知识点
 // 什么是组合式API
 // 应用场景
@@ -50,7 +65,7 @@ export default {
     //     }
     // }
 };
-</script>
+</script>-->
 
 <style scoped>
 
